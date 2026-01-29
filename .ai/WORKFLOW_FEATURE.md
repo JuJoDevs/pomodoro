@@ -631,22 +631,27 @@ class StartPomodoroUseCaseTest {
 }
 ```
 
-#### 10.3 Snapshot Tests (Paparazzi) - Parameterized
+#### 10.3 Snapshot Tests (Roborazzi) - Parameterized
 
 Always prefer parameterized tests for snapshot testing when possible. This approach:
 - Reduces code duplication
 - Makes it easy to add new states
 - Ensures consistent test structure
 - Improves maintainability
+- JVM-based testing with Robolectric (no emulator needed)
 
 ```kotlin
 // features/[feature]/impl/src/test/.../presentation/[Screen]ScreenSnapshotTest.kt
+@RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [34])
 class PomodoroScreenSnapshotTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.PIXEL_5,
-        theme = "android:Theme.Material3.Light.NoActionBar"
+    val roborazziRule = RoborazziRule(
+        options = RoborazziRule.Options(
+            captureType = RoborazziRule.CaptureType.LastImage()
+        )
     )
 
     // Define all screen states to test
@@ -702,7 +707,7 @@ class PomodoroScreenSnapshotTest {
     @ParameterizedTest(name = "pomodoro_screen_{0}")
     @EnumSource(ScreenState::class)
     fun `snapshot pomodoro screen`(screenState: ScreenState) {
-        paparazzi.snapshot(name = screenState.description) {
+        composeTestRule.setContent {
             PomodoroTheme {
                 PomodoroScreen(
                     state = screenState.state,
@@ -710,6 +715,7 @@ class PomodoroScreenSnapshotTest {
                 )
             }
         }
+        composeTestRule.onRoot().captureRoboImage("${screenState.description}.png")
     }
 }
 ```
@@ -719,13 +725,13 @@ class PomodoroScreenSnapshotTest {
 For more complex scenarios where enum is not sufficient:
 
 ```kotlin
+@RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [34])
 class PomodoroScreenSnapshotTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(
-        deviceConfig = DeviceConfig.PIXEL_5,
-        theme = "android:Theme.Material3.Light.NoActionBar"
-    )
+    val composeTestRule = createComposeRule()
 
     companion object {
         @JvmStatic
@@ -762,7 +768,7 @@ class PomodoroScreenSnapshotTest {
     @ParameterizedTest(name = "pomodoro_screen_{0}")
     @MethodSource("screenStates")
     fun `snapshot pomodoro screen`(name: String, state: PomodoroState) {
-        paparazzi.snapshot(name = name) {
+        composeTestRule.setContent {
             PomodoroTheme {
                 PomodoroScreen(
                     state = state,
@@ -770,39 +776,37 @@ class PomodoroScreenSnapshotTest {
                 )
             }
         }
+        composeTestRule.onRoot().captureRoboImage("$name.png")
     }
 }
 ```
 
 **Multi-device Parameterized Tests**
 
-For testing across multiple device configurations:
+For testing across multiple device configurations with Roborazzi:
 
 ```kotlin
+@RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
 class PomodoroScreenMultiDeviceSnapshotTest {
+
+    @get:Rule
+    val composeTestRule = createComposeRule()
 
     companion object {
         @JvmStatic
         fun deviceConfigs(): Stream<Arguments> = Stream.of(
-            Arguments.of("phone_portrait", DeviceConfig.PIXEL_5),
-            Arguments.of("phone_landscape", DeviceConfig.PIXEL_5.copy(
-                screenWidth = 1080,
-                screenHeight = 2340,
-                orientation = ScreenOrientation.LANDSCAPE
-            )),
-            Arguments.of("tablet", DeviceConfig.NEXUS_10)
+            Arguments.of("phone_portrait", RobolectricDeviceQualifiers.Pixel5),
+            Arguments.of("phone_landscape", RobolectricDeviceQualifiers.Pixel5 + "-land"),
+            Arguments.of("tablet", RobolectricDeviceQualifiers.NexusOne)
         )
     }
 
     @ParameterizedTest(name = "pomodoro_screen_{0}")
     @MethodSource("deviceConfigs")
-    fun `snapshot pomodoro screen on different devices`(name: String, deviceConfig: DeviceConfig) {
-        val paparazzi = Paparazzi(
-            deviceConfig = deviceConfig,
-            theme = "android:Theme.Material3.Light.NoActionBar"
-        )
-        
-        paparazzi.snapshot(name = name) {
+    @Config(qualifiers = "w411dp-h914dp-xxhdpi")
+    fun `snapshot pomodoro screen on different devices`(name: String, qualifiers: String) {
+        composeTestRule.setContent {
             PomodoroTheme {
                 PomodoroScreen(
                     state = PomodoroState(
@@ -813,6 +817,7 @@ class PomodoroScreenMultiDeviceSnapshotTest {
                 )
             }
         }
+        composeTestRule.onRoot().captureRoboImage("$name.png")
     }
 }
 ```
@@ -821,10 +826,13 @@ class PomodoroScreenMultiDeviceSnapshotTest {
 
 ```kotlin
 // core/design-system/src/test/.../PomodoroButtonSnapshotTest.kt
+@RunWith(RobolectricTestRunner::class)
+@GraphicsMode(GraphicsMode.Mode.NATIVE)
+@Config(sdk = [34])
 class PomodoroButtonSnapshotTest {
 
     @get:Rule
-    val paparazzi = Paparazzi(deviceConfig = DeviceConfig.PIXEL_5)
+    val composeTestRule = createComposeRule()
 
     enum class ButtonState(
         val enabled: Boolean,
@@ -853,7 +861,7 @@ class PomodoroButtonSnapshotTest {
         "OUTLINED, DISABLED"
     )
     fun `snapshot button variants`(variant: ButtonVariant, state: ButtonState) {
-        paparazzi.snapshot(name = "${variant.description}_${state.description}") {
+        composeTestRule.setContent {
             PomodoroTheme {
                 when (variant) {
                     ButtonVariant.PRIMARY -> PomodoroButton(
@@ -875,6 +883,7 @@ class PomodoroButtonSnapshotTest {
                 }
             }
         }
+        composeTestRule.onRoot().captureRoboImage("${variant.description}_${state.description}.png")
     }
 }
 ```
@@ -1000,7 +1009,7 @@ Before marking a feature as complete, verify:
 ### Testing
 - [ ] ViewModel unit tests with JUnit5 + MockK + Turbine
 - [ ] Use case unit tests
-- [ ] Snapshot tests with Paparazzi
+- [ ] Snapshot tests with Roborazzi
 - [ ] GIVEN/WHEN/THEN naming convention
 - [ ] Domain tests have no Android dependencies
 

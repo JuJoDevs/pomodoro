@@ -156,7 +156,7 @@ fun PomodoroScreen(
 
 Only `PomodoroScreen` is allowed to be used for:
 - Previews
-- Paparazzi snapshot tests
+- Roborazzi snapshot tests
 
 ---
 
@@ -247,10 +247,11 @@ Rules:
 
 ### UI Snapshot Tests
 
-- **Paparazzi**
+- **Roborazzi**
 - Design-system components
 - Full screens when simple enough
 - No real navigation
+- JVM-based testing with Robolectric
 
 ---
 

@@ -1,0 +1,24 @@
+package com.jujodevs.pomodoro.convention
+
+import com.jujodevs.pomodoro.convention.extensions.libs
+import com.jujodevs.pomodoro.convention.extensions.library
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
+
+class RoborazziConventionPlugin : Plugin<Project> {
+    override fun apply(target: Project) {
+        with(target) {
+            with(pluginManager) {
+                apply("io.github.takahirom.roborazzi")
+            }
+
+            dependencies {
+                add("testImplementation", libs.library("roborazzi"))
+                add("testImplementation", libs.library("roborazzi-compose"))
+                add("testImplementation", libs.library("roborazzi-rule"))
+                add("testImplementation", libs.library("robolectric"))
+            }
+        }
+    }
+}
