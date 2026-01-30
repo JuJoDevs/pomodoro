@@ -22,8 +22,11 @@ dependencies {
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.roborazzi.gradlePlugin)
     compileOnly(libs.detekt.gradlePlugin)
+    compileOnly(libs.ktlint.gradlePlugin)
     // Add detekt classes for convention plugin
     implementation(libs.detekt.gradlePlugin)
+    // Add ktlint classes for convention plugin
+    implementation(libs.ktlint.gradlePlugin)
 }
 
 gradlePlugin {
@@ -67,6 +70,10 @@ gradlePlugin {
         register("detekt") {
             id = "pomodoro.detekt"
             implementationClass = "com.jujodevs.pomodoro.convention.DetektConventionPlugin"
+        }
+        register("ktlint") {
+            id = "pomodoro.ktlint"
+            implementationClass = "com.jujodevs.pomodoro.convention.KtlintConventionPlugin"
         }
     }
 }

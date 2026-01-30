@@ -8,5 +8,6 @@ plugins {
 subprojects {
     afterEvaluate {
         plugins.apply("pomodoro.detekt")
+        plugins.apply("pomodoro.ktlint")
     }
 }

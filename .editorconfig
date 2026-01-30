@@ -1,0 +1,30 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 120
+trim_trailing_whitespace = true
+
+[*.{kt,kts}]
+# Ktlint configurations
+ktlint_standard_no-wildcard-imports = enabled
+ktlint_standard_final-newline = enabled
+ktlint_standard_trailing-comma-on-call-site = enabled
+ktlint_standard_trailing-comma-on-declaration-site = enabled
+ktlint_standard_import-ordering = enabled
+ktlint_standard_max-line-length = enabled
+
+# Disabled rules for Compose
+ktlint_function-naming = disabled
+ktlint_compose_composable-function-name = disabled
+
+[*.md]
+trim_trailing_whitespace = false
+max_line_length = off
+
+[*.{yml,yaml}]
+indent_size = 2

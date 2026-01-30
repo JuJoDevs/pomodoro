@@ -48,6 +48,10 @@ timber = "5.0.1"
 detekt = "1.23.7"
 detektComposeRules = "0.4.15"
 
+# Ktlint
+ktlint = "1.5.0"
+ktlintGradle = "14.0.1"
+
 [libraries]
 # Android Gradle Plugin
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -112,6 +116,9 @@ detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gr
 detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
 detekt-compose-rules = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "detektComposeRules" }
 
+# Ktlint
+ktlint-gradlePlugin = { group = "org.jlleitschuh.gradle", name = "ktlint-gradle", version.ref = "ktlintGradle" }
+
 [plugins]
 # Standard plugins
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -133,4 +140,5 @@ pomodoro-koin = { id = "pomodoro.koin", version = "unspecified" }
 pomodoro-testing = { id = "pomodoro.testing", version = "unspecified" }
 pomodoro-roborazzi = { id = "pomodoro.roborazzi", version = "unspecified" }
 pomodoro-detekt = { id = "pomodoro.detekt", version = "unspecified" }
+pomodoro-ktlint = { id = "pomodoro.ktlint", version = "unspecified" }
 
