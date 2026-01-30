@@ -2,8 +2,10 @@ package com.jujodevs.pomodoro.convention
 
 import com.jujodevs.pomodoro.convention.extensions.libs
 import com.jujodevs.pomodoro.convention.extensions.library
+import io.github.takahirom.roborazzi.RoborazziExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 
 class RoborazziConventionPlugin : Plugin<Project> {
@@ -11,6 +13,12 @@ class RoborazziConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("io.github.takahirom.roborazzi")
+            }
+
+            afterEvaluate {
+                extensions.configure<RoborazziExtension> {
+                    outputDir.set(layout.projectDirectory.dir("src/test/snapshots"))
+                }
             }
 
             dependencies {

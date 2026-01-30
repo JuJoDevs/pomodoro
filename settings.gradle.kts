@@ -28,6 +28,7 @@ include(":app")
 // Core modules
 include(":core:appconfig:api")
 include(":core:appconfig:impl")
+include(":core:design-system")
 
 // Logger modules
 include(":libs:logger:api")

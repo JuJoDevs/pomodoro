@@ -59,6 +59,10 @@ gradlePlugin {
             id = "pomodoro.testing"
             implementationClass = "com.jujodevs.pomodoro.convention.TestingConventionPlugin"
         }
+        register("androidTesting") {
+            id = "pomodoro.android.testing"
+            implementationClass = "com.jujodevs.pomodoro.convention.AndroidTestingConventionPlugin"
+        }
         register("roborazzi") {
             id = "pomodoro.roborazzi"
             implementationClass = "com.jujodevs.pomodoro.convention.RoborazziConventionPlugin"

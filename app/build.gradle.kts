@@ -26,6 +26,7 @@ dependencies {
     // Core
     implementation(project(":core:appconfig:api"))
     implementation(project(":core:appconfig:impl"))
+    implementation(project(":core:design-system"))
 
     // Logger
     implementation(project(":libs:logger:api"))

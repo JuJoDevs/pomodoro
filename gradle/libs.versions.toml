@@ -72,6 +72,7 @@ compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 compose-material3 = { group = "androidx.compose.material3", name = "material3" }
+compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
 
 # AndroidX Core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -104,6 +105,7 @@ junit5-api = { group = "org.junit.jupiter", name = "junit-jupiter-api" }
 junit5-engine = { group = "org.junit.jupiter", name = "junit-jupiter-engine" }
 junit5-params = { group = "org.junit.jupiter", name = "junit-jupiter-params" }
 junit5-launcher = { group = "org.junit.platform", name = "junit-platform-launcher" }
+junit5-vintage-engine = { group = "org.junit.vintage", name = "junit-vintage-engine" }
 mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 kluent = { group = "org.amshove.kluent", name = "kluent", version.ref = "kluent" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
@@ -152,6 +154,7 @@ pomodoro-android-feature-api = { id = "pomodoro.android.feature.api", version = 
 pomodoro-kotlin-library = { id = "pomodoro.kotlin.library", version = "unspecified" }
 pomodoro-koin = { id = "pomodoro.koin", version = "unspecified" }
 pomodoro-testing = { id = "pomodoro.testing", version = "unspecified" }
+pomodoro-android-testing = { id = "pomodoro.android.testing", version = "unspecified" }
 pomodoro-roborazzi = { id = "pomodoro.roborazzi", version = "unspecified" }
 pomodoro-detekt = { id = "pomodoro.detekt", version = "unspecified" }
 pomodoro-ktlint = { id = "pomodoro.ktlint", version = "unspecified" }
