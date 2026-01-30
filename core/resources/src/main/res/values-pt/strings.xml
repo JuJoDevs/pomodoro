@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Iniciar</string>
+    <string name="action_pause">Pausar</string>
+    <string name="action_resume">Retomar</string>
+    <string name="action_stop">Parar</string>
+    <string name="action_skip">Saltar</string>
+    <string name="action_cancel">Cancelar</string>
+    <string name="action_save">Guardar</string>
+    <string name="action_delete">Eliminar</string>
+    <string name="action_edit">Editar</string>
+    <string name="action_close">Fechar</string>
+    <string name="action_back">Voltar</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Definições</string>
+    <string name="label_statistics">Estatísticas</string>
+    <string name="label_about">Sobre</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Trabalho</string>
+    <string name="session_type_short_break">Pausa curta</string>
+    <string name="session_type_long_break">Pausa longa</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Sessões Pomodoro</string>
+    <string name="notification_channel_sessions_description">Notificações de sessões pomodoro concluídas</string>
+    <string name="notification_channel_reminders_name">Lembretes</string>
+    <string name="notification_channel_reminders_description">Notificações de lembretes</string>
+
+    <string name="notification_work_complete_title">Sessão de trabalho concluída!</string>
+    <string name="notification_work_complete_message">Ótimo trabalho! Faça uma pausa.</string>
+    <string name="notification_short_break_complete_title">A pausa terminou</string>
+    <string name="notification_short_break_complete_message">Pronto para outra sessão?</string>
+    <string name="notification_long_break_complete_title">Pausa longa concluída</string>
+    <string name="notification_long_break_complete_message">Está a ir muito bem! Nova sessão?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Algo correu mal. Tente novamente.</string>
+    <string name="error_network">Erro de rede. Verifique a sua ligação.</string>
+    <string name="error_permission_denied">Permissão negada</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d h %d min</string>
+</resources>

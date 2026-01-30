@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Mulai</string>
+    <string name="action_pause">Jeda</string>
+    <string name="action_resume">Lanjutkan</string>
+    <string name="action_stop">Berhenti</string>
+    <string name="action_skip">Lewati</string>
+    <string name="action_cancel">Batal</string>
+    <string name="action_save">Simpan</string>
+    <string name="action_delete">Hapus</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_close">Tutup</string>
+    <string name="action_back">Kembali</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Pengaturan</string>
+    <string name="label_statistics">Statistik</string>
+    <string name="label_about">Tentang</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Kerja</string>
+    <string name="session_type_short_break">Istirahat Pendek</string>
+    <string name="session_type_long_break">Istirahat Panjang</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Sesi Pomodoro</string>
+    <string name="notification_channel_sessions_description">Notifikasi sesi pomodoro yang selesai</string>
+    <string name="notification_channel_reminders_name">Pengingat</string>
+    <string name="notification_channel_reminders_description">Notifikasi pengingat</string>
+
+    <string name="notification_work_complete_title">Sesi kerja selesai!</string>
+    <string name="notification_work_complete_message">Bagus! Istirahat sebentar.</string>
+    <string name="notification_short_break_complete_title">Waktu istirahat habis</string>
+    <string name="notification_short_break_complete_message">Siap untuk sesi berikutnya?</string>
+    <string name="notification_long_break_complete_title">Istirahat panjang selesai</string>
+    <string name="notification_long_break_complete_message">Anda hebat! Mulai sesi baru?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Terjadi kesalahan. Silakan coba lagi.</string>
+    <string name="error_network">Kesalahan jaringan. Periksa koneksi Anda.</string>
+    <string name="error_permission_denied">Izin ditolak</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d menit</string>
+    <string name="time_format_hours_minutes">%d jam %d menit</string>
+</resources>

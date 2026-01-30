@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Başlat</string>
+    <string name="action_pause">Duraklat</string>
+    <string name="action_resume">Devam Et</string>
+    <string name="action_stop">Durdur</string>
+    <string name="action_skip">Atla</string>
+    <string name="action_cancel">İptal</string>
+    <string name="action_save">Kaydet</string>
+    <string name="action_delete">Sil</string>
+    <string name="action_edit">Düzenle</string>
+    <string name="action_close">Kapat</string>
+    <string name="action_back">Geri</string>
+    <string name="action_ok">Tamam</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Ayarlar</string>
+    <string name="label_statistics">İstatistikler</string>
+    <string name="label_about">Hakkında</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Çalışma</string>
+    <string name="session_type_short_break">Kısa Mola</string>
+    <string name="session_type_long_break">Uzun Mola</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro Oturumları</string>
+    <string name="notification_channel_sessions_description">Tamamlanan pomodoro oturumları için bildirimler</string>
+    <string name="notification_channel_reminders_name">Hatırlatıcılar</string>
+    <string name="notification_channel_reminders_description">Hatırlatma bildirimleri</string>
+
+    <string name="notification_work_complete_title">Çalışma oturumu tamamlandı!</string>
+    <string name="notification_work_complete_message">Harika iş! Mola ver.</string>
+    <string name="notification_short_break_complete_title">Mola bitti</string>
+    <string name="notification_short_break_complete_message">Yeni oturum için hazır mısın?</string>
+    <string name="notification_long_break_complete_title">Uzun mola tamamlandı</string>
+    <string name="notification_long_break_complete_message">Harika gidiyorsun! Yeni oturum başlat?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Bir şeyler yanlış gitti. Lütfen tekrar deneyin.</string>
+    <string name="error_network">Ağ hatası. Bağlantınızı kontrol edin.</string>
+    <string name="error_permission_denied">İzin reddedildi</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d dk</string>
+    <string name="time_format_hours_minutes">%d sa %d dk</string>
+</resources>

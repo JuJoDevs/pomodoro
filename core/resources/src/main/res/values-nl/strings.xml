@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Starten</string>
+    <string name="action_pause">Pauzeren</string>
+    <string name="action_resume">Hervatten</string>
+    <string name="action_stop">Stoppen</string>
+    <string name="action_skip">Overslaan</string>
+    <string name="action_cancel">Annuleren</string>
+    <string name="action_save">Opslaan</string>
+    <string name="action_delete">Verwijderen</string>
+    <string name="action_edit">Bewerken</string>
+    <string name="action_close">Sluiten</string>
+    <string name="action_back">Terug</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Instellingen</string>
+    <string name="label_statistics">Statistieken</string>
+    <string name="label_about">Over</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Werk</string>
+    <string name="session_type_short_break">Korte pauze</string>
+    <string name="session_type_long_break">Lange pauze</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro-sessies</string>
+    <string name="notification_channel_sessions_description">Meldingen voor voltooide pomodoro-sessies</string>
+    <string name="notification_channel_reminders_name">Herinneringen</string>
+    <string name="notification_channel_reminders_description">Herinneringsmeldingen</string>
+
+    <string name="notification_work_complete_title">Werksessie voltooid!</string>
+    <string name="notification_work_complete_message">Goed gedaan! Neem een pauze.</string>
+    <string name="notification_short_break_complete_title">Pauze is voorbij</string>
+    <string name="notification_short_break_complete_message">Klaar voor een nieuwe sessie?</string>
+    <string name="notification_long_break_complete_title">Lange pauze voltooid</string>
+    <string name="notification_long_break_complete_message">Je doet het geweldig! Nieuwe sessie starten?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Er is iets misgegaan. Probeer het opnieuw.</string>
+    <string name="error_network">Netwerkfout. Controleer je verbinding.</string>
+    <string name="error_permission_denied">Toestemming geweigerd</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d u %d min</string>
+</resources>

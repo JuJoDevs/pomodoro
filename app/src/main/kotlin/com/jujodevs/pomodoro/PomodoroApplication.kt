@@ -6,8 +6,11 @@ import com.jujodevs.pomodoro.core.appconfig.AppConfig
 import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
 import com.jujodevs.pomodoro.libs.analytics.impl.di.analyticsModule
 import com.jujodevs.pomodoro.libs.crashlytics.impl.di.crashlyticsModule
+import com.jujodevs.pomodoro.libs.datastore.impl.di.dataStoreModule
 import com.jujodevs.pomodoro.libs.logger.impl.LoggerInitializer
 import com.jujodevs.pomodoro.libs.logger.impl.di.loggerModule
+import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
+import com.jujodevs.pomodoro.libs.notifications.impl.di.notificationsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
@@ -24,7 +27,9 @@ class PomodoroApplication : Application() {
                 appConfigModule,
                 loggerModule,
                 analyticsModule,
-                crashlyticsModule
+                crashlyticsModule,
+                dataStoreModule,
+                notificationsModule
             )
         }
 
@@ -34,5 +39,9 @@ class PomodoroApplication : Application() {
 
         // 3. Initialize Firebase
         FirebaseApp.initializeApp(this)
+
+        // 4. Create notification channels
+        val channelManager: NotificationChannelManager = GlobalContext.get().get()
+        channelManager.createNotificationChannels()
     }
 }

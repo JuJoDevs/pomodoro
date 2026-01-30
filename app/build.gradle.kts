@@ -47,4 +47,12 @@ dependencies {
     // Crashlytics
     implementation(project(":libs:crashlytics:api"))
     implementation(project(":libs:crashlytics:impl"))
+
+    // DataStore
+    implementation(project(":libs:datastore:api"))
+    implementation(project(":libs:datastore:impl"))
+
+    // Notifications
+    implementation(project(":libs:notifications:api"))
+    implementation(project(":libs:notifications:impl"))
 }

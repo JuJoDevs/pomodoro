@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">開始</string>
+    <string name="action_pause">一時停止</string>
+    <string name="action_resume">再開</string>
+    <string name="action_stop">停止</string>
+    <string name="action_skip">スキップ</string>
+    <string name="action_cancel">キャンセル</string>
+    <string name="action_save">保存</string>
+    <string name="action_delete">削除</string>
+    <string name="action_edit">編集</string>
+    <string name="action_close">閉じる</string>
+    <string name="action_back">戻る</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">設定</string>
+    <string name="label_statistics">統計</string>
+    <string name="label_about">アプリについて</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">作業</string>
+    <string name="session_type_short_break">短い休憩</string>
+    <string name="session_type_long_break">長い休憩</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">ポモドーロセッション</string>
+    <string name="notification_channel_sessions_description">ポモドーロセッション完了の通知</string>
+    <string name="notification_channel_reminders_name">リマインダー</string>
+    <string name="notification_channel_reminders_description">リマインダー通知</string>
+
+    <string name="notification_work_complete_title">作業セッション完了！</string>
+    <string name="notification_work_complete_message">お疲れ様です！休憩しましょう。</string>
+    <string name="notification_short_break_complete_title">休憩終了</string>
+    <string name="notification_short_break_complete_message">次のセッションを始めますか？</string>
+    <string name="notification_long_break_complete_title">長い休憩が終了</string>
+    <string name="notification_long_break_complete_message">素晴らしい！新しいセッションを始めますか？</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">エラーが発生しました。もう一度お試しください。</string>
+    <string name="error_network">ネットワークエラー。接続を確認してください。</string>
+    <string name="error_permission_denied">権限が拒否されました</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d分</string>
+    <string name="time_format_hours_minutes">%d時間%d分</string>
+</resources>

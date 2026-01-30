@@ -30,6 +30,7 @@ include(":core:appconfig:api")
 include(":core:appconfig:impl")
 include(":core:design-system")
 include(":core:navigation")
+include(":core:resources")
 include(":core:ui")
 
 // Logger modules
@@ -43,3 +44,11 @@ include(":libs:analytics:impl")
 // Crashlytics modules
 include(":libs:crashlytics:api")
 include(":libs:crashlytics:impl")
+
+// DataStore modules
+include(":libs:datastore:api")
+include(":libs:datastore:impl")
+
+// Notifications modules
+include(":libs:notifications:api")
+include(":libs:notifications:impl")

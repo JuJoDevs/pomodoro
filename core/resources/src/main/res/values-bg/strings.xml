@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Старт</string>
+    <string name="action_pause">Пауза</string>
+    <string name="action_resume">Продължи</string>
+    <string name="action_stop">Стоп</string>
+    <string name="action_skip">Пропусни</string>
+    <string name="action_cancel">Отказ</string>
+    <string name="action_save">Запази</string>
+    <string name="action_delete">Изтрий</string>
+    <string name="action_edit">Редактирай</string>
+    <string name="action_close">Затвори</string>
+    <string name="action_back">Назад</string>
+    <string name="action_ok">ОК</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Настройки</string>
+    <string name="label_statistics">Статистика</string>
+    <string name="label_about">Относно</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Работа</string>
+    <string name="session_type_short_break">Кратка почивка</string>
+    <string name="session_type_long_break">Дълга почивка</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Помодоро сесии</string>
+    <string name="notification_channel_sessions_description">Известия за завършени помодоро сесии</string>
+    <string name="notification_channel_reminders_name">Напомняния</string>
+    <string name="notification_channel_reminders_description">Известия за напомняния</string>
+
+    <string name="notification_work_complete_title">Работната сесия е завършена!</string>
+    <string name="notification_work_complete_message">Чудесна работа! Направи почивка.</string>
+    <string name="notification_short_break_complete_title">Почивката приключи</string>
+    <string name="notification_short_break_complete_message">Готов за нова сесия?</string>
+    <string name="notification_long_break_complete_title">Дългата почивка приключи</string>
+    <string name="notification_long_break_complete_message">Справяш се отлично! Започни нова сесия?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Нещо се обърка. Моля, опитайте отново.</string>
+    <string name="error_network">Мрежова грешка. Проверете връзката си.</string>
+    <string name="error_permission_denied">Разрешението е отказано</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d мин</string>
+    <string name="time_format_hours_minutes">%d ч %d мин</string>
+</resources>

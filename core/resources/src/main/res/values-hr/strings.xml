@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Pokreni</string>
+    <string name="action_pause">Pauziraj</string>
+    <string name="action_resume">Nastavi</string>
+    <string name="action_stop">Zaustavi</string>
+    <string name="action_skip">Preskoči</string>
+    <string name="action_cancel">Odustani</string>
+    <string name="action_save">Spremi</string>
+    <string name="action_delete">Obriši</string>
+    <string name="action_edit">Uredi</string>
+    <string name="action_close">Zatvori</string>
+    <string name="action_back">Natrag</string>
+    <string name="action_ok">U redu</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Postavke</string>
+    <string name="label_statistics">Statistike</string>
+    <string name="label_about">O aplikaciji</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Rad</string>
+    <string name="session_type_short_break">Kratka pauza</string>
+    <string name="session_type_long_break">Duga pauza</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro sesije</string>
+    <string name="notification_channel_sessions_description">Obavijesti za završene pomodoro sesije</string>
+    <string name="notification_channel_reminders_name">Podsjetnici</string>
+    <string name="notification_channel_reminders_description">Obavijesti podsjetnika</string>
+
+    <string name="notification_work_complete_title">Radna sesija završena!</string>
+    <string name="notification_work_complete_message">Odličan posao! Napravi pauzu.</string>
+    <string name="notification_short_break_complete_title">Pauza je gotova</string>
+    <string name="notification_short_break_complete_message">Spreman za novu sesiju?</string>
+    <string name="notification_long_break_complete_title">Duga pauza završena</string>
+    <string name="notification_long_break_complete_message">Sjajno ti ide! Započni novu sesiju?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Nešto je pošlo po zlu. Pokušajte ponovo.</string>
+    <string name="error_network">Mrežna greška. Provjerite vezu.</string>
+    <string name="error_permission_denied">Dozvola odbijena</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d h %d min</string>
+</resources>

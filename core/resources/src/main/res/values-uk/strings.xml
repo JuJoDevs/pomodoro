@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Почати</string>
+    <string name="action_pause">Пауза</string>
+    <string name="action_resume">Продовжити</string>
+    <string name="action_stop">Зупинити</string>
+    <string name="action_skip">Пропустити</string>
+    <string name="action_cancel">Скасувати</string>
+    <string name="action_save">Зберегти</string>
+    <string name="action_delete">Видалити</string>
+    <string name="action_edit">Редагувати</string>
+    <string name="action_close">Закрити</string>
+    <string name="action_back">Назад</string>
+    <string name="action_ok">ОК</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Налаштування</string>
+    <string name="label_statistics">Статистика</string>
+    <string name="label_about">Про застосунок</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Робота</string>
+    <string name="session_type_short_break">Коротка перерва</string>
+    <string name="session_type_long_break">Довга перерва</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Сеанси Помодоро</string>
+    <string name="notification_channel_sessions_description">Сповіщення про завершені сеанси помодоро</string>
+    <string name="notification_channel_reminders_name">Нагадування</string>
+    <string name="notification_channel_reminders_description">Сповіщення-нагадування</string>
+
+    <string name="notification_work_complete_title">Робочий сеанс завершено!</string>
+    <string name="notification_work_complete_message">Чудова робота! Зробіть перерву.</string>
+    <string name="notification_short_break_complete_title">Перерва закінчилась</string>
+    <string name="notification_short_break_complete_message">Готові до наступного сеансу?</string>
+    <string name="notification_long_break_complete_title">Довга перерва завершена</string>
+    <string name="notification_long_break_complete_message">Ви чудово справляєтесь! Почати новий сеанс?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Щось пішло не так. Спробуйте ще раз.</string>
+    <string name="error_network">Помилка мережі. Перевірте з\'єднання.</string>
+    <string name="error_permission_denied">Дозвіл відхилено</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d хв</string>
+    <string name="time_format_hours_minutes">%d год %d хв</string>
+</resources>

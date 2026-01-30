@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Aloita</string>
+    <string name="action_pause">Tauko</string>
+    <string name="action_resume">Jatka</string>
+    <string name="action_stop">Lopeta</string>
+    <string name="action_skip">Ohita</string>
+    <string name="action_cancel">Peruuta</string>
+    <string name="action_save">Tallenna</string>
+    <string name="action_delete">Poista</string>
+    <string name="action_edit">Muokkaa</string>
+    <string name="action_close">Sulje</string>
+    <string name="action_back">Takaisin</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Asetukset</string>
+    <string name="label_statistics">Tilastot</string>
+    <string name="label_about">Tietoja</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Työ</string>
+    <string name="session_type_short_break">Lyhyt tauko</string>
+    <string name="session_type_long_break">Pitkä tauko</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro-istunnot</string>
+    <string name="notification_channel_sessions_description">Ilmoitukset valmiista pomodoro-istunnoista</string>
+    <string name="notification_channel_reminders_name">Muistutukset</string>
+    <string name="notification_channel_reminders_description">Muistutusilmoitukset</string>
+
+    <string name="notification_work_complete_title">Työistunto valmis!</string>
+    <string name="notification_work_complete_message">Hienoa työtä! Pidä tauko.</string>
+    <string name="notification_short_break_complete_title">Tauko päättyi</string>
+    <string name="notification_short_break_complete_message">Valmis seuraavaan istuntoon?</string>
+    <string name="notification_long_break_complete_title">Pitkä tauko valmis</string>
+    <string name="notification_long_break_complete_message">Pärjäät hienosti! Aloita uusi istunto?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Jotain meni pieleen. Yritä uudelleen.</string>
+    <string name="error_network">Verkkovirhe. Tarkista yhteytesi.</string>
+    <string name="error_permission_denied">Lupa evätty</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d t %d min</string>
+</resources>

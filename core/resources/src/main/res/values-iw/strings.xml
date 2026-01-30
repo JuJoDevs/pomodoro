@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">התחל</string>
+    <string name="action_pause">השהה</string>
+    <string name="action_resume">המשך</string>
+    <string name="action_stop">עצור</string>
+    <string name="action_skip">דלג</string>
+    <string name="action_cancel">בטל</string>
+    <string name="action_save">שמור</string>
+    <string name="action_delete">מחק</string>
+    <string name="action_edit">ערוך</string>
+    <string name="action_close">סגור</string>
+    <string name="action_back">חזור</string>
+    <string name="action_ok">אישור</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">הגדרות</string>
+    <string name="label_statistics">סטטיסטיקות</string>
+    <string name="label_about">אודות</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">עבודה</string>
+    <string name="session_type_short_break">הפסקה קצרה</string>
+    <string name="session_type_long_break">הפסקה ארוכה</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">סשנים של פומודורו</string>
+    <string name="notification_channel_sessions_description">התראות על סשנים שהושלמו</string>
+    <string name="notification_channel_reminders_name">תזכורות</string>
+    <string name="notification_channel_reminders_description">התראות תזכורת</string>
+
+    <string name="notification_work_complete_title">סשן העבודה הושלם!</string>
+    <string name="notification_work_complete_message">עבודה מצוינת! קח הפסקה.</string>
+    <string name="notification_short_break_complete_title">ההפסקה הסתיימה</string>
+    <string name="notification_short_break_complete_message">מוכן לסשן נוסף?</string>
+    <string name="notification_long_break_complete_title">ההפסקה הארוכה הושלמה</string>
+    <string name="notification_long_break_complete_message">אתה מצליח נהדר! להתחיל סשן חדש?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">משהו השתבש. אנא נסה שוב.</string>
+    <string name="error_network">שגיאת רשת. בדוק את החיבור שלך.</string>
+    <string name="error_permission_denied">ההרשאה נדחתה</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d דק\'</string>
+    <string name="time_format_hours_minutes">%d שע\' %d דק\'</string>
+</resources>

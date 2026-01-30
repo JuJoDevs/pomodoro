@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">ابدأ</string>
+    <string name="action_pause">إيقاف مؤقت</string>
+    <string name="action_resume">استئناف</string>
+    <string name="action_stop">إيقاف</string>
+    <string name="action_skip">تخطي</string>
+    <string name="action_cancel">إلغاء</string>
+    <string name="action_save">حفظ</string>
+    <string name="action_delete">حذف</string>
+    <string name="action_edit">تعديل</string>
+    <string name="action_close">إغلاق</string>
+    <string name="action_back">رجوع</string>
+    <string name="action_ok">موافق</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">الإعدادات</string>
+    <string name="label_statistics">الإحصائيات</string>
+    <string name="label_about">حول</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">العمل</string>
+    <string name="session_type_short_break">استراحة قصيرة</string>
+    <string name="session_type_long_break">استراحة طويلة</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">جلسات بومودورو</string>
+    <string name="notification_channel_sessions_description">إشعارات جلسات بومودورو المكتملة</string>
+    <string name="notification_channel_reminders_name">التذكيرات</string>
+    <string name="notification_channel_reminders_description">إشعارات التذكير</string>
+
+    <string name="notification_work_complete_title">اكتملت جلسة العمل!</string>
+    <string name="notification_work_complete_message">أحسنت! خذ استراحة.</string>
+    <string name="notification_short_break_complete_title">انتهت الاستراحة</string>
+    <string name="notification_short_break_complete_message">هل أنت جاهز لجلسة أخرى؟</string>
+    <string name="notification_long_break_complete_title">اكتملت الاستراحة الطويلة</string>
+    <string name="notification_long_break_complete_message">أداء رائع! هل تبدأ جلسة جديدة؟</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">حدث خطأ ما. يرجى المحاولة مرة أخرى.</string>
+    <string name="error_network">خطأ في الشبكة. تحقق من اتصالك.</string>
+    <string name="error_permission_denied">تم رفض الإذن</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d دقيقة</string>
+    <string name="time_format_hours_minutes">%d ساعة %d دقيقة</string>
+</resources>

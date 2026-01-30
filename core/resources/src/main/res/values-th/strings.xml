@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">เริ่ม</string>
+    <string name="action_pause">หยุดชั่วคราว</string>
+    <string name="action_resume">ดำเนินการต่อ</string>
+    <string name="action_stop">หยุด</string>
+    <string name="action_skip">ข้าม</string>
+    <string name="action_cancel">ยกเลิก</string>
+    <string name="action_save">บันทึก</string>
+    <string name="action_delete">ลบ</string>
+    <string name="action_edit">แก้ไข</string>
+    <string name="action_close">ปิด</string>
+    <string name="action_back">กลับ</string>
+    <string name="action_ok">ตกลง</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">การตั้งค่า</string>
+    <string name="label_statistics">สถิติ</string>
+    <string name="label_about">เกี่ยวกับ</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">ทำงาน</string>
+    <string name="session_type_short_break">พักสั้น</string>
+    <string name="session_type_long_break">พักยาว</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">เซสชันโพโมโดโร</string>
+    <string name="notification_channel_sessions_description">การแจ้งเตือนเซสชันโพโมโดโรที่เสร็จสมบูรณ์</string>
+    <string name="notification_channel_reminders_name">การแจ้งเตือน</string>
+    <string name="notification_channel_reminders_description">การแจ้งเตือนตัวเตือน</string>
+
+    <string name="notification_work_complete_title">เซสชันทำงานเสร็จสิ้น!</string>
+    <string name="notification_work_complete_message">ทำได้ดี! พักผ่อนหน่อย</string>
+    <string name="notification_short_break_complete_title">หมดเวลาพัก</string>
+    <string name="notification_short_break_complete_message">พร้อมสำหรับเซสชันถัดไปไหม?</string>
+    <string name="notification_long_break_complete_title">พักยาวเสร็จสิ้น</string>
+    <string name="notification_long_break_complete_message">คุณทำได้ดีมาก! เริ่มเซสชันใหม่?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">เกิดข้อผิดพลาด โปรดลองอีกครั้ง</string>
+    <string name="error_network">ข้อผิดพลาดเครือข่าย ตรวจสอบการเชื่อมต่อ</string>
+    <string name="error_permission_denied">ถูกปฏิเสธสิทธิ์</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d นาที</string>
+    <string name="time_format_hours_minutes">%d ชม. %d นาที</string>
+</resources>

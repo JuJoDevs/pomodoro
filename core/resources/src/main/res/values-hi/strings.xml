@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">शुरू करें</string>
+    <string name="action_pause">रोकें</string>
+    <string name="action_resume">जारी रखें</string>
+    <string name="action_stop">बंद करें</string>
+    <string name="action_skip">छोड़ें</string>
+    <string name="action_cancel">रद्द करें</string>
+    <string name="action_save">सहेजें</string>
+    <string name="action_delete">हटाएं</string>
+    <string name="action_edit">संपादित करें</string>
+    <string name="action_close">बंद करें</string>
+    <string name="action_back">वापस</string>
+    <string name="action_ok">ठीक है</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">सेटिंग्स</string>
+    <string name="label_statistics">आंकड़े</string>
+    <string name="label_about">के बारे में</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">काम</string>
+    <string name="session_type_short_break">छोटा ब्रेक</string>
+    <string name="session_type_long_break">लंबा ब्रेक</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">पोमोडोरो सत्र</string>
+    <string name="notification_channel_sessions_description">पूर्ण पोमोडोरो सत्रों की सूचनाएं</string>
+    <string name="notification_channel_reminders_name">रिमाइंडर</string>
+    <string name="notification_channel_reminders_description">रिमाइंडर सूचनाएं</string>
+
+    <string name="notification_work_complete_title">काम का सत्र पूरा हुआ!</string>
+    <string name="notification_work_complete_message">शाबाश! ब्रेक लें।</string>
+    <string name="notification_short_break_complete_title">ब्रेक समाप्त</string>
+    <string name="notification_short_break_complete_message">अगले सत्र के लिए तैयार?</string>
+    <string name="notification_long_break_complete_title">लंबा ब्रेक पूरा</string>
+    <string name="notification_long_break_complete_message">बहुत अच्छा कर रहे हो! नया सत्र शुरू करें?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">कुछ गलत हो गया। कृपया पुन: प्रयास करें।</string>
+    <string name="error_network">नेटवर्क त्रुटि। कनेक्शन जांचें।</string>
+    <string name="error_permission_denied">अनुमति अस्वीकृत</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d मिनट</string>
+    <string name="time_format_hours_minutes">%d घंटे %d मिनट</string>
+</resources>

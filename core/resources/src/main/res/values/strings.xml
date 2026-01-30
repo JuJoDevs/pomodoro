@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Start</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_stop">Stop</string>
+    <string name="action_skip">Skip</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_save">Save</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_close">Close</string>
+    <string name="action_back">Back</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Settings</string>
+    <string name="label_statistics">Statistics</string>
+    <string name="label_about">About</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Work</string>
+    <string name="session_type_short_break">Short Break</string>
+    <string name="session_type_long_break">Long Break</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro Sessions</string>
+    <string name="notification_channel_sessions_description">Notifications for completed pomodoro sessions</string>
+    <string name="notification_channel_reminders_name">Reminders</string>
+    <string name="notification_channel_reminders_description">Reminder notifications</string>
+
+    <string name="notification_work_complete_title">Work session complete!</string>
+    <string name="notification_work_complete_message">Great job! Take a break.</string>
+    <string name="notification_short_break_complete_title">Break time is over</string>
+    <string name="notification_short_break_complete_message">Ready for another session?</string>
+    <string name="notification_long_break_complete_title">Long break complete</string>
+    <string name="notification_long_break_complete_message">You\'re doing great! Start a new session?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_network">Network error. Check your connection.</string>
+    <string name="error_permission_denied">Permission denied</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d h %d min</string>
+</resources>

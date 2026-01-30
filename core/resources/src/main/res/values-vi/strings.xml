@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Bắt đầu</string>
+    <string name="action_pause">Tạm dừng</string>
+    <string name="action_resume">Tiếp tục</string>
+    <string name="action_stop">Dừng</string>
+    <string name="action_skip">Bỏ qua</string>
+    <string name="action_cancel">Hủy</string>
+    <string name="action_save">Lưu</string>
+    <string name="action_delete">Xóa</string>
+    <string name="action_edit">Chỉnh sửa</string>
+    <string name="action_close">Đóng</string>
+    <string name="action_back">Quay lại</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Cài đặt</string>
+    <string name="label_statistics">Thống kê</string>
+    <string name="label_about">Giới thiệu</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Làm việc</string>
+    <string name="session_type_short_break">Nghỉ ngắn</string>
+    <string name="session_type_long_break">Nghỉ dài</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Phiên Pomodoro</string>
+    <string name="notification_channel_sessions_description">Thông báo phiên pomodoro hoàn thành</string>
+    <string name="notification_channel_reminders_name">Nhắc nhở</string>
+    <string name="notification_channel_reminders_description">Thông báo nhắc nhở</string>
+
+    <string name="notification_work_complete_title">Phiên làm việc hoàn thành!</string>
+    <string name="notification_work_complete_message">Làm tốt lắm! Nghỉ ngơi thôi.</string>
+    <string name="notification_short_break_complete_title">Hết giờ nghỉ</string>
+    <string name="notification_short_break_complete_message">Sẵn sàng cho phiên tiếp theo?</string>
+    <string name="notification_long_break_complete_title">Nghỉ dài hoàn thành</string>
+    <string name="notification_long_break_complete_message">Bạn làm rất tốt! Bắt đầu phiên mới?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Đã xảy ra lỗi. Vui lòng thử lại.</string>
+    <string name="error_network">Lỗi mạng. Kiểm tra kết nối của bạn.</string>
+    <string name="error_permission_denied">Quyền bị từ chối</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d phút</string>
+    <string name="time_format_hours_minutes">%d giờ %d phút</string>
+</resources>

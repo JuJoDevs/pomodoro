@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Démarrer</string>
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Reprendre</string>
+    <string name="action_stop">Arrêter</string>
+    <string name="action_skip">Passer</string>
+    <string name="action_cancel">Annuler</string>
+    <string name="action_save">Enregistrer</string>
+    <string name="action_delete">Supprimer</string>
+    <string name="action_edit">Modifier</string>
+    <string name="action_close">Fermer</string>
+    <string name="action_back">Retour</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Paramètres</string>
+    <string name="label_statistics">Statistiques</string>
+    <string name="label_about">À propos</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Travail</string>
+    <string name="session_type_short_break">Pause courte</string>
+    <string name="session_type_long_break">Pause longue</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Sessions Pomodoro</string>
+    <string name="notification_channel_sessions_description">Notifications des sessions pomodoro terminées</string>
+    <string name="notification_channel_reminders_name">Rappels</string>
+    <string name="notification_channel_reminders_description">Notifications de rappels</string>
+
+    <string name="notification_work_complete_title">Session de travail terminée !</string>
+    <string name="notification_work_complete_message">Bon travail ! Prenez une pause.</string>
+    <string name="notification_short_break_complete_title">La pause est terminée</string>
+    <string name="notification_short_break_complete_message">Prêt pour une autre session ?</string>
+    <string name="notification_long_break_complete_title">Longue pause terminée</string>
+    <string name="notification_long_break_complete_message">Vous faites du bon travail ! Nouvelle session ?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Une erreur s\'est produite. Veuillez réessayer.</string>
+    <string name="error_network">Erreur réseau. Vérifiez votre connexion.</string>
+    <string name="error_permission_denied">Permission refusée</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d h %d min</string>
+</resources>

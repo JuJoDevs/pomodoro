@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Common actions -->
+    <string name="action_start">Spustit</string>
+    <string name="action_pause">Pozastavit</string>
+    <string name="action_resume">Pokračovat</string>
+    <string name="action_stop">Zastavit</string>
+    <string name="action_skip">Přeskočit</string>
+    <string name="action_cancel">Zrušit</string>
+    <string name="action_save">Uložit</string>
+    <string name="action_delete">Smazat</string>
+    <string name="action_edit">Upravit</string>
+    <string name="action_close">Zavřít</string>
+    <string name="action_back">Zpět</string>
+    <string name="action_ok">OK</string>
+
+    <!-- Common labels -->
+    <string name="label_settings">Nastavení</string>
+    <string name="label_statistics">Statistiky</string>
+    <string name="label_about">O aplikaci</string>
+
+    <!-- Session types -->
+    <string name="session_type_work">Práce</string>
+    <string name="session_type_short_break">Krátká přestávka</string>
+    <string name="session_type_long_break">Dlouhá přestávka</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_sessions_name">Pomodoro relace</string>
+    <string name="notification_channel_sessions_description">Oznámení o dokončených pomodoro relacích</string>
+    <string name="notification_channel_reminders_name">Připomínky</string>
+    <string name="notification_channel_reminders_description">Připomínková oznámení</string>
+
+    <string name="notification_work_complete_title">Pracovní relace dokončena!</string>
+    <string name="notification_work_complete_message">Skvělá práce! Dej si pauzu.</string>
+    <string name="notification_short_break_complete_title">Přestávka skončila</string>
+    <string name="notification_short_break_complete_message">Připraven na další relaci?</string>
+    <string name="notification_long_break_complete_title">Dlouhá přestávka dokončena</string>
+    <string name="notification_long_break_complete_message">Daří se ti skvěle! Zahájit novou relaci?</string>
+
+    <!-- Common errors -->
+    <string name="error_generic">Něco se pokazilo. Zkuste to prosím znovu.</string>
+    <string name="error_network">Chyba sítě. Zkontrolujte připojení.</string>
+    <string name="error_permission_denied">Oprávnění zamítnuto</string>
+
+    <!-- Time formats -->
+    <string name="time_format_minutes">%d min</string>
+    <string name="time_format_hours_minutes">%d hod %d min</string>
+</resources>
