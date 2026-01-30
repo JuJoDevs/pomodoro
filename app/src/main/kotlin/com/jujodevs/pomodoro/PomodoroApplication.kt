@@ -1,0 +1,38 @@
+package com.jujodevs.pomodoro
+
+import android.app.Application
+import com.google.firebase.FirebaseApp
+import com.jujodevs.pomodoro.core.appconfig.AppConfig
+import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
+import com.jujodevs.pomodoro.libs.analytics.impl.di.analyticsModule
+import com.jujodevs.pomodoro.libs.crashlytics.impl.di.crashlyticsModule
+import com.jujodevs.pomodoro.libs.logger.impl.LoggerInitializer
+import com.jujodevs.pomodoro.libs.logger.impl.di.loggerModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.GlobalContext
+import org.koin.core.context.startKoin
+
+class PomodoroApplication : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+
+        // 1. Start Koin first to get AppConfig
+        startKoin {
+            androidContext(this@PomodoroApplication)
+            modules(
+                appConfigModule,
+                loggerModule,
+                analyticsModule,
+                crashlyticsModule
+            )
+        }
+
+        // 2. Initialize Logger using AppConfig (must be done before other modules use it)
+        val appConfig: AppConfig = GlobalContext.get().get()
+        LoggerInitializer.initialize(appConfig.isDebug)
+
+        // 3. Initialize Firebase
+        FirebaseApp.initializeApp(this)
+    }
+}

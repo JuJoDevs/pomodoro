@@ -18,8 +18,8 @@ internal fun Project.configureKotlinAndroid(
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
         }
     }
 
@@ -37,8 +37,8 @@ internal fun Project.configureKotlinAndroid(
         }
 
         compileOptions {
-            sourceCompatibility = JavaVersion.VERSION_17
-            targetCompatibility = JavaVersion.VERSION_17
+            sourceCompatibility = JavaVersion.VERSION_21
+            targetCompatibility = JavaVersion.VERSION_21
         }
     }
 
@@ -48,7 +48,9 @@ internal fun Project.configureKotlinAndroid(
 private fun Project.configureKotlinCompilerOptions() {
     extensions.configure<KotlinAndroidProjectExtension>("kotlin") {
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            // Use JVM 21 to match Java compileOptions target
+            // Android supports Java 17+ bytecode, so JVM 21 is compatible
+            jvmTarget.set(JvmTarget.JVM_21)
         }
     }
 }

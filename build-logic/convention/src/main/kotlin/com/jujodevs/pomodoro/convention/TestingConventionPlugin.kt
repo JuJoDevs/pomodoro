@@ -11,15 +11,13 @@ import org.gradle.kotlin.dsl.withType
 class TestingConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
-            tasks.withType<Test> {
-                useJUnitPlatform()
-            }
-
             dependencies {
-                // JUnit 5
+                // JUnit 5 BOM for version alignment
+                add("testImplementation", platform(libs.library("junit5-bom")))
                 add("testImplementation", libs.library("junit5-api"))
-                add("testRuntimeOnly", libs.library("junit5-engine"))
                 add("testImplementation", libs.library("junit5-params"))
+                add("testRuntimeOnly", libs.library("junit5-engine"))
+                add("testRuntimeOnly", libs.library("junit5-launcher"))
                 
                 // MockK
                 add("testImplementation", libs.library("mockk"))
@@ -32,6 +30,14 @@ class TestingConventionPlugin : Plugin<Project> {
                 
                 // Coroutines test
                 add("testImplementation", libs.library("kotlinx-coroutines-test"))
+            }
+            
+            // Configure JUnit Platform for all test tasks
+            // For Android modules, tasks are created after evaluation
+            afterEvaluate {
+                tasks.withType<Test> {
+                    useJUnitPlatform()
+                }
             }
         }
     }

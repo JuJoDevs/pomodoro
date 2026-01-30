@@ -3,11 +3,18 @@ plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.google.services) apply false
+    alias(libs.plugins.firebase.crashlytics) apply false
 }
 
 subprojects {
     afterEvaluate {
-        plugins.apply("pomodoro.detekt")
-        plugins.apply("pomodoro.ktlint")
+        // Only apply plugins to actual modules, not container directories
+        // A container directory has subprojects, a real module doesn't
+        val isContainer = project.subprojects.isNotEmpty()
+        if (!isContainer) {
+            plugins.apply("pomodoro.detekt")
+            plugins.apply("pomodoro.ktlint")
+        }
     }
 }

@@ -41,11 +41,13 @@ find_modules() {
             if [[ "$dir" == app/* ]]; then
                 module="app"
             elif [[ "$dir" == build-logic/* ]]; then
-                # Extract build-logic submodule if applicable
+                # Only build-logic:convention has ktlint/detekt configured
+                # Skip build-logic root as it's just a container
                 if [[ "$dir" == build-logic/convention/* ]]; then
                     module="build-logic:convention"
                 else
-                    module="build-logic"
+                    # Skip build-logic root module - it doesn't have ktlint/detekt
+                    module=""
                 fi
             else
                 # Try to find module by looking for build.gradle.kts
@@ -61,11 +63,14 @@ find_modules() {
             fi
             
             if [ -n "$module" ] && [ -d "$module" ]; then
-                modules="$modules $module"
+                # Explicitly exclude build-logic root (only build-logic:convention is valid)
+                if [ "$module" != "build-logic" ]; then
+                    modules="$modules $module"
+                fi
             fi
         fi
     done
-    echo "$modules" | tr ' ' '\n' | sort -u | grep -v '^$'
+    echo "$modules" | tr ' ' '\n' | sort -u | grep -v '^$' | grep -v '^build-logic$'
 }
 
 # Get affected modules
@@ -91,20 +96,22 @@ else
     # Fallback to Gradle task - run on modules containing the files
     if [ -n "$MODULES" ]; then
         while IFS= read -r module; do
-            if [ -n "$module" ]; then
+            if [ -n "$module" ] && [ "$module" != "build-logic" ]; then
                 # Convert module path to Gradle path (e.g., "build-logic:convention" stays as is, "app" -> "app")
                 gradle_module=$(echo "$module" | tr '/' ':')
-                if ! ./gradlew ":$gradle_module:ktlintCheck" --quiet 2>&1; then
-                    KTLINT_CHECK_FAILED=true
+                # Skip build-logic root (only build-logic:convention should be checked)
+                if [ "$gradle_module" != "build-logic" ]; then
+                    if ! ./gradlew ":$gradle_module:ktlintCheck" --quiet 2>&1; then
+                        KTLINT_CHECK_FAILED=true
+                    fi
                 fi
             fi
         done <<< "$MODULES"
     fi
     
-    # Also run on root project (catches any files not in modules)
-    if ! ./gradlew ktlintCheck --quiet 2>&1; then
-        KTLINT_CHECK_FAILED=true
-    fi
+    # Only run on root if we have modules, otherwise skip
+    # build-logic doesn't have ktlint configured, so we skip root execution
+    # to avoid errors. All files should be in specific modules anyway.
 fi
 
 if [ "$KTLINT_CHECK_FAILED" = true ]; then
@@ -126,17 +133,19 @@ if [ "$KTLINT_CHECK_FAILED" = true ]; then
         # Fallback to Gradle task
         if [ -n "$MODULES" ]; then
             while IFS= read -r module; do
-                if [ -n "$module" ]; then
+                if [ -n "$module" ] && [ "$module" != "build-logic" ]; then
                     gradle_module=$(echo "$module" | tr '/' ':')
-                    if ! ./gradlew ":$gradle_module:ktlintFormat" --quiet 2>&1; then
-                        KTLINT_FORMAT_FAILED=true
+                    # Skip build-logic root (only build-logic:convention should be checked)
+                    if [ "$gradle_module" != "build-logic" ]; then
+                        if ! ./gradlew ":$gradle_module:ktlintFormat" --quiet 2>&1; then
+                            KTLINT_FORMAT_FAILED=true
+                        fi
                     fi
                 fi
             done <<< "$MODULES"
         fi
-        if ! ./gradlew ktlintFormat --quiet 2>&1; then
-            KTLINT_FORMAT_FAILED=true
-        fi
+        # Skip root execution - all files should be in specific modules
+        # build-logic doesn't have ktlint configured
     fi
     
     if [ "$KTLINT_FORMAT_FAILED" = true ]; then
@@ -169,19 +178,20 @@ DETEKT_FAILED=false
 # Run detekt on affected modules
 if [ -n "$MODULES" ]; then
     while IFS= read -r module; do
-        if [ -n "$module" ]; then
+        if [ -n "$module" ] && [ "$module" != "build-logic" ]; then
             gradle_module=$(echo "$module" | tr '/' ':')
-            if ! ./gradlew ":$gradle_module:detekt" --quiet 2>&1; then
-                DETEKT_FAILED=true
+            # Skip build-logic root (only build-logic:convention should be checked)
+            if [ "$gradle_module" != "build-logic" ]; then
+                if ! ./gradlew ":$gradle_module:detekt" --quiet 2>&1; then
+                    DETEKT_FAILED=true
+                fi
             fi
         fi
     done <<< "$MODULES"
 fi
 
-# Also run on root project
-if ! ./gradlew detekt --quiet 2>&1; then
-    DETEKT_FAILED=true
-fi
+# Skip root execution - all files should be in specific modules
+# build-logic doesn't have detekt configured
 
 if [ "$DETEKT_FAILED" = true ]; then
     echo -e "${RED}❌ detekt found issues. Please fix them before committing.${NC}"

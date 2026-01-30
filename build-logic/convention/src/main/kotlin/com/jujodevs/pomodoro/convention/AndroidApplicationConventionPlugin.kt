@@ -25,7 +25,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     targetSdk = libs.version("targetSdk").toInt()
                     versionCode = libs.version("versionCode").toInt()
                     versionName = libs.version("versionName")
-                    
+
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
 
@@ -39,6 +39,8 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     }
                     debug {
                         isMinifyEnabled = false
+                        applicationIdSuffix = ".debug"
+                        versionNameSuffix = "-debug"
                     }
                 }
             }
