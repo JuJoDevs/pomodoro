@@ -44,6 +44,10 @@ robolectric = "4.14.1"
 # Other
 timber = "5.0.1"
 
+# Detekt
+detekt = "1.23.7"
+detektComposeRules = "0.4.15"
+
 [libraries]
 # Android Gradle Plugin
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "agp" }
@@ -103,6 +107,11 @@ robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "
 # Other
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
+# Detekt
+detekt-gradlePlugin = { group = "io.gitlab.arturbosch.detekt", name = "detekt-gradle-plugin", version.ref = "detekt" }
+detekt-formatting = { group = "io.gitlab.arturbosch.detekt", name = "detekt-formatting", version.ref = "detekt" }
+detekt-compose-rules = { group = "io.nlopez.compose.rules", name = "detekt", version.ref = "detektComposeRules" }
+
 [plugins]
 # Standard plugins
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -123,4 +132,5 @@ pomodoro-kotlin-library = { id = "pomodoro.kotlin.library", version = "unspecifi
 pomodoro-koin = { id = "pomodoro.koin", version = "unspecified" }
 pomodoro-testing = { id = "pomodoro.testing", version = "unspecified" }
 pomodoro-roborazzi = { id = "pomodoro.roborazzi", version = "unspecified" }
+pomodoro-detekt = { id = "pomodoro.detekt", version = "unspecified" }
 

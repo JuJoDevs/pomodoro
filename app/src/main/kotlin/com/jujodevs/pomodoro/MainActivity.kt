@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(
+private fun Greeting(
     name: String,
     modifier: Modifier = Modifier
 ) {
@@ -43,7 +43,7 @@ fun Greeting(
 
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+private fun GreetingPreview() {
     PomodoroTheme {
         Greeting("Android")
     }

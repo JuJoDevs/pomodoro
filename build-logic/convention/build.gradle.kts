@@ -21,6 +21,9 @@ dependencies {
     compileOnly(libs.ksp.gradlePlugin)
     compileOnly(libs.compose.gradlePlugin)
     compileOnly(libs.roborazzi.gradlePlugin)
+    compileOnly(libs.detekt.gradlePlugin)
+    // Add detekt classes for convention plugin
+    implementation(libs.detekt.gradlePlugin)
 }
 
 gradlePlugin {
@@ -60,6 +63,10 @@ gradlePlugin {
         register("roborazzi") {
             id = "pomodoro.roborazzi"
             implementationClass = "com.jujodevs.pomodoro.convention.RoborazziConventionPlugin"
+        }
+        register("detekt") {
+            id = "pomodoro.detekt"
+            implementationClass = "com.jujodevs.pomodoro.convention.DetektConventionPlugin"
         }
     }
 }

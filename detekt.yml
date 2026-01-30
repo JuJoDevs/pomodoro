@@ -1,0 +1,124 @@
+build:
+  maxIssues: 0
+  excludeCorrectable: false
+  weights:
+    complexity: 2
+    LongParameterList: 1
+    style: 1
+    comments: 1
+
+config:
+  validation: true
+  warningsAsErrors: false
+
+processors:
+  active: true
+
+console-reports:
+  active: true
+
+output-reports:
+  active: true
+  exclude:
+    - 'TxtOutputReport'
+
+complexity:
+  active: true
+  LongMethod:
+    threshold: 60
+    excludes: ['**/test/**', '**/androidTest/**']
+  LongParameterList:
+    functionThreshold: 8
+    constructorThreshold: 8
+    excludes: ['**/test/**', '**/androidTest/**']
+  CyclomaticComplexMethod:
+    threshold: 15
+    excludes: ['**/test/**', '**/androidTest/**']
+  TooManyFunctions:
+    thresholdInFiles: 20
+    excludes: ['**/test/**', '**/androidTest/**']
+
+naming:
+  active: true
+  ClassNaming:
+    classPattern: '[A-Z$][a-zA-Z0-9$]*'
+    excludes: ['**/test/**', '**/androidTest/**']
+  PackageNaming:
+    packagePattern: '^[a-z]+(\.[a-z][a-z0-9]*)*$'
+    excludes: ['**/test/**', '**/androidTest/**']
+  FunctionNaming:
+    functionPattern: '^([a-z$][a-zA-Z$0-9]*)|(`.*`)$'
+    ignoreAnnotated: ['Composable']
+    excludes: ['**/test/**', '**/androidTest/**']
+  VariableNaming:
+    variablePattern: '^[a-z][a-zA-Z0-9]*$'
+    excludes: ['**/test/**', '**/androidTest/**']
+  TopLevelPropertyNaming:
+    constantPattern: '^[A-Z][A-Z_0-9]*$'
+    excludes: ['**/test/**', '**/androidTest/**']
+
+style:
+  active: true
+  MagicNumber:
+    ignoreNumbers: ['-1', '0', '1', '2']
+    excludes: ['**/test/**', '**/androidTest/**', '**/ui/theme/Color.kt']
+  MaxLineLength:
+    maxLineLength: 120
+    excludes: ['**/test/**', '**/androidTest/**']
+  NewLineAtEndOfFile:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  TrailingWhitespace:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  UnusedImports:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated: ['Preview']
+    excludes: ['**/test/**', '**/androidTest/**']
+
+performance:
+  active: true
+  SpreadOperator:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  UnnecessaryTemporaryInstantiation:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+
+coroutines:
+  active: true
+  GlobalCoroutineUsage:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  InjectDispatcher:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+  RedundantSuspendModifier:
+    active: true
+    excludes: ['**/test/**', '**/androidTest/**']
+
+Compose:
+  active: true
+  ComposableNaming:
+    active: true
+  ComposableAnnotationNaming:
+    active: true
+  ModifierMissing:
+    active: true
+  ModifierReused:
+    active: true
+  ModifierWithoutDefault:
+    active: true
+  RememberMissing:
+    active: true
+  PreviewPublic:
+    active: true
+  UnnecessaryComposedModifier:
+    active: true
+  UnusedMaterialScaffoldPaddingParameter:
+    active: true
+  ViewModelForwardedState:
+    active: true
