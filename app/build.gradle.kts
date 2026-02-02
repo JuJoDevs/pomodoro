@@ -55,4 +55,8 @@ dependencies {
     // Notifications
     implementation(project(":libs:notifications:api"))
     implementation(project(":libs:notifications:impl"))
+
+    // Permissions
+    implementation(project(":libs:permissions:api"))
+    implementation(project(":libs:permissions:impl"))
 }

@@ -11,6 +11,7 @@ import com.jujodevs.pomodoro.libs.logger.impl.LoggerInitializer
 import com.jujodevs.pomodoro.libs.logger.impl.di.loggerModule
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
 import com.jujodevs.pomodoro.libs.notifications.impl.di.notificationsModule
+import com.jujodevs.pomodoro.libs.permissions.impl.di.permissionsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
@@ -29,7 +30,8 @@ class PomodoroApplication : Application() {
                 analyticsModule,
                 crashlyticsModule,
                 dataStoreModule,
-                notificationsModule
+                notificationsModule,
+                permissionsModule
             )
         }
 

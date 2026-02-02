@@ -2,6 +2,7 @@ package com.jujodevs.pomodoro.libs.notifications.impl.di
 
 import android.app.AlarmManager
 import android.content.Context
+import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.logger.Logger
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
@@ -19,6 +20,7 @@ val notificationsModule = module {
         NotificationSchedulerImpl(
             context = androidContext(),
             alarmManager = get(),
+            dataStoreManager = get<DataStoreManager>(),
             logger = get<Logger>()
         )
     }

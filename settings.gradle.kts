@@ -52,3 +52,7 @@ include(":libs:datastore:impl")
 // Notifications modules
 include(":libs:notifications:api")
 include(":libs:notifications:impl")
+
+// Permissions modules
+include(":libs:permissions:api")
+include(":libs:permissions:impl")

@@ -20,6 +20,8 @@ import com.jujodevs.pomodoro.core.navigation.goBack
 import com.jujodevs.pomodoro.core.ui.PomodoroScaffold
 import com.jujodevs.pomodoro.core.ui.ScaffoldConfig
 import com.jujodevs.pomodoro.core.ui.TopBarState
+import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
+import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +71,10 @@ private fun PomodoroApp() {
 
 @Composable
 private fun HomeScreen() {
+    // Request permissions on app launch/home screen for now
+    NotificationPermissionEffect()
+    ExactAlarmPermissionEffect()
+
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center

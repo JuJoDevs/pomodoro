@@ -4,6 +4,7 @@ package com.jujodevs.pomodoro.libs.datastore
  * Centralized definition of preference keys used throughout the app.
  *
  * All keys should be defined here to avoid typos and ensure consistency.
+ * These keys are typically for user-configurable settings.
  */
 object PreferencesKeys {
     // Pomodoro configuration

@@ -5,6 +5,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
+import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
 import com.jujodevs.pomodoro.libs.logger.Logger
 import com.jujodevs.pomodoro.libs.notifications.NotificationData
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
@@ -18,26 +20,20 @@ import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
 class NotificationSchedulerImpl(
     private val context: Context,
     private val alarmManager: AlarmManager,
+    private val dataStoreManager: DataStoreManager,
     private val logger: Logger
 ) : NotificationScheduler {
 
     override suspend fun scheduleNotification(notification: NotificationData): Result<Unit> {
         return runCatching {
-            val intent = Intent(context, AlarmReceiver::class.java).apply {
-                action = ACTION_NOTIFICATION
-                putExtra(EXTRA_NOTIFICATION_ID, notification.id)
+            val intent = createIntent(notification.id).apply {
                 putExtra(EXTRA_NOTIFICATION_TITLE, notification.title)
                 putExtra(EXTRA_NOTIFICATION_MESSAGE, notification.message)
                 putExtra(EXTRA_NOTIFICATION_CHANNEL_ID, notification.channelId)
                 putExtra(EXTRA_NOTIFICATION_TYPE, notification.type.name)
             }
 
-            val pendingIntent = PendingIntent.getBroadcast(
-                context,
-                notification.id,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            val pendingIntent = createPendingIntent(notification.id, intent)
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 if (alarmManager.canScheduleExactAlarms()) {
@@ -51,7 +47,7 @@ class NotificationSchedulerImpl(
                         TAG,
                         "Cannot schedule exact alarms. Permission not granted."
                     )
-                    throw SecurityException("SCHEDULE_EXACT_ALARM permission not granted")
+                    return Result.failure(SecurityException("SCHEDULE_EXACT_ALARM permission not granted"))
                 }
             } else {
                 alarmManager.setExactAndAllowWhileIdle(
@@ -60,6 +56,8 @@ class NotificationSchedulerImpl(
                     pendingIntent
                 )
             }
+
+            saveNotificationId(notification.id)
 
             logger.d(
                 TAG,
@@ -70,19 +68,12 @@ class NotificationSchedulerImpl(
 
     override suspend fun cancelNotification(notificationId: Int): Result<Unit> {
         return runCatching {
-            val intent = Intent(context, AlarmReceiver::class.java).apply {
-                action = ACTION_NOTIFICATION
-            }
-
-            val pendingIntent = PendingIntent.getBroadcast(
-                context,
-                notificationId,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            val pendingIntent = createPendingIntent(notificationId, createIntent(notificationId))
 
             alarmManager.cancel(pendingIntent)
             pendingIntent.cancel()
+
+            removeNotificationId(notificationId)
 
             logger.d(TAG, "Notification cancelled: id=$notificationId")
         }
@@ -90,24 +81,67 @@ class NotificationSchedulerImpl(
 
     override suspend fun cancelAllNotifications(): Result<Unit> {
         return runCatching {
-            // Note: This is a simplified version. In production, you'd need to track all notification IDs
-            logger.d(TAG, "All notifications cancelled")
+            val ids = getScheduledIds()
+            if (ids.isEmpty()) {
+                logger.d(TAG, "No notifications to cancel")
+                return@runCatching
+            }
+
+            ids.forEach { idString ->
+                idString.toIntOrNull()?.let { id ->
+                    val pendingIntent = createPendingIntent(id, createIntent(id))
+                    alarmManager.cancel(pendingIntent)
+                    pendingIntent.cancel()
+                }
+            }
+            dataStoreManager.removeValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS)
+            logger.d(TAG, "All notifications cancelled: count=${ids.size}")
         }
     }
 
     override fun isNotificationScheduled(notificationId: Int): Boolean {
-        val intent = Intent(context, AlarmReceiver::class.java).apply {
-            action = ACTION_NOTIFICATION
-        }
-
         val pendingIntent = PendingIntent.getBroadcast(
             context,
             notificationId,
-            intent,
+            createIntent(notificationId),
             PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
         )
 
         return pendingIntent != null
+    }
+
+    private fun createIntent(notificationId: Int): Intent {
+        return Intent(context, AlarmReceiver::class.java).apply {
+            action = ACTION_NOTIFICATION
+            putExtra(EXTRA_NOTIFICATION_ID, notificationId)
+        }
+    }
+
+    private fun createPendingIntent(notificationId: Int, intent: Intent): PendingIntent {
+        return PendingIntent.getBroadcast(
+            context,
+            notificationId,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+    }
+
+    private suspend fun getScheduledIds(): Set<String> {
+        return dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
+    }
+
+    private suspend fun saveNotificationId(id: Int) {
+        val currentIds = getScheduledIds().toMutableSet()
+        if (currentIds.add(id.toString())) {
+            dataStoreManager.setValue<Set<String>>(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, currentIds)
+        }
+    }
+
+    private suspend fun removeNotificationId(id: Int) {
+        val currentIds = getScheduledIds().toMutableSet()
+        if (currentIds.remove(id.toString())) {
+            dataStoreManager.setValue<Set<String>>(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, currentIds)
+        }
     }
 
     companion object {

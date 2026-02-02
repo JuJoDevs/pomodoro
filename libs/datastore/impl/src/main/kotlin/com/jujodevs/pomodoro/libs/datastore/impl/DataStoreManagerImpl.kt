@@ -9,6 +9,7 @@ import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.core.stringSetPreferencesKey
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
@@ -36,6 +37,11 @@ class DataStoreManagerImpl(
     override suspend fun removeValue(key: String) {
         dataStore.edit { preferences ->
             preferences.remove(stringPreferencesKey(key))
+            preferences.remove(intPreferencesKey(key))
+            preferences.remove(booleanPreferencesKey(key))
+            preferences.remove(floatPreferencesKey(key))
+            preferences.remove(longPreferencesKey(key))
+            preferences.remove(stringSetPreferencesKey(key))
         }
     }
 
@@ -57,6 +63,7 @@ class DataStoreManagerImpl(
             is Boolean -> preferences[booleanPreferencesKey(key)] ?: defaultValue
             is Float -> preferences[floatPreferencesKey(key)] ?: defaultValue
             is Long -> preferences[longPreferencesKey(key)] ?: defaultValue
+            is Set<*> -> preferences[stringSetPreferencesKey(key)] ?: defaultValue
             else -> defaultValue
         } as T
     }
@@ -68,6 +75,7 @@ class DataStoreManagerImpl(
             is Boolean -> preferences[booleanPreferencesKey(key)] = value
             is Float -> preferences[floatPreferencesKey(key)] = value
             is Long -> preferences[longPreferencesKey(key)] = value
+            is Set<*> -> preferences[stringSetPreferencesKey(key)] = value as Set<String>
         }
     }
 }

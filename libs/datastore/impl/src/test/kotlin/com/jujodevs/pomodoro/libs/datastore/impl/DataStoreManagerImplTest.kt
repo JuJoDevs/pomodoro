@@ -121,4 +121,47 @@ class DataStoreManagerImplTest {
         dataStoreManager.getValue("key1", "default1") shouldBeEqualTo "default1"
         dataStoreManager.getValue("key2", "default2") shouldBeEqualTo "default2"
     }
+
+    @Test
+    fun `GIVEN string value WHEN removeValue THEN should return default`() = runTest {
+        // GIVEN
+        val key = "sample_string"
+        dataStoreManager.setValue(key, "stored")
+
+        // WHEN
+        dataStoreManager.removeValue(key)
+
+        // THEN
+        dataStoreManager.getValue(key, "default") shouldBeEqualTo "default"
+    }
+
+    @Test
+    fun `GIVEN string set WHEN removeValue THEN should return default`() = runTest {
+        // GIVEN
+        val key = "sample_set"
+        dataStoreManager.setValue(key, setOf("id1", "id2"))
+
+        // WHEN
+        dataStoreManager.removeValue(key)
+
+        // THEN
+        val result = dataStoreManager.getValue(key, emptySet<String>())
+        result shouldBeEqualTo emptySet<String>()
+    }
+
+    @Test
+    fun `GIVEN multiple keys WHEN removeValue one THEN others should remain`() = runTest {
+        // GIVEN
+        val setKey = "set_key"
+        val stringKey = "string_key"
+        dataStoreManager.setValue(setKey, setOf("id1"))
+        dataStoreManager.setValue(stringKey, "string_value")
+
+        // WHEN
+        dataStoreManager.removeValue(setKey)
+
+        // THEN
+        dataStoreManager.getValue(setKey, emptySet<String>()) shouldBeEqualTo emptySet<String>()
+        dataStoreManager.getValue(stringKey, "") shouldBeEqualTo "string_value"
+    }
 }
