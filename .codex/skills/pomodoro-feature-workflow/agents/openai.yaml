@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pomodoro Feature Workflow"
+  short_description: "Help with Pomodoro Feature Workflow tasks"
+  default_prompt: "Use $pomodoro-feature-workflow to implement a new Pomodoro feature or screen following MVI and api/impl."

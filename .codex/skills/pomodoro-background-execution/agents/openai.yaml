@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pomodoro Background Execution"
+  short_description: "Help with Pomodoro Background Execution tasks"
+  default_prompt: "Use $pomodoro-background-execution to plan or implement reliable background alarms and notifications."

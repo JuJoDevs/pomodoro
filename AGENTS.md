@@ -1,386 +1,159 @@
 # AGENTS.md
 
-## 🎯 Project Goal
+## Project Goal
 
-Android **Pomodoro** application built following **Clean Architecture**, **MVI**, and **Jetpack Compose**, with high test coverage, strong modularization, and long-term scalability in mind.
+- Build an Android Pomodoro app with Clean Architecture, MVI, and Jetpack Compose.
+- Ensure reliability with the screen locked and notify users on completion.
+- Prioritize background reliability, battery efficiency, and modern Android compliance.
 
-The app must **work reliably with the screen locked**, notifying the user when a Pomodoro finishes using:
-- System alarms (`AlarmManager`) and/or
-- Scheduled notifications (foreground services if strictly required)
+## Architecture Principles
 
-The final technical approach must prioritize:
-- Reliability in background execution
-- Battery efficiency
-- Compliance with modern Android restrictions
+- Strict Clean Architecture.
+- Domain is pure Kotlin with no Android or third-party SDK dependencies.
+- Small, explicit, highly decoupled modules.
+- api/impl separation for visibility control.
+- MVI for presentation.
+- Compose-first UI.
+- Test-first mindset.
 
----
-
-## 🧱 Architectural Principles
-
-- Strict **Clean Architecture**
-- **Domain is always pure Kotlin** (no Android dependencies)
-- Small, explicit, highly decoupled modules
-- `api / impl` separation for visibility control
-- **MVI** for presentation
-- **Compose-first UI**
-- **Test-first mindset**
-
----
-
-## 🗂️ Module Structure
+## Module Structure
 
 ```
 app/
 core/
+  appconfig/
   ui/
   design-system/
   resources/
   navigation/
 features/
-  pomodoro/
+  <feature>/
     api/
     impl/
 libs/
   datastore/
-    api/
-    impl/
   notifications/
-    api/
-    impl/
   analytics/
-    api/
-    impl/
   crashlytics/
-    api/
-    impl/
+  logger/
+  permissions/
 build-logic/
 ```
 
----
-
-## 📦 Feature Modules
-
-### Naming
-
-- Feature modules use **kebab-case**:
-  - `pomodoro`
-  - `settings`
-  - `statistics`
-
-### Structure
-
-Each feature is split into:
-
-```
-feature-name/
-  api/
-  impl/
-```
+## Feature Modules
 
-#### `api`
-- Public contracts
-- Interfaces
-- Shared models
-- Navigation contracts
-- **No implementation logic**
+- Feature names use kebab-case.
+- Each feature has `api` for contracts and `impl` for implementations.
+- `api` contains interfaces, shared models, and navigation contracts only.
+- `impl` contains ViewModels, use cases, data sources, and repositories.
 
-#### `impl`
-- Concrete implementations
-- ViewModels
-- UseCases
-- Repository implementations
+## Clean Architecture by Packages
 
----
+- Use `data`, `domain`, and `presentation` packages in both `api` and `impl`.
+- Domain contains entities, value objects, use cases, and repository interfaces.
+- Data contains repository implementations, data sources, and mappers.
+- Presentation uses MVI with UiState, UiAction, UiEffect, and ViewModels.
 
-## 🧩 Clean Architecture by Packages
+## UI and Compose
 
-Inside both `api` and `impl`:
+- Split each screen into Route and Screen.
+- Screen is the only composable used for previews and Roborazzi tests.
+- Use design-system components only; do not use Material3 directly in features.
 
-```
-data/
-domain/
-presentation/
-```
+## Navigation
 
-### Domain
-- Pure Kotlin
-- No Android
-- No third-party SDKs
-- Entities, value objects
-- UseCases
-- Repository interfaces
+- Use androidx Navigation3.
+- Navigation contracts live in `core/navigation`.
+- Navigation wiring lives in `app`.
+- Features emit navigation intents only.
 
-### Data
-- Repository implementations
-- DataSources
-- Mappers
-- Room / DataStore if required
+## Centralized Scaffold
 
-### Presentation
-- MVI
-- ViewModels
-- UiState / UiAction / UiEffect
-- Compose UI
+- A single Scaffold exists in `app`.
+- Navigation renders inside `Scaffold.content`.
+- Scaffold state lives in `core/ui` via `ScaffoldConfig`.
 
----
+## Design System
 
-## 🎨 UI & Jetpack Compose
+- Located in `core/design-system`.
+- Provides theme, colors, typography, spacing, and components.
+- Do not use Material3 directly in features.
 
-### Mandatory Screen Separation
+## Dependency Injection
 
-Each screen must be split into **Route** and **Screen**:
+- Use Koin.
+- Define modules per feature in `impl`.
+- Keep `api` exposure minimal.
 
-```kotlin
-@Composable
-fun PomodoroRoute(
-  viewModel: PomodoroViewModel = koinViewModel()
-) {
-  val state by viewModel.state.collectAsState()
+## Testing Strategy
 
-  PomodoroScreen(
-    state = state,
-    onAction = viewModel::onAction
-  )
-}
-```
+- Unit tests are mandatory where possible.
+- Use JUnit5, MockK, Kluent, and Turbine.
+- Use GIVEN/WHEN/THEN naming.
+- Use `verifyOnce()` and `verifyNever()`.
+- Use `relaxedMockk` where appropriate.
+- Domain tests must have no Android dependencies.
+- Snapshot tests use Roborazzi with Robolectric and Screen composables only.
 
-```kotlin
-@Composable
-fun PomodoroScreen(
-  state: PomodoroState,
-  onAction: (PomodoroAction) -> Unit
-) {
-  // Pure UI
-}
-```
+## Background Execution
 
-Only `PomodoroScreen` is allowed to be used for:
-- Previews
-- Roborazzi snapshot tests
+- Implement background logic in `libs/notifications` with api/impl separation.
+- Prefer AlarmManager plus BroadcastReceiver.
+- Use Foreground Service only if required.
+- Use WorkManager only if justified.
 
----
+## Persistence
 
-## 🧭 Navigation
+- Use DataStore for app configuration.
+- Use Room only when persistence is required.
+- Access storage via repositories only.
 
-- **androidx Navigation3**
-- Navigation contracts live in `core/navigation`
-- Navigation wiring lives in `app`
+## Analytics and Crash Reporting
 
-Features:
-- Do not know the NavHost
-- Emit navigation intents only
+- Use Firebase Analytics and Crashlytics only through `libs/analytics` and `libs/crashlytics`.
+- `api` exposes provider-agnostic interfaces.
+- `impl` contains Firebase integration.
+- Features, presentation, and domain must not depend on Firebase SDKs.
+- Emit analytics from presentation and respect consent and privacy.
 
----
+## Gradle and Build Configuration
 
-## 🧱 Centralized Scaffold
+- Use version catalogs.
+- Use build-logic convention plugins.
+- Kotlin DSL only.
 
-- A **single Scaffold** exists in the `app` module
-- Navigation is rendered inside `Scaffold.content`
+## Code Generation
 
-### Dynamic TopBar / BottomBar Control
+- Use KSP only.
+- No kapt.
 
-A global scaffold state is defined in `core/ui`:
+## Logging
 
-```kotlin
-data class ScaffoldConfig(
-  val topBar: TopBarState?,
-  val bottomBar: BottomBarState?
-)
-```
+- Use Timber.
+- No logging in domain.
 
-Screens may update this state via events, without:
-- Knowing the Scaffold implementation
-- Accessing Material directly
+## CI and Quality Gates
 
----
+- GitHub Actions must run build, unit tests, and lint.
+- No merge is allowed if checks fail.
 
-## 🎨 Design System
+## Static Analysis
 
-Located in:
+- detekt and ktlint with shared configuration.
+- Strict enforcement.
 
-```
-core/design-system
-```
+## Forbidden Anti-Patterns
 
-Includes:
-- Theme
-- Colors
-- Typography
-- Spacing
-- Custom UI components
+- Android dependencies in domain.
+- ViewModels in `api`.
+- Direct Material3 usage outside design-system.
+- Manual singletons.
+- Direct navigation calls from UI.
 
-### Golden Rule
+## Language Policy
 
-❌ Do not use Material3 directly in features  
-✅ Always use design-system components
+- All source code, documentation, configuration files, tests, build scripts, and repo artifacts must be written in English.
 
----
+## Objective
 
-## 🔌 Dependency Injection
-
-- **Koin**
-- Modules declared per feature
-- Definitions live in `impl`
-- Minimal exposure via `api`
-
----
-
-## 🧪 Testing Strategy
-
-### Unit Tests
-
-Mandatory wherever possible.
-
-Main libraries:
-- JUnit5
-- MockK
-- Kluent
-- Turbine
-
-Rules:
-- GIVEN / WHEN / THEN naming
-- `verifyOnce()`, `verifyNever()`
-- `relaxedMockk<>`
-- Domain tests without Android
-
----
-
-### UI Snapshot Tests
-
-- **Roborazzi**
-- Design-system components
-- Full screens when simple enough
-- No real navigation
-- JVM-based testing with Robolectric
-
----
-
-## ⏱️ Pomodoro & Background Execution
-
-Possible approaches:
-- `AlarmManager` + `BroadcastReceiver`
-- Foreground Service
-- WorkManager (only if justified)
-
-All implementations live under:
-```
-libs/notifications
-```
-
-Always following `api / impl` separation.
-
----
-
-## 🗃️ Persistence
-
-- **DataStore** → app configuration
-- **Room** → only if persistence is required
-- Access via repositories only
-
----
-
-## 📊 Analytics & Crash Reporting
-
-The app uses **Firebase Analytics** and **Firebase Crashlytics** in a **fully abstracted** manner. No feature, presentation layer, or domain layer may depend directly on Firebase SDKs.
-
-Dedicated modules under `libs` (e.g. `libs/analytics`, `libs/crashlytics`) must follow strict `api / impl` separation:
-- `api` exposes provider-agnostic interfaces (e.g. `AnalyticsTracker`, `AnalyticsEvent`, `CrashReporter`)
-- `impl` contains the concrete Firebase integration
-
-This approach enables:
-- Provider replacement with no architectural impact
-- No-op or disabled implementations per build type
-- Easy testing using fakes
-- Guaranteed purity of the domain layer
-
-Event reporting is primarily done from the **presentation layer**, avoiding business logic coupled to analytics, and must respect consent and privacy requirements.
-
----
-
-## ⚙️ Gradle & Build Configuration
-
-- Version Catalogs
-- `build-logic` module
-- Convention Plugins
-- **Kotlin DSL only**
-
----
-
-## 🤖 Code Generation
-
-- **KSP only**
-- No kapt
-
----
-
-## 📦 Logging
-
-- **Timber**
-- No logging in domain
-
----
-
-## 🚀 CI / CD
-
-- **GitHub Actions**
-- Mandatory checks:
-  - Build
-  - Unit tests
-  - Lint (detekt + ktlint)
-
-No merge is allowed if checks fail.
-
----
-
-## 🧹 Static Analysis
-
-- detekt
-- ktlint
-- Shared configuration
-- Strict enforcement
-
----
-
-## ❌ Forbidden Anti‑Patterns
-
-- Android dependencies in domain
-- ViewModels in `api`
-- Direct Material3 usage outside design-system
-- Manual singletons
-- Direct navigation calls from UI
-
----
-
-## ✅ Final Objective
-
-A codebase that is:
-- Scalable
-- Highly testable
-- Maintainable
-- Decoupled
-- Ready for long-term evolution
-
----
-
-**This document is binding for the project.**
-
-
-## 🌍 Language Policy
-
-All **source code**, **documentation**, **configuration files**, **tests**, **build scripts**, and **repository artifacts** must be written **exclusively in English**.
-
-Even if discussions, reviews, or AI-assisted interactions happen in Spanish, the resulting outputs (including:
-- Kotlin / Java code
-- Compose UI
-- Gradle scripts
-- Markdown documentation
-- Comments, naming, and identifiers
-- CI / configuration files
-
-) **must always be produced in English**.
-
-This rule ensures:
-- Consistency across the codebase
-- Easier onboarding for international contributors
-- Better long-term maintainability
-- Compatibility with tooling, linting, and external documentation standards
+- Deliver a scalable, highly testable, maintainable, and decoupled codebase ready for long-term evolution.

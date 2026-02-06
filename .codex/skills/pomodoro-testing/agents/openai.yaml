@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pomodoro Testing"
+  short_description: "Help with Pomodoro Testing tasks"
+  default_prompt: "Use $pomodoro-testing to write or review unit and snapshot tests for this app."

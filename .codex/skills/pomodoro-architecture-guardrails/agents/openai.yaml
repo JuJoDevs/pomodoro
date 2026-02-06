@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pomodoro Architecture Guardrails"
+  short_description: "Help with Pomodoro Architecture Guardrails tasks"
+  default_prompt: "Use $pomodoro-architecture-guardrails to check architectural compliance for a Pomodoro change."
