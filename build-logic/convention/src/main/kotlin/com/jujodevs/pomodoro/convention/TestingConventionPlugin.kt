@@ -12,26 +12,29 @@ class TestingConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             dependencies {
+                // Core Testing
+                add("testImplementation", project(":core:testing"))
+
                 // JUnit 5 BOM for version alignment
                 add("testImplementation", platform(libs.library("junit5-bom")))
                 add("testImplementation", libs.library("junit5-api"))
                 add("testImplementation", libs.library("junit5-params"))
                 add("testRuntimeOnly", libs.library("junit5-engine"))
                 add("testRuntimeOnly", libs.library("junit5-launcher"))
-                
+
                 // MockK
                 add("testImplementation", libs.library("mockk"))
-                
+
                 // Kluent assertions
                 add("testImplementation", libs.library("kluent"))
-                
+
                 // Turbine for Flow testing
                 add("testImplementation", libs.library("turbine"))
-                
+
                 // Coroutines test
                 add("testImplementation", libs.library("kotlinx-coroutines-test"))
             }
-            
+
             // Configure JUnit Platform for all test tasks
             // For Android modules, tasks are created after evaluation
             afterEvaluate {

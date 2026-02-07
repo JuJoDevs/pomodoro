@@ -7,12 +7,6 @@ plugins {
 
 android {
     namespace = "com.jujodevs.pomodoro.core.designsystem"
-
-    testOptions {
-        unitTests {
-            isIncludeAndroidResources = true
-        }
-    }
 }
 
 dependencies {

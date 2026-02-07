@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Wspólne akcje -->
     <string name="action_start">Start</string>
     <string name="action_pause">Pauza</string>
     <string name="action_resume">Wznów</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Zamknij</string>
     <string name="action_back">Wstecz</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Resetuj</string>
 
-    <!-- Common labels -->
+    <!-- Wspólne etykiety -->
     <string name="label_settings">Ustawienia</string>
     <string name="label_statistics">Statystyki</string>
     <string name="label_about">O aplikacji</string>
 
-    <!-- Session types -->
+    <!-- Typy sesji -->
     <string name="session_type_work">Praca</string>
     <string name="session_type_short_break">Krótka przerwa</string>
     <string name="session_type_long_break">Długa przerwa</string>
+    <string name="label_focus">Koncentracja</string>
+    <string name="label_ready_to_work">Gotowy do pracy?</string>
+    <string name="label_work_duration">Czas pracy</string>
+    <string name="label_break_duration">Czas przerwy</string>
+    <string name="label_session_progress">POSTĘP SESJI</string>
+    <string name="label_sessions_completed">%1$d z %2$d sesji</string>
+    <string name="label_auto_start_breaks">Automatyczne uruchamianie przerw</string>
+    <string name="label_auto_start_work">Automatyczne uruchamianie pracy</string>
+    <string name="dialog_stop_title">Zatrzymać licznik?</string>
+    <string name="dialog_stop_message">Czy na pewno chcesz zatrzymać bieżącą sesję? Postęp zostanie utracony.</string>
+    <string name="dialog_reset_title">Zresetować Pomodoro?</string>
+    <string name="dialog_reset_message">Spowoduje to zresetowanie bieżącego postępu do 0. Czy na pewno?</string>
+    <string name="warning_exact_alarm_missing">Niezawodne ukończenie w tle wymaga uprawnienia alarmu.</string>
+    <string name="action_grant">Przyznaj</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Komunikaty statusu licznika -->
+    <string name="status_focusing">Koncentracja…</string>
+    <string name="status_time_to_rest">Czas na odpoczynek</string>
+    <string name="status_long_rest">Długa przerwa</string>
+    <string name="status_paused">Wstrzymano</string>
+
+    <!-- Tytuły faz dla TopBar -->
+    <string name="phase_title_focus">Koncentracja</string>
+    <string name="phase_title_short_break">Krótka przerwa</string>
+    <string name="phase_title_long_break">Długa przerwa</string>
+
+    <!-- Powiadomienia -->
     <string name="notification_channel_sessions_name">Sesje Pomodoro</string>
     <string name="notification_channel_sessions_description">Powiadomienia o ukończonych sesjach pomodoro</string>
     <string name="notification_channel_reminders_name">Przypomnienia</string>
     <string name="notification_channel_reminders_description">Powiadomienia przypominające</string>
 
     <string name="notification_work_complete_title">Sesja pracy zakończona!</string>
-    <string name="notification_work_complete_message">Świetna robota! Zrób przerwę.</string>
-    <string name="notification_short_break_complete_title">Przerwa zakończona</string>
+    <string name="notification_work_complete_message">Świetna robota! Zrób sobie przerwę.</string>
+    <string name="notification_short_break_complete_title">Czas przerwy się skończył</string>
     <string name="notification_short_break_complete_message">Gotowy na kolejną sesję?</string>
     <string name="notification_long_break_complete_title">Długa przerwa zakończona</string>
     <string name="notification_long_break_complete_message">Świetnie ci idzie! Rozpocząć nową sesję?</string>
 
-    <!-- Common errors -->
+    <!-- Typowe błędy -->
     <string name="error_generic">Coś poszło nie tak. Spróbuj ponownie.</string>
     <string name="error_network">Błąd sieci. Sprawdź połączenie.</string>
-    <string name="error_permission_denied">Odmówiono dostępu</string>
+    <string name="error_permission_denied">Odmowa uprawnień</string>
 
-    <!-- Time formats -->
+    <!-- Formaty czasu -->
     <string name="time_format_minutes">%d min</string>
-    <string name="time_format_hours_minutes">%1$d godz. %2$d min</string>
+    <string name="time_format_hours_minutes">%1$d godz %2$d min</string>
 </resources>

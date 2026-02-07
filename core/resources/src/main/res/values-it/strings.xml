@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
-    <string name="action_start">Avvia</string>
+    <!-- Azioni comuni -->
+    <string name="action_start">Inizia</string>
     <string name="action_pause">Pausa</string>
     <string name="action_resume">Riprendi</string>
     <string name="action_stop">Ferma</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Chiudi</string>
     <string name="action_back">Indietro</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Reimposta</string>
 
-    <!-- Common labels -->
+    <!-- Etichette comuni -->
     <string name="label_settings">Impostazioni</string>
     <string name="label_statistics">Statistiche</string>
     <string name="label_about">Info</string>
 
-    <!-- Session types -->
+    <!-- Tipi di sessione -->
     <string name="session_type_work">Lavoro</string>
-    <string name="session_type_short_break">Pausa breve</string>
-    <string name="session_type_long_break">Pausa lunga</string>
+    <string name="session_type_short_break">Pausa Breve</string>
+    <string name="session_type_long_break">Pausa Lunga</string>
+    <string name="label_focus">Concentrazione</string>
+    <string name="label_ready_to_work">Pronto a lavorare?</string>
+    <string name="label_work_duration">Durata del lavoro</string>
+    <string name="label_break_duration">Durata della pausa</string>
+    <string name="label_session_progress">PROGRESSO SESSIONE</string>
+    <string name="label_sessions_completed">%1$d di %2$d Sessioni</string>
+    <string name="label_auto_start_breaks">Avvio automatico pause</string>
+    <string name="label_auto_start_work">Avvio automatico lavoro</string>
+    <string name="dialog_stop_title">Fermare il timer?</string>
+    <string name="dialog_stop_message">Sei sicuro di voler fermare la sessione corrente? Il progresso andrà perso.</string>
+    <string name="dialog_reset_title">Reimpostare Pomodoro?</string>
+    <string name="dialog_reset_message">Questo reimposerà il tuo progresso corrente a 0. Sei sicuro?</string>
+    <string name="warning_exact_alarm_missing">Il completamento affidabile in background richiede l\'autorizzazione per allarmi.</string>
+    <string name="action_grant">Concedi</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Messaggi di stato del timer -->
+    <string name="status_focusing">Concentrazione…</string>
+    <string name="status_time_to_rest">Tempo di riposare</string>
+    <string name="status_long_rest">Pausa lunga</string>
+    <string name="status_paused">In pausa</string>
+
+    <!-- Titoli delle fasi per TopBar -->
+    <string name="phase_title_focus">Concentrazione</string>
+    <string name="phase_title_short_break">Pausa Breve</string>
+    <string name="phase_title_long_break">Pausa Lunga</string>
+
+    <!-- Notifiche -->
     <string name="notification_channel_sessions_name">Sessioni Pomodoro</string>
-    <string name="notification_channel_sessions_description">Notifiche per le sessioni pomodoro completate</string>
+    <string name="notification_channel_sessions_description">Notifiche per sessioni pomodoro completate</string>
     <string name="notification_channel_reminders_name">Promemoria</string>
-    <string name="notification_channel_reminders_description">Notifiche promemoria</string>
+    <string name="notification_channel_reminders_description">Notifiche di promemoria</string>
 
     <string name="notification_work_complete_title">Sessione di lavoro completata!</string>
     <string name="notification_work_complete_message">Ottimo lavoro! Fai una pausa.</string>
-    <string name="notification_short_break_complete_title">La pausa è finita</string>
+    <string name="notification_short_break_complete_title">Il tempo di pausa è finito</string>
     <string name="notification_short_break_complete_message">Pronto per un\'altra sessione?</string>
     <string name="notification_long_break_complete_title">Pausa lunga completata</string>
-    <string name="notification_long_break_complete_message">Stai andando alla grande! Nuova sessione?</string>
+    <string name="notification_long_break_complete_message">Stai andando alla grande! Iniziare una nuova sessione?</string>
 
-    <!-- Common errors -->
+    <!-- Errori comuni -->
     <string name="error_generic">Qualcosa è andato storto. Riprova.</string>
-    <string name="error_network">Errore di rete. Controlla la connessione.</string>
+    <string name="error_network">Errore di rete. Controlla la tua connessione.</string>
     <string name="error_permission_denied">Permesso negato</string>
 
-    <!-- Time formats -->
+    <!-- Formati temporali -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 </resources>

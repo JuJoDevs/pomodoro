@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Uobičajene radnje -->
     <string name="action_start">Pokreni</string>
-    <string name="action_pause">Pauziraj</string>
+    <string name="action_pause">Pauza</string>
     <string name="action_resume">Nastavi</string>
     <string name="action_stop">Zaustavi</string>
     <string name="action_skip">Preskoči</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Zatvori</string>
     <string name="action_back">Natrag</string>
     <string name="action_ok">U redu</string>
+    <string name="action_reset">Resetiraj</string>
 
-    <!-- Common labels -->
+    <!-- Uobičajene oznake -->
     <string name="label_settings">Postavke</string>
-    <string name="label_statistics">Statistike</string>
+    <string name="label_statistics">Statistika</string>
     <string name="label_about">O aplikaciji</string>
 
-    <!-- Session types -->
+    <!-- Vrste sesija -->
     <string name="session_type_work">Rad</string>
     <string name="session_type_short_break">Kratka pauza</string>
     <string name="session_type_long_break">Duga pauza</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Spremni za rad?</string>
+    <string name="label_work_duration">Trajanje rada</string>
+    <string name="label_break_duration">Trajanje pauze</string>
+    <string name="label_session_progress">NAPREDAK SESIJE</string>
+    <string name="label_sessions_completed">%1$d od %2$d sesija</string>
+    <string name="label_auto_start_breaks">Automatski pokreni pauze</string>
+    <string name="label_auto_start_work">Automatski pokreni rad</string>
+    <string name="dialog_stop_title">Zaustaviti mjerač vremena?</string>
+    <string name="dialog_stop_message">Jeste li sigurni da želite zaustaviti trenutnu sesiju? Napredak će biti izgubljen.</string>
+    <string name="dialog_reset_title">Resetirati Pomodoro?</string>
+    <string name="dialog_reset_message">Ovo će resetirati vaš trenutni napredak na 0. Jeste li sigurni?</string>
+    <string name="warning_exact_alarm_missing">Pouzdano dovršenje u pozadini zahtijeva dopuštenje za alarm.</string>
+    <string name="action_grant">Dopusti</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Poruke statusa mjerača -->
+    <string name="status_focusing">Fokusiranje…</string>
+    <string name="status_time_to_rest">Vrijeme za odmor</string>
+    <string name="status_long_rest">Duga pauza</string>
+    <string name="status_paused">Pauzirano</string>
+
+    <!-- Naslovi faza za TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Kratka pauza</string>
+    <string name="phase_title_long_break">Duga pauza</string>
+
+    <!-- Obavijesti -->
     <string name="notification_channel_sessions_name">Pomodoro sesije</string>
     <string name="notification_channel_sessions_description">Obavijesti za završene pomodoro sesije</string>
     <string name="notification_channel_reminders_name">Podsjetnici</string>
     <string name="notification_channel_reminders_description">Obavijesti podsjetnika</string>
 
     <string name="notification_work_complete_title">Radna sesija završena!</string>
-    <string name="notification_work_complete_message">Odličan posao! Napravi pauzu.</string>
-    <string name="notification_short_break_complete_title">Pauza je gotova</string>
-    <string name="notification_short_break_complete_message">Spreman za novu sesiju?</string>
+    <string name="notification_work_complete_message">Odličan posao! Odmorite se.</string>
+    <string name="notification_short_break_complete_title">Vrijeme pauze je završeno</string>
+    <string name="notification_short_break_complete_message">Spremni za novu sesiju?</string>
     <string name="notification_long_break_complete_title">Duga pauza završena</string>
-    <string name="notification_long_break_complete_message">Sjajno ti ide! Započni novu sesiju?</string>
+    <string name="notification_long_break_complete_message">Odlično ti ide! Pokrenuti novu sesiju?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Nešto je pošlo po zlu. Pokušajte ponovo.</string>
+    <!-- Uobičajene greške -->
+    <string name="error_generic">Nešto je pošlo po zlu. Molimo pokušajte ponovno.</string>
     <string name="error_network">Mrežna greška. Provjerite vezu.</string>
-    <string name="error_permission_denied">Dozvola odbijena</string>
+    <string name="error_permission_denied">Dopuštenje odbijeno</string>
 
-    <!-- Time formats -->
+    <!-- Formati vremena -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 </resources>

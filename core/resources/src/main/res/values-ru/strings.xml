@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
-    <string name="action_start">Старт</string>
+    <!-- Общие действия -->
+    <string name="action_start">Начать</string>
     <string name="action_pause">Пауза</string>
     <string name="action_resume">Продолжить</string>
-    <string name="action_stop">Стоп</string>
+    <string name="action_stop">Остановить</string>
     <string name="action_skip">Пропустить</string>
     <string name="action_cancel">Отмена</string>
     <string name="action_save">Сохранить</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Закрыть</string>
     <string name="action_back">Назад</string>
     <string name="action_ok">ОК</string>
+    <string name="action_reset">Сбросить</string>
 
-    <!-- Common labels -->
+    <!-- Общие метки -->
     <string name="label_settings">Настройки</string>
     <string name="label_statistics">Статистика</string>
     <string name="label_about">О приложении</string>
 
-    <!-- Session types -->
+    <!-- Типы сессий -->
     <string name="session_type_work">Работа</string>
     <string name="session_type_short_break">Короткий перерыв</string>
     <string name="session_type_long_break">Длинный перерыв</string>
+    <string name="label_focus">Фокус</string>
+    <string name="label_ready_to_work">Готовы работать?</string>
+    <string name="label_work_duration">Длительность работы</string>
+    <string name="label_break_duration">Длительность перерыва</string>
+    <string name="label_session_progress">ПРОГРЕСС СЕССИИ</string>
+    <string name="label_sessions_completed">%1$d из %2$d сессий</string>
+    <string name="label_auto_start_breaks">Автозапуск перерывов</string>
+    <string name="label_auto_start_work">Автозапуск работы</string>
+    <string name="dialog_stop_title">Остановить таймер?</string>
+    <string name="dialog_stop_message">Вы уверены, что хотите остановить текущую сессию? Прогресс будет потерян.</string>
+    <string name="dialog_reset_title">Сбросить Помодоро?</string>
+    <string name="dialog_reset_message">Это сбросит ваш текущий прогресс до 0. Вы уверены?</string>
+    <string name="warning_exact_alarm_missing">Надежное фоновое завершение требует разрешения на будильники.</string>
+    <string name="action_grant">Предоставить</string>
+    <string name="label_min">мин</string>
 
-    <!-- Notifications -->
+    <!-- Сообщения о состоянии таймера -->
+    <string name="status_focusing">Фокусировка…</string>
+    <string name="status_time_to_rest">Время отдохнуть</string>
+    <string name="status_long_rest">Длинный перерыв</string>
+    <string name="status_paused">На паузе</string>
+
+    <!-- Заголовки фаз для TopBar -->
+    <string name="phase_title_focus">Фокус</string>
+    <string name="phase_title_short_break">Короткий перерыв</string>
+    <string name="phase_title_long_break">Длинный перерыв</string>
+
+    <!-- Уведомления -->
     <string name="notification_channel_sessions_name">Сессии Помодоро</string>
-    <string name="notification_channel_sessions_description">Уведомления о завершённых сессиях помодоро</string>
+    <string name="notification_channel_sessions_description">Уведомления о завершении сессий Помодоро</string>
     <string name="notification_channel_reminders_name">Напоминания</string>
     <string name="notification_channel_reminders_description">Уведомления-напоминания</string>
 
     <string name="notification_work_complete_title">Рабочая сессия завершена!</string>
     <string name="notification_work_complete_message">Отличная работа! Сделайте перерыв.</string>
-    <string name="notification_short_break_complete_title">Перерыв окончен</string>
+    <string name="notification_short_break_complete_title">Время перерыва закончилось</string>
     <string name="notification_short_break_complete_message">Готовы к следующей сессии?</string>
-    <string name="notification_long_break_complete_title">Длинный перерыв завершён</string>
+    <string name="notification_long_break_complete_title">Длинный перерыв завершен</string>
     <string name="notification_long_break_complete_message">Вы отлично справляетесь! Начать новую сессию?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Что-то пошло не так. Попробуйте ещё раз.</string>
+    <!-- Общие ошибки -->
+    <string name="error_generic">Что-то пошло не так. Пожалуйста, попробуйте еще раз.</string>
     <string name="error_network">Ошибка сети. Проверьте подключение.</string>
     <string name="error_permission_denied">Разрешение отклонено</string>
 
-    <!-- Time formats -->
+    <!-- Форматы времени -->
     <string name="time_format_minutes">%d мин</string>
     <string name="time_format_hours_minutes">%1$d ч %2$d мин</string>
 </resources>

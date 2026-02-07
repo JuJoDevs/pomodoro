@@ -9,9 +9,6 @@ import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
 import com.jujodevs.pomodoro.libs.datastore.impl.DataStoreManagerImpl
 import com.jujodevs.pomodoro.libs.logger.Logger
-import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
-import com.jujodevs.pomodoro.libs.notifications.NotificationData
-import com.jujodevs.pomodoro.libs.notifications.NotificationType
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
@@ -61,10 +58,8 @@ class NotificationSchedulerIntegrationTest {
     @Test
     fun `GIVEN IDs stored WHEN cancelAllNotifications THEN should clear DataStore`() = runTest {
         // GIVEN
-        val notification1 = createTestNotification(id = 1)
-        val notification2 = createTestNotification(id = 2)
-        scheduler.scheduleNotification(notification1)
-        scheduler.scheduleNotification(notification2)
+        dataStoreManager.setValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, setOf("1", "2"))
+        dataStoreManager.setValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "active-token")
 
         val storedIdsBefore = dataStoreManager.getValue(
             InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
@@ -78,6 +73,8 @@ class NotificationSchedulerIntegrationTest {
         // THEN
         val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
         storedIdsAfter shouldBeEqualTo emptySet()
+        val activeTokenAfter = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "default")
+        activeTokenAfter shouldBeEqualTo "default"
     }
 
     @Test
@@ -96,18 +93,4 @@ class NotificationSchedulerIntegrationTest {
         val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
         storedIdsAfter shouldBeEqualTo emptySet()
     }
-
-    private fun createTestNotification(
-        id: Int,
-        title: String = "Test Notification",
-        message: String = "Test message",
-        type: NotificationType = NotificationType.WORK_SESSION_COMPLETE
-    ) = NotificationData(
-        id = id,
-        title = title,
-        message = message,
-        channelId = NotificationChannel.PomodoroSession.id,
-        scheduledTimeMillis = System.currentTimeMillis() + 60000,
-        type = type
-    )
 }

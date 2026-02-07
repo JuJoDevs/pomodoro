@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Общи действия -->
     <string name="action_start">Старт</string>
     <string name="action_pause">Пауза</string>
-    <string name="action_resume">Продължи</string>
-    <string name="action_stop">Стоп</string>
+    <string name="action_resume">Възобнови</string>
+    <string name="action_stop">Спри</string>
     <string name="action_skip">Пропусни</string>
     <string name="action_cancel">Отказ</string>
     <string name="action_save">Запази</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Затвори</string>
     <string name="action_back">Назад</string>
     <string name="action_ok">ОК</string>
+    <string name="action_reset">Нулиране</string>
 
-    <!-- Common labels -->
+    <!-- Общи етикети -->
     <string name="label_settings">Настройки</string>
     <string name="label_statistics">Статистика</string>
     <string name="label_about">Относно</string>
 
-    <!-- Session types -->
+    <!-- Типове сесии -->
     <string name="session_type_work">Работа</string>
     <string name="session_type_short_break">Кратка почивка</string>
     <string name="session_type_long_break">Дълга почивка</string>
+    <string name="label_focus">Фокус</string>
+    <string name="label_ready_to_work">Готов за работа?</string>
+    <string name="label_work_duration">Продължителност на работата</string>
+    <string name="label_break_duration">Продължителност на почивката</string>
+    <string name="label_session_progress">НАПРЕДЪК НА СЕСИЯТА</string>
+    <string name="label_sessions_completed">%1$d от %2$d сесии</string>
+    <string name="label_auto_start_breaks">Автоматично стартиране на почивки</string>
+    <string name="label_auto_start_work">Автоматично стартиране на работа</string>
+    <string name="dialog_stop_title">Спиране на таймера?</string>
+    <string name="dialog_stop_message">Сигурни ли сте, че искате да спрете текущата сесия? Напредъкът ще бъде загубен.</string>
+    <string name="dialog_reset_title">Нулиране на Помодоро?</string>
+    <string name="dialog_reset_message">Това ще нулира текущия ви напредък до 0. Сигурни ли сте?</string>
+    <string name="warning_exact_alarm_missing">Надеждното завършване във фонов режим изисква разрешение за аларми.</string>
+    <string name="action_grant">Предостави</string>
+    <string name="label_min">мин</string>
 
-    <!-- Notifications -->
-    <string name="notification_channel_sessions_name">Помодоро сесии</string>
-    <string name="notification_channel_sessions_description">Известия за завършени помодоро сесии</string>
+    <!-- Съобщения за състоянието на таймера -->
+    <string name="status_focusing">Фокусиране…</string>
+    <string name="status_time_to_rest">Време за почивка</string>
+    <string name="status_long_rest">Дълга почивка</string>
+    <string name="status_paused">На пауза</string>
+
+    <!-- Заглавия на фази за TopBar -->
+    <string name="phase_title_focus">Фокус</string>
+    <string name="phase_title_short_break">Кратка почивка</string>
+    <string name="phase_title_long_break">Дълга почивка</string>
+
+    <!-- Известия -->
+    <string name="notification_channel_sessions_name">Сесии Помодоро</string>
+    <string name="notification_channel_sessions_description">Известия за завършени сесии Помодоро</string>
     <string name="notification_channel_reminders_name">Напомняния</string>
     <string name="notification_channel_reminders_description">Известия за напомняния</string>
 
-    <string name="notification_work_complete_title">Работната сесия е завършена!</string>
-    <string name="notification_work_complete_message">Чудесна работа! Направи почивка.</string>
-    <string name="notification_short_break_complete_title">Почивката приключи</string>
-    <string name="notification_short_break_complete_message">Готов за нова сесия?</string>
-    <string name="notification_long_break_complete_title">Дългата почивка приключи</string>
-    <string name="notification_long_break_complete_message">Справяш се отлично! Започни нова сесия?</string>
+    <string name="notification_work_complete_title">Работната сесия завърши!</string>
+    <string name="notification_work_complete_message">Страхотна работа! Вземете почивка.</string>
+    <string name="notification_short_break_complete_title">Времето за почивка свърши</string>
+    <string name="notification_short_break_complete_message">Готови за друга сесия?</string>
+    <string name="notification_long_break_complete_title">Дългата почивка завърши</string>
+    <string name="notification_long_break_complete_message">Справяте се страхотно! Започни нова сесия?</string>
 
-    <!-- Common errors -->
+    <!-- Общи грешки -->
     <string name="error_generic">Нещо се обърка. Моля, опитайте отново.</string>
-    <string name="error_network">Мрежова грешка. Проверете връзката си.</string>
+    <string name="error_network">Грешка в мрежата. Проверете връзката си.</string>
     <string name="error_permission_denied">Разрешението е отказано</string>
 
-    <!-- Time formats -->
+    <!-- Формати за време -->
     <string name="time_format_minutes">%d мин</string>
     <string name="time_format_hours_minutes">%1$d ч %2$d мин</string>
 </resources>

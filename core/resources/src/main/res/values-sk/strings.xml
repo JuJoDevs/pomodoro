@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
-    <string name="action_start">Štart</string>
-    <string name="action_pause">Pauza</string>
+    <!-- Bežné akcie -->
+    <string name="action_start">Spustiť</string>
+    <string name="action_pause">Pozastaviť</string>
     <string name="action_resume">Pokračovať</string>
     <string name="action_stop">Zastaviť</string>
     <string name="action_skip">Preskočiť</string>
     <string name="action_cancel">Zrušiť</string>
     <string name="action_save">Uložiť</string>
-    <string name="action_delete">Odstrániť</string>
+    <string name="action_delete">Vymazať</string>
     <string name="action_edit">Upraviť</string>
     <string name="action_close">Zavrieť</string>
     <string name="action_back">Späť</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Resetovať</string>
 
-    <!-- Common labels -->
+    <!-- Bežné štítky -->
     <string name="label_settings">Nastavenia</string>
     <string name="label_statistics">Štatistiky</string>
     <string name="label_about">O aplikácii</string>
 
-    <!-- Session types -->
+    <!-- Typy sedení -->
     <string name="session_type_work">Práca</string>
     <string name="session_type_short_break">Krátka prestávka</string>
     <string name="session_type_long_break">Dlhá prestávka</string>
+    <string name="label_focus">Sústredenie</string>
+    <string name="label_ready_to_work">Pripravený pracovať?</string>
+    <string name="label_work_duration">Trvanie práce</string>
+    <string name="label_break_duration">Trvanie prestávky</string>
+    <string name="label_session_progress">PRIEBEH SEDENIA</string>
+    <string name="label_sessions_completed">%1$d z %2$d sedení</string>
+    <string name="label_auto_start_breaks">Automatický štart prestávok</string>
+    <string name="label_auto_start_work">Automatický štart práce</string>
+    <string name="dialog_stop_title">Zastaviť časovač?</string>
+    <string name="dialog_stop_message">Naozaj chcete zastaviť aktuálne sedenie? Priebeh sa stratí.</string>
+    <string name="dialog_reset_title">Resetovať Pomodoro?</string>
+    <string name="dialog_reset_message">Toto resetuje váš aktuálny priebeh na 0. Ste si istí?</string>
+    <string name="warning_exact_alarm_missing">Spoľahlivé dokončenie na pozadí vyžaduje povolenie budíka.</string>
+    <string name="action_grant">Povoliť</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
-    <string name="notification_channel_sessions_name">Pomodoro relácie</string>
-    <string name="notification_channel_sessions_description">Oznámenia o dokončených pomodoro reláciách</string>
+    <!-- Stavové správy časovača -->
+    <string name="status_focusing">Sústredenie…</string>
+    <string name="status_time_to_rest">Čas na odpočinok</string>
+    <string name="status_long_rest">Dlhá prestávka</string>
+    <string name="status_paused">Pozastavené</string>
+
+    <!-- Názvy fáz pre TopBar -->
+    <string name="phase_title_focus">Sústredenie</string>
+    <string name="phase_title_short_break">Krátka prestávka</string>
+    <string name="phase_title_long_break">Dlhá prestávka</string>
+
+    <!-- Oznámenia -->
+    <string name="notification_channel_sessions_name">Pomodoro sedenia</string>
+    <string name="notification_channel_sessions_description">Oznámenia dokončených pomodoro sedení</string>
     <string name="notification_channel_reminders_name">Pripomienky</string>
     <string name="notification_channel_reminders_description">Oznámenia pripomienok</string>
 
-    <string name="notification_work_complete_title">Pracovná relácia dokončená!</string>
-    <string name="notification_work_complete_message">Skvelá práca! Daj si prestávku.</string>
-    <string name="notification_short_break_complete_title">Prestávka skončila</string>
-    <string name="notification_short_break_complete_message">Pripravený na ďalšiu reláciu?</string>
+    <string name="notification_work_complete_title">Pracovné sedenie dokončené!</string>
+    <string name="notification_work_complete_message">Skvelá práca! Dajte si prestávku.</string>
+    <string name="notification_short_break_complete_title">Čas prestávky skončil</string>
+    <string name="notification_short_break_complete_message">Pripravený na ďalšie sedenie?</string>
     <string name="notification_long_break_complete_title">Dlhá prestávka dokončená</string>
-    <string name="notification_long_break_complete_message">Darí sa ti skvele! Začať novú reláciu?</string>
+    <string name="notification_long_break_complete_message">Ide vám to skvelo! Začať nové sedenie?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Niečo sa pokazilo. Skúste to znova.</string>
+    <!-- Bežné chyby -->
+    <string name="error_generic">Niečo sa pokazilo. Skúste to prosím znova.</string>
     <string name="error_network">Chyba siete. Skontrolujte pripojenie.</string>
     <string name="error_permission_denied">Povolenie zamietnuté</string>
 
-    <!-- Time formats -->
+    <!-- Formáty času -->
     <string name="time_format_minutes">%d min</string>
-    <string name="time_format_hours_minutes">%1$d hod %2$d min</string>
+    <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 </resources>

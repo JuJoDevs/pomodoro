@@ -1,5 +1,7 @@
 plugins {
     alias(libs.plugins.pomodoro.android.feature)
+    alias(libs.plugins.pomodoro.android.testing)
+    alias(libs.plugins.pomodoro.roborazzi)
 }
 
 android {
@@ -8,7 +10,8 @@ android {
 
 dependencies {
     implementation(project(":features:pomodoro-timer:api"))
-    implementation(project(":core:ui"))
-    implementation(project(":core:design-system"))
-    implementation(project(":core:navigation"))
+
+    implementation(project(":libs:datastore:api"))
+    implementation(project(":libs:notifications:api"))
+    implementation(project(":libs:logger:api"))
 }

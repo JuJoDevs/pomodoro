@@ -31,6 +31,7 @@ include(":core:appconfig:impl")
 include(":core:design-system")
 include(":core:navigation")
 include(":core:resources")
+include(":core:testing")
 include(":core:ui")
 
 // Logger modules

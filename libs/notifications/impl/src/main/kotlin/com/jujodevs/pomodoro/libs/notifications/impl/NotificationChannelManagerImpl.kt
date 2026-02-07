@@ -1,12 +1,15 @@
 package com.jujodevs.pomodoro.libs.notifications.impl
 
-import android.app.NotificationChannel
+import android.app.Notification
 import android.app.NotificationManager
 import android.content.Context
-import android.os.Build
+import com.jujodevs.pomodoro.core.resources.R
+import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannel.PomodoroSession
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannel.Reminders
+import com.jujodevs.pomodoro.libs.notifications.NotificationChannel.RunningTimer
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
+import android.app.NotificationChannel as AndroidNotificationChannel
 
 /**
  * Android implementation of NotificationChannelManager.
@@ -18,34 +21,56 @@ class NotificationChannelManagerImpl(
 ) : NotificationChannelManager {
 
     override fun createNotificationChannels() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        pomodoroChannels()
+            .map(::toAndroidChannel)
+            .forEach(notificationManager::createNotificationChannel)
+    }
 
-            val channels = listOf(
-                PomodoroSession,
-                Reminders
-            )
+    override fun deleteNotificationChannel(channelId: String) {
+        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.deleteNotificationChannel(channelId)
+    }
 
-            channels.forEach { channel ->
-                val androidChannel = NotificationChannel(
-                    channel.id,
-                    channel.name,
-                    channel.importance
-                ).apply {
-                    description = channel.description
-                    enableVibration(true)
-                    enableLights(true)
-                }
+    private fun pomodoroChannels(): List<NotificationChannel> = listOf(
+        PomodoroSession,
+        Reminders,
+        RunningTimer
+    )
 
-                notificationManager.createNotificationChannel(androidChannel)
+    private fun toAndroidChannel(channel: NotificationChannel): AndroidNotificationChannel {
+        return AndroidNotificationChannel(
+            channel.id,
+            channelName(channel),
+            channel.importance
+        ).apply {
+            description = channelDescription(channel)
+            if (channel == RunningTimer) {
+                enableVibration(false)
+                enableLights(false)
+                setSound(null, null)
+                setShowBadge(false)
+                lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            } else {
+                enableVibration(true)
+                enableLights(true)
             }
         }
     }
 
-    override fun deleteNotificationChannel(channelId: String) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-            notificationManager.deleteNotificationChannel(channelId)
+    private fun channelName(channel: NotificationChannel): String = context.getString(
+        when (channel) {
+            PomodoroSession -> R.string.notification_channel_sessions_name
+            Reminders -> R.string.notification_channel_reminders_name
+            RunningTimer -> R.string.notification_channel_sessions_name
         }
-    }
+    )
+
+    private fun channelDescription(channel: NotificationChannel): String = context.getString(
+        when (channel) {
+            PomodoroSession -> R.string.notification_channel_sessions_description
+            Reminders -> R.string.notification_channel_reminders_description
+            RunningTimer -> R.string.notification_channel_sessions_description
+        }
+    )
 }

@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":core:appconfig:impl"))
     implementation(project(":core:design-system"))
     implementation(project(":core:navigation"))
+    implementation(project(":core:resources"))
     implementation(project(":core:ui"))
 
     // Navigation3

@@ -15,11 +15,13 @@ import org.koin.compose.koinInject
 /**
  * A Composable effect that checks and helps requesting exact alarm permissions.
  *
+ * @param requestOnMissingPermission Whether to launch exact alarm settings if permission is missing.
  * @param onPermissionResult Callback invoked with current status.
  */
 @Composable
 fun ExactAlarmPermissionEffect(
     permissionManager: PermissionManager = koinInject(),
+    requestOnMissingPermission: Boolean = true,
     onPermissionResult: (Boolean) -> Unit = {},
 ) {
     val context = LocalContext.current
@@ -30,14 +32,16 @@ fun ExactAlarmPermissionEffect(
         onPermissionResult(permissionManager.canScheduleExactAlarms())
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(requestOnMissingPermission) {
         if (!permissionManager.canScheduleExactAlarms()) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (requestOnMissingPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val intent = Intent(
                     Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
                     "package:${context.packageName}".toUri()
                 )
                 launcher.launch(intent)
+            } else {
+                onPermissionResult(false)
             }
         } else {
             onPermissionResult(true)

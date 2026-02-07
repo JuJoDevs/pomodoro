@@ -8,7 +8,10 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.jujodevs.pomodoro.core.designsystem.components.navigation.PomodoroBottomNavigation
 import com.jujodevs.pomodoro.core.designsystem.components.navigation.PomodoroNavigationItem
@@ -29,6 +32,7 @@ import com.jujodevs.pomodoro.core.designsystem.components.navigation.PomodoroTop
 fun PomodoroScaffold(
     modifier: Modifier = Modifier,
     scaffoldConfig: ScaffoldConfig = ScaffoldConfig(),
+    snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
     content: @Composable () -> Unit
 ) {
     Scaffold(
@@ -69,6 +73,9 @@ fun PomodoroScaffold(
                     }
                 )
             }
+        },
+        snackbarHost = {
+            SnackbarHost(hostState = snackbarHostState)
         }
     ) { paddingValues ->
         Box(

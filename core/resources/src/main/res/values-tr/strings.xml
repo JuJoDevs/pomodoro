@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Ortak eylemler -->
     <string name="action_start">Başlat</string>
     <string name="action_pause">Duraklat</string>
     <string name="action_resume">Devam Et</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Kapat</string>
     <string name="action_back">Geri</string>
     <string name="action_ok">Tamam</string>
+    <string name="action_reset">Sıfırla</string>
 
-    <!-- Common labels -->
+    <!-- Ortak etiketler -->
     <string name="label_settings">Ayarlar</string>
     <string name="label_statistics">İstatistikler</string>
     <string name="label_about">Hakkında</string>
 
-    <!-- Session types -->
+    <!-- Oturum türleri -->
     <string name="session_type_work">Çalışma</string>
     <string name="session_type_short_break">Kısa Mola</string>
     <string name="session_type_long_break">Uzun Mola</string>
+    <string name="label_focus">Odaklanma</string>
+    <string name="label_ready_to_work">Çalışmaya hazır mısın?</string>
+    <string name="label_work_duration">Çalışma süresi</string>
+    <string name="label_break_duration">Mola süresi</string>
+    <string name="label_session_progress">OTURUM İLERLEMESİ</string>
+    <string name="label_sessions_completed">%1$d / %2$d oturum</string>
+    <string name="label_auto_start_breaks">Molaları otomatik başlat</string>
+    <string name="label_auto_start_work">Çalışmayı otomatik başlat</string>
+    <string name="dialog_stop_title">Zamanlayıcıyı durdur?</string>
+    <string name="dialog_stop_message">Mevcut oturumu durdurmak istediğinizden emin misiniz? İlerleme kaybolacak.</string>
+    <string name="dialog_reset_title">Pomodoro\'yu sıfırla?</string>
+    <string name="dialog_reset_message">Bu, mevcut ilerlemenizi 0\'a sıfırlayacak. Emin misiniz?</string>
+    <string name="warning_exact_alarm_missing">Güvenilir arka plan tamamlama için alarm izni gereklidir.</string>
+    <string name="action_grant">İzin Ver</string>
+    <string name="label_min">dk</string>
 
-    <!-- Notifications -->
+    <!-- Zamanlayıcı durum mesajları -->
+    <string name="status_focusing">Odaklanıyor…</string>
+    <string name="status_time_to_rest">Dinlenme zamanı</string>
+    <string name="status_long_rest">Uzun mola</string>
+    <string name="status_paused">Duraklatıldı</string>
+
+    <!-- TopBar için aşama başlıkları -->
+    <string name="phase_title_focus">Odaklanma</string>
+    <string name="phase_title_short_break">Kısa Mola</string>
+    <string name="phase_title_long_break">Uzun Mola</string>
+
+    <!-- Bildirimler -->
     <string name="notification_channel_sessions_name">Pomodoro Oturumları</string>
     <string name="notification_channel_sessions_description">Tamamlanan pomodoro oturumları için bildirimler</string>
-    <string name="notification_channel_reminders_name">Hatırlatıcılar</string>
+    <string name="notification_channel_reminders_name">Hatırlatmalar</string>
     <string name="notification_channel_reminders_description">Hatırlatma bildirimleri</string>
 
     <string name="notification_work_complete_title">Çalışma oturumu tamamlandı!</string>
-    <string name="notification_work_complete_message">Harika iş! Mola ver.</string>
-    <string name="notification_short_break_complete_title">Mola bitti</string>
-    <string name="notification_short_break_complete_message">Yeni oturum için hazır mısın?</string>
+    <string name="notification_work_complete_message">Harika iş! Bir mola ver.</string>
+    <string name="notification_short_break_complete_title">Mola süresi bitti</string>
+    <string name="notification_short_break_complete_message">Başka bir oturum için hazır mısın?</string>
     <string name="notification_long_break_complete_title">Uzun mola tamamlandı</string>
-    <string name="notification_long_break_complete_message">Harika gidiyorsun! Yeni oturum başlat?</string>
+    <string name="notification_long_break_complete_message">Çok iyi gidiyorsun! Yeni oturum başlat?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Bir şeyler yanlış gitti. Lütfen tekrar deneyin.</string>
+    <!-- Ortak hatalar -->
+    <string name="error_generic">Bir şeyler ters gitti. Lütfen tekrar deneyin.</string>
     <string name="error_network">Ağ hatası. Bağlantınızı kontrol edin.</string>
     <string name="error_permission_denied">İzin reddedildi</string>
 
-    <!-- Time formats -->
+    <!-- Zaman formatları -->
     <string name="time_format_minutes">%d dk</string>
     <string name="time_format_hours_minutes">%1$d sa %2$d dk</string>
 </resources>

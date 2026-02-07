@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Allgemeine Aktionen -->
     <string name="action_start">Starten</string>
-    <string name="action_pause">Pause</string>
+    <string name="action_pause">Pausieren</string>
     <string name="action_resume">Fortsetzen</string>
     <string name="action_stop">Stoppen</string>
     <string name="action_skip">Überspringen</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Schließen</string>
     <string name="action_back">Zurück</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Zurücksetzen</string>
 
-    <!-- Common labels -->
+    <!-- Allgemeine Bezeichnungen -->
     <string name="label_settings">Einstellungen</string>
     <string name="label_statistics">Statistiken</string>
     <string name="label_about">Über</string>
 
-    <!-- Session types -->
+    <!-- Sitzungstypen -->
     <string name="session_type_work">Arbeit</string>
     <string name="session_type_short_break">Kurze Pause</string>
     <string name="session_type_long_break">Lange Pause</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Bereit zum Arbeiten?</string>
+    <string name="label_work_duration">Arbeitsdauer</string>
+    <string name="label_break_duration">Pausendauer</string>
+    <string name="label_session_progress">SITZUNGSFORTSCHRITT</string>
+    <string name="label_sessions_completed">%1$d von %2$d Sitzungen</string>
+    <string name="label_auto_start_breaks">Pausen automatisch starten</string>
+    <string name="label_auto_start_work">Arbeit automatisch starten</string>
+    <string name="dialog_stop_title">Timer stoppen?</string>
+    <string name="dialog_stop_message">Sind Sie sicher, dass Sie die aktuelle Sitzung stoppen möchten? Der Fortschritt geht verloren.</string>
+    <string name="dialog_reset_title">Pomodoro zurücksetzen?</string>
+    <string name="dialog_reset_message">Dies setzt Ihren aktuellen Fortschritt auf 0 zurück. Sind Sie sicher?</string>
+    <string name="warning_exact_alarm_missing">Zuverlässige Hintergrundausführung benötigt die Berechtigung für Alarme.</string>
+    <string name="action_grant">Gewähren</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Timer-Statusmeldungen -->
+    <string name="status_focusing">Fokussierung…</string>
+    <string name="status_time_to_rest">Zeit zum Ausruhen</string>
+    <string name="status_long_rest">Lange Pause</string>
+    <string name="status_paused">Pausiert</string>
+
+    <!-- Phasentitel für TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Kurze Pause</string>
+    <string name="phase_title_long_break">Lange Pause</string>
+
+    <!-- Benachrichtigungen -->
     <string name="notification_channel_sessions_name">Pomodoro-Sitzungen</string>
     <string name="notification_channel_sessions_description">Benachrichtigungen für abgeschlossene Pomodoro-Sitzungen</string>
     <string name="notification_channel_reminders_name">Erinnerungen</string>
     <string name="notification_channel_reminders_description">Erinnerungsbenachrichtigungen</string>
 
     <string name="notification_work_complete_title">Arbeitssitzung abgeschlossen!</string>
-    <string name="notification_work_complete_message">Gut gemacht! Mach eine Pause.</string>
-    <string name="notification_short_break_complete_title">Pause beendet</string>
+    <string name="notification_work_complete_message">Gute Arbeit! Machen Sie eine Pause.</string>
+    <string name="notification_short_break_complete_title">Pausenzeit ist vorbei</string>
     <string name="notification_short_break_complete_message">Bereit für eine weitere Sitzung?</string>
-    <string name="notification_long_break_complete_title">Lange Pause beendet</string>
-    <string name="notification_long_break_complete_message">Du machst das großartig! Neue Sitzung starten?</string>
+    <string name="notification_long_break_complete_title">Lange Pause abgeschlossen</string>
+    <string name="notification_long_break_complete_message">Sie machen das großartig! Eine neue Sitzung starten?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Etwas ist schiefgelaufen. Bitte versuche es erneut.</string>
-    <string name="error_network">Netzwerkfehler. Überprüfe deine Verbindung.</string>
+    <!-- Allgemeine Fehler -->
+    <string name="error_generic">Etwas ist schief gelaufen. Bitte versuchen Sie es erneut.</string>
+    <string name="error_network">Netzwerkfehler. Überprüfen Sie Ihre Verbindung.</string>
     <string name="error_permission_denied">Berechtigung verweigert</string>
 
-    <!-- Time formats -->
+    <!-- Zeitformate -->
     <string name="time_format_minutes">%d Min</string>
     <string name="time_format_hours_minutes">%1$d Std %2$d Min</string>
 </resources>

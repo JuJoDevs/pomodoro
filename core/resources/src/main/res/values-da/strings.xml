@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Almindelige handlinger -->
     <string name="action_start">Start</string>
     <string name="action_pause">Pause</string>
-    <string name="action_resume">Fortsæt</string>
+    <string name="action_resume">Genoptag</string>
     <string name="action_stop">Stop</string>
     <string name="action_skip">Spring over</string>
     <string name="action_cancel">Annuller</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Luk</string>
     <string name="action_back">Tilbage</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Nulstil</string>
 
-    <!-- Common labels -->
+    <!-- Almindelige etiketter -->
     <string name="label_settings">Indstillinger</string>
     <string name="label_statistics">Statistik</string>
     <string name="label_about">Om</string>
 
-    <!-- Session types -->
+    <!-- Sessionstyper -->
     <string name="session_type_work">Arbejde</string>
     <string name="session_type_short_break">Kort pause</string>
     <string name="session_type_long_break">Lang pause</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Klar til at arbejde?</string>
+    <string name="label_work_duration">Arbejdsvarighed</string>
+    <string name="label_break_duration">Pausevarighed</string>
+    <string name="label_session_progress">SESSIONSFORLØB</string>
+    <string name="label_sessions_completed">%1$d af %2$d sessioner</string>
+    <string name="label_auto_start_breaks">Auto-start pauser</string>
+    <string name="label_auto_start_work">Auto-start arbejde</string>
+    <string name="dialog_stop_title">Stop timer?</string>
+    <string name="dialog_stop_message">Er du sikker på, at du vil stoppe den aktuelle session? Fremskridt vil gå tabt.</string>
+    <string name="dialog_reset_title">Nulstil Pomodoro?</string>
+    <string name="dialog_reset_message">Dette vil nulstille dit aktuelle fremskridt til 0. Er du sikker?</string>
+    <string name="warning_exact_alarm_missing">Pålidelig baggrundsfuldførelse kræver alarm-tilladelse.</string>
+    <string name="action_grant">Giv adgang</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Timer-statusmeddelelser -->
+    <string name="status_focusing">Fokuserer…</string>
+    <string name="status_time_to_rest">Tid til at hvile</string>
+    <string name="status_long_rest">Lang pause</string>
+    <string name="status_paused">På pause</string>
+
+    <!-- Fasetitler til TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Kort pause</string>
+    <string name="phase_title_long_break">Lang pause</string>
+
+    <!-- Notifikationer -->
     <string name="notification_channel_sessions_name">Pomodoro-sessioner</string>
-    <string name="notification_channel_sessions_description">Notifikationer for fuldførte pomodoro-sessioner</string>
+    <string name="notification_channel_sessions_description">Notifikationer om afsluttede pomodoro-sessioner</string>
     <string name="notification_channel_reminders_name">Påmindelser</string>
     <string name="notification_channel_reminders_description">Påmindelsesnotifikationer</string>
 
-    <string name="notification_work_complete_title">Arbejdssession fuldført!</string>
+    <string name="notification_work_complete_title">Arbejdssession afsluttet!</string>
     <string name="notification_work_complete_message">Godt arbejde! Tag en pause.</string>
-    <string name="notification_short_break_complete_title">Pausen er slut</string>
-    <string name="notification_short_break_complete_message">Klar til en ny session?</string>
-    <string name="notification_long_break_complete_title">Lang pause fuldført</string>
-    <string name="notification_long_break_complete_message">Du klarer det godt! Start ny session?</string>
+    <string name="notification_short_break_complete_title">Pausetiden er forbi</string>
+    <string name="notification_short_break_complete_message">Klar til endnu en session?</string>
+    <string name="notification_long_break_complete_title">Lang pause afsluttet</string>
+    <string name="notification_long_break_complete_message">Du klarer det fantastisk! Start en ny session?</string>
 
-    <!-- Common errors -->
+    <!-- Almindelige fejl -->
     <string name="error_generic">Noget gik galt. Prøv venligst igen.</string>
     <string name="error_network">Netværksfejl. Tjek din forbindelse.</string>
     <string name="error_permission_denied">Tilladelse nægtet</string>
 
-    <!-- Time formats -->
+    <!-- Tidsformater -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d t %2$d min</string>
 </resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Загальні дії -->
     <string name="action_start">Почати</string>
     <string name="action_pause">Пауза</string>
     <string name="action_resume">Продовжити</string>
@@ -12,37 +12,64 @@
     <string name="action_edit">Редагувати</string>
     <string name="action_close">Закрити</string>
     <string name="action_back">Назад</string>
-    <string name="action_ok">ОК</string>
+    <string name="action_ok">OK</string>
+    <string name="action_reset">Скинути</string>
 
-    <!-- Common labels -->
+    <!-- Загальні мітки -->
     <string name="label_settings">Налаштування</string>
     <string name="label_statistics">Статистика</string>
-    <string name="label_about">Про застосунок</string>
+    <string name="label_about">Про додаток</string>
 
-    <!-- Session types -->
+    <!-- Типи сесій -->
     <string name="session_type_work">Робота</string>
     <string name="session_type_short_break">Коротка перерва</string>
     <string name="session_type_long_break">Довга перерва</string>
+    <string name="label_focus">Фокус</string>
+    <string name="label_ready_to_work">Готовий працювати?</string>
+    <string name="label_work_duration">Тривалість роботи</string>
+    <string name="label_break_duration">Тривалість перерви</string>
+    <string name="label_session_progress">ПРОГРЕС СЕСІЇ</string>
+    <string name="label_sessions_completed">%1$d з %2$d сесій</string>
+    <string name="label_auto_start_breaks">Автостарт перерв</string>
+    <string name="label_auto_start_work">Автостарт роботи</string>
+    <string name="dialog_stop_title">Зупинити таймер?</string>
+    <string name="dialog_stop_message">Ви впевнені, що хочете зупинити поточну сесію? Прогрес буде втрачено.</string>
+    <string name="dialog_reset_title">Скинути Pomodoro?</string>
+    <string name="dialog_reset_message">Це скине ваш поточний прогрес до 0. Ви впевнені?</string>
+    <string name="warning_exact_alarm_missing">Надійне завершення у фоні потребує дозволу будильника.</string>
+    <string name="action_grant">Надати</string>
+    <string name="label_min">хв</string>
 
-    <!-- Notifications -->
-    <string name="notification_channel_sessions_name">Сеанси Помодоро</string>
-    <string name="notification_channel_sessions_description">Сповіщення про завершені сеанси помодоро</string>
+    <!-- Повідомлення стану таймера -->
+    <string name="status_focusing">Фокусування…</string>
+    <string name="status_time_to_rest">Час відпочити</string>
+    <string name="status_long_rest">Довга перерва</string>
+    <string name="status_paused">На паузі</string>
+
+    <!-- Заголовки фаз для TopBar -->
+    <string name="phase_title_focus">Фокус</string>
+    <string name="phase_title_short_break">Коротка перерва</string>
+    <string name="phase_title_long_break">Довга перерва</string>
+
+    <!-- Сповіщення -->
+    <string name="notification_channel_sessions_name">Сесії Pomodoro</string>
+    <string name="notification_channel_sessions_description">Сповіщення про завершені сесії pomodoro</string>
     <string name="notification_channel_reminders_name">Нагадування</string>
-    <string name="notification_channel_reminders_description">Сповіщення-нагадування</string>
+    <string name="notification_channel_reminders_description">Сповіщення нагадування</string>
 
-    <string name="notification_work_complete_title">Робочий сеанс завершено!</string>
+    <string name="notification_work_complete_title">Робоча сесія завершена!</string>
     <string name="notification_work_complete_message">Чудова робота! Зробіть перерву.</string>
-    <string name="notification_short_break_complete_title">Перерва закінчилась</string>
-    <string name="notification_short_break_complete_message">Готові до наступного сеансу?</string>
+    <string name="notification_short_break_complete_title">Час перерви закінчився</string>
+    <string name="notification_short_break_complete_message">Готові до нової сесії?</string>
     <string name="notification_long_break_complete_title">Довга перерва завершена</string>
-    <string name="notification_long_break_complete_message">Ви чудово справляєтесь! Почати новий сеанс?</string>
+    <string name="notification_long_break_complete_message">Ви чудово справляєтесь! Почати нову сесію?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Щось пішло не так. Спробуйте ще раз.</string>
+    <!-- Загальні помилки -->
+    <string name="error_generic">Щось пішло не так. Будь ласка, спробуйте знову.</string>
     <string name="error_network">Помилка мережі. Перевірте з\'єднання.</string>
     <string name="error_permission_denied">Дозвіл відхилено</string>
 
-    <!-- Time formats -->
+    <!-- Формати часу -->
     <string name="time_format_minutes">%d хв</string>
     <string name="time_format_hours_minutes">%1$d год %2$d хв</string>
 </resources>

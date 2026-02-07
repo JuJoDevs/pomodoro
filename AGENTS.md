@@ -57,7 +57,9 @@ build-logic/
 ## UI and Compose
 
 - Split each screen into Route and Screen.
-- Screen is the only composable used for previews and Roborazzi tests.
+- Reusable or atomized UI should be extracted into `presentation/components`.
+- Keep `Screen` files focused on orchestration and composition; avoid accumulating many previews in a `Screen` file.
+- Each extracted component should include its own Preview in the same file.
 - Use design-system components only; do not use Material3 directly in features.
 
 ## Navigation
@@ -95,7 +97,9 @@ build-logic/
 - Use `verifyOnce()` and `verifyNever()`.
 - Use `relaxedMockk` where appropriate.
 - Domain tests must have no Android dependencies.
-- Snapshot tests use Roborazzi with Robolectric and Screen composables only.
+- Snapshot tests use Roborazzi with Robolectric.
+- Add Roborazzi screenshot tests for Screen composables that represent main user flows.
+- Add dedicated Roborazzi screenshot tests for atomized components placed in `presentation/components`.
 
 ## Background Execution
 

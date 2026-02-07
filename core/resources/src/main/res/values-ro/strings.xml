@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Acțiuni comune -->
     <string name="action_start">Pornire</string>
     <string name="action_pause">Pauză</string>
-    <string name="action_resume">Continuare</string>
+    <string name="action_resume">Reluare</string>
     <string name="action_stop">Oprire</string>
-    <string name="action_skip">Omitere</string>
+    <string name="action_skip">Omite</string>
     <string name="action_cancel">Anulare</string>
     <string name="action_save">Salvare</string>
     <string name="action_delete">Ștergere</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Închidere</string>
     <string name="action_back">Înapoi</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Resetare</string>
 
-    <!-- Common labels -->
+    <!-- Etichete comune -->
     <string name="label_settings">Setări</string>
     <string name="label_statistics">Statistici</string>
     <string name="label_about">Despre</string>
 
-    <!-- Session types -->
+    <!-- Tipuri de sesiuni -->
     <string name="session_type_work">Muncă</string>
     <string name="session_type_short_break">Pauză scurtă</string>
     <string name="session_type_long_break">Pauză lungă</string>
+    <string name="label_focus">Concentrare</string>
+    <string name="label_ready_to_work">Gata să lucrezi?</string>
+    <string name="label_work_duration">Durata muncii</string>
+    <string name="label_break_duration">Durata pauzei</string>
+    <string name="label_session_progress">PROGRES SESIUNE</string>
+    <string name="label_sessions_completed">%1$d din %2$d sesiuni</string>
+    <string name="label_auto_start_breaks">Pornire automată pauze</string>
+    <string name="label_auto_start_work">Pornire automată muncă</string>
+    <string name="dialog_stop_title">Opriți cronometrul?</string>
+    <string name="dialog_stop_message">Sigur doriți să opriți sesiunea actuală? Progresul va fi pierdut.</string>
+    <string name="dialog_reset_title">Resetați Pomodoro?</string>
+    <string name="dialog_reset_message">Aceasta va reseta progresul dvs. actual la 0. Sunteți sigur?</string>
+    <string name="warning_exact_alarm_missing">Finalizarea fiabilă în fundal necesită permisiunea de alarmă.</string>
+    <string name="action_grant">Acordă</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Mesaje stare cronometru -->
+    <string name="status_focusing">Concentrare…</string>
+    <string name="status_time_to_rest">Timp de odihnă</string>
+    <string name="status_long_rest">Pauză lungă</string>
+    <string name="status_paused">Întrerupt</string>
+
+    <!-- Titluri faze pentru TopBar -->
+    <string name="phase_title_focus">Concentrare</string>
+    <string name="phase_title_short_break">Pauză scurtă</string>
+    <string name="phase_title_long_break">Pauză lungă</string>
+
+    <!-- Notificări -->
     <string name="notification_channel_sessions_name">Sesiuni Pomodoro</string>
-    <string name="notification_channel_sessions_description">Notificări pentru sesiunile pomodoro finalizate</string>
-    <string name="notification_channel_reminders_name">Memento-uri</string>
+    <string name="notification_channel_sessions_description">Notificări pentru sesiuni pomodoro finalizate</string>
+    <string name="notification_channel_reminders_name">Mementouri</string>
     <string name="notification_channel_reminders_description">Notificări memento</string>
 
     <string name="notification_work_complete_title">Sesiune de lucru finalizată!</string>
-    <string name="notification_work_complete_message">Bună treabă! Ia o pauză.</string>
-    <string name="notification_short_break_complete_title">Pauza s-a terminat</string>
-    <string name="notification_short_break_complete_message">Pregătit pentru altă sesiune?</string>
+    <string name="notification_work_complete_message">Treabă bună! Fă o pauză.</string>
+    <string name="notification_short_break_complete_title">Timpul de pauză s-a încheiat</string>
+    <string name="notification_short_break_complete_message">Gata pentru o altă sesiune?</string>
     <string name="notification_long_break_complete_title">Pauză lungă finalizată</string>
-    <string name="notification_long_break_complete_message">Te descurci excelent! Începi o nouă sesiune?</string>
+    <string name="notification_long_break_complete_message">O faci grozav! Începi o sesiune nouă?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Ceva nu a mers bine. Vă rugăm încercați din nou.</string>
+    <!-- Erori comune -->
+    <string name="error_generic">Ceva nu a mers bine. Vă rugăm să încercați din nou.</string>
     <string name="error_network">Eroare de rețea. Verificați conexiunea.</string>
     <string name="error_permission_denied">Permisiune refuzată</string>
 
-    <!-- Time formats -->
+    <!-- Formate timp -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 </resources>

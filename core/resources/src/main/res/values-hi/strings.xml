@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- सामान्य क्रियाएं -->
     <string name="action_start">शुरू करें</string>
     <string name="action_pause">रोकें</string>
-    <string name="action_resume">जारी रखें</string>
+    <string name="action_resume">फिर से शुरू करें</string>
     <string name="action_stop">बंद करें</string>
     <string name="action_skip">छोड़ें</string>
     <string name="action_cancel">रद्द करें</string>
@@ -13,36 +13,63 @@
     <string name="action_close">बंद करें</string>
     <string name="action_back">वापस</string>
     <string name="action_ok">ठीक है</string>
+    <string name="action_reset">रीसेट करें</string>
 
-    <!-- Common labels -->
+    <!-- सामान्य लेबल -->
     <string name="label_settings">सेटिंग्स</string>
     <string name="label_statistics">आंकड़े</string>
     <string name="label_about">के बारे में</string>
 
-    <!-- Session types -->
+    <!-- सत्र प्रकार -->
     <string name="session_type_work">काम</string>
     <string name="session_type_short_break">छोटा ब्रेक</string>
     <string name="session_type_long_break">लंबा ब्रेक</string>
+    <string name="label_focus">फोकस</string>
+    <string name="label_ready_to_work">काम करने के लिए तैयार हैं?</string>
+    <string name="label_work_duration">काम की अवधि</string>
+    <string name="label_break_duration">ब्रेक की अवधि</string>
+    <string name="label_session_progress">सत्र प्रगति</string>
+    <string name="label_sessions_completed">%1$d / %2$d सत्र</string>
+    <string name="label_auto_start_breaks">ब्रेक स्वतः शुरू करें</string>
+    <string name="label_auto_start_work">काम स्वतः शुरू करें</string>
+    <string name="dialog_stop_title">टाइमर बंद करें?</string>
+    <string name="dialog_stop_message">क्या आप वाकई वर्तमान सत्र को बंद करना चाहते हैं? प्रगति खो जाएगी।</string>
+    <string name="dialog_reset_title">पोमोडोरो रीसेट करें?</string>
+    <string name="dialog_reset_message">यह आपकी वर्तमान प्रगति को 0 पर रीसेट कर देगा। क्या आप निश्चित हैं?</string>
+    <string name="warning_exact_alarm_missing">विश्वसनीय पृष्ठभूमि पूर्णता के लिए अलार्म अनुमति की आवश्यकता है।</string>
+    <string name="action_grant">अनुमति दें</string>
+    <string name="label_min">मिनट</string>
 
-    <!-- Notifications -->
+    <!-- टाइमर स्थिति संदेश -->
+    <string name="status_focusing">ध्यान केंद्रित कर रहे हैं…</string>
+    <string name="status_time_to_rest">आराम का समय</string>
+    <string name="status_long_rest">लंबा ब्रेक</string>
+    <string name="status_paused">रोका गया</string>
+
+    <!-- TopBar के लिए चरण शीर्षक -->
+    <string name="phase_title_focus">फोकस</string>
+    <string name="phase_title_short_break">छोटा ब्रेक</string>
+    <string name="phase_title_long_break">लंबा ब्रेक</string>
+
+    <!-- सूचनाएं -->
     <string name="notification_channel_sessions_name">पोमोडोरो सत्र</string>
-    <string name="notification_channel_sessions_description">पूर्ण पोमोडोरो सत्रों की सूचनाएं</string>
-    <string name="notification_channel_reminders_name">रिमाइंडर</string>
-    <string name="notification_channel_reminders_description">रिमाइंडर सूचनाएं</string>
+    <string name="notification_channel_sessions_description">पूर्ण हुए पोमोडोरो सत्रों की सूचनाएं</string>
+    <string name="notification_channel_reminders_name">अनुस्मारक</string>
+    <string name="notification_channel_reminders_description">अनुस्मारक सूचनाएं</string>
 
-    <string name="notification_work_complete_title">काम का सत्र पूरा हुआ!</string>
-    <string name="notification_work_complete_message">शाबाश! ब्रेक लें।</string>
-    <string name="notification_short_break_complete_title">ब्रेक समाप्त</string>
-    <string name="notification_short_break_complete_message">अगले सत्र के लिए तैयार?</string>
-    <string name="notification_long_break_complete_title">लंबा ब्रेक पूरा</string>
-    <string name="notification_long_break_complete_message">बहुत अच्छा कर रहे हो! नया सत्र शुरू करें?</string>
+    <string name="notification_work_complete_title">कार्य सत्र पूर्ण!</string>
+    <string name="notification_work_complete_message">बढ़िया काम! ब्रेक लें।</string>
+    <string name="notification_short_break_complete_title">ब्रेक का समय समाप्त</string>
+    <string name="notification_short_break_complete_message">अगले सत्र के लिए तैयार हैं?</string>
+    <string name="notification_long_break_complete_title">लंबा ब्रेक पूर्ण</string>
+    <string name="notification_long_break_complete_message">आप बहुत अच्छा कर रहे हैं! नया सत्र शुरू करें?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">कुछ गलत हो गया। कृपया पुन: प्रयास करें।</string>
-    <string name="error_network">नेटवर्क त्रुटि। कनेक्शन जांचें।</string>
+    <!-- सामान्य त्रुटियां -->
+    <string name="error_generic">कुछ गलत हो गया। कृपया पुनः प्रयास करें।</string>
+    <string name="error_network">नेटवर्क त्रुटि। अपना कनेक्शन जांचें।</string>
     <string name="error_permission_denied">अनुमति अस्वीकृत</string>
 
-    <!-- Time formats -->
+    <!-- समय प्रारूप -->
     <string name="time_format_minutes">%d मिनट</string>
     <string name="time_format_hours_minutes">%1$d घंटे %2$d मिनट</string>
 </resources>

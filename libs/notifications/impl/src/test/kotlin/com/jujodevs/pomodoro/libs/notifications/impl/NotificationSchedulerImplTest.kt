@@ -1,9 +1,11 @@
 package com.jujodevs.pomodoro.libs.notifications.impl
 
+import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
 import com.jujodevs.pomodoro.libs.notifications.NotificationData
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
 import com.jujodevs.pomodoro.libs.notifications.NotificationType
+import com.jujodevs.pomodoro.libs.notifications.RunningTimerNotificationData
 import kotlinx.coroutines.test.runTest
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
@@ -95,8 +97,12 @@ class NotificationSchedulerImplTest {
     @Test
     fun `GIVEN same id notification WHEN scheduleNotification twice THEN should update`() = runTest {
         // GIVEN
-        val notification1 = createTestNotification(id = 1, title = "First")
-        val notification2 = createTestNotification(id = 1, title = "Second")
+        val notification1 = createTestNotification(
+            id = 1,
+            titleResId = R.string.notification_work_complete_title
+        )
+        val notification2 =
+            createTestNotification(id = 1, titleResId = R.string.notification_short_break_complete_title)
 
         // WHEN
         scheduler.scheduleNotification(notification1)
@@ -104,18 +110,19 @@ class NotificationSchedulerImplTest {
 
         // THEN
         scheduler.getScheduledNotifications().size shouldBeEqualTo 1
-        scheduler.getScheduledNotifications().first().title shouldBeEqualTo "Second"
+        scheduler.getScheduledNotifications().first().titleResId shouldBeEqualTo
+            R.string.notification_short_break_complete_title
     }
 
     private fun createTestNotification(
         id: Int,
-        title: String = "Test Notification",
-        message: String = "Test message",
+        titleResId: Int = R.string.notification_work_complete_title,
+        messageResId: Int = R.string.notification_work_complete_message,
         type: NotificationType = NotificationType.WORK_SESSION_COMPLETE
     ) = NotificationData(
         id = id,
-        title = title,
-        message = message,
+        titleResId = titleResId,
+        messageResId = messageResId,
         channelId = NotificationChannel.PomodoroSession.id,
         scheduledTimeMillis = System.currentTimeMillis() + 60000,
         type = type
@@ -145,6 +152,24 @@ private class TestNotificationScheduler : NotificationScheduler {
 
     override fun isNotificationScheduled(notificationId: Int): Boolean {
         return scheduledNotifications.containsKey(notificationId)
+    }
+
+    override suspend fun showPersistentNotification(notification: NotificationData): Result<Unit> {
+        scheduledNotifications[notification.id] = notification
+        return Result.success(Unit)
+    }
+
+    override suspend fun dismissPersistentNotification(notificationId: Int): Result<Unit> {
+        scheduledNotifications.remove(notificationId)
+        return Result.success(Unit)
+    }
+
+    override suspend fun startRunningForegroundTimer(notification: RunningTimerNotificationData): Result<Unit> {
+        return Result.success(Unit)
+    }
+
+    override suspend fun stopRunningForegroundTimer(): Result<Unit> {
+        return Result.success(Unit)
     }
 
     fun getScheduledNotifications(): List<NotificationData> {

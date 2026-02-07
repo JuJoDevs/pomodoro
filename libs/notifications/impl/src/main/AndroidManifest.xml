@@ -4,8 +4,17 @@
     <!-- Permissions for notifications -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
 
     <application>
+        <service
+            android:name=".PomodoroTimerForegroundService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
         <!-- Alarm Receiver for scheduled notifications -->
         <receiver
             android:name=".AlarmReceiver"
@@ -13,6 +22,18 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="com.jujodevs.pomodoro.NOTIFICATION_ACTION" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Reconciliation Receiver for system events -->
+        <receiver
+            android:name=".ReconciliationReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
             </intent-filter>
         </receiver>
     </application>

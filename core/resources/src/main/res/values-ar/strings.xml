@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- الإجراءات الشائعة -->
     <string name="action_start">ابدأ</string>
     <string name="action_pause">إيقاف مؤقت</string>
     <string name="action_resume">استئناف</string>
-    <string name="action_stop">إيقاف</string>
+    <string name="action_stop">توقف</string>
     <string name="action_skip">تخطي</string>
     <string name="action_cancel">إلغاء</string>
     <string name="action_save">حفظ</string>
     <string name="action_delete">حذف</string>
-    <string name="action_edit">تعديل</string>
+    <string name="action_edit">تحرير</string>
     <string name="action_close">إغلاق</string>
     <string name="action_back">رجوع</string>
     <string name="action_ok">موافق</string>
+    <string name="action_reset">إعادة تعيين</string>
 
-    <!-- Common labels -->
+    <!-- التصنيفات الشائعة -->
     <string name="label_settings">الإعدادات</string>
     <string name="label_statistics">الإحصائيات</string>
     <string name="label_about">حول</string>
 
-    <!-- Session types -->
-    <string name="session_type_work">العمل</string>
+    <!-- أنواع الجلسات -->
+    <string name="session_type_work">عمل</string>
     <string name="session_type_short_break">استراحة قصيرة</string>
     <string name="session_type_long_break">استراحة طويلة</string>
+    <string name="label_focus">تركيز</string>
+    <string name="label_ready_to_work">هل أنت مستعد للعمل؟</string>
+    <string name="label_work_duration">مدة العمل</string>
+    <string name="label_break_duration">مدة الاستراحة</string>
+    <string name="label_session_progress">تقدم الجلسة</string>
+    <string name="label_sessions_completed">%1$d من %2$d جلسات</string>
+    <string name="label_auto_start_breaks">بدء تلقائي للاستراحات</string>
+    <string name="label_auto_start_work">بدء تلقائي للعمل</string>
+    <string name="dialog_stop_title">إيقاف المؤقت؟</string>
+    <string name="dialog_stop_message">هل أنت متأكد من إيقاف الجلسة الحالية؟ سيتم فقدان التقدم.</string>
+    <string name="dialog_reset_title">إعادة تعيين بومودورو؟</string>
+    <string name="dialog_reset_message">سيؤدي هذا إلى إعادة تعيين تقدمك الحالي إلى 0. هل أنت متأكد؟</string>
+    <string name="warning_exact_alarm_missing">يتطلب الإكمال الموثوق في الخلفية إذن المنبه.</string>
+    <string name="action_grant">منح</string>
+    <string name="label_min">دقيقة</string>
 
-    <!-- Notifications -->
+    <!-- رسائل حالة المؤقت -->
+    <string name="status_focusing">التركيز…</string>
+    <string name="status_time_to_rest">وقت الراحة</string>
+    <string name="status_long_rest">استراحة طويلة</string>
+    <string name="status_paused">متوقف مؤقتًا</string>
+
+    <!-- عناوين المراحل لـ TopBar -->
+    <string name="phase_title_focus">تركيز</string>
+    <string name="phase_title_short_break">استراحة قصيرة</string>
+    <string name="phase_title_long_break">استراحة طويلة</string>
+
+    <!-- الإشعارات -->
     <string name="notification_channel_sessions_name">جلسات بومودورو</string>
     <string name="notification_channel_sessions_description">إشعارات جلسات بومودورو المكتملة</string>
     <string name="notification_channel_reminders_name">التذكيرات</string>
     <string name="notification_channel_reminders_description">إشعارات التذكير</string>
 
-    <string name="notification_work_complete_title">اكتملت جلسة العمل!</string>
-    <string name="notification_work_complete_message">أحسنت! خذ استراحة.</string>
-    <string name="notification_short_break_complete_title">انتهت الاستراحة</string>
-    <string name="notification_short_break_complete_message">هل أنت جاهز لجلسة أخرى؟</string>
-    <string name="notification_long_break_complete_title">اكتملت الاستراحة الطويلة</string>
-    <string name="notification_long_break_complete_message">أداء رائع! هل تبدأ جلسة جديدة؟</string>
+    <string name="notification_work_complete_title">جلسة العمل اكتملت!</string>
+    <string name="notification_work_complete_message">عمل رائع! خذ استراحة.</string>
+    <string name="notification_short_break_complete_title">انتهى وقت الاستراحة</string>
+    <string name="notification_short_break_complete_message">هل أنت مستعد لجلسة أخرى؟</string>
+    <string name="notification_long_break_complete_title">الاستراحة الطويلة اكتملت</string>
+    <string name="notification_long_break_complete_message">أنت تقوم بعمل رائع! بدء جلسة جديدة؟</string>
 
-    <!-- Common errors -->
+    <!-- الأخطاء الشائعة -->
     <string name="error_generic">حدث خطأ ما. يرجى المحاولة مرة أخرى.</string>
     <string name="error_network">خطأ في الشبكة. تحقق من اتصالك.</string>
     <string name="error_permission_denied">تم رفض الإذن</string>
 
-    <!-- Time formats -->
+    <!-- تنسيقات الوقت -->
     <string name="time_format_minutes">%d دقيقة</string>
     <string name="time_format_hours_minutes">%1$d ساعة %2$d دقيقة</string>
 </resources>

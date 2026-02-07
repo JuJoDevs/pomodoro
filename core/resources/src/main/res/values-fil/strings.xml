@@ -1,48 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Karaniwang aksyon -->
     <string name="action_start">Simulan</string>
     <string name="action_pause">I-pause</string>
-    <string name="action_resume">Ituloy</string>
-    <string name="action_stop">Itigil</string>
+    <string name="action_resume">Ipagpatuloy</string>
+    <string name="action_stop">Ihinto</string>
     <string name="action_skip">Laktawan</string>
     <string name="action_cancel">Kanselahin</string>
     <string name="action_save">I-save</string>
-    <string name="action_delete">Burahin</string>
+    <string name="action_delete">Tanggalin</string>
     <string name="action_edit">I-edit</string>
     <string name="action_close">Isara</string>
     <string name="action_back">Bumalik</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">I-reset</string>
 
-    <!-- Common labels -->
+    <!-- Karaniwang label -->
     <string name="label_settings">Mga Setting</string>
     <string name="label_statistics">Mga Estadistika</string>
     <string name="label_about">Tungkol</string>
 
-    <!-- Session types -->
+    <!-- Mga uri ng sesyon -->
     <string name="session_type_work">Trabaho</string>
-    <string name="session_type_short_break">Maikling Pahinga</string>
-    <string name="session_type_long_break">Mahabang Pahinga</string>
+    <string name="session_type_short_break">Maikling pahinga</string>
+    <string name="session_type_long_break">Mahabang pahinga</string>
+    <string name="label_focus">Pokus</string>
+    <string name="label_ready_to_work">Handa ka na bang magtrabaho?</string>
+    <string name="label_work_duration">Tagal ng trabaho</string>
+    <string name="label_break_duration">Tagal ng pahinga</string>
+    <string name="label_session_progress">PAG-UNLAD NG SESYON</string>
+    <string name="label_sessions_completed">%1$d sa %2$d mga sesyon</string>
+    <string name="label_auto_start_breaks">Auto-start ng mga pahinga</string>
+    <string name="label_auto_start_work">Auto-start ng trabaho</string>
+    <string name="dialog_stop_title">Ihinto ang timer?</string>
+    <string name="dialog_stop_message">Sigurado ka bang ihihinto ang kasalukuyang sesyon? Mawawala ang progress.</string>
+    <string name="dialog_reset_title">I-reset ang Pomodoro?</string>
+    <string name="dialog_reset_message">Ire-reset nito ang iyong kasalukuyang progress sa 0. Sigurado ka ba?</string>
+    <string name="warning_exact_alarm_missing">Ang maaasahang pagkumpleto sa background ay nangangailangan ng alarm permission.</string>
+    <string name="action_grant">Payagan</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
-    <string name="notification_channel_sessions_name">Mga Pomodoro Session</string>
-    <string name="notification_channel_sessions_description">Mga notification para sa nakumpletong pomodoro session</string>
+    <!-- Mga mensahe ng status ng timer -->
+    <string name="status_focusing">Nagpopokus…</string>
+    <string name="status_time_to_rest">Oras ng pahinga</string>
+    <string name="status_long_rest">Mahabang pahinga</string>
+    <string name="status_paused">Naka-pause</string>
+
+    <!-- Mga pamagat ng yugto para sa TopBar -->
+    <string name="phase_title_focus">Pokus</string>
+    <string name="phase_title_short_break">Maikling pahinga</string>
+    <string name="phase_title_long_break">Mahabang pahinga</string>
+
+    <!-- Mga notification -->
+    <string name="notification_channel_sessions_name">Mga Sesyon ng Pomodoro</string>
+    <string name="notification_channel_sessions_description">Mga notification para sa nakumpletong mga sesyon ng pomodoro</string>
     <string name="notification_channel_reminders_name">Mga Paalala</string>
     <string name="notification_channel_reminders_description">Mga notification ng paalala</string>
 
-    <string name="notification_work_complete_title">Natapos na ang work session!</string>
+    <string name="notification_work_complete_title">Kumpleto ang sesyon ng trabaho!</string>
     <string name="notification_work_complete_message">Magaling! Magpahinga ka.</string>
-    <string name="notification_short_break_complete_title">Tapos na ang pahinga</string>
-    <string name="notification_short_break_complete_message">Handa ka na ba sa susunod na session?</string>
-    <string name="notification_long_break_complete_title">Natapos na ang mahabang pahinga</string>
-    <string name="notification_long_break_complete_message">Ang galing mo! Magsimula ng bagong session?</string>
+    <string name="notification_short_break_complete_title">Tapos na ang oras ng pahinga</string>
+    <string name="notification_short_break_complete_message">Handa na para sa isa pang sesyon?</string>
+    <string name="notification_long_break_complete_title">Kumpleto ang mahabang pahinga</string>
+    <string name="notification_long_break_complete_message">Magaling ka! Simulan ang bagong sesyon?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">May nangyaring mali. Pakisubukan ulit.</string>
-    <string name="error_network">Error sa network. Tingnan ang iyong koneksyon.</string>
+    <!-- Karaniwang error -->
+    <string name="error_generic">May nangyaring mali. Subukan ulit.</string>
+    <string name="error_network">Network error. Suriin ang iyong koneksyon.</string>
     <string name="error_permission_denied">Tinanggihan ang pahintulot</string>
 
-    <!-- Time formats -->
+    <!-- Mga format ng oras -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d oras %2$d min</string>
 </resources>

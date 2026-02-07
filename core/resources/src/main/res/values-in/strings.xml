@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Tindakan umum -->
     <string name="action_start">Mulai</string>
     <string name="action_pause">Jeda</string>
     <string name="action_resume">Lanjutkan</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Tutup</string>
     <string name="action_back">Kembali</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Atur ulang</string>
 
-    <!-- Common labels -->
+    <!-- Label umum -->
     <string name="label_settings">Pengaturan</string>
     <string name="label_statistics">Statistik</string>
     <string name="label_about">Tentang</string>
 
-    <!-- Session types -->
+    <!-- Jenis sesi -->
     <string name="session_type_work">Kerja</string>
     <string name="session_type_short_break">Istirahat Pendek</string>
     <string name="session_type_long_break">Istirahat Panjang</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Siap untuk bekerja?</string>
+    <string name="label_work_duration">Durasi kerja</string>
+    <string name="label_break_duration">Durasi istirahat</string>
+    <string name="label_session_progress">KEMAJUAN SESI</string>
+    <string name="label_sessions_completed">%1$d dari %2$d sesi</string>
+    <string name="label_auto_start_breaks">Mulai istirahat otomatis</string>
+    <string name="label_auto_start_work">Mulai kerja otomatis</string>
+    <string name="dialog_stop_title">Hentikan timer?</string>
+    <string name="dialog_stop_message">Apakah Anda yakin ingin menghentikan sesi saat ini? Kemajuan akan hilang.</string>
+    <string name="dialog_reset_title">Atur ulang Pomodoro?</string>
+    <string name="dialog_reset_message">Ini akan mengatur ulang kemajuan Anda saat ini ke 0. Apakah Anda yakin?</string>
+    <string name="warning_exact_alarm_missing">Penyelesaian latar belakang yang andal memerlukan izin alarm.</string>
+    <string name="action_grant">Berikan</string>
+    <string name="label_min">menit</string>
 
-    <!-- Notifications -->
+    <!-- Pesan status timer -->
+    <string name="status_focusing">Fokus…</string>
+    <string name="status_time_to_rest">Waktu istirahat</string>
+    <string name="status_long_rest">Istirahat panjang</string>
+    <string name="status_paused">Dijeda</string>
+
+    <!-- Judul fase untuk TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Istirahat Pendek</string>
+    <string name="phase_title_long_break">Istirahat Panjang</string>
+
+    <!-- Notifikasi -->
     <string name="notification_channel_sessions_name">Sesi Pomodoro</string>
-    <string name="notification_channel_sessions_description">Notifikasi sesi pomodoro yang selesai</string>
+    <string name="notification_channel_sessions_description">Notifikasi untuk sesi pomodoro yang selesai</string>
     <string name="notification_channel_reminders_name">Pengingat</string>
     <string name="notification_channel_reminders_description">Notifikasi pengingat</string>
 
     <string name="notification_work_complete_title">Sesi kerja selesai!</string>
-    <string name="notification_work_complete_message">Bagus! Istirahat sebentar.</string>
-    <string name="notification_short_break_complete_title">Waktu istirahat habis</string>
-    <string name="notification_short_break_complete_message">Siap untuk sesi berikutnya?</string>
+    <string name="notification_work_complete_message">Kerja bagus! Beristirahatlah.</string>
+    <string name="notification_short_break_complete_title">Waktu istirahat telah berakhir</string>
+    <string name="notification_short_break_complete_message">Siap untuk sesi lain?</string>
     <string name="notification_long_break_complete_title">Istirahat panjang selesai</string>
-    <string name="notification_long_break_complete_message">Anda hebat! Mulai sesi baru?</string>
+    <string name="notification_long_break_complete_message">Anda melakukannya dengan hebat! Mulai sesi baru?</string>
 
-    <!-- Common errors -->
+    <!-- Kesalahan umum -->
     <string name="error_generic">Terjadi kesalahan. Silakan coba lagi.</string>
     <string name="error_network">Kesalahan jaringan. Periksa koneksi Anda.</string>
     <string name="error_permission_denied">Izin ditolak</string>
 
-    <!-- Time formats -->
+    <!-- Format waktu -->
     <string name="time_format_minutes">%d menit</string>
     <string name="time_format_hours_minutes">%1$d jam %2$d menit</string>
 </resources>

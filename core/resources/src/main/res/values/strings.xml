@@ -13,6 +13,7 @@
     <string name="action_close">Close</string>
     <string name="action_back">Back</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Reset</string>
 
     <!-- Common labels -->
     <string name="label_settings">Settings</string>
@@ -23,6 +24,32 @@
     <string name="session_type_work">Work</string>
     <string name="session_type_short_break">Short Break</string>
     <string name="session_type_long_break">Long Break</string>
+    <string name="label_focus">Focus</string>
+    <string name="label_ready_to_work">Ready to work?</string>
+    <string name="label_work_duration">Work Duration</string>
+    <string name="label_break_duration">Break Duration</string>
+    <string name="label_session_progress">SESSION PROGRESS</string>
+    <string name="label_sessions_completed">%1$d of %2$d Sessions</string>
+    <string name="label_auto_start_breaks">Auto-start breaks</string>
+    <string name="label_auto_start_work">Auto-start work</string>
+    <string name="dialog_stop_title">Stop timer?</string>
+    <string name="dialog_stop_message">Are you sure you want to stop the current session? Progress will be lost.</string>
+    <string name="dialog_reset_title">Reset Pomodoro?</string>
+    <string name="dialog_reset_message">This will reset your current progress to 0. Are you sure?</string>
+    <string name="warning_exact_alarm_missing">Reliable background completion needs alarm permission.</string>
+    <string name="action_grant">Grant</string>
+    <string name="label_min">min</string>
+    
+    <!-- Timer status messages -->
+    <string name="status_focusing">Focusing…</string>
+    <string name="status_time_to_rest">Time to rest</string>
+    <string name="status_long_rest">Long rest</string>
+    <string name="status_paused">Paused</string>
+    
+    <!-- Phase titles for TopBar -->
+    <string name="phase_title_focus">Focus</string>
+    <string name="phase_title_short_break">Short Break</string>
+    <string name="phase_title_long_break">Long Break</string>
 
     <!-- Notifications -->
     <string name="notification_channel_sessions_name">Pomodoro Sessions</string>

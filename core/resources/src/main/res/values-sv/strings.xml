@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Vanliga åtgärder -->
     <string name="action_start">Starta</string>
     <string name="action_pause">Pausa</string>
-    <string name="action_resume">Återuppta</string>
+    <string name="action_resume">Fortsätt</string>
     <string name="action_stop">Stoppa</string>
     <string name="action_skip">Hoppa över</string>
     <string name="action_cancel">Avbryt</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Stäng</string>
     <string name="action_back">Tillbaka</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Återställ</string>
 
-    <!-- Common labels -->
+    <!-- Vanliga etiketter -->
     <string name="label_settings">Inställningar</string>
     <string name="label_statistics">Statistik</string>
     <string name="label_about">Om</string>
 
-    <!-- Session types -->
+    <!-- Sessionstyper -->
     <string name="session_type_work">Arbete</string>
     <string name="session_type_short_break">Kort paus</string>
     <string name="session_type_long_break">Lång paus</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Redo att arbeta?</string>
+    <string name="label_work_duration">Arbetslängd</string>
+    <string name="label_break_duration">Pauslängd</string>
+    <string name="label_session_progress">SESSIONSFRAMSTEG</string>
+    <string name="label_sessions_completed">%1$d av %2$d sessioner</string>
+    <string name="label_auto_start_breaks">Starta pauser automatiskt</string>
+    <string name="label_auto_start_work">Starta arbete automatiskt</string>
+    <string name="dialog_stop_title">Stoppa timer?</string>
+    <string name="dialog_stop_message">Är du säker på att du vill stoppa nuvarande session? Framsteg kommer att förloras.</string>
+    <string name="dialog_reset_title">Återställ Pomodoro?</string>
+    <string name="dialog_reset_message">Detta kommer att återställa ditt nuvarande framsteg till 0. Är du säker?</string>
+    <string name="warning_exact_alarm_missing">Pålitlig bakgrundsavslutning kräver larmtillstånd.</string>
+    <string name="action_grant">Bevilja</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Timer-statusmeddelanden -->
+    <string name="status_focusing">Fokuserar…</string>
+    <string name="status_time_to_rest">Dags att vila</string>
+    <string name="status_long_rest">Lång paus</string>
+    <string name="status_paused">Pausad</string>
+
+    <!-- Fastitlar för TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Kort paus</string>
+    <string name="phase_title_long_break">Lång paus</string>
+
+    <!-- Aviseringar -->
     <string name="notification_channel_sessions_name">Pomodoro-sessioner</string>
-    <string name="notification_channel_sessions_description">Aviseringar för avslutade pomodoro-sessioner</string>
+    <string name="notification_channel_sessions_description">Aviseringar för slutförda pomodoro-sessioner</string>
     <string name="notification_channel_reminders_name">Påminnelser</string>
     <string name="notification_channel_reminders_description">Påminnelseaviseringar</string>
 
-    <string name="notification_work_complete_title">Arbetssession klar!</string>
+    <string name="notification_work_complete_title">Arbetssession slutförd!</string>
     <string name="notification_work_complete_message">Bra jobbat! Ta en paus.</string>
-    <string name="notification_short_break_complete_title">Pausen är slut</string>
+    <string name="notification_short_break_complete_title">Paustiden är över</string>
     <string name="notification_short_break_complete_message">Redo för en ny session?</string>
-    <string name="notification_long_break_complete_title">Lång paus klar</string>
-    <string name="notification_long_break_complete_message">Du gör det bra! Starta ny session?</string>
+    <string name="notification_long_break_complete_title">Lång paus slutförd</string>
+    <string name="notification_long_break_complete_message">Du gör det fantastiskt! Starta en ny session?</string>
 
-    <!-- Common errors -->
+    <!-- Vanliga fel -->
     <string name="error_generic">Något gick fel. Försök igen.</string>
     <string name="error_network">Nätverksfel. Kontrollera din anslutning.</string>
-    <string name="error_permission_denied">Åtkomst nekad</string>
+    <string name="error_permission_denied">Tillstånd nekad</string>
 
-    <!-- Time formats -->
+    <!-- Tidsformat -->
     <string name="time_format_minutes">%d min</string>
-    <string name="time_format_hours_minutes">%1$d tim %2$d min</string>
+    <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 </resources>

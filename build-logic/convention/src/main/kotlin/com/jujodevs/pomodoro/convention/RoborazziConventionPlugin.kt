@@ -1,5 +1,6 @@
 package com.jujodevs.pomodoro.convention
 
+import com.android.build.api.dsl.LibraryExtension
 import com.jujodevs.pomodoro.convention.extensions.libs
 import com.jujodevs.pomodoro.convention.extensions.library
 import io.github.takahirom.roborazzi.RoborazziExtension
@@ -13,6 +14,16 @@ class RoborazziConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("io.github.takahirom.roborazzi")
+            }
+
+            plugins.withId("com.android.library") {
+                extensions.configure<LibraryExtension> {
+                    testOptions {
+                        unitTests {
+                            isIncludeAndroidResources = true
+                        }
+                    }
+                }
             }
 
             afterEvaluate {

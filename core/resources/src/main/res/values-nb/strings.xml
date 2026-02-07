@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Vanlige handlinger -->
     <string name="action_start">Start</string>
     <string name="action_pause">Pause</string>
     <string name="action_resume">Fortsett</string>
@@ -13,18 +13,45 @@
     <string name="action_close">Lukk</string>
     <string name="action_back">Tilbake</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Tilbakestill</string>
 
-    <!-- Common labels -->
+    <!-- Vanlige etiketter -->
     <string name="label_settings">Innstillinger</string>
     <string name="label_statistics">Statistikk</string>
     <string name="label_about">Om</string>
 
-    <!-- Session types -->
+    <!-- Økttyper -->
     <string name="session_type_work">Arbeid</string>
     <string name="session_type_short_break">Kort pause</string>
     <string name="session_type_long_break">Lang pause</string>
+    <string name="label_focus">Fokus</string>
+    <string name="label_ready_to_work">Klar til å jobbe?</string>
+    <string name="label_work_duration">Arbeidsvarighet</string>
+    <string name="label_break_duration">Pausevarighet</string>
+    <string name="label_session_progress">ØKTFREMGANG</string>
+    <string name="label_sessions_completed">%1$d av %2$d økter</string>
+    <string name="label_auto_start_breaks">Autostart pauser</string>
+    <string name="label_auto_start_work">Autostart arbeid</string>
+    <string name="dialog_stop_title">Stoppe tidtaker?</string>
+    <string name="dialog_stop_message">Er du sikker på at du vil stoppe gjeldende økt? Fremgangen vil gå tapt.</string>
+    <string name="dialog_reset_title">Tilbakestill Pomodoro?</string>
+    <string name="dialog_reset_message">Dette vil tilbakestille din nåværende fremgang til 0. Er du sikker?</string>
+    <string name="warning_exact_alarm_missing">Pålitelig bakgrunnsgjennomføring krever alarmtillatelse.</string>
+    <string name="action_grant">Gi tillatelse</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Tidtaker statusmeldinger -->
+    <string name="status_focusing">Fokuserer…</string>
+    <string name="status_time_to_rest">Tid for hvile</string>
+    <string name="status_long_rest">Lang pause</string>
+    <string name="status_paused">Pauset</string>
+
+    <!-- Fasetitler for TopBar -->
+    <string name="phase_title_focus">Fokus</string>
+    <string name="phase_title_short_break">Kort pause</string>
+    <string name="phase_title_long_break">Lang pause</string>
+
+    <!-- Varsler -->
     <string name="notification_channel_sessions_name">Pomodoro-økter</string>
     <string name="notification_channel_sessions_description">Varsler for fullførte pomodoro-økter</string>
     <string name="notification_channel_reminders_name">Påminnelser</string>
@@ -32,17 +59,17 @@
 
     <string name="notification_work_complete_title">Arbeidsøkt fullført!</string>
     <string name="notification_work_complete_message">Bra jobbet! Ta en pause.</string>
-    <string name="notification_short_break_complete_title">Pausen er over</string>
+    <string name="notification_short_break_complete_title">Pausetiden er over</string>
     <string name="notification_short_break_complete_message">Klar for en ny økt?</string>
     <string name="notification_long_break_complete_title">Lang pause fullført</string>
-    <string name="notification_long_break_complete_message">Du gjør det bra! Starte ny økt?</string>
+    <string name="notification_long_break_complete_message">Du gjør det flott! Starte en ny økt?</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Noe gikk galt. Prøv igjen.</string>
+    <!-- Vanlige feil -->
+    <string name="error_generic">Noe gikk galt. Vennligst prøv igjen.</string>
     <string name="error_network">Nettverksfeil. Sjekk tilkoblingen din.</string>
-    <string name="error_permission_denied">Tilgang nektet</string>
+    <string name="error_permission_denied">Tillatelse nektet</string>
 
-    <!-- Time formats -->
+    <!-- Tidsformater -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d t %2$d min</string>
 </resources>

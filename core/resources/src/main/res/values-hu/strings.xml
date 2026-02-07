@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Általános műveletek -->
     <string name="action_start">Indítás</string>
     <string name="action_pause">Szünet</string>
     <string name="action_resume">Folytatás</string>
     <string name="action_stop">Leállítás</string>
-    <string name="action_skip">Kihagyás</string>
+    <string name="action_skip">Átugrás</string>
     <string name="action_cancel">Mégse</string>
     <string name="action_save">Mentés</string>
     <string name="action_delete">Törlés</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Bezárás</string>
     <string name="action_back">Vissza</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Visszaállítás</string>
 
-    <!-- Common labels -->
+    <!-- Általános címkék -->
     <string name="label_settings">Beállítások</string>
     <string name="label_statistics">Statisztikák</string>
     <string name="label_about">Névjegy</string>
 
-    <!-- Session types -->
+    <!-- Munkamenet típusok -->
     <string name="session_type_work">Munka</string>
     <string name="session_type_short_break">Rövid szünet</string>
     <string name="session_type_long_break">Hosszú szünet</string>
+    <string name="label_focus">Fókusz</string>
+    <string name="label_ready_to_work">Készen állsz a munkára?</string>
+    <string name="label_work_duration">Munka időtartama</string>
+    <string name="label_break_duration">Szünet időtartama</string>
+    <string name="label_session_progress">MUNKAMENET ELŐREHALADÁS</string>
+    <string name="label_sessions_completed">%1$d / %2$d munkamenet</string>
+    <string name="label_auto_start_breaks">Szünetek automatikus indítása</string>
+    <string name="label_auto_start_work">Munka automatikus indítása</string>
+    <string name="dialog_stop_title">Időzítő leállítása?</string>
+    <string name="dialog_stop_message">Biztosan leállítod az aktuális munkamenetet? Az előrehaladás elvész.</string>
+    <string name="dialog_reset_title">Pomodoro visszaállítása?</string>
+    <string name="dialog_reset_message">Ez visszaállítja a jelenlegi előrehaladást 0-ra. Biztos vagy benne?</string>
+    <string name="warning_exact_alarm_missing">A megbízható háttérben történő befejezéshez ébresztési engedély szükséges.</string>
+    <string name="action_grant">Engedélyezés</string>
+    <string name="label_min">perc</string>
 
-    <!-- Notifications -->
+    <!-- Időzítő állapotüzenetek -->
+    <string name="status_focusing">Fókuszálás…</string>
+    <string name="status_time_to_rest">Pihenés ideje</string>
+    <string name="status_long_rest">Hosszú szünet</string>
+    <string name="status_paused">Szüneteltetve</string>
+
+    <!-- Fáziscímek a TopBar számára -->
+    <string name="phase_title_focus">Fókusz</string>
+    <string name="phase_title_short_break">Rövid szünet</string>
+    <string name="phase_title_long_break">Hosszú szünet</string>
+
+    <!-- Értesítések -->
     <string name="notification_channel_sessions_name">Pomodoro munkamenetek</string>
     <string name="notification_channel_sessions_description">Értesítések a befejezett pomodoro munkamenetekről</string>
     <string name="notification_channel_reminders_name">Emlékeztetők</string>
     <string name="notification_channel_reminders_description">Emlékeztető értesítések</string>
 
     <string name="notification_work_complete_title">Munkamenet befejezve!</string>
-    <string name="notification_work_complete_message">Szép munka! Tarts szünetet.</string>
-    <string name="notification_short_break_complete_title">Szünet vége</string>
-    <string name="notification_short_break_complete_message">Készen állsz a következő munkamenetre?</string>
+    <string name="notification_work_complete_message">Nagyszerű munka! Tarts szünetet.</string>
+    <string name="notification_short_break_complete_title">A szünet ideje lejárt</string>
+    <string name="notification_short_break_complete_message">Készen állsz egy újabb munkamenetre?</string>
     <string name="notification_long_break_complete_title">Hosszú szünet befejezve</string>
     <string name="notification_long_break_complete_message">Remekül megy! Új munkamenet indítása?</string>
 
-    <!-- Common errors -->
+    <!-- Általános hibák -->
     <string name="error_generic">Valami hiba történt. Kérjük, próbáld újra.</string>
     <string name="error_network">Hálózati hiba. Ellenőrizd a kapcsolatot.</string>
     <string name="error_permission_denied">Engedély megtagadva</string>
 
-    <!-- Time formats -->
+    <!-- Időformátumok -->
     <string name="time_format_minutes">%d perc</string>
-    <string name="time_format_hours_minutes">%1$d óra %2$d perc</string>
+    <string name="time_format_hours_minutes">%1$d ó %2$d perc</string>
 </resources>

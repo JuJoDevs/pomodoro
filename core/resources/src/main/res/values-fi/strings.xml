@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Yleiset toiminnot -->
     <string name="action_start">Aloita</string>
     <string name="action_pause">Tauko</string>
     <string name="action_resume">Jatka</string>
-    <string name="action_stop">Lopeta</string>
+    <string name="action_stop">Pysäytä</string>
     <string name="action_skip">Ohita</string>
     <string name="action_cancel">Peruuta</string>
     <string name="action_save">Tallenna</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Sulje</string>
     <string name="action_back">Takaisin</string>
     <string name="action_ok">OK</string>
+    <string name="action_reset">Nollaa</string>
 
-    <!-- Common labels -->
+    <!-- Yleiset tunnisteet -->
     <string name="label_settings">Asetukset</string>
     <string name="label_statistics">Tilastot</string>
     <string name="label_about">Tietoja</string>
 
-    <!-- Session types -->
+    <!-- Istuntotyypit -->
     <string name="session_type_work">Työ</string>
     <string name="session_type_short_break">Lyhyt tauko</string>
     <string name="session_type_long_break">Pitkä tauko</string>
+    <string name="label_focus">Keskittyminen</string>
+    <string name="label_ready_to_work">Valmis työskentelemään?</string>
+    <string name="label_work_duration">Työn kesto</string>
+    <string name="label_break_duration">Tauon kesto</string>
+    <string name="label_session_progress">ISTUNNON EDISTYMINEN</string>
+    <string name="label_sessions_completed">%1$d / %2$d istuntoa</string>
+    <string name="label_auto_start_breaks">Aloita tauot automaattisesti</string>
+    <string name="label_auto_start_work">Aloita työ automaattisesti</string>
+    <string name="dialog_stop_title">Pysäytä ajastin?</string>
+    <string name="dialog_stop_message">Haluatko varmasti pysäyttää nykyisen istunnon? Edistyminen menetetään.</string>
+    <string name="dialog_reset_title">Nollaa Pomodoro?</string>
+    <string name="dialog_reset_message">Tämä nollaa nykyisen edistymisesi arvoon 0. Oletko varma?</string>
+    <string name="warning_exact_alarm_missing">Luotettava taustan valmistuminen vaatii hälytyksen luvan.</string>
+    <string name="action_grant">Myönnä</string>
+    <string name="label_min">min</string>
 
-    <!-- Notifications -->
+    <!-- Ajastimen tilaviestit -->
+    <string name="status_focusing">Keskittymässä…</string>
+    <string name="status_time_to_rest">Aika levätä</string>
+    <string name="status_long_rest">Pitkä tauko</string>
+    <string name="status_paused">Tauolla</string>
+
+    <!-- Vaiheen otsikot TopBarille -->
+    <string name="phase_title_focus">Keskittyminen</string>
+    <string name="phase_title_short_break">Lyhyt tauko</string>
+    <string name="phase_title_long_break">Pitkä tauko</string>
+
+    <!-- Ilmoitukset -->
     <string name="notification_channel_sessions_name">Pomodoro-istunnot</string>
     <string name="notification_channel_sessions_description">Ilmoitukset valmiista pomodoro-istunnoista</string>
     <string name="notification_channel_reminders_name">Muistutukset</string>
     <string name="notification_channel_reminders_description">Muistutusilmoitukset</string>
 
     <string name="notification_work_complete_title">Työistunto valmis!</string>
-    <string name="notification_work_complete_message">Hienoa työtä! Pidä tauko.</string>
-    <string name="notification_short_break_complete_title">Tauko päättyi</string>
-    <string name="notification_short_break_complete_message">Valmis seuraavaan istuntoon?</string>
+    <string name="notification_work_complete_message">Hyvää työtä! Pidä tauko.</string>
+    <string name="notification_short_break_complete_title">Taukoaika on ohi</string>
+    <string name="notification_short_break_complete_message">Valmis toiseen istuntoon?</string>
     <string name="notification_long_break_complete_title">Pitkä tauko valmis</string>
-    <string name="notification_long_break_complete_message">Pärjäät hienosti! Aloita uusi istunto?</string>
+    <string name="notification_long_break_complete_message">Teet mahtavaa! Aloita uusi istunto?</string>
 
-    <!-- Common errors -->
+    <!-- Yleiset virheet -->
     <string name="error_generic">Jotain meni pieleen. Yritä uudelleen.</string>
     <string name="error_network">Verkkovirhe. Tarkista yhteytesi.</string>
     <string name="error_permission_denied">Lupa evätty</string>
 
-    <!-- Time formats -->
+    <!-- Aikamuodot -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d t %2$d min</string>
 </resources>

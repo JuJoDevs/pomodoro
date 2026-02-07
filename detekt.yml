@@ -37,6 +37,7 @@ complexity:
   TooManyFunctions:
     thresholdInFiles: 20
     excludes: ['**/test/**', '**/androidTest/**']
+    ignorePrivate: true
 
 naming:
   active: true

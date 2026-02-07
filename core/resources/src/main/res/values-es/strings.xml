@@ -3,7 +3,7 @@
     <!-- Common actions -->
     <string name="action_start">Iniciar</string>
     <string name="action_pause">Pausar</string>
-    <string name="action_resume">Continuar</string>
+    <string name="action_resume">Reanudar</string>
     <string name="action_stop">Detener</string>
     <string name="action_skip">Saltar</string>
     <string name="action_cancel">Cancelar</string>
@@ -13,6 +13,7 @@
     <string name="action_close">Cerrar</string>
     <string name="action_back">Atrás</string>
     <string name="action_ok">Aceptar</string>
+    <string name="action_reset">Reiniciar</string>
 
     <!-- Common labels -->
     <string name="label_settings">Ajustes</string>
@@ -21,25 +22,51 @@
 
     <!-- Session types -->
     <string name="session_type_work">Trabajo</string>
-    <string name="session_type_short_break">Descanso corto</string>
-    <string name="session_type_long_break">Descanso largo</string>
+    <string name="session_type_short_break">Descanso Corto</string>
+    <string name="session_type_long_break">Descanso Largo</string>
+    <string name="label_focus">Concentración</string>
+    <string name="label_ready_to_work">¿Listo para trabajar?</string>
+    <string name="label_work_duration">Duración del trabajo</string>
+    <string name="label_break_duration">Duración del descanso</string>
+    <string name="label_session_progress">PROGRESO DE SESIÓN</string>
+    <string name="label_sessions_completed">%1$d de %2$d Sesiones</string>
+    <string name="label_auto_start_breaks">Auto-iniciar descansos</string>
+    <string name="label_auto_start_work">Auto-iniciar trabajo</string>
+    <string name="dialog_stop_title">¿Detener temporizador?</string>
+    <string name="dialog_stop_message">¿Estás seguro de que quieres detener la sesión actual? Se perderá el progreso.</string>
+    <string name="dialog_reset_title">¿Reiniciar Pomodoro?</string>
+    <string name="dialog_reset_message">Esto reiniciará tu progreso actual a 0. ¿Estás seguro?</string>
+    <string name="warning_exact_alarm_missing">La finalización fiable en segundo plano necesita permiso de alarma.</string>
+    <string name="action_grant">Conceder</string>
+    <string name="label_min">min</string>
+
+    <!-- Timer status messages -->
+    <string name="status_focusing">Concentrándose…</string>
+    <string name="status_time_to_rest">Hora de descansar</string>
+    <string name="status_long_rest">Descanso largo</string>
+    <string name="status_paused">Pausado</string>
+
+    <!-- Phase titles for TopBar -->
+    <string name="phase_title_focus">Concentración</string>
+    <string name="phase_title_short_break">Descanso Corto</string>
+    <string name="phase_title_long_break">Descanso Largo</string>
 
     <!-- Notifications -->
-    <string name="notification_channel_sessions_name">Sesiones Pomodoro</string>
-    <string name="notification_channel_sessions_description">Notificaciones de sesiones pomodoro completadas</string>
+    <string name="notification_channel_sessions_name">Sesiones de Pomodoro</string>
+    <string name="notification_channel_sessions_description">Notificaciones de sesiones completadas de pomodoro</string>
     <string name="notification_channel_reminders_name">Recordatorios</string>
-    <string name="notification_channel_reminders_description">Notificaciones de recordatorios</string>
+    <string name="notification_channel_reminders_description">Notificaciones de recordatorio</string>
 
     <string name="notification_work_complete_title">¡Sesión de trabajo completada!</string>
-    <string name="notification_work_complete_message">¡Buen trabajo! Toma un descanso.</string>
-    <string name="notification_short_break_complete_title">El descanso ha terminado</string>
+    <string name="notification_work_complete_message">¡Buen trabajo! Tómate un descanso.</string>
+    <string name="notification_short_break_complete_title">El tiempo de descanso ha terminado</string>
     <string name="notification_short_break_complete_message">¿Listo para otra sesión?</string>
     <string name="notification_long_break_complete_title">Descanso largo completado</string>
-    <string name="notification_long_break_complete_message">¡Lo estás haciendo genial! ¿Iniciar nueva sesión?</string>
+    <string name="notification_long_break_complete_message">¡Lo estás haciendo genial! ¿Comenzar una nueva sesión?</string>
 
     <!-- Common errors -->
     <string name="error_generic">Algo salió mal. Por favor, inténtalo de nuevo.</string>
-    <string name="error_network">Error de red. Comprueba tu conexión.</string>
+    <string name="error_network">Error de red. Verifica tu conexión.</string>
     <string name="error_permission_denied">Permiso denegado</string>
 
     <!-- Time formats -->

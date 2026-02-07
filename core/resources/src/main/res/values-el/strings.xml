@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Common actions -->
+    <!-- Κοινές ενέργειες -->
     <string name="action_start">Έναρξη</string>
     <string name="action_pause">Παύση</string>
     <string name="action_resume">Συνέχεια</string>
@@ -13,36 +13,63 @@
     <string name="action_close">Κλείσιμο</string>
     <string name="action_back">Πίσω</string>
     <string name="action_ok">ΟΚ</string>
+    <string name="action_reset">Επαναφορά</string>
 
-    <!-- Common labels -->
+    <!-- Κοινές ετικέτες -->
     <string name="label_settings">Ρυθμίσεις</string>
     <string name="label_statistics">Στατιστικά</string>
     <string name="label_about">Σχετικά</string>
 
-    <!-- Session types -->
+    <!-- Τύποι συνεδρίας -->
     <string name="session_type_work">Εργασία</string>
     <string name="session_type_short_break">Σύντομο διάλειμμα</string>
     <string name="session_type_long_break">Μεγάλο διάλειμμα</string>
+    <string name="label_focus">Εστίαση</string>
+    <string name="label_ready_to_work">Έτοιμος για δουλειά;</string>
+    <string name="label_work_duration">Διάρκεια εργασίας</string>
+    <string name="label_break_duration">Διάρκεια διαλείμματος</string>
+    <string name="label_session_progress">ΠΡΟΟΔΟΣ ΣΥΝΕΔΡΙΑΣ</string>
+    <string name="label_sessions_completed">%1$d από %2$d συνεδρίες</string>
+    <string name="label_auto_start_breaks">Αυτόματη έναρξη διαλειμμάτων</string>
+    <string name="label_auto_start_work">Αυτόματη έναρξη εργασίας</string>
+    <string name="dialog_stop_title">Διακοπή χρονομέτρου;</string>
+    <string name="dialog_stop_message">Είστε σίγουροι ότι θέλετε να σταματήσετε την τρέχουσα συνεδρία; Η πρόοδος θα χαθεί.</string>
+    <string name="dialog_reset_title">Επαναφορά Pomodoro;</string>
+    <string name="dialog_reset_message">Αυτό θα επαναφέρει την τρέχουσα πρόοδό σας στο 0. Είστε σίγουροι;</string>
+    <string name="warning_exact_alarm_missing">Η αξιόπιστη ολοκλήρωση στο παρασκήνιο χρειάζεται άδεια ειδοποίησης.</string>
+    <string name="action_grant">Χορήγηση</string>
+    <string name="label_min">λεπ</string>
 
-    <!-- Notifications -->
+    <!-- Μηνύματα κατάστασης χρονομέτρου -->
+    <string name="status_focusing">Εστίαση…</string>
+    <string name="status_time_to_rest">Ώρα για ανάπαυλα</string>
+    <string name="status_long_rest">Μεγάλο διάλειμμα</string>
+    <string name="status_paused">Σε παύση</string>
+
+    <!-- Τίτλοι φάσης για TopBar -->
+    <string name="phase_title_focus">Εστίαση</string>
+    <string name="phase_title_short_break">Σύντομο διάλειμμα</string>
+    <string name="phase_title_long_break">Μεγάλο διάλειμμα</string>
+
+    <!-- Ειδοποιήσεις -->
     <string name="notification_channel_sessions_name">Συνεδρίες Pomodoro</string>
     <string name="notification_channel_sessions_description">Ειδοποιήσεις για ολοκληρωμένες συνεδρίες pomodoro</string>
     <string name="notification_channel_reminders_name">Υπενθυμίσεις</string>
-    <string name="notification_channel_reminders_description">Ειδοποιήσεις υπενθύμισης</string>
+    <string name="notification_channel_reminders_description">Ειδοποιήσεις υπενθυμίσεων</string>
 
-    <string name="notification_work_complete_title">Η συνεδρία εργασίας ολοκληρώθηκε!</string>
-    <string name="notification_work_complete_message">Εξαιρετική δουλειά! Κάνε ένα διάλειμμα.</string>
-    <string name="notification_short_break_complete_title">Το διάλειμμα τελείωσε</string>
-    <string name="notification_short_break_complete_message">Έτοιμος για άλλη συνεδρία;</string>
-    <string name="notification_long_break_complete_title">Το μεγάλο διάλειμμα ολοκληρώθηκε</string>
-    <string name="notification_long_break_complete_message">Τα πας υπέροχα! Νέα συνεδρία;</string>
+    <string name="notification_work_complete_title">Συνεδρία εργασίας ολοκληρώθηκε!</string>
+    <string name="notification_work_complete_message">Εξαιρετική δουλειά! Κάντε ένα διάλειμμα.</string>
+    <string name="notification_short_break_complete_title">Ο χρόνος διαλείμματος τελείωσε</string>
+    <string name="notification_short_break_complete_message">Έτοιμος για άλλη μια συνεδρία;</string>
+    <string name="notification_long_break_complete_title">Μεγάλο διάλειμμα ολοκληρώθηκε</string>
+    <string name="notification_long_break_complete_message">Τα πας υπέροχα! Έναρξη νέας συνεδρίας;</string>
 
-    <!-- Common errors -->
-    <string name="error_generic">Κάτι πήγε στραβά. Δοκιμάστε ξανά.</string>
+    <!-- Κοινά σφάλματα -->
+    <string name="error_generic">Κάτι πήγε στραβά. Παρακαλώ δοκιμάστε ξανά.</string>
     <string name="error_network">Σφάλμα δικτύου. Ελέγξτε τη σύνδεσή σας.</string>
-    <string name="error_permission_denied">Η άδεια απορρίφθηκε</string>
+    <string name="error_permission_denied">Άρνηση άδειας</string>
 
-    <!-- Time formats -->
+    <!-- Μορφές ώρας -->
     <string name="time_format_minutes">%d λεπ</string>
     <string name="time_format_hours_minutes">%1$d ώ %2$d λεπ</string>
 </resources>

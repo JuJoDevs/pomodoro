@@ -5,11 +5,13 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import androidx.core.content.ContextCompat
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
 import com.jujodevs.pomodoro.libs.logger.Logger
 import com.jujodevs.pomodoro.libs.notifications.NotificationData
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
+import com.jujodevs.pomodoro.libs.notifications.RunningTimerNotificationData
 
 /**
  * Android implementation of NotificationScheduler using AlarmManager.
@@ -27,10 +29,11 @@ class NotificationSchedulerImpl(
     override suspend fun scheduleNotification(notification: NotificationData): Result<Unit> {
         return runCatching {
             val intent = createIntent(notification.id).apply {
-                putExtra(EXTRA_NOTIFICATION_TITLE, notification.title)
-                putExtra(EXTRA_NOTIFICATION_MESSAGE, notification.message)
+                putExtra(EXTRA_NOTIFICATION_TITLE_RES_ID, notification.titleResId)
+                putExtra(EXTRA_NOTIFICATION_MESSAGE_RES_ID, notification.messageResId)
                 putExtra(EXTRA_NOTIFICATION_CHANNEL_ID, notification.channelId)
                 putExtra(EXTRA_NOTIFICATION_TYPE, notification.type.name)
+                putExtra(EXTRA_NOTIFICATION_TOKEN, notification.token)
             }
 
             val pendingIntent = createPendingIntent(notification.id, intent)
@@ -58,6 +61,12 @@ class NotificationSchedulerImpl(
             }
 
             saveNotificationId(notification.id)
+            if (notification.token.isNotEmpty()) {
+                val currentToken = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "")
+                if (currentToken != notification.token) {
+                    dataStoreManager.setValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, notification.token)
+                }
+            }
 
             logger.d(
                 TAG,
@@ -74,6 +83,7 @@ class NotificationSchedulerImpl(
             pendingIntent.cancel()
 
             removeNotificationId(notificationId)
+            dataStoreManager.removeValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN)
 
             logger.d(TAG, "Notification cancelled: id=$notificationId")
         }
@@ -95,6 +105,7 @@ class NotificationSchedulerImpl(
                 }
             }
             dataStoreManager.removeValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS)
+            dataStoreManager.removeValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN)
             logger.d(TAG, "All notifications cancelled: count=${ids.size}")
         }
     }
@@ -108,6 +119,41 @@ class NotificationSchedulerImpl(
         )
 
         return pendingIntent != null
+    }
+
+    override suspend fun showPersistentNotification(notification: NotificationData): Result<Unit> {
+        return runCatching {
+            NotificationHelper.showNotification(
+                context = context,
+                notificationId = notification.id,
+                title = context.getString(notification.titleResId),
+                message = context.getString(notification.messageResId),
+                channelId = notification.channelId,
+                isPersistent = true
+            )
+        }
+    }
+
+    override suspend fun dismissPersistentNotification(notificationId: Int): Result<Unit> {
+        return runCatching {
+            NotificationHelper.dismissNotification(context, notificationId)
+        }
+    }
+
+    override suspend fun startRunningForegroundTimer(notification: RunningTimerNotificationData): Result<Unit> {
+        return runCatching {
+            val intent = PomodoroTimerForegroundService.createStartIntent(
+                context = context,
+                notification = notification
+            )
+            ContextCompat.startForegroundService(context, intent)
+        }
+    }
+
+    override suspend fun stopRunningForegroundTimer(): Result<Unit> {
+        return runCatching {
+            context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
+        }
     }
 
     private fun createIntent(notificationId: Int): Intent {
@@ -147,10 +193,11 @@ class NotificationSchedulerImpl(
     companion object {
         const val ACTION_NOTIFICATION = "com.jujodevs.pomodoro.NOTIFICATION_ACTION"
         const val EXTRA_NOTIFICATION_ID = "notification_id"
-        const val EXTRA_NOTIFICATION_TITLE = "notification_title"
-        const val EXTRA_NOTIFICATION_MESSAGE = "notification_message"
+        const val EXTRA_NOTIFICATION_TITLE_RES_ID = "notification_title_res_id"
+        const val EXTRA_NOTIFICATION_MESSAGE_RES_ID = "notification_message_res_id"
         const val EXTRA_NOTIFICATION_CHANNEL_ID = "notification_channel_id"
         const val EXTRA_NOTIFICATION_TYPE = "notification_type"
+        const val EXTRA_NOTIFICATION_TOKEN = "notification_token"
 
         private const val TAG = "NotificationScheduler"
     }
