@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d मिनट</string>
-    <string name="time_format_hours_minutes">%d घंटे %d मिनट</string>
+    <string name="time_format_hours_minutes">%1$d घंटे %2$d मिनट</string>
 </resources>

@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d perc</string>
-    <string name="time_format_hours_minutes">%d óra %d perc</string>
+    <string name="time_format_hours_minutes">%1$d óra %2$d perc</string>
 </resources>

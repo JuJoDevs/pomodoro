@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d นาที</string>
-    <string name="time_format_hours_minutes">%d ชม. %d นาที</string>
+    <string name="time_format_hours_minutes">%1$d ชม. %2$d นาที</string>
 </resources>

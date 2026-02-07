@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d minit</string>
-    <string name="time_format_hours_minutes">%d jam %d minit</string>
+    <string name="time_format_hours_minutes">%1$d jam %2$d minit</string>
 </resources>

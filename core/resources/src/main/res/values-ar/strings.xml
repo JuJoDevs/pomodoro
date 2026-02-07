@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d دقيقة</string>
-    <string name="time_format_hours_minutes">%d ساعة %d دقيقة</string>
+    <string name="time_format_hours_minutes">%1$d ساعة %2$d دقيقة</string>
 </resources>

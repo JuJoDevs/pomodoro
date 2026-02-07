@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d phút</string>
-    <string name="time_format_hours_minutes">%d giờ %d phút</string>
+    <string name="time_format_hours_minutes">%1$d giờ %2$d phút</string>
 </resources>

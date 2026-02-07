@@ -89,6 +89,8 @@ build-logic/
 
 - Unit tests are mandatory where possible.
 - Use JUnit5, MockK, Kluent, and Turbine.
+- Only JVM Unit Tests are executed in CI (no emulator/device required).
+- Run unit tests using `./gradlew test`. In this project, release unit tests are disabled by default (standard AGP 8.0+ behavior), so `test` automatically executes only debug unit tests for Android modules and standard tests for Kotlin-only modules.
 - Use GIVEN/WHEN/THEN naming.
 - Use `verifyOnce()` and `verifyNever()`.
 - Use `relaxedMockk` where appropriate.

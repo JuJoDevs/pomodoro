@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d λεπ</string>
-    <string name="time_format_hours_minutes">%d ώ %d λεπ</string>
+    <string name="time_format_hours_minutes">%1$d ώ %2$d λεπ</string>
 </resources>

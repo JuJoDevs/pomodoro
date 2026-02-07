@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d分</string>
-    <string name="time_format_hours_minutes">%d時間%d分</string>
+    <string name="time_format_hours_minutes">%1$d時間%2$d分</string>
 </resources>

@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d דק\'</string>
-    <string name="time_format_hours_minutes">%d שע\' %d דק\'</string>
+    <string name="time_format_hours_minutes">%1$d שע\' %2$d דק\'</string>
 </resources>

@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d мин</string>
-    <string name="time_format_hours_minutes">%d ч %d мин</string>
+    <string name="time_format_hours_minutes">%1$d ч %2$d мин</string>
 </resources>

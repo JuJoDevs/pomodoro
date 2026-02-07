@@ -18,6 +18,7 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.splashscreen)
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -59,4 +60,7 @@ dependencies {
     // Permissions
     implementation(project(":libs:permissions:api"))
     implementation(project(":libs:permissions:impl"))
+
+    // Features
+    implementation(project(":features:pomodoro-timer:impl"))
 }

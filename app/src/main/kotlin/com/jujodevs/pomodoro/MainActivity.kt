@@ -10,7 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -22,9 +22,11 @@ import com.jujodevs.pomodoro.core.ui.ScaffoldConfig
 import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
+import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -54,7 +56,9 @@ private fun PomodoroApp() {
             entryProvider = entryProvider {
                 // Define navigation entries
                 entry<MainNavKey.Home> {
-                    HomeScreen()
+                    NotificationPermissionEffect()
+                    ExactAlarmPermissionEffect()
+                    TimerRoute()
                 }
 
                 entry<MainNavKey.Settings> {
@@ -66,20 +70,6 @@ private fun PomodoroApp() {
                 }
             }
         )
-    }
-}
-
-@Composable
-private fun HomeScreen() {
-    // Request permissions on app launch/home screen for now
-    NotificationPermissionEffect()
-    ExactAlarmPermissionEffect()
-
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Welcome to Pomodoro!")
     }
 }
 
@@ -100,13 +90,5 @@ private fun StatisticsScreen() {
         contentAlignment = Alignment.Center
     ) {
         Text(text = "Statistics")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun HomeScreenPreview() {
-    PomodoroTheme {
-        HomeScreen()
     }
 }

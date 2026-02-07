@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.firebase.FirebaseApp
 import com.jujodevs.pomodoro.core.appconfig.AppConfig
 import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
+import com.jujodevs.pomodoro.features.timer.di.timerModule
 import com.jujodevs.pomodoro.libs.analytics.impl.di.analyticsModule
 import com.jujodevs.pomodoro.libs.crashlytics.impl.di.crashlyticsModule
 import com.jujodevs.pomodoro.libs.datastore.impl.di.dataStoreModule
@@ -31,7 +32,8 @@ class PomodoroApplication : Application() {
                 crashlyticsModule,
                 dataStoreModule,
                 notificationsModule,
-                permissionsModule
+                permissionsModule,
+                timerModule
             )
         }
 

@@ -56,3 +56,7 @@ include(":libs:notifications:impl")
 // Permissions modules
 include(":libs:permissions:api")
 include(":libs:permissions:impl")
+
+// Features modules
+include(":features:pomodoro-timer:api")
+include(":features:pomodoro-timer:impl")

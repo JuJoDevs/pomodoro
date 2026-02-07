@@ -17,6 +17,7 @@ composeBom = "2026.01.01"
 # AndroidX Core
 coreKtx = "1.17.0"
 activityCompose = "1.12.3"
+splashscreen = "1.2.0"
 
 # Lifecycle
 lifecycle = "2.10.0"
@@ -84,6 +85,7 @@ compose-material-icons-extended = { group = "androidx.compose.material", name = 
 # AndroidX Core
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 
 # Lifecycle
 lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }

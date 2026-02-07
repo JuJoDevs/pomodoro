@@ -44,5 +44,5 @@
 
     <!-- Time formats -->
     <string name="time_format_minutes">%d Min</string>
-    <string name="time_format_hours_minutes">%d Std %d Min</string>
+    <string name="time_format_hours_minutes">%1$d Std %2$d Min</string>
 </resources>
