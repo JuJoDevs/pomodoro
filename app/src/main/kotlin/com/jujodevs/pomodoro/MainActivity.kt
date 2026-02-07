@@ -3,7 +3,6 @@ package com.jujodevs.pomodoro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -23,14 +22,18 @@ import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
 import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
+import com.jujodevs.pomodoro.ui.ConfigureSystemBars
+
+private const val DARK_THEME = true
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            PomodoroTheme {
+            ConfigureSystemBars(darkTheme = DARK_THEME)
+            PomodoroTheme(darkTheme = DARK_THEME) {
                 PomodoroApp()
             }
         }
