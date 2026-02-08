@@ -2,8 +2,12 @@ package com.jujodevs.pomodoro.features.timer.presentation
 
 import app.cash.turbine.ReceiveTurbine
 import app.cash.turbine.turbineScope
+import com.jujodevs.pomodoro.core.domain.util.DataError
+import com.jujodevs.pomodoro.core.domain.util.EmptyResult
+import com.jujodevs.pomodoro.core.domain.util.Result
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.testing.extenion.CoroutineTestExtension
+import com.jujodevs.pomodoro.core.ui.UiText
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroSessionState
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
@@ -247,7 +251,7 @@ class TimerViewModelTest {
 
             // GIVEN
             state.awaitInitialSyncedState()
-            notificationScheduler.scheduleShouldFail = true
+            notificationScheduler.scheduleError = DataError.Local.INSUFFICIENT_PERMISSIONS
 
             repository.updateSessionState(
                 PomodoroSessionState(
@@ -279,7 +283,7 @@ class TimerViewModelTest {
 
             // GIVEN
             state.awaitInitialSyncedState()
-            notificationScheduler.scheduleShouldFail = true
+            notificationScheduler.scheduleError = DataError.Local.INSUFFICIENT_PERMISSIONS
             viewModel.onAction(TimerAction.UpdateExactAlarmPermission(isGranted = false))
             state.awaitItem()
 
@@ -315,6 +319,39 @@ class TimerViewModelTest {
             state.cancelAndIgnoreRemainingEvents()
         }
     }
+
+    @Test
+    fun `GIVEN schedule notification fails WHEN syncing running state THEN show generic message effect`() =
+        runTest {
+            turbineScope {
+                val state = viewModel.state.testIn(this)
+                val effects = viewModel.effects.testIn(this)
+
+                // GIVEN
+                state.awaitInitialSyncedState()
+                notificationScheduler.scheduleError = DataError.Local.UNKNOWN
+
+                // WHEN
+                repository.updateSessionState(
+                    PomodoroSessionState(
+                        status = PomodoroStatus.RUNNING,
+                        phaseToken = "token-1",
+                        lastKnownEndTimestamp = timeProvider.currentTime + 5_000L
+                    )
+                )
+                state.awaitItem()
+                val effect = effects.awaitItem()
+
+                // THEN
+                effect shouldBeEqualTo TimerEffect.ShowMessage(
+                    UiText.StringResource(R.string.error_generic)
+                )
+                repository.updateSessionState(PomodoroSessionState(status = PomodoroStatus.IDLE))
+                state.awaitItem()
+                effects.cancelAndIgnoreRemainingEvents()
+                state.cancelAndIgnoreRemainingEvents()
+            }
+        }
 
     @Test
     fun `GIVEN request exact alarm permission action WHEN triggered THEN permission effect emitted`() = runTest {
@@ -397,39 +434,44 @@ class TimerViewModelTest {
 private class FakeNotificationScheduler : NotificationScheduler {
     var foregroundStartCalls: Int = 0
     var foregroundStopCalls: Int = 0
-    var scheduleShouldFail: Boolean = false
+    var scheduleError: DataError.Local? = null
     var lastForegroundNotification: RunningTimerNotificationData? = null
 
-    override suspend fun scheduleNotification(notification: NotificationData): Result<Unit> {
-        return if (scheduleShouldFail) {
-            Result.failure(IllegalStateException("Exact alarm permission not granted"))
+    override suspend fun scheduleNotification(notification: NotificationData): EmptyResult<DataError.Local> {
+        val error = scheduleError
+        return if (error != null) {
+            Result.Failure(error)
         } else {
-            Result.success(Unit)
+            Result.Success(Unit)
         }
     }
 
-    override suspend fun cancelNotification(notificationId: Int): Result<Unit> = Result.success(Unit)
+    override suspend fun cancelNotification(notificationId: Int): EmptyResult<DataError.Local> = Result.Success(Unit)
 
-    override suspend fun cancelAllNotifications(): Result<Unit> = Result.success(Unit)
+    override suspend fun cancelAllNotifications(): EmptyResult<DataError.Local> = Result.Success(Unit)
 
     override fun isNotificationScheduled(notificationId: Int): Boolean = false
 
-    override suspend fun showPersistentNotification(notification: NotificationData): Result<Unit> {
-        return Result.success(Unit)
+    override suspend fun showPersistentNotification(
+        notification: NotificationData
+    ): EmptyResult<DataError.Local> {
+        return Result.Success(Unit)
     }
 
-    override suspend fun dismissPersistentNotification(notificationId: Int): Result<Unit> = Result.success(Unit)
+    override suspend fun dismissPersistentNotification(
+        notificationId: Int
+    ): EmptyResult<DataError.Local> = Result.Success(Unit)
 
     override suspend fun startRunningForegroundTimer(
         notification: RunningTimerNotificationData
-    ): Result<Unit> {
+    ): EmptyResult<DataError.Local> {
         foregroundStartCalls += 1
         lastForegroundNotification = notification
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
-    override suspend fun stopRunningForegroundTimer(): Result<Unit> {
+    override suspend fun stopRunningForegroundTimer(): EmptyResult<DataError.Local> {
         foregroundStopCalls += 1
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 }

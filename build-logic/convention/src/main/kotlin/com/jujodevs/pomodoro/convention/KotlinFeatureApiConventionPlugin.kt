@@ -6,7 +6,7 @@ import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 
-class AndroidFeatureApiConventionPlugin : Plugin<Project> {
+class KotlinFeatureApiConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         with(target) {
             with(pluginManager) {
@@ -16,6 +16,7 @@ class AndroidFeatureApiConventionPlugin : Plugin<Project> {
 
             dependencies {
                 // Only essential dependencies for contracts
+                add("implementation", project(":core:domain"))
                 add("implementation", libs.library("kotlinx-coroutines-core"))
             }
         }

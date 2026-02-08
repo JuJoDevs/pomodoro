@@ -16,6 +16,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation3.runtime.NavBackStack
@@ -99,6 +100,7 @@ fun AppNavigation(
     onPhaseChanged: (Int) -> Unit
 ) {
     val coroutineScope = rememberCoroutineScope()
+    val context = LocalContext.current
     var shouldRequestExactAlarmPermission by remember { mutableStateOf(false) }
     var exactAlarmPermissionGranted by remember { mutableStateOf<Boolean?>(null) }
 
@@ -119,7 +121,7 @@ fun AppNavigation(
                     onPhaseChanged = { resId -> onPhaseChanged(resId) },
                     onShowMessage = { message ->
                         coroutineScope.launch {
-                            snackbarHostState.showSnackbar(message)
+                            snackbarHostState.showSnackbar(message.asString(context))
                         }
                     },
                     onRequestExactAlarmPermission = {

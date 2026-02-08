@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(project(":core:domain"))
     implementation(project(":libs:notifications:api"))
     implementation(project(":libs:datastore:api"))
     implementation(project(":libs:logger:api"))

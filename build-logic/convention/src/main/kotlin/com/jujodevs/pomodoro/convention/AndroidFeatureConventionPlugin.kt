@@ -19,6 +19,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             dependencies {
                 // Core dependencies for features
                 // Note: These project dependencies will be added per module as needed
+                 add("implementation", project(":core:domain"))
                  add("implementation", project(":core:ui"))
                  add("implementation", project(":core:design-system"))
                  add("implementation", project(":core:navigation"))

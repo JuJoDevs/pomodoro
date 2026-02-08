@@ -3,6 +3,7 @@ package com.jujodevs.pomodoro.libs.notifications.impl
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import com.jujodevs.pomodoro.core.domain.util.Result
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl.Companion.ACTION_NOTIFICATION
@@ -35,18 +36,23 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
 
         if (titleResId > 0 && messageResId > 0 && channelId != null) {
             runBlocking {
-                val activeToken = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "")
-                if (token.isNotEmpty() && token == activeToken) {
-                    val title = context.getString(titleResId)
-                    val message = context.getString(messageResId)
-                    NotificationHelper.showNotification(
-                        context = context,
-                        notificationId = notificationId,
-                        title = title,
-                        message = message,
-                        channelId = channelId
-                    )
-                    context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
+                when (val activeToken = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "")) {
+                    is Result.Success -> {
+                        if (token.isNotEmpty() && token == activeToken.data) {
+                            val title = context.getString(titleResId)
+                            val message = context.getString(messageResId)
+                            NotificationHelper.showNotification(
+                                context = context,
+                                notificationId = notificationId,
+                                title = title,
+                                message = message,
+                                channelId = channelId
+                            )
+                            context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
+                        }
+                    }
+
+                    is Result.Failure -> Unit
                 }
             }
         }

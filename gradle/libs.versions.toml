@@ -171,7 +171,7 @@ pomodoro-android-application = { id = "pomodoro.android.application", version = 
 pomodoro-android-library = { id = "pomodoro.android.library", version = "unspecified" }
 pomodoro-android-compose = { id = "pomodoro.android.compose", version = "unspecified" }
 pomodoro-android-feature = { id = "pomodoro.android.feature", version = "unspecified" }
-pomodoro-android-feature-api = { id = "pomodoro.android.feature.api", version = "unspecified" }
+pomodoro-kotlin-feature-api = { id = "pomodoro.kotlin.feature.api", version = "unspecified" }
 pomodoro-kotlin-library = { id = "pomodoro.kotlin.library", version = "unspecified" }
 pomodoro-koin = { id = "pomodoro.koin", version = "unspecified" }
 pomodoro-testing = { id = "pomodoro.testing", version = "unspecified" }

@@ -1,5 +1,8 @@
 package com.jujodevs.pomodoro.libs.datastore
 
+import com.jujodevs.pomodoro.core.domain.util.DataError
+import com.jujodevs.pomodoro.core.domain.util.EmptyResult
+import com.jujodevs.pomodoro.core.domain.util.Result
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -21,7 +24,7 @@ interface DataStoreManager {
     suspend fun <T> getValue(
         key: String,
         defaultValue: T,
-    ): T
+    ): Result<T, DataError.Local>
 
     /**
      * Set a value in DataStore.
@@ -32,19 +35,19 @@ interface DataStoreManager {
     suspend fun <T> setValue(
         key: String,
         value: T,
-    )
+    ): EmptyResult<DataError.Local>
 
     /**
      * Remove a value from DataStore.
      *
      * @param key The preference key to remove
      */
-    suspend fun removeValue(key: String)
+    suspend fun removeValue(key: String): EmptyResult<DataError.Local>
 
     /**
      * Clear all preferences.
      */
-    suspend fun clear()
+    suspend fun clear(): EmptyResult<DataError.Local>
 
     /**
      * Observe a value as a Flow.
@@ -56,5 +59,5 @@ interface DataStoreManager {
     fun <T> observeValue(
         key: String,
         defaultValue: T,
-    ): Flow<T>
+    ): Flow<Result<T, DataError.Local>>
 }

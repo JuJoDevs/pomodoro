@@ -5,6 +5,8 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
+import com.jujodevs.pomodoro.core.domain.util.Result
+import com.jujodevs.pomodoro.core.domain.util.isSuccess
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
 import com.jujodevs.pomodoro.libs.datastore.impl.DataStoreManagerImpl
@@ -14,6 +16,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.runTest
+import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.Before
 import org.junit.Test
@@ -59,22 +62,24 @@ class NotificationSchedulerIntegrationTest {
     fun `GIVEN IDs stored WHEN cancelAllNotifications THEN should clear DataStore`() = runTest {
         // GIVEN
         dataStoreManager.setValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, setOf("1", "2"))
+            .isSuccess shouldBe true
         dataStoreManager.setValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "active-token")
+            .isSuccess shouldBe true
 
         val storedIdsBefore = dataStoreManager.getValue(
             InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
             emptySet<String>()
         )
-        storedIdsBefore shouldBeEqualTo setOf("1", "2")
+        storedIdsBefore shouldBeEqualTo Result.Success(setOf("1", "2"))
 
         // WHEN
-        scheduler.cancelAllNotifications()
+        scheduler.cancelAllNotifications().isSuccess shouldBe true
 
         // THEN
         val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
-        storedIdsAfter shouldBeEqualTo emptySet()
+        storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
         val activeTokenAfter = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "default")
-        activeTokenAfter shouldBeEqualTo "default"
+        activeTokenAfter shouldBeEqualTo Result.Success("default")
     }
 
     @Test
@@ -84,13 +89,13 @@ class NotificationSchedulerIntegrationTest {
             InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
             emptySet<String>()
         )
-        storedIdsBefore shouldBeEqualTo emptySet()
+        storedIdsBefore shouldBeEqualTo Result.Success(emptySet())
 
         // WHEN
-        scheduler.cancelAllNotifications()
+        scheduler.cancelAllNotifications().isSuccess shouldBe true
 
         // THEN
         val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
-        storedIdsAfter shouldBeEqualTo emptySet()
+        storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
     }
 }

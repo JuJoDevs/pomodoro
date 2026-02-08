@@ -1,3 +1,3 @@
 plugins {
-    alias(libs.plugins.pomodoro.android.feature.api)
+    alias(libs.plugins.pomodoro.kotlin.feature.api)
 }

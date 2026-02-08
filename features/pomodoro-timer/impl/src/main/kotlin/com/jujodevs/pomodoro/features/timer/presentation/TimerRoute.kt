@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.ObserveAsEvents
+import com.jujodevs.pomodoro.core.ui.UiText
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import org.koin.androidx.compose.koinViewModel
 
@@ -13,7 +14,7 @@ import org.koin.androidx.compose.koinViewModel
 fun TimerRoute(
     onNavigateToSettings: () -> Unit,
     onPhaseChanged: (Int) -> Unit,
-    onShowMessage: (String) -> Unit,
+    onShowMessage: (UiText) -> Unit,
     onRequestExactAlarmPermission: () -> Unit,
     exactAlarmPermissionGranted: Boolean? = null,
     viewModel: TimerViewModel = koinViewModel()

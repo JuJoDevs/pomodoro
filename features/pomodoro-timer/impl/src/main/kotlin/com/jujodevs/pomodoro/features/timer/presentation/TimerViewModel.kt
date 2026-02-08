@@ -2,7 +2,11 @@ package com.jujodevs.pomodoro.features.timer.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jujodevs.pomodoro.core.domain.util.DataError
+import com.jujodevs.pomodoro.core.domain.util.Result
 import com.jujodevs.pomodoro.core.resources.R
+import com.jujodevs.pomodoro.core.ui.UiText
+import com.jujodevs.pomodoro.core.ui.asUiText
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroBusinessRules
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroSessionState
@@ -276,22 +280,12 @@ class TimerViewModel(
     }
 
     private suspend fun scheduleCompletionNotification(sessionState: PomodoroSessionState, end: Long) {
-        val (titleResId, messageResId) = when (sessionState.currentPhase) {
-            PomodoroPhase.WORK -> {
-                R.string.notification_work_complete_title to R.string.notification_work_complete_message
-            }
-            PomodoroPhase.SHORT_BREAK -> {
-                R.string.notification_short_break_complete_title to R.string.notification_short_break_complete_message
-            }
-            PomodoroPhase.LONG_BREAK -> {
-                R.string.notification_long_break_complete_title to R.string.notification_long_break_complete_message
-            }
-        }
+        val phaseNotificationTexts = sessionState.currentPhase.toPhaseNotificationTexts()
 
         val notificationData = NotificationData(
             id = NOTIFICATION_ID_COMPLETION,
-            titleResId = titleResId,
-            messageResId = messageResId,
+            titleResId = phaseNotificationTexts.completionTitle.id,
+            messageResId = phaseNotificationTexts.completionMessage.id,
             channelId = NotificationChannel.PomodoroSession.id,
             scheduledTimeMillis = end,
             type = when (sessionState.currentPhase) {
@@ -301,12 +295,19 @@ class TimerViewModel(
             },
             token = sessionState.phaseToken
         )
-        val result = notificationScheduler.scheduleNotification(notificationData)
-        if (result.isFailure) {
-            val shouldShowWarning = shouldShowExactAlarmWarning(sessionState)
-            _state.update { it.copy(isExactAlarmPermissionMissing = shouldShowWarning) }
-        } else if (_state.value.isExactAlarmPermissionMissing) {
-            _state.update { it.copy(isExactAlarmPermissionMissing = false) }
+        when (val result = notificationScheduler.scheduleNotification(notificationData)) {
+            is Result.Success -> {
+                if (_state.value.isExactAlarmPermissionMissing) {
+                    _state.update { it.copy(isExactAlarmPermissionMissing = false) }
+                }
+            }
+
+            is Result.Failure -> {
+                handleCompletionNotificationFailure(
+                    error = result.error,
+                    sessionState = sessionState
+                )
+            }
         }
     }
 
@@ -319,36 +320,36 @@ class TimerViewModel(
             return
         }
 
+        val phaseNotificationTexts = sessionState.currentPhase.toPhaseNotificationTexts()
+        val runningMessage = UiText.StringResource(
+            id = R.string.label_sessions_completed,
+            args = listOf(sessionState.completedWorkSessions, sessionState.totalSessions)
+        )
+
         val result = notificationScheduler.startRunningForegroundTimer(
             RunningTimerNotificationData(
                 notificationId = NOTIFICATION_ID_PERSISTENT,
-                titleResId = when (sessionState.currentPhase) {
-                    PomodoroPhase.WORK -> R.string.status_focusing
-                    PomodoroPhase.SHORT_BREAK -> R.string.session_type_short_break
-                    PomodoroPhase.LONG_BREAK -> R.string.session_type_long_break
-                },
-                messageResId = R.string.label_sessions_completed,
-                messageArgFirst = sessionState.completedWorkSessions,
-                messageArgSecond = sessionState.totalSessions,
+                titleResId = phaseNotificationTexts.runningTitle.id,
+                messageResId = runningMessage.id,
+                messageArgFirst = runningMessage.intArgAt(0),
+                messageArgSecond = runningMessage.intArgAt(1),
                 channelId = NotificationChannel.RunningTimer.id,
                 endTimeMillis = end,
                 completionNotificationId = NOTIFICATION_ID_COMPLETION,
-                completionTitleResId = when (sessionState.currentPhase) {
-                    PomodoroPhase.WORK -> R.string.notification_work_complete_title
-                    PomodoroPhase.SHORT_BREAK -> R.string.notification_short_break_complete_title
-                    PomodoroPhase.LONG_BREAK -> R.string.notification_long_break_complete_title
-                },
-                completionMessageResId = when (sessionState.currentPhase) {
-                    PomodoroPhase.WORK -> R.string.notification_work_complete_message
-                    PomodoroPhase.SHORT_BREAK -> R.string.notification_short_break_complete_message
-                    PomodoroPhase.LONG_BREAK -> R.string.notification_long_break_complete_message
-                }
+                completionTitleResId = phaseNotificationTexts.completionTitle.id,
+                completionMessageResId = phaseNotificationTexts.completionMessage.id
             )
         )
 
-        if (result.isSuccess) {
-            lastForegroundTimerToken = sessionState.phaseToken
-            lastForegroundTimerEnd = end
+        when (result) {
+            is Result.Success -> {
+                lastForegroundTimerToken = sessionState.phaseToken
+                lastForegroundTimerEnd = end
+            }
+
+            is Result.Failure -> {
+                _effects.emit(TimerEffect.ShowMessage(result.error.asUiText()))
+            }
         }
     }
 
@@ -362,6 +363,43 @@ class TimerViewModel(
         lastScheduledCompletionToken = null
         lastScheduledCompletionEnd = null
     }
+
+    private suspend fun handleCompletionNotificationFailure(
+        error: DataError.Local,
+        sessionState: PomodoroSessionState
+    ) {
+        if (error == DataError.Local.INSUFFICIENT_PERMISSIONS) {
+            val shouldShowWarning = shouldShowExactAlarmWarning(sessionState)
+            _state.update { it.copy(isExactAlarmPermissionMissing = shouldShowWarning) }
+            return
+        }
+
+        _effects.emit(TimerEffect.ShowMessage(error.asUiText()))
+    }
+
+    private fun PomodoroPhase.toPhaseNotificationTexts(): PhaseNotificationTexts {
+        return when (this) {
+            PomodoroPhase.WORK -> PhaseNotificationTexts(
+                runningTitle = UiText.StringResource(R.string.status_focusing),
+                completionTitle = UiText.StringResource(R.string.notification_work_complete_title),
+                completionMessage = UiText.StringResource(R.string.notification_work_complete_message)
+            )
+
+            PomodoroPhase.SHORT_BREAK -> PhaseNotificationTexts(
+                runningTitle = UiText.StringResource(R.string.session_type_short_break),
+                completionTitle = UiText.StringResource(R.string.notification_short_break_complete_title),
+                completionMessage = UiText.StringResource(R.string.notification_short_break_complete_message)
+            )
+
+            PomodoroPhase.LONG_BREAK -> PhaseNotificationTexts(
+                runningTitle = UiText.StringResource(R.string.session_type_long_break),
+                completionTitle = UiText.StringResource(R.string.notification_long_break_complete_title),
+                completionMessage = UiText.StringResource(R.string.notification_long_break_complete_message)
+            )
+        }
+    }
+
+    private fun UiText.StringResource.intArgAt(index: Int): Int? = args.getOrNull(index) as? Int
 
     private fun syncExactAlarmWarningVisibility(sessionState: PomodoroSessionState) {
         when (exactAlarmPermissionGranted) {
@@ -431,3 +469,9 @@ class TimerViewModel(
         private const val SECONDS_IN_MINUTE = 60
     }
 }
+
+private data class PhaseNotificationTexts(
+    val runningTitle: UiText.StringResource,
+    val completionTitle: UiText.StringResource,
+    val completionMessage: UiText.StringResource
+)

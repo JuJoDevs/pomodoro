@@ -20,6 +20,8 @@ dependencies {
     implementation(libs.koin.compose)
 
     // Core modules
+    implementation(project(":core:domain"))
     implementation(project(":core:design-system"))
+    implementation(project(":core:resources"))
     implementation(project(":libs:permissions:api"))
 }

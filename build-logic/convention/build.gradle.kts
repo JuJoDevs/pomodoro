@@ -43,9 +43,9 @@ gradlePlugin {
             id = "pomodoro.android.feature"
             implementationClass = "com.jujodevs.pomodoro.convention.AndroidFeatureConventionPlugin"
         }
-        register("androidFeatureApi") {
-            id = "pomodoro.android.feature.api"
-            implementationClass = "com.jujodevs.pomodoro.convention.AndroidFeatureApiConventionPlugin"
+        register("kotlinFeatureApi") {
+            id = "pomodoro.kotlin.feature.api"
+            implementationClass = "com.jujodevs.pomodoro.convention.KotlinFeatureApiConventionPlugin"
         }
         register("kotlinLibrary") {
             id = "pomodoro.kotlin.library"

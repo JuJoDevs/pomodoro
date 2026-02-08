@@ -83,7 +83,7 @@ style:
 performance:
   active: true
   SpreadOperator:
-    active: true
+    active: false
     excludes: ['**/test/**', '**/androidTest/**']
   UnnecessaryTemporaryInstantiation:
     active: true

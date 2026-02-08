@@ -1,5 +1,9 @@
 package com.jujodevs.pomodoro.libs.notifications.impl
 
+import com.jujodevs.pomodoro.core.domain.util.DataError
+import com.jujodevs.pomodoro.core.domain.util.EmptyResult
+import com.jujodevs.pomodoro.core.domain.util.Result
+import com.jujodevs.pomodoro.core.domain.util.isSuccess
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
 import com.jujodevs.pomodoro.libs.notifications.NotificationData
@@ -135,41 +139,43 @@ class NotificationSchedulerImplTest {
 private class TestNotificationScheduler : NotificationScheduler {
     private val scheduledNotifications = mutableMapOf<Int, NotificationData>()
 
-    override suspend fun scheduleNotification(notification: NotificationData): Result<Unit> {
+    override suspend fun scheduleNotification(notification: NotificationData): EmptyResult<DataError.Local> {
         scheduledNotifications[notification.id] = notification
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
-    override suspend fun cancelNotification(notificationId: Int): Result<Unit> {
+    override suspend fun cancelNotification(notificationId: Int): EmptyResult<DataError.Local> {
         scheduledNotifications.remove(notificationId)
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
-    override suspend fun cancelAllNotifications(): Result<Unit> {
+    override suspend fun cancelAllNotifications(): EmptyResult<DataError.Local> {
         scheduledNotifications.clear()
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
     override fun isNotificationScheduled(notificationId: Int): Boolean {
         return scheduledNotifications.containsKey(notificationId)
     }
 
-    override suspend fun showPersistentNotification(notification: NotificationData): Result<Unit> {
+    override suspend fun showPersistentNotification(notification: NotificationData): EmptyResult<DataError.Local> {
         scheduledNotifications[notification.id] = notification
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
-    override suspend fun dismissPersistentNotification(notificationId: Int): Result<Unit> {
+    override suspend fun dismissPersistentNotification(notificationId: Int): EmptyResult<DataError.Local> {
         scheduledNotifications.remove(notificationId)
-        return Result.success(Unit)
+        return Result.Success(Unit)
     }
 
-    override suspend fun startRunningForegroundTimer(notification: RunningTimerNotificationData): Result<Unit> {
-        return Result.success(Unit)
+    override suspend fun startRunningForegroundTimer(
+        notification: RunningTimerNotificationData
+    ): EmptyResult<DataError.Local> {
+        return Result.Success(Unit)
     }
 
-    override suspend fun stopRunningForegroundTimer(): Result<Unit> {
-        return Result.success(Unit)
+    override suspend fun stopRunningForegroundTimer(): EmptyResult<DataError.Local> {
+        return Result.Success(Unit)
     }
 
     fun getScheduledNotifications(): List<NotificationData> {

@@ -1,5 +1,8 @@
 package com.jujodevs.pomodoro.libs.notifications
 
+import com.jujodevs.pomodoro.core.domain.util.DataError
+import com.jujodevs.pomodoro.core.domain.util.EmptyResult
+
 /**
  * Interface for scheduling and managing notifications.
  *
@@ -15,7 +18,7 @@ interface NotificationScheduler {
      * @param notification The notification data to schedule
      * @return Result indicating success or failure
      */
-    suspend fun scheduleNotification(notification: NotificationData): Result<Unit>
+    suspend fun scheduleNotification(notification: NotificationData): EmptyResult<DataError.Local>
 
     /**
      * Cancel a scheduled notification by its ID.
@@ -23,14 +26,14 @@ interface NotificationScheduler {
      * @param notificationId The ID of the notification to cancel
      * @return Result indicating success or failure
      */
-    suspend fun cancelNotification(notificationId: Int): Result<Unit>
+    suspend fun cancelNotification(notificationId: Int): EmptyResult<DataError.Local>
 
     /**
      * Cancel all scheduled notifications.
      *
      * @return Result indicating success or failure
      */
-    suspend fun cancelAllNotifications(): Result<Unit>
+    suspend fun cancelAllNotifications(): EmptyResult<DataError.Local>
 
     /**
      * Check if a notification with the given ID is currently scheduled.
@@ -46,7 +49,7 @@ interface NotificationScheduler {
      * @param notification The notification data
      * @return Result indicating success or failure
      */
-    suspend fun showPersistentNotification(notification: NotificationData): Result<Unit>
+    suspend fun showPersistentNotification(notification: NotificationData): EmptyResult<DataError.Local>
 
     /**
      * Dismiss the persistent notification.
@@ -54,7 +57,7 @@ interface NotificationScheduler {
      * @param notificationId The ID of the notification to dismiss
      * @return Result indicating success or failure
      */
-    suspend fun dismissPersistentNotification(notificationId: Int): Result<Unit>
+    suspend fun dismissPersistentNotification(notificationId: Int): EmptyResult<DataError.Local>
 
     /**
      * Start or update the running timer foreground service notification.
@@ -62,12 +65,12 @@ interface NotificationScheduler {
      * @param notification The running timer notification data
      * @return Result indicating success or failure
      */
-    suspend fun startRunningForegroundTimer(notification: RunningTimerNotificationData): Result<Unit>
+    suspend fun startRunningForegroundTimer(notification: RunningTimerNotificationData): EmptyResult<DataError.Local>
 
     /**
      * Stop the running timer foreground service notification.
      *
      * @return Result indicating success or failure
      */
-    suspend fun stopRunningForegroundTimer(): Result<Unit>
+    suspend fun stopRunningForegroundTimer(): EmptyResult<DataError.Local>
 }
