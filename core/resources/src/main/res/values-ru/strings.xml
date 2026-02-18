@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d ч %2$d мин</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">Звук будильника</string>
+    <string name="settings_action_open_channel_settings">Открыть настройки канала Pomodoro</string>
+    <string name="settings_section_analytics">АНАЛИТИКА</string>
+    <string name="settings_label_analytics_collection">Помочь улучшить приложение</string>
+    <string name="settings_description_analytics_collection">Разрешить анонимную аналитику использования для повышения надежности и удобства.</string>
+    <string name="settings_section_permissions">РАЗРЕШЕНИЯ</string>
+    <string name="settings_label_exact_alarm">Разрешение на точный будильник</string>
+    <string name="settings_label_notification">Разрешение на уведомления</string>
+    <string name="settings_status_granted">Предоставлено</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">Версия %1$s (%2$s)</string>
 </resources>

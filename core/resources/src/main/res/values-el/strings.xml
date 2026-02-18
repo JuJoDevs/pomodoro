@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d ώ %2$d λεπ</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">Ήχος ειδοποίησης</string>
+    <string name="settings_action_open_channel_settings">Άνοιγμα ρυθμίσεων καναλιού Pomodoro</string>
+    <string name="settings_section_analytics">ΑΝΑΛΥΤΙΚΑ</string>
+    <string name="settings_label_analytics_collection">Βοήθησε στη βελτίωση της εφαρμογής</string>
+    <string name="settings_description_analytics_collection">Επίτρεψε ανώνυμα αναλυτικά χρήσης για βελτίωση αξιοπιστίας και εμπειρίας χρήσης.</string>
+    <string name="settings_section_permissions">ΔΙΚΑΙΩΜΑΤΑ</string>
+    <string name="settings_label_exact_alarm">Άδεια ακριβούς ειδοποίησης</string>
+    <string name="settings_label_notification">Άδεια ειδοποιήσεων</string>
+    <string name="settings_status_granted">Εγκρίθηκε</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">Έκδοση %1$s (%2$s)</string>
 </resources>

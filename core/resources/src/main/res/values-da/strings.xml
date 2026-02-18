@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d t %2$d min</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">Alarmlyd</string>
+    <string name="settings_action_open_channel_settings">Åbn indstillinger for Pomodoro-kanal</string>
+    <string name="settings_section_analytics">ANALYTIK</string>
+    <string name="settings_label_analytics_collection">Hjælp med at forbedre appen</string>
+    <string name="settings_description_analytics_collection">Tillad anonym brugsanalyse for at forbedre pålidelighed og brugeroplevelse.</string>
+    <string name="settings_section_permissions">TILLADELSER</string>
+    <string name="settings_label_exact_alarm">Tilladelse til præcis alarm</string>
+    <string name="settings_label_notification">Tilladelse til notifikationer</string>
+    <string name="settings_status_granted">Givet</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Version %1$s (%2$s)</string>
 </resources>

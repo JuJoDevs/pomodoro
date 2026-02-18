@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">Zvuk alarma</string>
+    <string name="settings_action_open_channel_settings">Otvori postavke Pomodoro kanala</string>
+    <string name="settings_section_analytics">ANALITIKA</string>
+    <string name="settings_label_analytics_collection">Pomozite poboljšati aplikaciju</string>
+    <string name="settings_description_analytics_collection">Dopustite anonimnu analitiku korištenja radi poboljšanja pouzdanosti i korisničkog iskustva.</string>
+    <string name="settings_section_permissions">DOZVOLE</string>
+    <string name="settings_label_exact_alarm">Dozvola za točan alarm</string>
+    <string name="settings_label_notification">Dozvola za obavijesti</string>
+    <string name="settings_status_granted">Odobreno</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">Verzija %1$s (%2$s)</string>
 </resources>

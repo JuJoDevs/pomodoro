@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d時間%2$d分</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">アラーム音</string>
+    <string name="settings_action_open_channel_settings">Pomodoro チャンネル設定を開く</string>
+    <string name="settings_section_analytics">分析</string>
+    <string name="settings_label_analytics_collection">アプリの改善に協力する</string>
+    <string name="settings_description_analytics_collection">信頼性とユーザー体験を向上させるため、匿名の利用分析を許可します。</string>
+    <string name="settings_section_permissions">権限</string>
+    <string name="settings_label_exact_alarm">正確なアラームの権限</string>
+    <string name="settings_label_notification">通知の権限</string>
+    <string name="settings_status_granted">許可済み</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">バージョン %1$s (%2$s)</string>
 </resources>

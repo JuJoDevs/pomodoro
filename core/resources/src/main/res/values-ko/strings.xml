@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d시간 %2$d분</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">알람 소리</string>
+    <string name="settings_action_open_channel_settings">Pomodoro 채널 설정 열기</string>
+    <string name="settings_section_analytics">분석</string>
+    <string name="settings_label_analytics_collection">앱 개선에 도움 주기</string>
+    <string name="settings_description_analytics_collection">신뢰성과 사용자 경험 개선을 위해 익명 사용 분석 수집을 허용합니다.</string>
+    <string name="settings_section_permissions">권한</string>
+    <string name="settings_label_exact_alarm">정확한 알람 권한</string>
+    <string name="settings_label_notification">알림 권한</string>
+    <string name="settings_status_granted">허용됨</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">버전 %1$s (%2$s)</string>
 </resources>

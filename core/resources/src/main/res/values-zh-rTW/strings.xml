@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d 小時 %2$d 分鐘</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">鬧鐘聲音</string>
+    <string name="settings_action_open_channel_settings">開啟 Pomodoro 通知頻道設定</string>
+    <string name="settings_section_analytics">分析</string>
+    <string name="settings_label_analytics_collection">協助改進應用程式</string>
+    <string name="settings_description_analytics_collection">允許匿名使用分析以改善穩定性與使用體驗。</string>
+    <string name="settings_section_permissions">權限</string>
+    <string name="settings_label_exact_alarm">精確鬧鐘權限</string>
+    <string name="settings_label_notification">通知權限</string>
+    <string name="settings_status_granted">已授予</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">版本 %1$s (%2$s)</string>
 </resources>

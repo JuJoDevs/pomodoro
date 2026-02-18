@@ -74,15 +74,15 @@
     <string name="time_format_hours_minutes">%1$d jam %2$d menit</string>
 
     <!-- Settings -->
-    <string name="settings_label_alarm_sound">Alarm Sound</string>
-    <string name="settings_action_open_channel_settings">Open Pomodoro channel settings</string>
-    <string name="settings_section_analytics">ANALYTICS</string>
-    <string name="settings_label_analytics_collection">Help improve the app</string>
-    <string name="settings_description_analytics_collection">Allow anonymous usage analytics to improve reliability and UX.</string>
-    <string name="settings_section_permissions">PERMISSIONS</string>
-    <string name="settings_label_exact_alarm">Exact alarm permission</string>
-    <string name="settings_label_notification">Notification permission</string>
-    <string name="settings_status_granted">Granted</string>
+    <string name="settings_label_alarm_sound">Suara alarm</string>
+    <string name="settings_action_open_channel_settings">Buka setelan kanal Pomodoro</string>
+    <string name="settings_section_analytics">ANALITIK</string>
+    <string name="settings_label_analytics_collection">Bantu meningkatkan aplikasi</string>
+    <string name="settings_description_analytics_collection">Izinkan analitik penggunaan anonim untuk meningkatkan keandalan dan pengalaman pengguna.</string>
+    <string name="settings_section_permissions">IZIN</string>
+    <string name="settings_label_exact_alarm">Izin alarm tepat waktu</string>
+    <string name="settings_label_notification">Izin notifikasi</string>
+    <string name="settings_status_granted">Diberikan</string>
     <string name="settings_action_grant">@string/action_grant</string>
-    <string name="settings_version_format">Version %1$s (%2$s)</string>
+    <string name="settings_version_format">Versi %1$s (%2$s)</string>
 </resources>
