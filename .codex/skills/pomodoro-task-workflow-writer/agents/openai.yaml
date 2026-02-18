@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pomodoro Workflow Writer"
+  short_description: "Draft task workflows for low-cost agents"
+  default_prompt: "Use $pomodoro-task-workflow-writer to produce a task workflow markdown with explicit steps, acceptance criteria, project snippets, and expected tests."

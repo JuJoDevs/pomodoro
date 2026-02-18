@@ -143,6 +143,14 @@ build-logic/
 - GitHub Actions must run build, unit tests, and lint.
 - No merge is allowed if checks fail.
 
+## Acceptance Criteria
+
+- The app compiles successfully (`./gradlew :app:assembleDebug`).
+- Static analysis passes for impacted modules (or full repo when requested): `lint`, `ktlintCheck`, and `detekt`.
+- Unit tests pass (`./gradlew test`).
+- Roborazzi screenshot verification passes for impacted modules (for example, `:core:design-system:verifyRoborazziDebug` and `:features:pomodoro-timer:impl:verifyRoborazziDebug`).
+- Integration tests that require emulator/device are explicitly out of scope for now and will be handled later when local infrastructure is available.
+
 ## Static Analysis
 
 - detekt and ktlint with shared configuration.
