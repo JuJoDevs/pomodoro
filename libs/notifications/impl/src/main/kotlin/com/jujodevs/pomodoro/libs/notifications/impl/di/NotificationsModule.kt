@@ -4,8 +4,10 @@ import android.app.AlarmManager
 import android.content.Context
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.logger.Logger
+import com.jujodevs.pomodoro.libs.notifications.AlarmSoundLabelProvider
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
+import com.jujodevs.pomodoro.libs.notifications.impl.AlarmSoundLabelProviderImpl
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationChannelManagerImpl
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl
 import org.koin.android.ext.koin.androidContext
@@ -27,5 +29,9 @@ val notificationsModule = module {
 
     single<NotificationChannelManager> {
         NotificationChannelManagerImpl(androidContext())
+    }
+
+    single<AlarmSoundLabelProvider> {
+        AlarmSoundLabelProviderImpl(androidContext())
     }
 }

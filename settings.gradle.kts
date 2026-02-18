@@ -62,3 +62,5 @@ include(":libs:permissions:impl")
 // Features modules
 include(":features:pomodoro-timer:api")
 include(":features:pomodoro-timer:impl")
+include(":features:settings:api")
+include(":features:settings:impl")

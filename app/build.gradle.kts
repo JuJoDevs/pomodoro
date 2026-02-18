@@ -64,4 +64,5 @@ dependencies {
 
     // Features
     implementation(project(":features:pomodoro-timer:impl"))
+    implementation(project(":features:settings:impl"))
 }
