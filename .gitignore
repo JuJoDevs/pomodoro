@@ -36,3 +36,6 @@ app/google-services.json
 
 # AI
 .aiexclude
+
+# Git worktrees
+.worktrees/
