@@ -45,14 +45,12 @@ fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     ObserveAsEvents(viewModel.effects) { effect ->
         when (effect) {
             is SettingsEffect.OpenNotificationChannelSettings -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
-                        putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-                        putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannel.PomodoroSession.id)
-                    }
-                    context.startActivity(intent)
-                    viewModel.refreshPermissionAndAlarmState()
+                val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
+                    putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                    putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannel.PomodoroSession.id)
                 }
+                context.startActivity(intent)
+                viewModel.refreshPermissionAndAlarmState()
             }
             is SettingsEffect.GrantExactAlarmPermission -> requestExactAlarmPermission = true
             is SettingsEffect.RequestNotificationPermission -> requestNotificationPermission = true
