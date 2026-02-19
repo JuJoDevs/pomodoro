@@ -28,33 +28,33 @@ class NotificationSchedulerImpl(
     private val context: Context,
     private val alarmManager: AlarmManager,
     private val dataStoreManager: DataStoreManager,
-    private val logger: Logger
+    private val logger: Logger,
 ) : NotificationScheduler {
-
     override suspend fun scheduleNotification(notification: NotificationData): EmptyResult<DataError.Local> {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && !alarmManager.canScheduleExactAlarms()) {
             logger.w(
                 TAG,
-                "Cannot schedule exact alarms. Permission not granted."
+                "Cannot schedule exact alarms. Permission not granted.",
             )
             return Result.Failure(DataError.Local.INSUFFICIENT_PERMISSIONS)
         }
 
         return executeOperation("scheduleNotification") {
-            val intent = createIntent(notification.id).apply {
-                putExtra(EXTRA_NOTIFICATION_TITLE_RES_ID, notification.titleResId)
-                putExtra(EXTRA_NOTIFICATION_MESSAGE_RES_ID, notification.messageResId)
-                putExtra(EXTRA_NOTIFICATION_CHANNEL_ID, notification.channelId)
-                putExtra(EXTRA_NOTIFICATION_TYPE, notification.type.name)
-                putExtra(EXTRA_NOTIFICATION_TOKEN, notification.token)
-            }
+            val intent =
+                createIntent(notification.id).apply {
+                    putExtra(EXTRA_NOTIFICATION_TITLE_RES_ID, notification.titleResId)
+                    putExtra(EXTRA_NOTIFICATION_MESSAGE_RES_ID, notification.messageResId)
+                    putExtra(EXTRA_NOTIFICATION_CHANNEL_ID, notification.channelId)
+                    putExtra(EXTRA_NOTIFICATION_TYPE, notification.type.name)
+                    putExtra(EXTRA_NOTIFICATION_TOKEN, notification.token)
+                }
 
             val pendingIntent = createPendingIntent(notification.id, intent)
 
             alarmManager.setExactAndAllowWhileIdle(
                 AlarmManager.RTC_WAKEUP,
                 notification.scheduledTimeMillis,
-                pendingIntent
+                pendingIntent,
             )
 
             saveNotificationId(notification.id).onFailure { error ->
@@ -65,12 +65,13 @@ class NotificationSchedulerImpl(
                 when (currentToken) {
                     is Result.Success -> {
                         if (currentToken.data != notification.token) {
-                            dataStoreManager.setValue(
-                                InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN,
-                                notification.token
-                            ).onFailure { error ->
-                                return@executeOperation Result.Failure(error)
-                            }
+                            dataStoreManager
+                                .setValue(
+                                    InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN,
+                                    notification.token,
+                                ).onFailure { error ->
+                                    return@executeOperation Result.Failure(error)
+                                }
                         }
                     }
 
@@ -82,7 +83,7 @@ class NotificationSchedulerImpl(
 
             logger.d(
                 TAG,
-                "Notification scheduled: id=${notification.id}, time=${notification.scheduledTimeMillis}"
+                "Notification scheduled: id=${notification.id}, time=${notification.scheduledTimeMillis}",
             )
             Result.Success(Unit)
         }
@@ -109,10 +110,11 @@ class NotificationSchedulerImpl(
 
     override suspend fun cancelAllNotifications(): EmptyResult<DataError.Local> {
         return executeOperation("cancelAllNotifications") {
-            val ids = when (val storedIds = getScheduledIds()) {
-                is Result.Success -> storedIds.data
-                is Result.Failure -> return@executeOperation storedIds.asEmptyResult()
-            }
+            val ids =
+                when (val storedIds = getScheduledIds()) {
+                    is Result.Success -> storedIds.data
+                    is Result.Failure -> return@executeOperation storedIds.asEmptyResult()
+                }
             if (ids.isEmpty()) {
                 logger.d(TAG, "No notifications to cancel")
                 return@executeOperation Result.Success(Unit)
@@ -137,88 +139,88 @@ class NotificationSchedulerImpl(
     }
 
     override fun isNotificationScheduled(notificationId: Int): Boolean {
-        val pendingIntent = PendingIntent.getBroadcast(
-            context,
-            notificationId,
-            createIntent(notificationId),
-            PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE
-        )
+        val pendingIntent =
+            PendingIntent.getBroadcast(
+                context,
+                notificationId,
+                createIntent(notificationId),
+                PendingIntent.FLAG_NO_CREATE or PendingIntent.FLAG_IMMUTABLE,
+            )
 
         return pendingIntent != null
     }
 
-    override suspend fun showPersistentNotification(
-        notification: NotificationData
-    ): EmptyResult<DataError.Local> {
-        return executeOperation("showPersistentNotification") {
+    override suspend fun showPersistentNotification(notification: NotificationData): EmptyResult<DataError.Local> =
+        executeOperation("showPersistentNotification") {
             NotificationHelper.showNotification(
                 context = context,
                 notificationId = notification.id,
                 title = context.getString(notification.titleResId),
                 message = context.getString(notification.messageResId),
                 channelId = notification.channelId,
-                isPersistent = true
+                isPersistent = true,
             )
             Result.Success(Unit)
         }
-    }
 
-    override suspend fun dismissPersistentNotification(notificationId: Int): EmptyResult<DataError.Local> {
-        return executeOperation("dismissPersistentNotification") {
+    override suspend fun dismissPersistentNotification(notificationId: Int): EmptyResult<DataError.Local> =
+        executeOperation("dismissPersistentNotification") {
             NotificationHelper.dismissNotification(context, notificationId)
             Result.Success(Unit)
         }
-    }
 
     override suspend fun startRunningForegroundTimer(
-        notification: RunningTimerNotificationData
-    ): EmptyResult<DataError.Local> {
-        return executeOperation("startRunningForegroundTimer") {
-            val intent = PomodoroTimerForegroundService.createStartIntent(
-                context = context,
-                notification = notification
-            )
+        notification: RunningTimerNotificationData,
+    ): EmptyResult<DataError.Local> =
+        executeOperation("startRunningForegroundTimer") {
+            val intent =
+                PomodoroTimerForegroundService.createStartIntent(
+                    context = context,
+                    notification = notification,
+                )
             ContextCompat.startForegroundService(context, intent)
             Result.Success(Unit)
         }
-    }
 
-    override suspend fun stopRunningForegroundTimer(): EmptyResult<DataError.Local> {
-        return executeOperation("stopRunningForegroundTimer") {
+    override suspend fun stopRunningForegroundTimer(): EmptyResult<DataError.Local> =
+        executeOperation("stopRunningForegroundTimer") {
             context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
             Result.Success(Unit)
         }
-    }
 
     private suspend fun executeOperation(
         operationName: String,
-        operation: suspend () -> EmptyResult<DataError.Local>
-    ): EmptyResult<DataError.Local> {
-        return runCatching {
+        operation: suspend () -> EmptyResult<DataError.Local>,
+    ): EmptyResult<DataError.Local> =
+        runCatching {
             operation()
         }.fold(
             onSuccess = { result ->
                 result.onFailure { error ->
                     when (error) {
-                        DataError.Local.INSUFFICIENT_PERMISSIONS -> logger.w(
-                            TAG,
-                            "$operationName failed due to insufficient permissions"
-                        )
+                        DataError.Local.INSUFFICIENT_PERMISSIONS ->
+                            logger.w(
+                                TAG,
+                                "$operationName failed due to insufficient permissions",
+                            )
 
-                        DataError.Local.DISK_FULL -> logger.e(
-                            TAG,
-                            "$operationName failed due to storage constraints"
-                        )
+                        DataError.Local.DISK_FULL ->
+                            logger.e(
+                                TAG,
+                                "$operationName failed due to storage constraints",
+                            )
 
-                        DataError.Local.NOT_FOUND -> logger.w(
-                            TAG,
-                            "$operationName failed because requested data was not found"
-                        )
+                        DataError.Local.NOT_FOUND ->
+                            logger.w(
+                                TAG,
+                                "$operationName failed because requested data was not found",
+                            )
 
-                        DataError.Local.UNKNOWN -> logger.e(
-                            TAG,
-                            "$operationName failed due to an unknown local error"
-                        )
+                        DataError.Local.UNKNOWN ->
+                            logger.e(
+                                TAG,
+                                "$operationName failed due to an unknown local error",
+                            )
                     }
                 }
             },
@@ -228,7 +230,7 @@ class NotificationSchedulerImpl(
                         logger.w(
                             TAG,
                             "$operationName failed due to insufficient permissions",
-                            throwable
+                            throwable,
                         )
                         Result.Failure(DataError.Local.INSUFFICIENT_PERMISSIONS)
                     }
@@ -237,7 +239,7 @@ class NotificationSchedulerImpl(
                         logger.e(
                             TAG,
                             "$operationName failed due to storage constraints",
-                            throwable
+                            throwable,
                         )
                         Result.Failure(DataError.Local.DISK_FULL)
                     }
@@ -246,34 +248,33 @@ class NotificationSchedulerImpl(
                         logger.e(
                             TAG,
                             "$operationName failed: ${throwable.message}",
-                            throwable
+                            throwable,
                         )
                         Result.Failure(DataError.Local.UNKNOWN)
                     }
                 }
-            }
+            },
         )
-    }
 
-    private fun createIntent(notificationId: Int): Intent {
-        return Intent(context, AlarmReceiver::class.java).apply {
+    private fun createIntent(notificationId: Int): Intent =
+        Intent(context, AlarmReceiver::class.java).apply {
             action = ACTION_NOTIFICATION
             putExtra(EXTRA_NOTIFICATION_ID, notificationId)
         }
-    }
 
-    private fun createPendingIntent(notificationId: Int, intent: Intent): PendingIntent {
-        return PendingIntent.getBroadcast(
+    private fun createPendingIntent(
+        notificationId: Int,
+        intent: Intent,
+    ): PendingIntent =
+        PendingIntent.getBroadcast(
             context,
             notificationId,
             intent,
-            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
         )
-    }
 
-    private suspend fun getScheduledIds(): Result<Set<String>, DataError.Local> {
-        return dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
-    }
+    private suspend fun getScheduledIds(): Result<Set<String>, DataError.Local> =
+        dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
 
     private suspend fun saveNotificationId(id: Int): EmptyResult<DataError.Local> {
         val scheduledIds = getScheduledIds()
@@ -305,12 +306,11 @@ class NotificationSchedulerImpl(
         }
     }
 
-    private fun <T> Result<T, DataError.Local>.asEmptyResult(): EmptyResult<DataError.Local> {
-        return when (this) {
+    private fun <T> Result<T, DataError.Local>.asEmptyResult(): EmptyResult<DataError.Local> =
+        when (this) {
             is Result.Success -> Result.Success(Unit)
             is Result.Failure -> Result.Failure(error)
         }
-    }
 
     companion object {
         const val ACTION_NOTIFICATION = "com.jujodevs.pomodoro.NOTIFICATION_ACTION"

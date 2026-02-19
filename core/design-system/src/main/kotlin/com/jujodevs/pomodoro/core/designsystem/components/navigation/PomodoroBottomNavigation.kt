@@ -28,12 +28,12 @@ import com.jujodevs.pomodoro.core.designsystem.theme.TextSecondary
 @Composable
 fun PomodoroBottomNavigation(
     items: List<PomodoroNavigationItem>,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     NavigationBar(
         modifier = modifier,
         containerColor = MaterialTheme.colorScheme.background,
-        contentColor = MaterialTheme.colorScheme.onBackground
+        contentColor = MaterialTheme.colorScheme.onBackground,
     ) {
         items.forEach { item ->
             NavigationBarItem(
@@ -42,22 +42,23 @@ fun PomodoroBottomNavigation(
                 icon = {
                     Icon(
                         imageVector = item.icon,
-                        contentDescription = item.label
+                        contentDescription = item.label,
                     )
                 },
                 label = {
                     Text(
                         text = item.label,
-                        style = MaterialTheme.typography.labelSmall
+                        style = MaterialTheme.typography.labelSmall,
                     )
                 },
-                colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = MaterialTheme.colorScheme.primary,
-                    selectedTextColor = MaterialTheme.colorScheme.primary,
-                    unselectedIconColor = TextSecondary,
-                    unselectedTextColor = TextSecondary,
-                    indicatorColor = MaterialTheme.colorScheme.background
-                )
+                colors =
+                    NavigationBarItemDefaults.colors(
+                        selectedIconColor = MaterialTheme.colorScheme.primary,
+                        selectedTextColor = MaterialTheme.colorScheme.primary,
+                        unselectedIconColor = TextSecondary,
+                        unselectedTextColor = TextSecondary,
+                        indicatorColor = MaterialTheme.colorScheme.background,
+                    ),
             )
         }
     }
@@ -72,7 +73,7 @@ data class PomodoroNavigationItem(
     val label: String,
     val icon: ImageVector,
     val selected: Boolean,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
 )
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
@@ -80,26 +81,27 @@ data class PomodoroNavigationItem(
 private fun PomodoroBottomNavigationPreview() {
     PomodoroTheme {
         PomodoroBottomNavigation(
-            items = listOf(
-                PomodoroNavigationItem(
-                    label = "TIMER",
-                    icon = Icons.Default.Timer,
-                    selected = true,
-                    onClick = {}
+            items =
+                listOf(
+                    PomodoroNavigationItem(
+                        label = "TIMER",
+                        icon = Icons.Default.Timer,
+                        selected = true,
+                        onClick = {},
+                    ),
+                    PomodoroNavigationItem(
+                        label = "STATS",
+                        icon = Icons.Default.BarChart,
+                        selected = false,
+                        onClick = {},
+                    ),
+                    PomodoroNavigationItem(
+                        label = "HISTORY",
+                        icon = Icons.Default.History,
+                        selected = false,
+                        onClick = {},
+                    ),
                 ),
-                PomodoroNavigationItem(
-                    label = "STATS",
-                    icon = Icons.Default.BarChart,
-                    selected = false,
-                    onClick = {}
-                ),
-                PomodoroNavigationItem(
-                    label = "HISTORY",
-                    icon = Icons.Default.History,
-                    selected = false,
-                    onClick = {}
-                )
-            )
         )
     }
 }

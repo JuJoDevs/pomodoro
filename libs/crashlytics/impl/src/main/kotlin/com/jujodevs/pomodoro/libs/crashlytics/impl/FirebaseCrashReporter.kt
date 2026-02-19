@@ -11,9 +11,8 @@ import com.jujodevs.pomodoro.libs.logger.Logger
  */
 internal class FirebaseCrashReporter(
     private val firebaseCrashlytics: FirebaseCrashlyticsWrapper,
-    private val logger: Logger
+    private val logger: Logger,
 ) : CrashReporter {
-
     override fun recordException(throwable: Throwable) {
         try {
             firebaseCrashlytics.recordException(throwable)
@@ -32,7 +31,10 @@ internal class FirebaseCrashReporter(
         }
     }
 
-    override fun setCustomKey(key: String, value: String) {
+    override fun setCustomKey(
+        key: String,
+        value: String,
+    ) {
         try {
             firebaseCrashlytics.setCustomKey(key, value)
             logger.d(TAG, "Custom key set: $key = $value")
@@ -41,7 +43,10 @@ internal class FirebaseCrashReporter(
         }
     }
 
-    override fun setCustomKey(key: String, value: Int) {
+    override fun setCustomKey(
+        key: String,
+        value: Int,
+    ) {
         try {
             firebaseCrashlytics.setCustomKey(key, value)
             logger.d(TAG, "Custom key set: $key = $value")
@@ -50,7 +55,10 @@ internal class FirebaseCrashReporter(
         }
     }
 
-    override fun setCustomKey(key: String, value: Boolean) {
+    override fun setCustomKey(
+        key: String,
+        value: Boolean,
+    ) {
         try {
             firebaseCrashlytics.setCustomKey(key, value)
             logger.d(TAG, "Custom key set: $key = $value")

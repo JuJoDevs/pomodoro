@@ -28,7 +28,7 @@ fun PomodoroSlider(
     modifier: Modifier = Modifier,
     valueRange: ClosedFloatingPointRange<Float> = 0f..1f,
     steps: Int = 0,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     Slider(
         value = value,
@@ -37,11 +37,12 @@ fun PomodoroSlider(
         enabled = enabled,
         valueRange = valueRange,
         steps = steps,
-        colors = SliderDefaults.colors(
-            thumbColor = MaterialTheme.colorScheme.onPrimary,
-            activeTrackColor = MaterialTheme.colorScheme.primary,
-            inactiveTrackColor = ProgressTrack,
-        )
+        colors =
+            SliderDefaults.colors(
+                thumbColor = MaterialTheme.colorScheme.onPrimary,
+                activeTrackColor = MaterialTheme.colorScheme.primary,
+                inactiveTrackColor = ProgressTrack,
+            ),
     )
 }
 
@@ -51,7 +52,7 @@ private fun PomodoroSliderPreview() {
     PomodoroTheme {
         PomodoroSlider(
             value = 0.75f,
-            onValueChange = {}
+            onValueChange = {},
         )
     }
 }
@@ -62,7 +63,7 @@ private fun PomodoroSliderHalfPreview() {
     PomodoroTheme {
         PomodoroSlider(
             value = 0.5f,
-            onValueChange = {}
+            onValueChange = {},
         )
     }
 }

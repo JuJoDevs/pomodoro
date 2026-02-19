@@ -14,7 +14,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 @Composable
 fun PomodoroTheme(
     darkTheme: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = if (darkTheme) PomodoroDarkColors else PomodoroDarkColors
 
@@ -23,7 +23,7 @@ fun PomodoroTheme(
             colorScheme = colorScheme,
             typography = PomodoroTypography,
             shapes = PomodoroShapes,
-            content = content
+            content = content,
         )
     }
 }

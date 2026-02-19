@@ -25,7 +25,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class ChipSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -34,14 +33,15 @@ class ChipSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroChip(
                         text = "25",
                         selected = true,
-                        onClick = {}
+                        onClick = {},
                     )
                 }
             }
@@ -54,14 +54,15 @@ class ChipSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroChip(
                         text = "15",
                         selected = false,
-                        onClick = {}
+                        onClick = {},
                     )
                 }
             }
@@ -74,9 +75,10 @@ class ChipSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     Row {
                         PomodoroChip(text = "15", selected = false, onClick = {})

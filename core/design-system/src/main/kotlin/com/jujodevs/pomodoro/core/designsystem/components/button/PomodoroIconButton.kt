@@ -41,42 +41,44 @@ fun PomodoroIconButton(
     backgroundColor: Color? = SurfaceVariantDark,
     contentDescription: String? = null,
 ) {
-    val buttonSize: Dp = when (size) {
-        IconButtonSize.Standard -> 48.dp
-        IconButtonSize.Compact -> 40.dp
-    }
+    val buttonSize: Dp =
+        when (size) {
+            IconButtonSize.Standard -> 48.dp
+            IconButtonSize.Compact -> 40.dp
+        }
 
-    val iconSize: Dp = when (size) {
-        IconButtonSize.Standard -> 24.dp
-        IconButtonSize.Compact -> 20.dp
-    }
+    val iconSize: Dp =
+        when (size) {
+            IconButtonSize.Standard -> 24.dp
+            IconButtonSize.Compact -> 20.dp
+        }
 
     Box(
-        modifier = modifier
-            .size(buttonSize)
-            .clip(MaterialTheme.shapes.small)
-            .then(
-                if (backgroundColor != null) {
-                    Modifier.background(backgroundColor)
-                } else {
-                    Modifier
-                }
-            )
-            .clickable(onClick = onClick),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .size(buttonSize)
+                .clip(MaterialTheme.shapes.small)
+                .then(
+                    if (backgroundColor != null) {
+                        Modifier.background(backgroundColor)
+                    } else {
+                        Modifier
+                    },
+                ).clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
     ) {
         Icon(
             imageVector = icon,
             contentDescription = contentDescription,
             tint = MaterialTheme.colorScheme.onPrimary,
-            modifier = Modifier.size(iconSize)
+            modifier = Modifier.size(iconSize),
         )
     }
 }
 
 enum class IconButtonSize {
     Standard,
-    Compact
+    Compact,
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
@@ -86,7 +88,7 @@ private fun PomodoroIconButtonPreview() {
         PomodoroIconButton(
             icon = Icons.Default.Settings,
             onClick = {},
-            backgroundColor = SurfaceVariantDark
+            backgroundColor = SurfaceVariantDark,
         )
     }
 }
@@ -98,7 +100,7 @@ private fun PomodoroIconButtonTransparentPreview() {
         PomodoroIconButton(
             icon = Icons.Default.Settings,
             onClick = {},
-            backgroundColor = null
+            backgroundColor = null,
         )
     }
 }
@@ -110,7 +112,7 @@ private fun PomodoroIconButtonCompactPreview() {
         PomodoroIconButton(
             icon = Icons.Default.Settings,
             onClick = {},
-            size = IconButtonSize.Compact
+            size = IconButtonSize.Compact,
         )
     }
 }

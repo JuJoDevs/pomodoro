@@ -26,27 +26,31 @@ import java.io.IOException
  * Android implementation of DataStoreManager using DataStore Preferences.
  */
 class DataStoreManagerImpl(
-    private val dataStore: DataStore<Preferences>
+    private val dataStore: DataStore<Preferences>,
 ) : DataStoreManager {
-
-    override suspend fun <T> getValue(key: String, defaultValue: T): Result<T, DataError.Local> {
-        return runOperation {
-            dataStore.data.map { preferences ->
-                getPreferenceValue(preferences, key, defaultValue)
-            }.first()
+    override suspend fun <T> getValue(
+        key: String,
+        defaultValue: T,
+    ): Result<T, DataError.Local> =
+        runOperation {
+            dataStore.data
+                .map { preferences ->
+                    getPreferenceValue(preferences, key, defaultValue)
+                }.first()
         }
-    }
 
-    override suspend fun <T> setValue(key: String, value: T): EmptyResult<DataError.Local> {
-        return runEmptyOperation {
+    override suspend fun <T> setValue(
+        key: String,
+        value: T,
+    ): EmptyResult<DataError.Local> =
+        runEmptyOperation {
             dataStore.edit { preferences ->
                 setPreferenceValue(preferences, key, value)
             }
         }
-    }
 
-    override suspend fun removeValue(key: String): EmptyResult<DataError.Local> {
-        return runEmptyOperation {
+    override suspend fun removeValue(key: String): EmptyResult<DataError.Local> =
+        runEmptyOperation {
             dataStore.edit { preferences ->
                 preferences.remove(stringPreferencesKey(key))
                 preferences.remove(intPreferencesKey(key))
@@ -56,30 +60,33 @@ class DataStoreManagerImpl(
                 preferences.remove(stringSetPreferencesKey(key))
             }
         }
-    }
 
-    override suspend fun clear(): EmptyResult<DataError.Local> {
-        return runEmptyOperation {
+    override suspend fun clear(): EmptyResult<DataError.Local> =
+        runEmptyOperation {
             dataStore.edit { it.clear() }
         }
-    }
 
-    override fun <T> observeValue(key: String, defaultValue: T): Flow<Result<T, DataError.Local>> {
-        return dataStore.data
+    override fun <T> observeValue(
+        key: String,
+        defaultValue: T,
+    ): Flow<Result<T, DataError.Local>> =
+        dataStore.data
             .map<Preferences, Result<T, DataError.Local>> { preferences ->
                 Result.Success(getPreferenceValue(preferences, key, defaultValue))
-            }
-            .catch { throwable ->
+            }.catch { throwable ->
                 if (throwable is CancellationException) {
                     throw throwable
                 }
                 emit(Result.Failure(throwable.toDataStoreError()))
             }
-    }
 
     @Suppress("UNCHECKED_CAST")
-    private fun <T> getPreferenceValue(preferences: Preferences, key: String, defaultValue: T): T {
-        return when (defaultValue) {
+    private fun <T> getPreferenceValue(
+        preferences: Preferences,
+        key: String,
+        defaultValue: T,
+    ): T =
+        when (defaultValue) {
             is String -> preferences[stringPreferencesKey(key)] ?: defaultValue
             is Int -> preferences[intPreferencesKey(key)] ?: defaultValue
             is Boolean -> preferences[booleanPreferencesKey(key)] ?: defaultValue
@@ -88,9 +95,12 @@ class DataStoreManagerImpl(
             is Set<*> -> preferences[stringSetPreferencesKey(key)] ?: defaultValue
             else -> defaultValue
         } as T
-    }
 
-    private fun <T> setPreferenceValue(preferences: MutablePreferences, key: String, value: T) {
+    private fun <T> setPreferenceValue(
+        preferences: MutablePreferences,
+        key: String,
+        value: T,
+    ) {
         when (value) {
             is String -> preferences[stringPreferencesKey(key)] = value
             is Int -> preferences[intPreferencesKey(key)] = value
@@ -105,10 +115,8 @@ class DataStoreManagerImpl(
         }
     }
 
-    private suspend fun <T> runOperation(
-        operation: suspend () -> T
-    ): Result<T, DataError.Local> {
-        return runCatching {
+    private suspend fun <T> runOperation(operation: suspend () -> T): Result<T, DataError.Local> =
+        runCatching {
             operation()
         }.fold(
             onSuccess = { value ->
@@ -119,21 +127,16 @@ class DataStoreManagerImpl(
                     throw throwable
                 }
                 Result.Failure(throwable.toDataStoreError())
-            }
+            },
         )
-    }
 
-    private suspend fun runEmptyOperation(
-        operation: suspend () -> Unit
-    ): EmptyResult<DataError.Local> {
-        return runOperation(operation).map { Unit }
-    }
+    private suspend fun runEmptyOperation(operation: suspend () -> Unit): EmptyResult<DataError.Local> =
+        runOperation(operation).map { Unit }
 
-    private fun Throwable.toDataStoreError(): DataError.Local {
-        return when (this) {
+    private fun Throwable.toDataStoreError(): DataError.Local =
+        when (this) {
             is SecurityException -> DataError.Local.INSUFFICIENT_PERMISSIONS
             is IOException -> DataError.Local.DISK_FULL
             else -> DataError.Local.UNKNOWN
         }
-    }
 }

@@ -9,8 +9,9 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val crashlyticsModule = module {
-    single { FirebaseCrashlytics.getInstance() }
-    singleOf(::FirebaseCrashlyticsWrapperImpl).bind<FirebaseCrashlyticsWrapper>()
-    singleOf(::FirebaseCrashReporter).bind<CrashReporter>()
-}
+val crashlyticsModule =
+    module {
+        single { FirebaseCrashlytics.getInstance() }
+        singleOf(::FirebaseCrashlyticsWrapperImpl).bind<FirebaseCrashlyticsWrapper>()
+        singleOf(::FirebaseCrashReporter).bind<CrashReporter>()
+    }

@@ -17,9 +17,8 @@ import android.app.NotificationChannel as AndroidNotificationChannel
  * Creates and manages notification channels required for Android 8.0+.
  */
 class NotificationChannelManagerImpl(
-    private val context: Context
+    private val context: Context,
 ) : NotificationChannelManager {
-
     override fun createNotificationChannels() {
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         pomodoroChannels()
@@ -32,17 +31,18 @@ class NotificationChannelManagerImpl(
         notificationManager.deleteNotificationChannel(channelId)
     }
 
-    private fun pomodoroChannels(): List<NotificationChannel> = listOf(
-        PomodoroSession,
-        Reminders,
-        RunningTimer
-    )
+    private fun pomodoroChannels(): List<NotificationChannel> =
+        listOf(
+            PomodoroSession,
+            Reminders,
+            RunningTimer,
+        )
 
-    private fun toAndroidChannel(channel: NotificationChannel): AndroidNotificationChannel {
-        return AndroidNotificationChannel(
+    private fun toAndroidChannel(channel: NotificationChannel): AndroidNotificationChannel =
+        AndroidNotificationChannel(
             channel.id,
             channelName(channel),
-            channel.importance
+            channel.importance,
         ).apply {
             description = channelDescription(channel)
             if (channel == RunningTimer) {
@@ -56,21 +56,22 @@ class NotificationChannelManagerImpl(
                 enableLights(true)
             }
         }
-    }
 
-    private fun channelName(channel: NotificationChannel): String = context.getString(
-        when (channel) {
-            PomodoroSession -> R.string.notification_channel_sessions_name
-            Reminders -> R.string.notification_channel_reminders_name
-            RunningTimer -> R.string.notification_channel_sessions_name
-        }
-    )
+    private fun channelName(channel: NotificationChannel): String =
+        context.getString(
+            when (channel) {
+                PomodoroSession -> R.string.notification_channel_sessions_name
+                Reminders -> R.string.notification_channel_reminders_name
+                RunningTimer -> R.string.notification_channel_sessions_name
+            },
+        )
 
-    private fun channelDescription(channel: NotificationChannel): String = context.getString(
-        when (channel) {
-            PomodoroSession -> R.string.notification_channel_sessions_description
-            Reminders -> R.string.notification_channel_reminders_description
-            RunningTimer -> R.string.notification_channel_sessions_description
-        }
-    )
+    private fun channelDescription(channel: NotificationChannel): String =
+        context.getString(
+            when (channel) {
+                PomodoroSession -> R.string.notification_channel_sessions_description
+                Reminders -> R.string.notification_channel_reminders_description
+                RunningTimer -> R.string.notification_channel_sessions_description
+            },
+        )
 }

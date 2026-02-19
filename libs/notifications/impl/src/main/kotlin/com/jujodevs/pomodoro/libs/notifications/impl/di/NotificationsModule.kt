@@ -13,25 +13,26 @@ import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-val notificationsModule = module {
-    single<AlarmManager> {
-        androidContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
-    }
+val notificationsModule =
+    module {
+        single<AlarmManager> {
+            androidContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        }
 
-    single<NotificationScheduler> {
-        NotificationSchedulerImpl(
-            context = androidContext(),
-            alarmManager = get(),
-            dataStoreManager = get<DataStoreManager>(),
-            logger = get<Logger>()
-        )
-    }
+        single<NotificationScheduler> {
+            NotificationSchedulerImpl(
+                context = androidContext(),
+                alarmManager = get(),
+                dataStoreManager = get<DataStoreManager>(),
+                logger = get<Logger>(),
+            )
+        }
 
-    single<NotificationChannelManager> {
-        NotificationChannelManagerImpl(androidContext())
-    }
+        single<NotificationChannelManager> {
+            NotificationChannelManagerImpl(androidContext())
+        }
 
-    single<AlarmSoundLabelProvider> {
-        AlarmSoundLabelProviderImpl(androidContext())
+        single<AlarmSoundLabelProvider> {
+            AlarmSoundLabelProviderImpl(androidContext())
+        }
     }
-}

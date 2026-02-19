@@ -28,7 +28,6 @@ import java.io.File
 @OptIn(ExperimentalCoroutinesApi::class)
 @RunWith(RobolectricTestRunner::class)
 class NotificationSchedulerIntegrationTest {
-
     private lateinit var context: Context
     private lateinit var alarmManager: AlarmManager
     private lateinit var dataStoreManager: DataStoreManager
@@ -44,58 +43,74 @@ class NotificationSchedulerIntegrationTest {
 
         val testDispatcher = UnconfinedTestDispatcher()
         val testScope = TestScope(testDispatcher)
-        dataStore = PreferenceDataStoreFactory.create(
-            scope = testScope,
-            produceFile = { File.createTempFile("test_datastore", ".preferences_pb") }
-        )
+        dataStore =
+            PreferenceDataStoreFactory.create(
+                scope = testScope,
+                produceFile = { File.createTempFile("test_datastore", ".preferences_pb") },
+            )
         dataStoreManager = DataStoreManagerImpl(dataStore)
 
-        scheduler = NotificationSchedulerImpl(
-            context = context,
-            alarmManager = alarmManager,
-            dataStoreManager = dataStoreManager,
-            logger = logger
-        )
+        scheduler =
+            NotificationSchedulerImpl(
+                context = context,
+                alarmManager = alarmManager,
+                dataStoreManager = dataStoreManager,
+                logger = logger,
+            )
     }
 
     @Test
-    fun `GIVEN IDs stored WHEN cancelAllNotifications THEN should clear DataStore`() = runTest {
-        // GIVEN
-        dataStoreManager.setValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, setOf("1", "2"))
-            .isSuccess shouldBe true
-        dataStoreManager.setValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "active-token")
-            .isSuccess shouldBe true
+    fun `GIVEN IDs stored WHEN cancelAllNotifications THEN should clear DataStore`() =
+        runTest {
+            // GIVEN
+            dataStoreManager
+                .setValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, setOf("1", "2"))
+                .isSuccess shouldBe true
+            dataStoreManager
+                .setValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "active-token")
+                .isSuccess shouldBe true
 
-        val storedIdsBefore = dataStoreManager.getValue(
-            InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
-            emptySet<String>()
-        )
-        storedIdsBefore shouldBeEqualTo Result.Success(setOf("1", "2"))
+            val storedIdsBefore =
+                dataStoreManager.getValue(
+                    InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
+                    emptySet<String>(),
+                )
+            storedIdsBefore shouldBeEqualTo Result.Success(setOf("1", "2"))
 
-        // WHEN
-        scheduler.cancelAllNotifications().isSuccess shouldBe true
+            // WHEN
+            scheduler.cancelAllNotifications().isSuccess shouldBe true
 
-        // THEN
-        val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
-        storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
-        val activeTokenAfter = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "default")
-        activeTokenAfter shouldBeEqualTo Result.Success("default")
-    }
+            // THEN
+            val storedIdsAfter =
+                dataStoreManager.getValue(
+                    InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
+                    emptySet<String>(),
+                )
+            storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
+            val activeTokenAfter = dataStoreManager.getValue(InternalStateKeys.ACTIVE_NOTIFICATION_TOKEN, "default")
+            activeTokenAfter shouldBeEqualTo Result.Success("default")
+        }
 
     @Test
-    fun `GIVEN no IDs stored WHEN cancelAllNotifications THEN should be idempotent`() = runTest {
-        // GIVEN
-        val storedIdsBefore = dataStoreManager.getValue(
-            InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
-            emptySet<String>()
-        )
-        storedIdsBefore shouldBeEqualTo Result.Success(emptySet())
+    fun `GIVEN no IDs stored WHEN cancelAllNotifications THEN should be idempotent`() =
+        runTest {
+            // GIVEN
+            val storedIdsBefore =
+                dataStoreManager.getValue(
+                    InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
+                    emptySet<String>(),
+                )
+            storedIdsBefore shouldBeEqualTo Result.Success(emptySet())
 
-        // WHEN
-        scheduler.cancelAllNotifications().isSuccess shouldBe true
+            // WHEN
+            scheduler.cancelAllNotifications().isSuccess shouldBe true
 
-        // THEN
-        val storedIdsAfter = dataStoreManager.getValue(InternalStateKeys.SCHEDULED_NOTIFICATION_IDS, emptySet<String>())
-        storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
-    }
+            // THEN
+            val storedIdsAfter =
+                dataStoreManager.getValue(
+                    InternalStateKeys.SCHEDULED_NOTIFICATION_IDS,
+                    emptySet<String>(),
+                )
+            storedIdsAfter shouldBeEqualTo Result.Success(emptySet())
+        }
 }

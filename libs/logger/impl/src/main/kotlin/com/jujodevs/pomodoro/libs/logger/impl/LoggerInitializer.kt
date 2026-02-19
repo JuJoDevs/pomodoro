@@ -17,11 +17,18 @@ object LoggerInitializer {
         if (isDebug) {
             Timber.plant(Timber.DebugTree())
         } else {
-            Timber.plant(object : Timber.Tree() {
-                override fun log(priority: Int, tag: String?, message: String, t: Throwable?) {
-                    // No-op: discard all logs in release builds
-                }
-            })
+            Timber.plant(
+                object : Timber.Tree() {
+                    override fun log(
+                        priority: Int,
+                        tag: String?,
+                        message: String,
+                        t: Throwable?,
+                    ) {
+                        // No-op: discard all logs in release builds
+                    }
+                },
+            )
         }
     }
 }

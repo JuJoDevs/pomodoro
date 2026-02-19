@@ -30,31 +30,26 @@ val DividerColor = Color(0xFF3A4A5A)
  * Pomodoro Dark Color Scheme
  * Maps Material3 color tokens to the Pomodoro design system colors
  */
-val PomodoroDarkColors = darkColorScheme(
-    primary = PrimaryBlue,
-    onPrimary = TextPrimary,
-    primaryContainer = PrimaryBlueDark,
-    onPrimaryContainer = TextPrimary,
-
-    secondary = TextSecondary,
-    onSecondary = TextPrimary,
-    secondaryContainer = SurfaceVariantDark,
-    onSecondaryContainer = TextPrimary,
-
-    tertiary = AccentOrange,
-    onTertiary = TextPrimary,
-
-    background = BackgroundDark,
-    onBackground = TextPrimary,
-
-    surface = SurfaceDark,
-    onSurface = TextPrimary,
-    surfaceVariant = SurfaceVariantDark,
-    onSurfaceVariant = TextSecondary,
-
-    outline = DividerColor,
-    outlineVariant = ProgressTrack,
-
-    error = Color(0xFFCF6679),
-    onError = Color(0xFF000000),
-)
+val PomodoroDarkColors =
+    darkColorScheme(
+        primary = PrimaryBlue,
+        onPrimary = TextPrimary,
+        primaryContainer = PrimaryBlueDark,
+        onPrimaryContainer = TextPrimary,
+        secondary = TextSecondary,
+        onSecondary = TextPrimary,
+        secondaryContainer = SurfaceVariantDark,
+        onSecondaryContainer = TextPrimary,
+        tertiary = AccentOrange,
+        onTertiary = TextPrimary,
+        background = BackgroundDark,
+        onBackground = TextPrimary,
+        surface = SurfaceDark,
+        onSurface = TextPrimary,
+        surfaceVariant = SurfaceVariantDark,
+        onSurfaceVariant = TextSecondary,
+        outline = DividerColor,
+        outlineVariant = ProgressTrack,
+        error = Color(0xFFCF6679),
+        onError = Color(0xFF000000),
+    )

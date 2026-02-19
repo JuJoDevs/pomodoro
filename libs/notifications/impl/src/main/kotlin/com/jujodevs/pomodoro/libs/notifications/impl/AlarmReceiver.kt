@@ -21,11 +21,15 @@ import org.koin.core.component.inject
  *
  * Registered in AndroidManifest.xml to receive alarm intents from AlarmManager.
  */
-class AlarmReceiver : BroadcastReceiver(), KoinComponent {
-
+class AlarmReceiver :
+    BroadcastReceiver(),
+    KoinComponent {
     private val dataStoreManager: DataStoreManager by inject()
 
-    override fun onReceive(context: Context, intent: Intent) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         if (intent.action != ACTION_NOTIFICATION) return
 
         val notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, -1)
@@ -46,7 +50,7 @@ class AlarmReceiver : BroadcastReceiver(), KoinComponent {
                                 notificationId = notificationId,
                                 title = title,
                                 message = message,
-                                channelId = channelId
+                                channelId = channelId,
                             )
                             context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
                         }
