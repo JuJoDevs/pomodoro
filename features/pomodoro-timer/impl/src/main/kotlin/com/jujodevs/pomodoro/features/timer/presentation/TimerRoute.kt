@@ -11,13 +11,13 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun TimerRoute(
+fun timerRoute(
     onNavigateToSettings: () -> Unit,
     onPhaseChanged: (Int) -> Unit,
     onShowMessage: (UiText) -> Unit,
     onRequestExactAlarmPermission: () -> Unit,
     exactAlarmPermissionGranted: Boolean? = null,
-    viewModel: TimerViewModel = koinViewModel()
+    viewModel: TimerViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -28,11 +28,12 @@ fun TimerRoute(
     }
 
     LaunchedEffect(state.phase) {
-        val titleResId = when (state.phase) {
-            PomodoroPhase.WORK -> R.string.phase_title_focus
-            PomodoroPhase.SHORT_BREAK -> R.string.phase_title_short_break
-            PomodoroPhase.LONG_BREAK -> R.string.phase_title_long_break
-        }
+        val titleResId =
+            when (state.phase) {
+                PomodoroPhase.WORK -> R.string.phase_title_focus
+                PomodoroPhase.SHORT_BREAK -> R.string.phase_title_short_break
+                PomodoroPhase.LONG_BREAK -> R.string.phase_title_long_break
+            }
         onPhaseChanged(titleResId)
     }
 
@@ -46,8 +47,8 @@ fun TimerRoute(
         }
     }
 
-    TimerScreen(
+    timerScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
     )
 }

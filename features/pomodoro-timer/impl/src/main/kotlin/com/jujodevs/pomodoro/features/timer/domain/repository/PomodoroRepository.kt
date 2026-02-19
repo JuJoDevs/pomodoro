@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface PomodoroRepository {
     fun getSessionState(): Flow<PomodoroSessionState>
+
     suspend fun updateSessionState(state: PomodoroSessionState)
+
     suspend fun updateSessionState(update: (PomodoroSessionState) -> PomodoroSessionState)
 }

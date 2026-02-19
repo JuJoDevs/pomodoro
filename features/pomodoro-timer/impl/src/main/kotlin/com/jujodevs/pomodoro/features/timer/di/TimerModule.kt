@@ -20,40 +20,42 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
-val timerModule = module {
-    // Data
-    singleOf(::PomodoroRepositoryImpl) bind PomodoroRepository::class
-    singleOf(::SystemTimeProvider) bind TimeProvider::class
+val timerModule =
+    module {
+        // Data
+        singleOf(::PomodoroRepositoryImpl) bind PomodoroRepository::class
+        singleOf(::SystemTimeProvider) bind TimeProvider::class
 
-    // Use Cases
-    factoryOf(::ObservePomodoroSessionStateUseCase)
-    factoryOf(::AdvancePomodoroPhaseUseCase)
-    factoryOf(::StartOrResumePomodoroUseCase)
-    factoryOf(::PausePomodoroUseCase)
-    factoryOf(::SkipPomodoroPhaseUseCase)
-    factoryOf(::StopPomodoroUseCase)
-    factoryOf(::ResetPomodoroUseCase)
-    factoryOf(::UpdatePomodoroConfigUseCase)
+        // Use Cases
+        factoryOf(::ObservePomodoroSessionStateUseCase)
+        factoryOf(::AdvancePomodoroPhaseUseCase)
+        factoryOf(::StartOrResumePomodoroUseCase)
+        factoryOf(::PausePomodoroUseCase)
+        factoryOf(::SkipPomodoroPhaseUseCase)
+        factoryOf(::StopPomodoroUseCase)
+        factoryOf(::ResetPomodoroUseCase)
+        factoryOf(::UpdatePomodoroConfigUseCase)
 
-    // ViewModel
-    factory {
-        TimerUseCases(
-            observeSessionState = get(),
-            startOrResume = get(),
-            pause = get(),
-            skip = get(),
-            stop = get(),
-            reset = get(),
-            advancePhase = get(),
-            updateConfig = get()
-        )
+        // ViewModel
+        factory {
+            TimerUseCases(
+                observeSessionState = get(),
+                startOrResume = get(),
+                pause = get(),
+                skip = get(),
+                stop = get(),
+                reset = get(),
+                advancePhase = get(),
+                updateConfig = get(),
+            )
+        }
+
+        viewModel {
+            TimerViewModel(
+                useCases = get(),
+                notificationScheduler = get(),
+                recordUsageStatsEvent = get(),
+                timeProvider = get(),
+            )
+        }
     }
-
-    viewModel {
-        TimerViewModel(
-            useCases = get(),
-            notificationScheduler = get(),
-            timeProvider = get()
-        )
-    }
-}

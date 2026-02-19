@@ -125,3 +125,8 @@ Compose:
     active: true
   PreviewPublic:
     active: true
+
+formatting:
+  active: true
+  Indentation:
+    active: false

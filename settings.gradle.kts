@@ -43,6 +43,10 @@ include(":libs:logger:impl")
 include(":libs:analytics:api")
 include(":libs:analytics:impl")
 
+// Usage stats modules
+include(":libs:usage-stats:api")
+include(":libs:usage-stats:impl")
+
 // Crashlytics modules
 include(":libs:crashlytics:api")
 include(":libs:crashlytics:impl")

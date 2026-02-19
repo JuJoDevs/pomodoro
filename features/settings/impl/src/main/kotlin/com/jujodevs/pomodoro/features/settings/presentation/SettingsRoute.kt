@@ -21,7 +21,7 @@ import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
+fun settingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var requestExactAlarmPermission by remember { mutableStateOf(false) }
@@ -29,14 +29,14 @@ fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     val versionText = remember { getVersionText(context) }
 
     ExactAlarmPermissionEffect(
-        requestOnMissingPermission = requestExactAlarmPermission
+        requestOnMissingPermission = requestExactAlarmPermission,
     ) {
         requestExactAlarmPermission = false
         viewModel.refreshPermissionAndAlarmState()
     }
 
     RequestNotificationPermissionOnTrigger(
-        trigger = requestNotificationPermission
+        trigger = requestNotificationPermission,
     ) {
         requestNotificationPermission = false
         viewModel.refreshPermissionAndAlarmState()
@@ -45,10 +45,11 @@ fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     ObserveAsEvents(viewModel.effects) { effect ->
         when (effect) {
             is SettingsEffect.OpenNotificationChannelSettings -> {
-                val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
-                    putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
-                    putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannel.PomodoroSession.id)
-                }
+                val intent =
+                    Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS).apply {
+                        putExtra(Settings.EXTRA_APP_PACKAGE, context.packageName)
+                        putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannel.PomodoroSession.id)
+                    }
                 context.startActivity(intent)
                 viewModel.refreshPermissionAndAlarmState()
             }
@@ -61,25 +62,27 @@ fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
         viewModel.refreshPermissionAndAlarmState()
     }
 
-    SettingsScreen(
+    settingsScreen(
         state = state,
         versionText = versionText,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
     )
 }
 
 private fun getVersionText(context: Context): String {
-    val packageInfo = try {
-        context.packageManager.getPackageInfo(context.packageName, 0)
-    } catch (_: PackageManager.NameNotFoundException) {
-        null
-    }
+    val packageInfo =
+        try {
+            context.packageManager.getPackageInfo(context.packageName, 0)
+        } catch (_: PackageManager.NameNotFoundException) {
+            null
+        }
     val versionName = packageInfo?.versionName ?: "?"
-    val versionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-        packageInfo?.longVersionCode?.toString() ?: "?"
-    } else {
-        @Suppress("DEPRECATION")
-        (packageInfo?.versionCode ?: 0).toString()
-    }
+    val versionCode =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            packageInfo?.longVersionCode?.toString() ?: "?"
+        } else {
+            @Suppress("DEPRECATION")
+            (packageInfo?.versionCode ?: 0).toString()
+        }
     return context.getString(R.string.settings_version_format, versionName, versionCode)
 }

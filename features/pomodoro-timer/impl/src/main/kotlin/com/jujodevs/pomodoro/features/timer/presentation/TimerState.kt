@@ -22,5 +22,5 @@ data class TimerState(
     val isLoading: Boolean = false,
     val showStopConfirmation: Boolean = false,
     val showResetConfirmation: Boolean = false,
-    val isExactAlarmPermissionMissing: Boolean = false
+    val isExactAlarmPermissionMissing: Boolean = false,
 )

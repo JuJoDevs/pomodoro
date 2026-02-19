@@ -14,6 +14,7 @@ dependencies {
     implementation(project(":core:design-system"))
     implementation(project(":core:resources"))
     implementation(project(":core:ui"))
+    implementation(project(":libs:analytics:api"))
     implementation(project(":libs:notifications:api"))
     implementation(project(":libs:permissions:api"))
     implementation(project(":libs:logger:api"))

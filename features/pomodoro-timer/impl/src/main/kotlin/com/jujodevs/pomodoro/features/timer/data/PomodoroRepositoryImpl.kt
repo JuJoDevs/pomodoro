@@ -13,67 +13,47 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 
 class PomodoroRepositoryImpl(
-    private val dataStoreManager: DataStoreManager
+    private val dataStoreManager: DataStoreManager,
 ) : PomodoroRepository {
-
-    override fun getSessionState(): Flow<PomodoroSessionState> {
-        return combine(
-            dataStoreManager.observeValue<Int>(KEY_WORK_MINUTES, DEFAULT_WORK_MINUTES)
+    override fun getSessionState(): Flow<PomodoroSessionState> =
+        combine(
+            dataStoreManager
+                .observeValue<Int>(KEY_WORK_MINUTES, DEFAULT_WORK_MINUTES)
                 .map { it.valueOrDefault(DEFAULT_WORK_MINUTES) },
-            dataStoreManager.observeValue<Int>(KEY_SHORT_BREAK_MINUTES, DEFAULT_SHORT_BREAK_MINUTES)
+            dataStoreManager
+                .observeValue<Int>(KEY_SHORT_BREAK_MINUTES, DEFAULT_SHORT_BREAK_MINUTES)
                 .map { it.valueOrDefault(DEFAULT_SHORT_BREAK_MINUTES) },
-            dataStoreManager.observeValue<Boolean>(KEY_AUTO_START_BREAKS, false)
+            dataStoreManager
+                .observeValue<Boolean>(KEY_AUTO_START_BREAKS, false)
                 .map { it.valueOrDefault(false) },
-            dataStoreManager.observeValue<Boolean>(KEY_AUTO_START_WORK, false)
+            dataStoreManager
+                .observeValue<Boolean>(KEY_AUTO_START_WORK, false)
                 .map { it.valueOrDefault(false) },
-            dataStoreManager.observeValue<String>(KEY_CURRENT_PHASE, PomodoroPhase.WORK.name)
+            dataStoreManager
+                .observeValue<String>(KEY_CURRENT_PHASE, PomodoroPhase.WORK.name)
                 .map { it.valueOrDefault(PomodoroPhase.WORK.name) },
-            dataStoreManager.observeValue<String>(KEY_STATUS, PomodoroStatus.IDLE.name)
+            dataStoreManager
+                .observeValue<String>(KEY_STATUS, PomodoroStatus.IDLE.name)
                 .map { it.valueOrDefault(PomodoroStatus.IDLE.name) },
-            dataStoreManager.observeValue<Long>(KEY_REMAINING_MILLIS, DEFAULT_REMAINING_MILLIS)
+            dataStoreManager
+                .observeValue<Long>(KEY_REMAINING_MILLIS, DEFAULT_REMAINING_MILLIS)
                 .map { it.valueOrDefault(DEFAULT_REMAINING_MILLIS) },
-            dataStoreManager.observeValue<Int>(KEY_COMPLETED_SESSIONS, 0)
+            dataStoreManager
+                .observeValue<Int>(KEY_COMPLETED_SESSIONS, 0)
                 .map { it.valueOrDefault(0) },
-            dataStoreManager.observeValue<String>(KEY_PHASE_TOKEN, "")
+            dataStoreManager
+                .observeValue<String>(KEY_PHASE_TOKEN, "")
                 .map { it.valueOrDefault("") },
-            dataStoreManager.observeValue<Int>(KEY_NOTIFICATION_ID, DEFAULT_NOTIFICATION_ID)
+            dataStoreManager
+                .observeValue<Int>(KEY_NOTIFICATION_ID, DEFAULT_NOTIFICATION_ID)
                 .map { it.valueOrDefault(DEFAULT_NOTIFICATION_ID) },
-            dataStoreManager.observeValue<Long>(KEY_END_TIMESTAMP, DEFAULT_END_TIMESTAMP)
+            dataStoreManager
+                .observeValue<Long>(KEY_END_TIMESTAMP, DEFAULT_END_TIMESTAMP)
                 .map { it.valueOrDefault(DEFAULT_END_TIMESTAMP) },
-            dataStoreManager.observeValue<Long>(KEY_EXACT_ALARM_WARNING_SNOOZED_UNTIL, DEFAULT_SNOOZED_UNTIL)
-                .map { it.valueOrDefault(DEFAULT_SNOOZED_UNTIL) }
-        ) { values: Array<Any?> ->
-            val workMinutes = values[INDEX_WORK_MINUTES] as Int
-            val shortBreakMinutes = values[INDEX_SHORT_BREAK_MINUTES] as Int
-            val autoStartBreaks = values[INDEX_AUTO_START_BREAKS] as Boolean
-            val autoStartWork = values[INDEX_AUTO_START_WORK] as Boolean
-            val phaseName = values[INDEX_CURRENT_PHASE] as String
-            val statusName = values[INDEX_STATUS] as String
-            val remainingMillis = values[INDEX_REMAINING_MILLIS] as Long
-            val completedSessions = values[INDEX_COMPLETED_SESSIONS] as Int
-            val phaseToken = values[INDEX_PHASE_TOKEN] as String
-            val notificationId = values[INDEX_NOTIFICATION_ID] as Int
-            val endTimestamp = values[INDEX_END_TIMESTAMP] as Long
-            val exactAlarmWarningSnoozedUntil = values[INDEX_EXACT_ALARM_WARNING_SNOOZED_UNTIL] as Long
-            val exactAlarmWarningSnoozedUntilMillis =
-                exactAlarmWarningSnoozedUntil.takeUnless { it == DEFAULT_SNOOZED_UNTIL }
-
-            PomodoroSessionState(
-                selectedWorkMinutes = workMinutes,
-                selectedShortBreakMinutes = shortBreakMinutes,
-                autoStartBreaks = autoStartBreaks,
-                autoStartWork = autoStartWork,
-                currentPhase = PomodoroPhase.valueOf(phaseName),
-                status = PomodoroStatus.valueOf(statusName),
-                remainingMillis = remainingMillis,
-                completedWorkSessions = completedSessions,
-                phaseToken = phaseToken,
-                scheduledNotificationId = if (notificationId == DEFAULT_NOTIFICATION_ID) null else notificationId,
-                lastKnownEndTimestamp = if (endTimestamp == DEFAULT_END_TIMESTAMP) null else endTimestamp,
-                exactAlarmWarningSnoozedUntilMillis = exactAlarmWarningSnoozedUntilMillis
-            )
-        }
-    }
+            dataStoreManager
+                .observeValue<Long>(KEY_EXACT_ALARM_WARNING_SNOOZED_UNTIL, DEFAULT_SNOOZED_UNTIL)
+                .map { it.valueOrDefault(DEFAULT_SNOOZED_UNTIL) },
+        ) { values: Array<Any?> -> values.toPomodoroSessionState() }
 
     override suspend fun updateSessionState(state: PomodoroSessionState) {
         dataStoreManager.setValue(KEY_WORK_MINUTES, state.selectedWorkMinutes)
@@ -89,7 +69,7 @@ class PomodoroRepositoryImpl(
         dataStoreManager.setValue(KEY_END_TIMESTAMP, state.lastKnownEndTimestamp ?: DEFAULT_END_TIMESTAMP)
         dataStoreManager.setValue(
             KEY_EXACT_ALARM_WARNING_SNOOZED_UNTIL,
-            state.exactAlarmWarningSnoozedUntilMillis ?: DEFAULT_SNOOZED_UNTIL
+            state.exactAlarmWarningSnoozedUntilMillis ?: DEFAULT_SNOOZED_UNTIL,
         )
     }
 
@@ -99,11 +79,42 @@ class PomodoroRepositoryImpl(
         updateSessionState(newState)
     }
 
-    private fun <T> Result<T, *>.valueOrDefault(defaultValue: T): T {
-        return when (this) {
+    private fun <T> Result<T, *>.valueOrDefault(defaultValue: T): T =
+        when (this) {
             is Result.Success -> data
             is Result.Failure -> defaultValue
         }
+
+    private fun Array<Any?>.toPomodoroSessionState(): PomodoroSessionState {
+        val workMinutes = this[INDEX_WORK_MINUTES] as Int
+        val shortBreakMinutes = this[INDEX_SHORT_BREAK_MINUTES] as Int
+        val autoStartBreaks = this[INDEX_AUTO_START_BREAKS] as Boolean
+        val autoStartWork = this[INDEX_AUTO_START_WORK] as Boolean
+        val phaseName = this[INDEX_CURRENT_PHASE] as String
+        val statusName = this[INDEX_STATUS] as String
+        val remainingMillis = this[INDEX_REMAINING_MILLIS] as Long
+        val completedSessions = this[INDEX_COMPLETED_SESSIONS] as Int
+        val phaseToken = this[INDEX_PHASE_TOKEN] as String
+        val notificationId = this[INDEX_NOTIFICATION_ID] as Int
+        val endTimestamp = this[INDEX_END_TIMESTAMP] as Long
+        val exactAlarmWarningSnoozedUntil = this[INDEX_EXACT_ALARM_WARNING_SNOOZED_UNTIL] as Long
+        val exactAlarmWarningSnoozedUntilMillis =
+            exactAlarmWarningSnoozedUntil.takeUnless { it == DEFAULT_SNOOZED_UNTIL }
+
+        return PomodoroSessionState(
+            selectedWorkMinutes = workMinutes,
+            selectedShortBreakMinutes = shortBreakMinutes,
+            autoStartBreaks = autoStartBreaks,
+            autoStartWork = autoStartWork,
+            currentPhase = PomodoroPhase.valueOf(phaseName),
+            status = PomodoroStatus.valueOf(statusName),
+            remainingMillis = remainingMillis,
+            completedWorkSessions = completedSessions,
+            phaseToken = phaseToken,
+            scheduledNotificationId = if (notificationId == DEFAULT_NOTIFICATION_ID) null else notificationId,
+            lastKnownEndTimestamp = if (endTimestamp == DEFAULT_END_TIMESTAMP) null else endTimestamp,
+            exactAlarmWarningSnoozedUntilMillis = exactAlarmWarningSnoozedUntilMillis,
+        )
     }
 
     companion object {

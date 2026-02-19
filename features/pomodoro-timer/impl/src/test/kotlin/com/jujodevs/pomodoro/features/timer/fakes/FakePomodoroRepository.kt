@@ -7,15 +7,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 
 class FakePomodoroRepository : PomodoroRepository {
-    private val _state = MutableStateFlow(PomodoroSessionState())
+    private val sessionState = MutableStateFlow(PomodoroSessionState())
 
-    override fun getSessionState(): Flow<PomodoroSessionState> = _state
+    override fun getSessionState(): Flow<PomodoroSessionState> = sessionState
 
     override suspend fun updateSessionState(state: PomodoroSessionState) {
-        _state.value = state
+        sessionState.value = state
     }
 
     override suspend fun updateSessionState(update: (PomodoroSessionState) -> PomodoroSessionState) {
-        _state.update(update)
+        sessionState.update(update)
     }
 }

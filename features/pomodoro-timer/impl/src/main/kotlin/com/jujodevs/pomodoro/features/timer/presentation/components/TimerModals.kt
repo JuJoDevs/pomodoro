@@ -36,37 +36,37 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun HandleModals(
+internal fun handleModals(
     state: TimerState,
-    onAction: (TimerAction) -> Unit
+    onAction: (TimerAction) -> Unit,
 ) {
-    ConfirmationModal(
+    confirmationModal(
         visible = state.showStopConfirmation,
         title = stringResource(R.string.dialog_stop_title),
         message = stringResource(R.string.dialog_stop_message),
         confirmText = stringResource(R.string.action_stop),
         onConfirm = { onAction(TimerAction.ConfirmStop) },
-        onDismiss = { onAction(TimerAction.DismissDialog) }
+        onDismiss = { onAction(TimerAction.DismissDialog) },
     )
 
-    ConfirmationModal(
+    confirmationModal(
         visible = state.showResetConfirmation,
         title = stringResource(R.string.dialog_reset_title),
         message = stringResource(R.string.dialog_reset_message),
         confirmText = stringResource(R.string.action_ok),
         onConfirm = { onAction(TimerAction.ConfirmReset) },
-        onDismiss = { onAction(TimerAction.DismissDialog) }
+        onDismiss = { onAction(TimerAction.DismissDialog) },
     )
 }
 
 @Composable
-private fun ConfirmationModal(
+private fun confirmationModal(
     visible: Boolean,
     title: String,
     message: String,
     confirmText: String,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -74,50 +74,53 @@ private fun ConfirmationModal(
         AnimatedVisibility(
             visible = visible,
             enter = fadeIn(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
-            exit = fadeOut(animationSpec = tween(MODAL_ANIMATION_DURATION_MS))
+            exit = fadeOut(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
         ) {
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(MaterialTheme.colorScheme.scrim.copy(alpha = MODAL_SCRIM_ALPHA))
-                    .clickable(
-                        interactionSource = interactionSource,
-                        indication = null,
-                        onClick = onDismiss
-                    )
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.scrim.copy(alpha = MODAL_SCRIM_ALPHA))
+                        .clickable(
+                            interactionSource = interactionSource,
+                            indication = null,
+                            onClick = onDismiss,
+                        ),
             )
         }
 
         AnimatedVisibility(
             visible = visible,
             modifier = Modifier.align(Alignment.BottomCenter),
-            enter = slideInVertically(
-                animationSpec = tween(MODAL_ANIMATION_DURATION_MS),
-                initialOffsetY = { fullHeight -> fullHeight }
-            ) + fadeIn(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
-            exit = slideOutVertically(
-                animationSpec = tween(MODAL_ANIMATION_DURATION_MS),
-                targetOffsetY = { fullHeight -> fullHeight }
-            ) + fadeOut(animationSpec = tween(MODAL_ANIMATION_DURATION_MS))
+            enter =
+                slideInVertically(
+                    animationSpec = tween(MODAL_ANIMATION_DURATION_MS),
+                    initialOffsetY = { fullHeight -> fullHeight },
+                ) + fadeIn(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
+            exit =
+                slideOutVertically(
+                    animationSpec = tween(MODAL_ANIMATION_DURATION_MS),
+                    targetOffsetY = { fullHeight -> fullHeight },
+                ) + fadeOut(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
         ) {
-            ConfirmationModalContent(
+            confirmationModalContent(
                 title = title,
                 message = message,
                 confirmText = confirmText,
                 onConfirm = onConfirm,
-                onDismiss = onDismiss
+                onDismiss = onDismiss,
             )
         }
     }
 }
 
 @Composable
-private fun ConfirmationModalContent(
+private fun confirmationModalContent(
     title: String,
     message: String,
     confirmText: String,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
@@ -125,27 +128,27 @@ private fun ConfirmationModalContent(
         Text(
             text = title,
             style = MaterialTheme.typography.headlineSmall,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
         )
         Spacer(modifier = Modifier.height(spacing.spaceM))
         Text(
             text = message,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
         )
         Spacer(modifier = Modifier.height(spacing.spaceXL))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
         ) {
             PomodoroButton(
                 text = stringResource(R.string.action_cancel),
                 onClick = onDismiss,
-                variant = ButtonVariant.Text
+                variant = ButtonVariant.Text,
             )
             Spacer(modifier = Modifier.width(spacing.spaceXS))
             PomodoroButton(
                 text = confirmText,
-                onClick = onConfirm
+                onClick = onConfirm,
             )
         }
     }
@@ -156,11 +159,11 @@ private const val MODAL_ANIMATION_DURATION_MS = 250
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun HandleModalsStopPreview() {
+private fun handleModalsStopPreview() {
     PomodoroTheme(darkTheme = true) {
-        HandleModals(
+        handleModals(
             state = TimerState(showStopConfirmation = true),
-            onAction = {}
+            onAction = {},
         )
     }
 }

@@ -7,20 +7,29 @@ import com.google.firebase.analytics.FirebaseAnalytics
  * Default implementation of [FirebaseAnalyticsWrapper] that delegates to Firebase Analytics SDK.
  */
 internal class FirebaseAnalyticsWrapperImpl(
-    private val firebaseAnalytics: FirebaseAnalytics
+    private val firebaseAnalytics: FirebaseAnalytics,
 ) : FirebaseAnalyticsWrapper {
-
-    override fun logEvent(name: String, params: Map<String, Any>) {
+    override fun logEvent(
+        name: String,
+        params: Map<String, Any>,
+    ) {
         val bundle = params.toBundle()
         firebaseAnalytics.logEvent(name, bundle)
     }
 
-    override fun setUserProperty(name: String, value: String) {
+    override fun setUserProperty(
+        name: String,
+        value: String,
+    ) {
         firebaseAnalytics.setUserProperty(name, value)
     }
 
     override fun setUserId(userId: String?) {
         firebaseAnalytics.setUserId(userId)
+    }
+
+    override fun setAnalyticsCollectionEnabled(enabled: Boolean) {
+        firebaseAnalytics.setAnalyticsCollectionEnabled(enabled)
     }
 
     override fun resetAnalyticsData() {

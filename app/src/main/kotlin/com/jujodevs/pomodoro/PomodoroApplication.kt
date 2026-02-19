@@ -4,6 +4,7 @@ import android.app.Application
 import com.google.firebase.FirebaseApp
 import com.jujodevs.pomodoro.core.appconfig.AppConfig
 import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
+import com.jujodevs.pomodoro.di.applicationScopeModule
 import com.jujodevs.pomodoro.features.settings.di.settingsModule
 import com.jujodevs.pomodoro.features.timer.di.timerModule
 import com.jujodevs.pomodoro.libs.analytics.impl.di.analyticsModule
@@ -14,12 +15,12 @@ import com.jujodevs.pomodoro.libs.logger.impl.di.loggerModule
 import com.jujodevs.pomodoro.libs.notifications.NotificationChannelManager
 import com.jujodevs.pomodoro.libs.notifications.impl.di.notificationsModule
 import com.jujodevs.pomodoro.libs.permissions.impl.di.permissionsModule
+import com.jujodevs.pomodoro.libs.usagestats.di.usageStatsModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext
 import org.koin.core.context.startKoin
 
 class PomodoroApplication : Application() {
-
     override fun onCreate() {
         super.onCreate()
 
@@ -28,14 +29,16 @@ class PomodoroApplication : Application() {
             androidContext(this@PomodoroApplication)
             modules(
                 appConfigModule,
+                applicationScopeModule,
                 loggerModule,
                 analyticsModule,
                 crashlyticsModule,
                 dataStoreModule,
                 notificationsModule,
                 permissionsModule,
+                usageStatsModule,
                 timerModule,
-                settingsModule
+                settingsModule,
             )
         }
 

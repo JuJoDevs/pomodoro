@@ -29,51 +29,51 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun ConfigSection(
+internal fun configSection(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
     val isIdle = state.status == PomodoroStatus.IDLE
 
     Column(modifier) {
-        DurationSelectorCard(
+        durationSelectorCard(
             title = stringResource(R.string.label_work_duration),
             options = state.workDurationOptions,
             selectedOption = state.selectedWorkMinutes,
             onOptionSelected = { onAction(TimerAction.SelectWorkDuration(it)) },
-            enabled = isIdle
+            enabled = isIdle,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        DurationSelectorCard(
+        durationSelectorCard(
             title = stringResource(R.string.label_break_duration),
             options = state.breakDurationOptions,
             selectedOption = state.selectedShortBreakMinutes,
             onOptionSelected = { onAction(TimerAction.SelectShortBreakDuration(it)) },
-            enabled = isIdle
+            enabled = isIdle,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        AutoStartToggles(
+        autoStartToggles(
             autoStartBreaks = state.autoStartBreaks,
             autoStartWork = state.autoStartWork,
             onToggleBreaks = { onAction(TimerAction.ToggleAutoStartBreaks(it)) },
-            onToggleWork = { onAction(TimerAction.ToggleAutoStartWork(it)) }
+            onToggleWork = { onAction(TimerAction.ToggleAutoStartWork(it)) },
         )
     }
 }
 
 @Composable
-private fun DurationSelectorCard(
+private fun durationSelectorCard(
     title: String,
     options: List<Int>,
     selectedOption: Int,
     onOptionSelected: (Int) -> Unit,
-    enabled: Boolean
+    enabled: Boolean,
 ) {
     val spacing = LocalSpacing.current
 
@@ -82,30 +82,30 @@ private fun DurationSelectorCard(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = stringResource(R.string.label_min),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceS))
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 options.forEach { option ->
                     PomodoroChip(
                         text = option.toString(),
                         selected = option == selectedOption,
-                        onClick = { if (enabled) onOptionSelected(option) }
+                        onClick = { if (enabled) onOptionSelected(option) },
                     )
                 }
             }
@@ -114,11 +114,11 @@ private fun DurationSelectorCard(
 }
 
 @Composable
-private fun AutoStartToggles(
+private fun autoStartToggles(
     autoStartBreaks: Boolean,
     autoStartWork: Boolean,
     onToggleBreaks: (Boolean) -> Unit,
-    onToggleWork: (Boolean) -> Unit
+    onToggleWork: (Boolean) -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
@@ -127,12 +127,12 @@ private fun AutoStartToggles(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PomodoroSwitch(
                     checked = autoStartBreaks,
-                    onCheckedChange = onToggleBreaks
+                    onCheckedChange = onToggleBreaks,
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceXS))
                 Text(
                     text = stringResource(R.string.label_auto_start_breaks),
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
         }
@@ -140,12 +140,12 @@ private fun AutoStartToggles(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PomodoroSwitch(
                     checked = autoStartWork,
-                    onCheckedChange = onToggleWork
+                    onCheckedChange = onToggleWork,
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceXS))
                 Text(
                     text = stringResource(R.string.label_auto_start_work),
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
         }
@@ -154,19 +154,21 @@ private fun AutoStartToggles(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun ConfigSectionPreview() {
+private fun configSectionPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(
-            modifier = Modifier
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .padding(16.dp),
         ) {
-            ConfigSection(
-                state = TimerState(
-                    status = PomodoroStatus.IDLE,
-                    selectedWorkMinutes = 25,
-                    selectedShortBreakMinutes = 5
-                ),
-                onAction = {}
+            configSection(
+                state =
+                    TimerState(
+                        status = PomodoroStatus.IDLE,
+                        selectedWorkMinutes = 25,
+                        selectedShortBreakMinutes = 5,
+                    ),
+                onAction = {},
             )
         }
     }

@@ -16,77 +16,79 @@ import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
-import com.jujodevs.pomodoro.features.timer.presentation.components.BottomSection
-import com.jujodevs.pomodoro.features.timer.presentation.components.ConfigSection
-import com.jujodevs.pomodoro.features.timer.presentation.components.ExactAlarmWarningBanner
-import com.jujodevs.pomodoro.features.timer.presentation.components.HandleModals
-import com.jujodevs.pomodoro.features.timer.presentation.components.TimerDisplay
+import com.jujodevs.pomodoro.features.timer.presentation.components.bottomSection
+import com.jujodevs.pomodoro.features.timer.presentation.components.configSection
+import com.jujodevs.pomodoro.features.timer.presentation.components.exactAlarmWarningBanner
+import com.jujodevs.pomodoro.features.timer.presentation.components.handleModals
+import com.jujodevs.pomodoro.features.timer.presentation.components.timerDisplay
 
 @Composable
-fun TimerScreen(
+fun timerScreen(
     state: TimerState,
-    onAction: (TimerAction) -> Unit
+    onAction: (TimerAction) -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
     Column(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = spacing.spaceXL),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = spacing.spaceXL),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(spacing.spaceM))
 
             if (state.isExactAlarmPermissionMissing) {
-                ExactAlarmWarningBanner(
+                exactAlarmWarningBanner(
                     onDismiss = { onAction(TimerAction.DismissExactAlarmWarning) },
-                    onRequestPermission = { onAction(TimerAction.RequestExactAlarmPermission) }
+                    onRequestPermission = { onAction(TimerAction.RequestExactAlarmPermission) },
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceM))
             }
 
-            TimerDisplay(
+            timerDisplay(
                 remainingTimeText = state.remainingTimeText,
                 status = state.status,
-                phase = state.phase
+                phase = state.phase,
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceXXL))
 
-            ConfigSection(
+            configSection(
                 state = state,
-                onAction = onAction
+                onAction = onAction,
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceXL))
         }
 
-        BottomSection(
+        bottomSection(
             modifier = Modifier.fillMaxWidth(),
             state = state,
-            onAction = onAction
+            onAction = onAction,
         )
     }
 
-    HandleModals(state, onAction)
+    handleModals(state, onAction)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun TimerScreenPreview() {
+private fun timerScreenPreview() {
     PomodoroTheme(darkTheme = true) {
-        TimerScreen(
-            state = TimerState(
-                phase = PomodoroPhase.WORK,
-                status = PomodoroStatus.IDLE,
-                remainingTimeText = "25:00",
-                progress = 0f,
-                completedSessions = 0
-            ),
-            onAction = {}
+        timerScreen(
+            state =
+                TimerState(
+                    phase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.IDLE,
+                    remainingTimeText = "25:00",
+                    progress = 0f,
+                    completedSessions = 0,
+                ),
+            onAction = {},
         )
     }
 }

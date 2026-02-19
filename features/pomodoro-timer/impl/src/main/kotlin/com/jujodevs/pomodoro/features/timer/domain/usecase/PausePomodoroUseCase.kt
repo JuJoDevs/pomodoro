@@ -6,7 +6,7 @@ import com.jujodevs.pomodoro.features.timer.domain.repository.PomodoroRepository
 
 class PausePomodoroUseCase(
     private val repository: PomodoroRepository,
-    private val timeProvider: TimeProvider
+    private val timeProvider: TimeProvider,
 ) {
     suspend operator fun invoke() {
         repository.updateSessionState { currentState ->
@@ -19,7 +19,7 @@ class PausePomodoroUseCase(
                 status = PomodoroStatus.PAUSED,
                 remainingMillis = remaining.coerceAtLeast(0),
                 phaseToken = "", // Invalidate current alarm token
-                lastKnownEndTimestamp = null
+                lastKnownEndTimestamp = null,
             )
         }
     }

@@ -14,7 +14,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
         with(target) {
             with(pluginManager) {
                 apply("com.android.application")
-                // AGP 9.0 has built-in Kotlin support, no need to apply kotlin-android
+                apply("org.jetbrains.kotlin.android")
             }
 
             val extension = extensions.getByType<ApplicationExtension>()

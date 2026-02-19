@@ -17,24 +17,24 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
-import com.jujodevs.pomodoro.features.settings.presentation.components.AnalyticsSection
-import com.jujodevs.pomodoro.features.settings.presentation.components.PermissionsSection
-import com.jujodevs.pomodoro.features.settings.presentation.components.SoundLibrarySection
-import com.jujodevs.pomodoro.features.settings.presentation.components.VersionRow
+import com.jujodevs.pomodoro.features.settings.presentation.components.analyticsSection
+import com.jujodevs.pomodoro.features.settings.presentation.components.permissionsSection
+import com.jujodevs.pomodoro.features.settings.presentation.components.soundLibrarySection
+import com.jujodevs.pomodoro.features.settings.presentation.components.versionRow
 
 @Composable
-fun SettingsScreen(
+fun settingsScreen(
     state: SettingsState,
     versionText: String,
     onAction: (SettingsAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
     if (state.isLoading) {
         Column(
             modifier = modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.weight(1f))
             CircularProgressIndicator()
@@ -44,55 +44,57 @@ fun SettingsScreen(
     }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = spacing.spaceXL)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = spacing.spaceXL),
     ) {
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        SoundLibrarySection(
+        soundLibrarySection(
             alarmSoundLabel = state.alarmSoundLabel,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
 
-        AnalyticsSection(
+        analyticsSection(
             analyticsEnabled = state.analyticsCollectionEnabled,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
 
-        PermissionsSection(
+        permissionsSection(
             canScheduleExactAlarms = state.canScheduleExactAlarms,
             hasNotificationPermission = state.hasNotificationPermission,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXXL))
 
-        VersionRow(versionText = versionText)
+        versionRow(versionText = versionText)
     }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun SettingsScreenPreview() {
+private fun settingsScreenPreview() {
     PomodoroTheme(darkTheme = true) {
-        SettingsScreen(
-            state = SettingsState(
-                alarmSoundLabel = "Digital Beep (Default)",
-                analyticsCollectionEnabled = true,
-                canScheduleExactAlarms = true,
-                hasNotificationPermission = true,
-                isLoading = false
-            ),
+        settingsScreen(
+            state =
+                SettingsState(
+                    alarmSoundLabel = "Digital Beep (Default)",
+                    analyticsCollectionEnabled = true,
+                    canScheduleExactAlarms = true,
+                    hasNotificationPermission = true,
+                    isLoading = false,
+                ),
             versionText = "Version 1.0.0 (1)",
             onAction = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

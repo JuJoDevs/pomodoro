@@ -1,11 +1,11 @@
 package com.jujodevs.pomodoro.features.settings.domain.usecase
 
-import com.jujodevs.pomodoro.features.settings.domain.repository.AnalyticsConsentRepository
+import com.jujodevs.pomodoro.libs.analytics.AnalyticsCollectionManager
 
 class UpdateAnalyticsConsentUseCase(
-    private val repository: AnalyticsConsentRepository
+    private val analyticsCollectionManager: AnalyticsCollectionManager,
 ) {
     suspend operator fun invoke(enabled: Boolean) {
-        repository.setAnalyticsConsent(enabled)
+        analyticsCollectionManager.setAnalyticsEnabled(enabled)
     }
 }

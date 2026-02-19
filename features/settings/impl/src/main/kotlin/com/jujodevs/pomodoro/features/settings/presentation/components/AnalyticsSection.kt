@@ -24,10 +24,10 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun AnalyticsSection(
+fun analyticsSection(
     analyticsEnabled: Boolean,
     onAction: (SettingsAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
@@ -36,25 +36,25 @@ fun AnalyticsSection(
             text = stringResource(R.string.settings_section_analytics),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
         Spacer(modifier = Modifier.height(spacing.spaceS))
         PomodoroCard(modifier = Modifier.fillMaxWidth()) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = stringResource(R.string.settings_label_analytics_collection),
                         style = MaterialTheme.typography.bodyLarge,
-                        color = MaterialTheme.colorScheme.onSurface
+                        color = MaterialTheme.colorScheme.onSurface,
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceXXS))
                     Text(
                         text = stringResource(R.string.settings_description_analytics_collection),
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
                 Spacer(modifier = Modifier.width(spacing.spaceM))
@@ -62,7 +62,7 @@ fun AnalyticsSection(
                     checked = analyticsEnabled,
                     onCheckedChange = {
                         onAction(SettingsAction.ToggleAnalyticsCollection(it))
-                    }
+                    },
                 )
             }
         }
@@ -71,12 +71,12 @@ fun AnalyticsSection(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun AnalyticsSectionPreview() {
+private fun analyticsSectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        AnalyticsSection(
+        analyticsSection(
             analyticsEnabled = true,
             onAction = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

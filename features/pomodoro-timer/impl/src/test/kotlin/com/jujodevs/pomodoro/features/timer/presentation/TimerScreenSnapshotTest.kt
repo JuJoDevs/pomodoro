@@ -18,58 +18,61 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class TimerScreenSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun timerScreen_idle_snapshot() {
         renderAndCapture(
-            state = TimerState(
-                phase = PomodoroPhase.WORK,
-                status = PomodoroStatus.IDLE,
-                remainingTimeText = "25:00",
-                completedSessions = 0
-            )
+            state =
+                TimerState(
+                    phase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.IDLE,
+                    remainingTimeText = "25:00",
+                    completedSessions = 0,
+                ),
         )
     }
 
     @Test
     fun timerScreen_runningWork_snapshot() {
         renderAndCapture(
-            state = TimerState(
-                phase = PomodoroPhase.WORK,
-                status = PomodoroStatus.RUNNING,
-                remainingTimeText = "12:34",
-                progress = 0.5f,
-                completedSessions = 2
-            )
+            state =
+                TimerState(
+                    phase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.RUNNING,
+                    remainingTimeText = "12:34",
+                    progress = 0.5f,
+                    completedSessions = 2,
+                ),
         )
     }
 
     @Test
     fun timerScreen_pausedWithWarning_snapshot() {
         renderAndCapture(
-            state = TimerState(
-                phase = PomodoroPhase.SHORT_BREAK,
-                status = PomodoroStatus.PAUSED,
-                remainingTimeText = "03:21",
-                completedSessions = 1,
-                isExactAlarmPermissionMissing = true
-            )
+            state =
+                TimerState(
+                    phase = PomodoroPhase.SHORT_BREAK,
+                    status = PomodoroStatus.PAUSED,
+                    remainingTimeText = "03:21",
+                    completedSessions = 1,
+                    isExactAlarmPermissionMissing = true,
+                ),
         )
     }
 
     @Test
     fun timerScreen_stopConfirmation_snapshot() {
         renderAndCapture(
-            state = TimerState(
-                phase = PomodoroPhase.WORK,
-                status = PomodoroStatus.RUNNING,
-                remainingTimeText = "09:59",
-                completedSessions = 3,
-                showStopConfirmation = true
-            )
+            state =
+                TimerState(
+                    phase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.RUNNING,
+                    remainingTimeText = "09:59",
+                    completedSessions = 3,
+                    showStopConfirmation = true,
+                ),
         )
     }
 
@@ -77,9 +80,9 @@ class TimerScreenSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    TimerScreen(
+                    timerScreen(
                         state = state,
-                        onAction = {}
+                        onAction = {},
                     )
                 }
             }

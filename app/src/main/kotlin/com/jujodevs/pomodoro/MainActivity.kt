@@ -36,79 +36,82 @@ import com.jujodevs.pomodoro.core.ui.TopBarAction
 import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
-import com.jujodevs.pomodoro.features.settings.presentation.SettingsRoute
-import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
-import com.jujodevs.pomodoro.ui.ConfigureSystemBars
+import com.jujodevs.pomodoro.features.settings.presentation.settingsRoute
+import com.jujodevs.pomodoro.features.timer.presentation.timerRoute
+import com.jujodevs.pomodoro.ui.configureSystemBars
 import kotlinx.coroutines.launch
 
 private const val DARK_THEME = true
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            ConfigureSystemBars(darkTheme = DARK_THEME)
+            configureSystemBars(darkTheme = DARK_THEME)
             PomodoroTheme(darkTheme = DARK_THEME) {
-                PomodoroApp()
+                pomodoroApp()
             }
         }
     }
 }
 
 @Composable
-private fun PomodoroApp() {
+private fun pomodoroApp() {
     val backStack = rememberNavBackStack(MainNavKey.Home)
     val snackbarHostState = remember { SnackbarHostState() }
     var phaseTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
     val isOnSettings = backStack.isNotEmpty() && backStack.last() == MainNavKey.Settings
-    val topBarTitle = if (isOnSettings) {
-        stringResource(R.string.label_settings)
-    } else {
-        stringResource(phaseTitleResId)
-    }
-    val topBarActions = if (isOnSettings) {
-        emptyList()
-    } else {
-        listOf(
-            TopBarAction(
-                icon = PomodoroIcons.Settings,
-                contentDescription = stringResource(R.string.label_settings),
-                onClick = { backStack.navigateTo(MainNavKey.Settings) }
-            ),
-            TopBarAction(
-                icon = PomodoroIcons.Help,
-                contentDescription = "Help",
-                onClick = { /* Handle help */ }
+    val topBarTitle =
+        if (isOnSettings) {
+            stringResource(R.string.label_settings)
+        } else {
+            stringResource(phaseTitleResId)
+        }
+    val topBarActions =
+        if (isOnSettings) {
+            emptyList()
+        } else {
+            listOf(
+                TopBarAction(
+                    icon = PomodoroIcons.Settings,
+                    contentDescription = stringResource(R.string.label_settings),
+                    onClick = { backStack.navigateTo(MainNavKey.Settings) },
+                ),
+                TopBarAction(
+                    icon = PomodoroIcons.Help,
+                    contentDescription = "Help",
+                    onClick = { /* Handle help */ },
+                ),
             )
-        )
-    }
+        }
 
     PomodoroScaffold(
         snackbarHostState = snackbarHostState,
-        scaffoldConfig = ScaffoldConfig(
-            topBar = TopBarState(
-                title = topBarTitle,
-                showBackButton = backStack.size > 1,
-                onBackClick = { backStack.goBack() },
-                actions = topBarActions
-            )
-        )
+        scaffoldConfig =
+            ScaffoldConfig(
+                topBar =
+                    TopBarState(
+                        title = topBarTitle,
+                        showBackButton = backStack.size > 1,
+                        onBackClick = { backStack.goBack() },
+                        actions = topBarActions,
+                    ),
+            ),
     ) {
-        AppNavigation(
+        appNavigation(
             backStack = backStack,
             snackbarHostState = snackbarHostState,
-            onPhaseChanged = { phaseTitleResId = it }
+            onPhaseChanged = { phaseTitleResId = it },
         )
     }
 }
 
 @Composable
-fun AppNavigation(
+fun appNavigation(
     backStack: NavBackStack<NavKey>,
     snackbarHostState: SnackbarHostState,
-    onPhaseChanged: (Int) -> Unit
+    onPhaseChanged: (Int) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -117,47 +120,48 @@ fun AppNavigation(
 
     NavDisplay(
         backStack = backStack,
-        entryProvider = entryProvider {
-            // Define navigation entries
-            entry<MainNavKey.Home> {
-                NotificationPermissionEffect()
-                ExactAlarmPermissionEffect(
-                    requestOnMissingPermission = shouldRequestExactAlarmPermission
-                ) { isGranted ->
-                    exactAlarmPermissionGranted = isGranted
-                    shouldRequestExactAlarmPermission = false
+        entryProvider =
+            entryProvider {
+                // Define navigation entries
+                entry<MainNavKey.Home> {
+                    NotificationPermissionEffect()
+                    ExactAlarmPermissionEffect(
+                        requestOnMissingPermission = shouldRequestExactAlarmPermission,
+                    ) { isGranted ->
+                        exactAlarmPermissionGranted = isGranted
+                        shouldRequestExactAlarmPermission = false
+                    }
+                    timerRoute(
+                        onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
+                        onPhaseChanged = { resId -> onPhaseChanged(resId) },
+                        onShowMessage = { message ->
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar(message.asString(context))
+                            }
+                        },
+                        onRequestExactAlarmPermission = {
+                            shouldRequestExactAlarmPermission = true
+                        },
+                        exactAlarmPermissionGranted = exactAlarmPermissionGranted,
+                    )
                 }
-                TimerRoute(
-                    onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
-                    onPhaseChanged = { resId -> onPhaseChanged(resId) },
-                    onShowMessage = { message ->
-                        coroutineScope.launch {
-                            snackbarHostState.showSnackbar(message.asString(context))
-                        }
-                    },
-                    onRequestExactAlarmPermission = {
-                        shouldRequestExactAlarmPermission = true
-                    },
-                    exactAlarmPermissionGranted = exactAlarmPermissionGranted
-                )
-            }
 
-            entry<MainNavKey.Settings> {
-                SettingsRoute()
-            }
+                entry<MainNavKey.Settings> {
+                    settingsRoute()
+                }
 
-            entry<MainNavKey.Statistics> {
-                StatisticsScreen()
-            }
-        }
+                entry<MainNavKey.Statistics> {
+                    statisticsScreen()
+                }
+            },
     )
 }
 
 @Composable
-private fun StatisticsScreen() {
+private fun statisticsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(text = "Statistics")
     }

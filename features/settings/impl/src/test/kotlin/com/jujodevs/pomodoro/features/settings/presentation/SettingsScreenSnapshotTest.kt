@@ -16,58 +16,63 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class SettingsScreenSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
     @Test
     fun settingsScreen_default_snapshot() {
         renderAndCapture(
-            state = SettingsState(
-                alarmSoundLabel = "Digital Beep (Default)",
-                canScheduleExactAlarms = true,
-                hasNotificationPermission = true,
-                isLoading = false
-            ),
-            versionText = "Version 1.0.0 (1)"
+            state =
+                SettingsState(
+                    alarmSoundLabel = "Digital Beep (Default)",
+                    canScheduleExactAlarms = true,
+                    hasNotificationPermission = true,
+                    isLoading = false,
+                ),
+            versionText = "Version 1.0.0 (1)",
         )
     }
 
     @Test
     fun settingsScreen_permissionsMissing_snapshot() {
         renderAndCapture(
-            state = SettingsState(
-                alarmSoundLabel = "Default",
-                canScheduleExactAlarms = false,
-                hasNotificationPermission = false,
-                isLoading = false
-            ),
-            versionText = "Version 1.0.0 (1)"
+            state =
+                SettingsState(
+                    alarmSoundLabel = "Default",
+                    canScheduleExactAlarms = false,
+                    hasNotificationPermission = false,
+                    isLoading = false,
+                ),
+            versionText = "Version 1.0.0 (1)",
         )
     }
 
     @Test
     fun settingsScreen_analyticsEnabled_snapshot() {
         renderAndCapture(
-            state = SettingsState(
-                alarmSoundLabel = "Digital Beep (Default)",
-                analyticsCollectionEnabled = true,
-                canScheduleExactAlarms = true,
-                hasNotificationPermission = true,
-                isLoading = false
-            ),
-            versionText = "Version 1.0.0 (1)"
+            state =
+                SettingsState(
+                    alarmSoundLabel = "Digital Beep (Default)",
+                    analyticsCollectionEnabled = true,
+                    canScheduleExactAlarms = true,
+                    hasNotificationPermission = true,
+                    isLoading = false,
+                ),
+            versionText = "Version 1.0.0 (1)",
         )
     }
 
-    private fun renderAndCapture(state: SettingsState, versionText: String) {
+    private fun renderAndCapture(
+        state: SettingsState,
+        versionText: String,
+    ) {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    SettingsScreen(
+                    settingsScreen(
                         state = state,
                         versionText = versionText,
-                        onAction = {}
+                        onAction = {},
                     )
                 }
             }

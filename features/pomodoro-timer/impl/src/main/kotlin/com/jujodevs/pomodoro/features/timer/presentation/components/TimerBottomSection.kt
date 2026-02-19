@@ -33,50 +33,51 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun BottomSection(
+internal fun bottomSection(
     modifier: Modifier = Modifier,
     state: TimerState,
-    onAction: (TimerAction) -> Unit
+    onAction: (TimerAction) -> Unit,
 ) {
     val spacing = LocalSpacing.current
     Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(spacing.spaceXL),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(spacing.spaceXL),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        ControlButtons(
+        controlButtons(
             status = state.status,
             onStart = { onAction(TimerAction.Start) },
             onPause = { onAction(TimerAction.Pause) },
             onResume = { onAction(TimerAction.Resume) },
-            onReset = { onAction(TimerAction.Reset) }
+            onReset = { onAction(TimerAction.Reset) },
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        SessionProgress(
+        sessionProgress(
             completedSessions = state.completedSessions,
-            totalSessions = state.totalSessions
+            totalSessions = state.totalSessions,
         )
     }
 }
 
 @Composable
-private fun ControlButtons(
+private fun controlButtons(
     status: PomodoroStatus,
     onStart: () -> Unit,
     onPause: () -> Unit,
     onResume: () -> Unit,
-    onReset: () -> Unit
+    onReset: () -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Center,
     ) {
         when (status) {
             PomodoroStatus.IDLE -> {
@@ -84,7 +85,7 @@ private fun ControlButtons(
                     modifier = Modifier.fillMaxWidth(CONTROL_BUTTON_WIDTH_FRACTION),
                     text = stringResource(R.string.action_start),
                     onClick = onStart,
-                    icon = PomodoroIcons.Play
+                    icon = PomodoroIcons.Play,
                 )
             }
             PomodoroStatus.RUNNING -> {
@@ -92,7 +93,7 @@ private fun ControlButtons(
                     modifier = Modifier.fillMaxWidth(CONTROL_BUTTON_WIDTH_FRACTION),
                     text = stringResource(R.string.action_pause),
                     onClick = onPause,
-                    icon = PomodoroIcons.Pause
+                    icon = PomodoroIcons.Pause,
                 )
             }
             PomodoroStatus.PAUSED -> {
@@ -100,7 +101,7 @@ private fun ControlButtons(
                     modifier = Modifier.fillMaxWidth(CONTROL_BUTTON_WIDTH_FRACTION),
                     text = stringResource(R.string.action_resume),
                     onClick = onResume,
-                    icon = PomodoroIcons.Play
+                    icon = PomodoroIcons.Play,
                 )
             }
         }
@@ -110,50 +111,51 @@ private fun ControlButtons(
         PomodoroIconButton(
             icon = PomodoroIcons.Reset,
             onClick = onReset,
-            contentDescription = stringResource(R.string.action_reset)
+            contentDescription = stringResource(R.string.action_reset),
         )
     }
 }
 
 @Composable
-private fun SessionProgress(
+private fun sessionProgress(
     completedSessions: Int,
-    totalSessions: Int
+    totalSessions: Int,
 ) {
     val spacing = LocalSpacing.current
 
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Column {
             Text(
                 text = stringResource(R.string.label_session_progress),
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = PROGRESS_LABEL_ALPHA)
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = PROGRESS_LABEL_ALPHA),
             )
             Text(
                 text = stringResource(R.string.label_sessions_completed, completedSessions, totalSessions),
                 style = MaterialTheme.typography.bodyMedium,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
             )
         }
 
         Row {
             repeat(totalSessions) { index ->
                 Box(
-                    modifier = Modifier
-                        .padding(horizontal = spacing.spaceXXS)
-                        .size(spacing.spaceS)
-                        .clip(CircleShape)
-                        .background(
-                            if (index < completedSessions) {
-                                MaterialTheme.colorScheme.primary
-                            } else {
-                                MaterialTheme.colorScheme.onBackground.copy(alpha = INACTIVE_DOT_ALPHA)
-                            }
-                        )
+                    modifier =
+                        Modifier
+                            .padding(horizontal = spacing.spaceXXS)
+                            .size(spacing.spaceS)
+                            .clip(CircleShape)
+                            .background(
+                                if (index < completedSessions) {
+                                    MaterialTheme.colorScheme.primary
+                                } else {
+                                    MaterialTheme.colorScheme.onBackground.copy(alpha = INACTIVE_DOT_ALPHA)
+                                },
+                            ),
                 )
             }
         }
@@ -166,16 +168,17 @@ private const val INACTIVE_DOT_ALPHA = 0.2f
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun BottomSectionPreview() {
+private fun bottomSectionPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(modifier = Modifier.padding(16.dp)) {
-            BottomSection(
-                state = TimerState(
-                    status = PomodoroStatus.RUNNING,
-                    completedSessions = 2,
-                    totalSessions = 4
-                ),
-                onAction = {}
+            bottomSection(
+                state =
+                    TimerState(
+                        status = PomodoroStatus.RUNNING,
+                        completedSessions = 2,
+                        totalSessions = 4,
+                    ),
+                onAction = {},
             )
         }
     }

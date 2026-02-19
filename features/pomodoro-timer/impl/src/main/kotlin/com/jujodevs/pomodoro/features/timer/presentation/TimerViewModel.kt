@@ -25,6 +25,10 @@ import com.jujodevs.pomodoro.libs.notifications.NotificationData
 import com.jujodevs.pomodoro.libs.notifications.NotificationScheduler
 import com.jujodevs.pomodoro.libs.notifications.NotificationType
 import com.jujodevs.pomodoro.libs.notifications.RunningTimerNotificationData
+import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsEvent
+import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsEventType
+import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsPhase
+import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.RecordUsageStatsEventUseCase
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -47,17 +51,17 @@ data class TimerUseCases(
     val stop: StopPomodoroUseCase,
     val reset: ResetPomodoroUseCase,
     val advancePhase: AdvancePomodoroPhaseUseCase,
-    val updateConfig: UpdatePomodoroConfigUseCase
+    val updateConfig: UpdatePomodoroConfigUseCase,
 )
 
 @OptIn(FlowPreview::class)
 class TimerViewModel(
     private val useCases: TimerUseCases,
     private val notificationScheduler: NotificationScheduler,
+    private val recordUsageStatsEvent: RecordUsageStatsEventUseCase,
     private val timeProvider: TimeProvider,
-    stateSyncDebounceMs: Long = DEFAULT_STATE_SYNC_DEBOUNCE_MS
+    stateSyncDebounceMs: Long = DEFAULT_STATE_SYNC_DEBOUNCE_MS,
 ) : ViewModel() {
-
     private val _state = MutableStateFlow(TimerState(isLoading = true))
     val state = _state.asStateFlow()
 
@@ -75,7 +79,8 @@ class TimerViewModel(
     private var exactAlarmWarningSnoozedUntilMillis: Long? = null
 
     init {
-        useCases.observeSessionState()
+        useCases
+            .observeSessionState()
             .debounce(stateSyncDebounceMs)
             .onEach { sessionState ->
                 latestSessionState = sessionState
@@ -84,8 +89,7 @@ class TimerViewModel(
                 handleTicker(sessionState)
                 handleNotifications(sessionState)
                 syncExactAlarmWarningVisibility(sessionState)
-            }
-            .launchIn(viewModelScope)
+            }.launchIn(viewModelScope)
     }
 
     fun onAction(action: TimerAction) {
@@ -109,9 +113,27 @@ class TimerViewModel(
 
     private suspend fun handleTimerControlActions(action: TimerAction) {
         when (action) {
-            TimerAction.Start, TimerAction.Resume -> useCases.startOrResume()
-            TimerAction.Pause -> useCases.pause()
-            TimerAction.Skip -> useCases.skip()
+            TimerAction.Start -> {
+                useCases.startOrResume()
+                recordPhaseStateEvent(UsageStatsEventType.PHASE_STARTED)
+            }
+
+            TimerAction.Resume -> {
+                useCases.startOrResume()
+                recordPhaseStateEvent(UsageStatsEventType.PHASE_RESUMED)
+            }
+
+            TimerAction.Pause -> {
+                recordPhaseStateEvent(UsageStatsEventType.PHASE_PAUSED)
+                useCases.pause()
+            }
+
+            TimerAction.Skip -> {
+                recordElapsedTimeForCurrentPhase()
+                recordPhaseStateEvent(UsageStatsEventType.PHASE_SKIPPED)
+                useCases.skip()
+            }
+
             TimerAction.Stop -> handleStopAction()
             TimerAction.Reset -> handleResetAction()
             else -> {}
@@ -138,10 +160,14 @@ class TimerViewModel(
         when (action) {
             TimerAction.ConfirmStop -> {
                 _state.update { it.copy(showStopConfirmation = false) }
+                recordElapsedTimeForCurrentPhase()
+                recordPhaseStateEvent(UsageStatsEventType.SESSION_STOPPED)
                 useCases.stop()
             }
             TimerAction.ConfirmReset -> {
                 _state.update { it.copy(showResetConfirmation = false) }
+                recordElapsedTimeForCurrentPhase()
+                recordPhaseStateEvent(UsageStatsEventType.SESSION_RESET)
                 useCases.reset()
             }
             else -> {}
@@ -167,8 +193,9 @@ class TimerViewModel(
     }
 
     private suspend fun dismissExactAlarmWarningForAWeek() {
-        val snoozedUntilMillis = timeProvider.getCurrentTimeMillis() +
-            PomodoroBusinessRules.EXACT_ALARM_WARNING_SNOOZE_MILLIS
+        val snoozedUntilMillis =
+            timeProvider.getCurrentTimeMillis() +
+                PomodoroBusinessRules.EXACT_ALARM_WARNING_SNOOZE_MILLIS
         exactAlarmWarningSnoozedUntilMillis = snoozedUntilMillis
         _state.update { it.copy(isExactAlarmPermissionMissing = false) }
         useCases.updateConfig.updateExactAlarmWarningSnoozedUntil(snoozedUntilMillis)
@@ -203,28 +230,31 @@ class TimerViewModel(
         stopTicker()
         tickerPhaseToken = phaseToken
 
-        tickerJob = viewModelScope.launch {
-            while (isActive) {
-                delay(TICK_DELAY)
-                if (!processTickerTick()) {
-                    break
+        tickerJob =
+            viewModelScope.launch {
+                while (isActive) {
+                    delay(TICK_DELAY)
+                    if (!processTickerTick()) {
+                        break
+                    }
                 }
             }
-        }
     }
 
     private suspend fun processTickerTick(): Boolean {
         var shouldContinue = true
         val currentState = latestSessionState
-        val remaining = currentState
-            ?.lastKnownEndTimestamp
-            ?.minus(timeProvider.getCurrentTimeMillis())
+        val remaining =
+            currentState
+                ?.lastKnownEndTimestamp
+                ?.minus(timeProvider.getCurrentTimeMillis())
 
         when {
             currentState == null -> Unit
             !currentState.isStableRunningState -> shouldContinue = false
             remaining == null -> Unit
             remaining <= 0 -> {
+                recordCompletedPhase(currentState)
                 useCases.advancePhase()
                 shouldContinue = false
             }
@@ -241,11 +271,14 @@ class TimerViewModel(
         tickerPhaseToken = null
     }
 
-    private fun updateTickerState(remaining: Long, duration: Long) {
+    private fun updateTickerState(
+        remaining: Long,
+        duration: Long,
+    ) {
         _state.update {
             it.copy(
                 remainingTimeText = formatTime(remaining),
-                progress = 1f - (remaining.toFloat() / duration)
+                progress = 1f - (remaining.toFloat() / duration),
             )
         }
     }
@@ -265,7 +298,7 @@ class TimerViewModel(
 
     private suspend fun scheduleCompletionNotificationIfNeeded(
         sessionState: PomodoroSessionState,
-        end: Long
+        end: Long,
     ) {
         if (
             sessionState.phaseToken == lastScheduledCompletionToken &&
@@ -279,22 +312,27 @@ class TimerViewModel(
         lastScheduledCompletionEnd = end
     }
 
-    private suspend fun scheduleCompletionNotification(sessionState: PomodoroSessionState, end: Long) {
+    private suspend fun scheduleCompletionNotification(
+        sessionState: PomodoroSessionState,
+        end: Long,
+    ) {
         val phaseNotificationTexts = sessionState.currentPhase.toPhaseNotificationTexts()
 
-        val notificationData = NotificationData(
-            id = NOTIFICATION_ID_COMPLETION,
-            titleResId = phaseNotificationTexts.completionTitle.id,
-            messageResId = phaseNotificationTexts.completionMessage.id,
-            channelId = NotificationChannel.PomodoroSession.id,
-            scheduledTimeMillis = end,
-            type = when (sessionState.currentPhase) {
-                PomodoroPhase.WORK -> NotificationType.WORK_SESSION_COMPLETE
-                PomodoroPhase.SHORT_BREAK -> NotificationType.SHORT_BREAK_COMPLETE
-                PomodoroPhase.LONG_BREAK -> NotificationType.LONG_BREAK_COMPLETE
-            },
-            token = sessionState.phaseToken
-        )
+        val notificationData =
+            NotificationData(
+                id = NOTIFICATION_ID_COMPLETION,
+                titleResId = phaseNotificationTexts.completionTitle.id,
+                messageResId = phaseNotificationTexts.completionMessage.id,
+                channelId = NotificationChannel.PomodoroSession.id,
+                scheduledTimeMillis = end,
+                type =
+                    when (sessionState.currentPhase) {
+                        PomodoroPhase.WORK -> NotificationType.WORK_SESSION_COMPLETE
+                        PomodoroPhase.SHORT_BREAK -> NotificationType.SHORT_BREAK_COMPLETE
+                        PomodoroPhase.LONG_BREAK -> NotificationType.LONG_BREAK_COMPLETE
+                    },
+                token = sessionState.phaseToken,
+            )
         when (val result = notificationScheduler.scheduleNotification(notificationData)) {
             is Result.Success -> {
                 if (_state.value.isExactAlarmPermissionMissing) {
@@ -305,7 +343,7 @@ class TimerViewModel(
             is Result.Failure -> {
                 handleCompletionNotificationFailure(
                     error = result.error,
-                    sessionState = sessionState
+                    sessionState = sessionState,
                 )
             }
         }
@@ -315,31 +353,36 @@ class TimerViewModel(
         notificationScheduler.cancelNotification(NOTIFICATION_ID_COMPLETION)
     }
 
-    private suspend fun startForegroundTimerIfNeeded(sessionState: PomodoroSessionState, end: Long) {
+    private suspend fun startForegroundTimerIfNeeded(
+        sessionState: PomodoroSessionState,
+        end: Long,
+    ) {
         if (sessionState.phaseToken == lastForegroundTimerToken && end == lastForegroundTimerEnd) {
             return
         }
 
         val phaseNotificationTexts = sessionState.currentPhase.toPhaseNotificationTexts()
-        val runningMessage = UiText.StringResource(
-            id = R.string.label_sessions_completed,
-            args = listOf(sessionState.completedWorkSessions, sessionState.totalSessions)
-        )
-
-        val result = notificationScheduler.startRunningForegroundTimer(
-            RunningTimerNotificationData(
-                notificationId = NOTIFICATION_ID_PERSISTENT,
-                titleResId = phaseNotificationTexts.runningTitle.id,
-                messageResId = runningMessage.id,
-                messageArgFirst = runningMessage.intArgAt(0),
-                messageArgSecond = runningMessage.intArgAt(1),
-                channelId = NotificationChannel.RunningTimer.id,
-                endTimeMillis = end,
-                completionNotificationId = NOTIFICATION_ID_COMPLETION,
-                completionTitleResId = phaseNotificationTexts.completionTitle.id,
-                completionMessageResId = phaseNotificationTexts.completionMessage.id
+        val runningMessage =
+            UiText.StringResource(
+                id = R.string.label_sessions_completed,
+                args = listOf(sessionState.completedWorkSessions, sessionState.totalSessions),
             )
-        )
+
+        val result =
+            notificationScheduler.startRunningForegroundTimer(
+                RunningTimerNotificationData(
+                    notificationId = NOTIFICATION_ID_PERSISTENT,
+                    titleResId = phaseNotificationTexts.runningTitle.id,
+                    messageResId = runningMessage.id,
+                    messageArgFirst = runningMessage.intArgAt(0),
+                    messageArgSecond = runningMessage.intArgAt(1),
+                    channelId = NotificationChannel.RunningTimer.id,
+                    endTimeMillis = end,
+                    completionNotificationId = NOTIFICATION_ID_COMPLETION,
+                    completionTitleResId = phaseNotificationTexts.completionTitle.id,
+                    completionMessageResId = phaseNotificationTexts.completionMessage.id,
+                ),
+            )
 
         when (result) {
             is Result.Success -> {
@@ -366,7 +409,7 @@ class TimerViewModel(
 
     private suspend fun handleCompletionNotificationFailure(
         error: DataError.Local,
-        sessionState: PomodoroSessionState
+        sessionState: PomodoroSessionState,
     ) {
         if (error == DataError.Local.INSUFFICIENT_PERMISSIONS) {
             val shouldShowWarning = shouldShowExactAlarmWarning(sessionState)
@@ -377,27 +420,29 @@ class TimerViewModel(
         _effects.emit(TimerEffect.ShowMessage(error.asUiText()))
     }
 
-    private fun PomodoroPhase.toPhaseNotificationTexts(): PhaseNotificationTexts {
-        return when (this) {
-            PomodoroPhase.WORK -> PhaseNotificationTexts(
-                runningTitle = UiText.StringResource(R.string.status_focusing),
-                completionTitle = UiText.StringResource(R.string.notification_work_complete_title),
-                completionMessage = UiText.StringResource(R.string.notification_work_complete_message)
-            )
+    private fun PomodoroPhase.toPhaseNotificationTexts(): PhaseNotificationTexts =
+        when (this) {
+            PomodoroPhase.WORK ->
+                PhaseNotificationTexts(
+                    runningTitle = UiText.StringResource(R.string.status_focusing),
+                    completionTitle = UiText.StringResource(R.string.notification_work_complete_title),
+                    completionMessage = UiText.StringResource(R.string.notification_work_complete_message),
+                )
 
-            PomodoroPhase.SHORT_BREAK -> PhaseNotificationTexts(
-                runningTitle = UiText.StringResource(R.string.session_type_short_break),
-                completionTitle = UiText.StringResource(R.string.notification_short_break_complete_title),
-                completionMessage = UiText.StringResource(R.string.notification_short_break_complete_message)
-            )
+            PomodoroPhase.SHORT_BREAK ->
+                PhaseNotificationTexts(
+                    runningTitle = UiText.StringResource(R.string.session_type_short_break),
+                    completionTitle = UiText.StringResource(R.string.notification_short_break_complete_title),
+                    completionMessage = UiText.StringResource(R.string.notification_short_break_complete_message),
+                )
 
-            PomodoroPhase.LONG_BREAK -> PhaseNotificationTexts(
-                runningTitle = UiText.StringResource(R.string.session_type_long_break),
-                completionTitle = UiText.StringResource(R.string.notification_long_break_complete_title),
-                completionMessage = UiText.StringResource(R.string.notification_long_break_complete_message)
-            )
+            PomodoroPhase.LONG_BREAK ->
+                PhaseNotificationTexts(
+                    runningTitle = UiText.StringResource(R.string.session_type_long_break),
+                    completionTitle = UiText.StringResource(R.string.notification_long_break_complete_title),
+                    completionMessage = UiText.StringResource(R.string.notification_long_break_complete_message),
+                )
         }
-    }
 
     private fun UiText.StringResource.intArgAt(index: Int): Int? = args.getOrNull(index) as? Int
 
@@ -424,14 +469,15 @@ class TimerViewModel(
         if (exactAlarmPermissionGranted == true) {
             return false
         }
-        val snoozedUntilMillis = sessionState?.exactAlarmWarningSnoozedUntilMillis
-            ?: exactAlarmWarningSnoozedUntilMillis
-            ?: 0L
+        val snoozedUntilMillis =
+            sessionState?.exactAlarmWarningSnoozedUntilMillis
+                ?: exactAlarmWarningSnoozedUntilMillis
+                ?: 0L
         return snoozedUntilMillis <= timeProvider.getCurrentTimeMillis()
     }
 
-    private fun TimerState.toUiState(sessionState: PomodoroSessionState): TimerState {
-        return copy(
+    private fun TimerState.toUiState(sessionState: PomodoroSessionState): TimerState =
+        copy(
             phase = sessionState.currentPhase,
             status = sessionState.status,
             remainingTimeText = formatTime(sessionState.remainingMillis),
@@ -444,9 +490,89 @@ class TimerViewModel(
             breakDurationOptions = sessionState.shortBreakDurationOptions,
             autoStartBreaks = sessionState.autoStartBreaks,
             autoStartWork = sessionState.autoStartWork,
-            isLoading = false
+            isLoading = false,
+        )
+
+    private suspend fun recordCompletedPhase(sessionState: PomodoroSessionState) {
+        val phase = sessionState.currentPhase.toUsageStatsPhase()
+
+        recordUsageEvent(
+            type = UsageStatsEventType.PHASE_TIME_RECORDED,
+            phase = phase,
+            durationMillis = sessionState.currentPhaseDurationMillis,
+        )
+        recordUsageEvent(
+            type = UsageStatsEventType.PHASE_COMPLETED,
+            phase = phase,
+            durationMillis = sessionState.currentPhaseDurationMillis,
+        )
+
+        if (sessionState.currentPhase == PomodoroPhase.WORK &&
+            sessionState.completedWorkSessions + 1 >= sessionState.totalSessions
+        ) {
+            recordUsageEvent(
+                type = UsageStatsEventType.CYCLE_COMPLETED,
+                phase = UsageStatsPhase.WORK,
+            )
+        }
+    }
+
+    private suspend fun recordElapsedTimeForCurrentPhase() {
+        val sessionState = latestSessionState ?: return
+        val elapsedMillis = calculateElapsedMillis(sessionState)
+        if (elapsedMillis <= 0L) {
+            return
+        }
+
+        recordUsageEvent(
+            type = UsageStatsEventType.PHASE_TIME_RECORDED,
+            phase = sessionState.currentPhase.toUsageStatsPhase(),
+            durationMillis = elapsedMillis,
         )
     }
+
+    private suspend fun recordPhaseStateEvent(type: UsageStatsEventType) {
+        val currentPhase = (latestSessionState?.currentPhase ?: _state.value.phase).toUsageStatsPhase()
+        recordUsageEvent(type = type, phase = currentPhase)
+    }
+
+    private suspend fun recordUsageEvent(
+        type: UsageStatsEventType,
+        phase: UsageStatsPhase?,
+        durationMillis: Long? = null,
+    ) {
+        val event =
+            UsageStatsEvent(
+                type = type,
+                phase = phase,
+                occurredAtMillis = timeProvider.getCurrentTimeMillis(),
+                durationMillis = durationMillis,
+            )
+        when (recordUsageStatsEvent(event)) {
+            is Result.Success -> Unit
+            is Result.Failure -> Unit
+        }
+    }
+
+    private fun calculateElapsedMillis(sessionState: PomodoroSessionState): Long {
+        val currentTimeMillis = timeProvider.getCurrentTimeMillis()
+        val remainingMillis =
+            if (sessionState.status == PomodoroStatus.RUNNING) {
+                val endTimestamp = sessionState.lastKnownEndTimestamp ?: return 0L
+                (endTimestamp - currentTimeMillis).coerceAtLeast(0L)
+            } else {
+                sessionState.remainingMillis
+            }
+
+        return (sessionState.currentPhaseDurationMillis - remainingMillis).coerceAtLeast(0L)
+    }
+
+    private fun PomodoroPhase.toUsageStatsPhase(): UsageStatsPhase =
+        when (this) {
+            PomodoroPhase.WORK -> UsageStatsPhase.WORK
+            PomodoroPhase.SHORT_BREAK -> UsageStatsPhase.SHORT_BREAK
+            PomodoroPhase.LONG_BREAK -> UsageStatsPhase.LONG_BREAK
+        }
 
     private fun formatTime(millis: Long): String {
         val totalSeconds = (millis / MILLIS_IN_SECOND).coerceAtLeast(0)
@@ -456,9 +582,10 @@ class TimerViewModel(
     }
 
     private val PomodoroSessionState.isStableRunningState: Boolean
-        get() = status == PomodoroStatus.RUNNING &&
-            phaseToken.isNotBlank() &&
-            lastKnownEndTimestamp != null
+        get() =
+            status == PomodoroStatus.RUNNING &&
+                phaseToken.isNotBlank() &&
+                lastKnownEndTimestamp != null
 
     companion object {
         private const val TICK_DELAY = 1000L
@@ -473,5 +600,5 @@ class TimerViewModel(
 private data class PhaseNotificationTexts(
     val runningTitle: UiText.StringResource,
     val completionTitle: UiText.StringResource,
-    val completionMessage: UiText.StringResource
+    val completionMessage: UiText.StringResource,
 )

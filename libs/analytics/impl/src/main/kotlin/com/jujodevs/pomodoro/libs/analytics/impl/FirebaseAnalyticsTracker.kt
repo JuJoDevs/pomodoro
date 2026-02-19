@@ -1,5 +1,6 @@
 package com.jujodevs.pomodoro.libs.analytics.impl
 
+import com.jujodevs.pomodoro.libs.analytics.AnalyticsCollectionManager
 import com.jujodevs.pomodoro.libs.analytics.AnalyticsEvent
 import com.jujodevs.pomodoro.libs.analytics.AnalyticsTracker
 import com.jujodevs.pomodoro.libs.analytics.UserProperty
@@ -10,10 +11,15 @@ import com.jujodevs.pomodoro.libs.logger.Logger
  */
 internal class FirebaseAnalyticsTracker(
     private val firebaseAnalytics: FirebaseAnalyticsWrapper,
-    private val logger: Logger
+    private val analyticsCollectionManager: AnalyticsCollectionManager,
+    private val logger: Logger,
 ) : AnalyticsTracker {
-
     override fun track(event: AnalyticsEvent) {
+        if (!analyticsCollectionManager.isAnalyticsEnabled()) {
+            logger.d(TAG, "Analytics disabled. Event skipped: ${event.name}")
+            return
+        }
+
         try {
             val filteredParams = event.parameters.filterSupportedTypes()
             firebaseAnalytics.logEvent(event.name, filteredParams)
@@ -24,18 +30,24 @@ internal class FirebaseAnalyticsTracker(
     }
 
     override fun setUserProperty(property: UserProperty) {
+        if (!analyticsCollectionManager.isAnalyticsEnabled()) {
+            logger.d(TAG, "Analytics disabled. User property skipped: ${property.key}")
+            return
+        }
+
         try {
-            val value = when (val propValue = property.value) {
-                is String -> propValue
-                is Int -> propValue.toString()
-                is Long -> propValue.toString()
-                is Double -> propValue.toString()
-                is Boolean -> propValue.toString()
-                else -> {
-                    logger.w(TAG, "Unsupported user property type: ${propValue::class.simpleName}")
-                    return
+            val value =
+                when (val propValue = property.value) {
+                    is String -> propValue
+                    is Int -> propValue.toString()
+                    is Long -> propValue.toString()
+                    is Double -> propValue.toString()
+                    is Boolean -> propValue.toString()
+                    else -> {
+                        logger.w(TAG, "Unsupported user property type: ${propValue::class.simpleName}")
+                        return
+                    }
                 }
-            }
             firebaseAnalytics.setUserProperty(property.key, value)
             logger.d(TAG, "User property set: ${property.key} = $value")
         } catch (e: Exception) {
@@ -44,6 +56,11 @@ internal class FirebaseAnalyticsTracker(
     }
 
     override fun setUserId(userId: String?) {
+        if (!analyticsCollectionManager.isAnalyticsEnabled()) {
+            logger.d(TAG, "Analytics disabled. User ID update skipped")
+            return
+        }
+
         try {
             firebaseAnalytics.setUserId(userId)
             logger.d(TAG, "User ID set: ${userId ?: "null"}")
@@ -61,15 +78,14 @@ internal class FirebaseAnalyticsTracker(
         }
     }
 
-    private fun Map<String, Any>.filterSupportedTypes(): Map<String, Any> {
-        return filter { (key, value) ->
+    private fun Map<String, Any>.filterSupportedTypes(): Map<String, Any> =
+        filter { (key, value) ->
             val isSupported = value is String || value is Int || value is Long || value is Double || value is Boolean
             if (!isSupported) {
                 logger.w(TAG, "Unsupported parameter type for key '$key': ${value::class.simpleName}", null)
             }
             isSupported
         }
-    }
 
     private companion object {
         const val TAG = "Analytics"

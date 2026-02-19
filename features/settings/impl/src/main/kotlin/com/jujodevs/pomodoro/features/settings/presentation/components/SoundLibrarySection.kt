@@ -25,26 +25,26 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun SoundLibrarySection(
+fun soundLibrarySection(
     alarmSoundLabel: String,
     onAction: (SettingsAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        AlarmSoundRow(
+        alarmSoundRow(
             label = stringResource(R.string.settings_label_alarm_sound),
             soundLabel = alarmSoundLabel,
-            onClick = { onAction(SettingsAction.OpenNotificationChannelSettings) }
+            onClick = { onAction(SettingsAction.OpenNotificationChannelSettings) },
         )
     }
 }
 
 @Composable
-private fun AlarmSoundRow(
+private fun alarmSoundRow(
     label: String,
     soundLabel: String,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
@@ -52,34 +52,35 @@ private fun AlarmSoundRow(
         Text(
             text = label,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         Spacer(modifier = Modifier.height(spacing.spaceXS))
         PomodoroCard(modifier = Modifier.fillMaxWidth()) {
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable(onClick = onClick),
-                verticalAlignment = Alignment.CenterVertically
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = onClick),
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = soundLabel,
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceXS))
                 Icon(
                     imageVector = PomodoroIcons.ChevronDown,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceXS))
             Text(
                 text = stringResource(R.string.settings_action_open_channel_settings),
                 style = MaterialTheme.typography.labelSmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }
@@ -87,12 +88,12 @@ private fun AlarmSoundRow(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun SoundLibrarySectionPreview() {
+private fun soundLibrarySectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        SoundLibrarySection(
+        soundLibrarySection(
             alarmSoundLabel = "Digital Beep (Default)",
             onAction = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

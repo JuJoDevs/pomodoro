@@ -24,11 +24,11 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun PermissionsSection(
+fun permissionsSection(
     canScheduleExactAlarms: Boolean,
     hasNotificationPermission: Boolean,
     onAction: (SettingsAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
@@ -37,61 +37,62 @@ fun PermissionsSection(
             text = stringResource(R.string.settings_section_permissions),
             style = MaterialTheme.typography.labelSmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
-            fontWeight = FontWeight.Medium
+            fontWeight = FontWeight.Medium,
         )
         Spacer(modifier = Modifier.height(spacing.spaceS))
         PomodoroCard(modifier = Modifier.fillMaxWidth()) {
-            PermissionRow(
+            permissionRow(
                 label = stringResource(R.string.settings_label_exact_alarm),
                 isGranted = canScheduleExactAlarms,
                 grantButtonText = stringResource(R.string.settings_action_grant),
-                onGrantClick = { onAction(SettingsAction.GrantExactAlarmPermission) }
+                onGrantClick = { onAction(SettingsAction.GrantExactAlarmPermission) },
             )
             Spacer(modifier = Modifier.height(spacing.spaceS))
             PomodoroDivider()
             Spacer(modifier = Modifier.height(spacing.spaceS))
-            PermissionRow(
+            permissionRow(
                 label = stringResource(R.string.settings_label_notification),
                 isGranted = hasNotificationPermission,
                 grantButtonText = stringResource(R.string.settings_action_grant),
-                onGrantClick = { onAction(SettingsAction.RequestNotificationPermission) }
+                onGrantClick = { onAction(SettingsAction.RequestNotificationPermission) },
             )
         }
     }
 }
 
 @Composable
-private fun PermissionRow(
+private fun permissionRow(
     label: String,
     isGranted: Boolean,
     grantButtonText: String,
     onGrantClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = LocalSpacing.current.spaceXS),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(vertical = LocalSpacing.current.spaceXS),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = label,
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface,
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         )
         if (isGranted) {
             Text(
                 text = stringResource(R.string.settings_status_granted),
                 style = MaterialTheme.typography.labelMedium,
-                color = MaterialTheme.colorScheme.primary
+                color = MaterialTheme.colorScheme.primary,
             )
         } else {
             Text(
                 text = grantButtonText,
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.clickable(onClick = onGrantClick)
+                modifier = Modifier.clickable(onClick = onGrantClick),
             )
         }
     }
@@ -99,13 +100,13 @@ private fun PermissionRow(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun PermissionsSectionPreview() {
+private fun permissionsSectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        PermissionsSection(
+        permissionsSection(
             canScheduleExactAlarms = false,
             hasNotificationPermission = false,
             onAction = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

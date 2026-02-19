@@ -7,7 +7,6 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 class GetCanScheduleExactAlarmsUseCaseTest {
-
     private val permissionManager: PermissionManager = mockk()
     private val useCase = GetCanScheduleExactAlarmsUseCase(permissionManager)
 
