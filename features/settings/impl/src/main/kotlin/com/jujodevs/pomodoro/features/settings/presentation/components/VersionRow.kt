@@ -14,7 +14,7 @@ import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 
 @Composable
-fun versionRow(
+fun VersionRow(
     versionText: String,
     modifier: Modifier = Modifier,
 ) {
@@ -37,9 +37,9 @@ fun versionRow(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun versionRowPreview() {
+private fun VersionRowPreview() {
     PomodoroTheme(darkTheme = true) {
-        versionRow(
+        VersionRow(
             versionText = "Version 1.0.0 (1)",
             modifier = Modifier.padding(16.dp),
         )

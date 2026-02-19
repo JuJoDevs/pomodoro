@@ -69,7 +69,7 @@ class SettingsScreenSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    settingsScreen(
+                    SettingsScreen(
                         state = state,
                         versionText = versionText,
                         onAction = {},

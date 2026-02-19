@@ -13,7 +13,7 @@ private val DefaultLightSystemBarScrim = Color.argb(0xe6, 0xff, 0xff, 0xff)
 private val DefaultDarkSystemBarScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
 
 @Composable
-fun ComponentActivity.configureSystemBars(darkTheme: Boolean) {
+fun ComponentActivity.ConfigureSystemBars(darkTheme: Boolean) {
     enableEdgeToEdge(
         statusBarStyle =
             SystemBarStyle.auto(

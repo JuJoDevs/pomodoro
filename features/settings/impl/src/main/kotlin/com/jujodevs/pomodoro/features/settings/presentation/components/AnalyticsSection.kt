@@ -24,7 +24,7 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun analyticsSection(
+fun AnalyticsSection(
     analyticsEnabled: Boolean,
     onAction: (SettingsAction) -> Unit,
     modifier: Modifier = Modifier,
@@ -71,9 +71,9 @@ fun analyticsSection(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun analyticsSectionPreview() {
+private fun AnalyticsSectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        analyticsSection(
+        AnalyticsSection(
             analyticsEnabled = true,
             onAction = {},
             modifier = Modifier.padding(16.dp),

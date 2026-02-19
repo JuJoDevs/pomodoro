@@ -24,7 +24,7 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun permissionsSection(
+fun PermissionsSection(
     canScheduleExactAlarms: Boolean,
     hasNotificationPermission: Boolean,
     onAction: (SettingsAction) -> Unit,
@@ -41,7 +41,7 @@ fun permissionsSection(
         )
         Spacer(modifier = Modifier.height(spacing.spaceS))
         PomodoroCard(modifier = Modifier.fillMaxWidth()) {
-            permissionRow(
+            PermissionRow(
                 label = stringResource(R.string.settings_label_exact_alarm),
                 isGranted = canScheduleExactAlarms,
                 grantButtonText = stringResource(R.string.settings_action_grant),
@@ -50,7 +50,7 @@ fun permissionsSection(
             Spacer(modifier = Modifier.height(spacing.spaceS))
             PomodoroDivider()
             Spacer(modifier = Modifier.height(spacing.spaceS))
-            permissionRow(
+            PermissionRow(
                 label = stringResource(R.string.settings_label_notification),
                 isGranted = hasNotificationPermission,
                 grantButtonText = stringResource(R.string.settings_action_grant),
@@ -61,7 +61,7 @@ fun permissionsSection(
 }
 
 @Composable
-private fun permissionRow(
+private fun PermissionRow(
     label: String,
     isGranted: Boolean,
     grantButtonText: String,
@@ -100,9 +100,9 @@ private fun permissionRow(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun permissionsSectionPreview() {
+private fun PermissionsSectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        permissionsSection(
+        PermissionsSection(
             canScheduleExactAlarms = false,
             hasNotificationPermission = false,
             onAction = {},

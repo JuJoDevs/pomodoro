@@ -17,13 +17,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
-import com.jujodevs.pomodoro.features.settings.presentation.components.analyticsSection
-import com.jujodevs.pomodoro.features.settings.presentation.components.permissionsSection
-import com.jujodevs.pomodoro.features.settings.presentation.components.soundLibrarySection
-import com.jujodevs.pomodoro.features.settings.presentation.components.versionRow
+import com.jujodevs.pomodoro.features.settings.presentation.components.AnalyticsSection
+import com.jujodevs.pomodoro.features.settings.presentation.components.PermissionsSection
+import com.jujodevs.pomodoro.features.settings.presentation.components.SoundLibrarySection
+import com.jujodevs.pomodoro.features.settings.presentation.components.VersionRow
 
 @Composable
-fun settingsScreen(
+fun SettingsScreen(
     state: SettingsState,
     versionText: String,
     onAction: (SettingsAction) -> Unit,
@@ -53,21 +53,21 @@ fun settingsScreen(
     ) {
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        soundLibrarySection(
+        SoundLibrarySection(
             alarmSoundLabel = state.alarmSoundLabel,
             onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
 
-        analyticsSection(
+        AnalyticsSection(
             analyticsEnabled = state.analyticsCollectionEnabled,
             onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
 
-        permissionsSection(
+        PermissionsSection(
             canScheduleExactAlarms = state.canScheduleExactAlarms,
             hasNotificationPermission = state.hasNotificationPermission,
             onAction = onAction,
@@ -75,15 +75,15 @@ fun settingsScreen(
 
         Spacer(modifier = Modifier.height(spacing.spaceXXL))
 
-        versionRow(versionText = versionText)
+        VersionRow(versionText = versionText)
     }
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun settingsScreenPreview() {
+private fun SettingsScreenPreview() {
     PomodoroTheme(darkTheme = true) {
-        settingsScreen(
+        SettingsScreen(
             state =
                 SettingsState(
                     alarmSoundLabel = "Digital Beep (Default)",

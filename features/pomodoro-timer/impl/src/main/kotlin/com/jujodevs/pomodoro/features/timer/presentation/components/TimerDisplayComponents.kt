@@ -29,7 +29,7 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 
 @Composable
-internal fun exactAlarmWarningBanner(
+internal fun ExactAlarmWarningBanner(
     onDismiss: () -> Unit,
     onRequestPermission: () -> Unit,
 ) {
@@ -73,7 +73,7 @@ internal fun exactAlarmWarningBanner(
 }
 
 @Composable
-internal fun timerDisplay(
+internal fun TimerDisplay(
     remainingTimeText: String,
     status: PomodoroStatus,
     phase: PomodoroPhase,
@@ -112,9 +112,9 @@ private const val STATUS_ALPHA = 0.7f
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun timerDisplayPreview() {
+private fun TimerDisplayPreview() {
     PomodoroTheme(darkTheme = true) {
-        timerDisplay(
+        TimerDisplay(
             remainingTimeText = "12:34",
             status = PomodoroStatus.RUNNING,
             phase = PomodoroPhase.WORK,
@@ -124,7 +124,7 @@ private fun timerDisplayPreview() {
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun exactAlarmWarningBannerPreview() {
+private fun ExactAlarmWarningBannerPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(
             modifier =
@@ -132,7 +132,7 @@ private fun exactAlarmWarningBannerPreview() {
                     .background(MaterialTheme.colorScheme.background)
                     .padding(16.dp),
         ) {
-            exactAlarmWarningBanner(
+            ExactAlarmWarningBanner(
                 onDismiss = {},
                 onRequestPermission = {},
             )

@@ -33,7 +33,7 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun bottomSection(
+internal fun BottomSection(
     modifier: Modifier = Modifier,
     state: TimerState,
     onAction: (TimerAction) -> Unit,
@@ -47,7 +47,7 @@ internal fun bottomSection(
                 .padding(spacing.spaceXL),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
-        controlButtons(
+        ControlButtons(
             status = state.status,
             onStart = { onAction(TimerAction.Start) },
             onPause = { onAction(TimerAction.Pause) },
@@ -57,7 +57,7 @@ internal fun bottomSection(
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        sessionProgress(
+        SessionProgress(
             completedSessions = state.completedSessions,
             totalSessions = state.totalSessions,
         )
@@ -65,7 +65,7 @@ internal fun bottomSection(
 }
 
 @Composable
-private fun controlButtons(
+private fun ControlButtons(
     status: PomodoroStatus,
     onStart: () -> Unit,
     onPause: () -> Unit,
@@ -117,7 +117,7 @@ private fun controlButtons(
 }
 
 @Composable
-private fun sessionProgress(
+private fun SessionProgress(
     completedSessions: Int,
     totalSessions: Int,
 ) {
@@ -168,10 +168,10 @@ private const val INACTIVE_DOT_ALPHA = 0.2f
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun bottomSectionPreview() {
+private fun BottomSectionPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(modifier = Modifier.padding(16.dp)) {
-            bottomSection(
+            BottomSection(
                 state =
                     TimerState(
                         status = PomodoroStatus.RUNNING,

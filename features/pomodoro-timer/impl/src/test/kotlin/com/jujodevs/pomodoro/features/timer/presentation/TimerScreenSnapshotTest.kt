@@ -80,7 +80,7 @@ class TimerScreenSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    timerScreen(
+                    TimerScreen(
                         state = state,
                         onAction = {},
                     )

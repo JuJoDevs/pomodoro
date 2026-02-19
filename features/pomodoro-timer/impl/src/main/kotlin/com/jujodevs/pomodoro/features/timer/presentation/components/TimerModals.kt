@@ -36,11 +36,11 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun handleModals(
+internal fun HandleModals(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
 ) {
-    confirmationModal(
+    ConfirmationModal(
         visible = state.showStopConfirmation,
         title = stringResource(R.string.dialog_stop_title),
         message = stringResource(R.string.dialog_stop_message),
@@ -49,7 +49,7 @@ internal fun handleModals(
         onDismiss = { onAction(TimerAction.DismissDialog) },
     )
 
-    confirmationModal(
+    ConfirmationModal(
         visible = state.showResetConfirmation,
         title = stringResource(R.string.dialog_reset_title),
         message = stringResource(R.string.dialog_reset_message),
@@ -60,7 +60,7 @@ internal fun handleModals(
 }
 
 @Composable
-private fun confirmationModal(
+private fun ConfirmationModal(
     visible: Boolean,
     title: String,
     message: String,
@@ -103,7 +103,7 @@ private fun confirmationModal(
                     targetOffsetY = { fullHeight -> fullHeight },
                 ) + fadeOut(animationSpec = tween(MODAL_ANIMATION_DURATION_MS)),
         ) {
-            confirmationModalContent(
+            ConfirmationModalContent(
                 title = title,
                 message = message,
                 confirmText = confirmText,
@@ -115,7 +115,7 @@ private fun confirmationModal(
 }
 
 @Composable
-private fun confirmationModalContent(
+private fun ConfirmationModalContent(
     title: String,
     message: String,
     confirmText: String,
@@ -159,9 +159,9 @@ private const val MODAL_ANIMATION_DURATION_MS = 250
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun handleModalsStopPreview() {
+private fun HandleModalsStopPreview() {
     PomodoroTheme(darkTheme = true) {
-        handleModals(
+        HandleModals(
             state = TimerState(showStopConfirmation = true),
             onAction = {},
         )

@@ -33,7 +33,7 @@ class TimerComponentsSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    timerDisplay(
+                    TimerDisplay(
                         remainingTimeText = "12:34",
                         status = PomodoroStatus.RUNNING,
                         phase = PomodoroPhase.WORK,
@@ -53,7 +53,7 @@ class TimerComponentsSnapshotTest {
             PomodoroTheme(darkTheme = true) {
                 Surface {
                     Box(modifier = Modifier.padding(16.dp)) {
-                        exactAlarmWarningBanner(
+                        ExactAlarmWarningBanner(
                             onDismiss = {},
                             onRequestPermission = {},
                         )
@@ -73,7 +73,7 @@ class TimerComponentsSnapshotTest {
             PomodoroTheme(darkTheme = true) {
                 Surface {
                     Box(modifier = Modifier.padding(16.dp)) {
-                        configSection(
+                        ConfigSection(
                             state =
                                 TimerState(
                                     status = PomodoroStatus.IDLE,
@@ -97,7 +97,7 @@ class TimerComponentsSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme(darkTheme = true) {
                 Surface {
-                    bottomSection(
+                    BottomSection(
                         state =
                             TimerState(
                                 status = PomodoroStatus.RUNNING,
@@ -126,7 +126,7 @@ class TimerComponentsSnapshotTest {
                                 .fillMaxSize()
                                 .background(androidx.compose.material3.MaterialTheme.colorScheme.background),
                     ) {
-                        handleModals(
+                        HandleModals(
                             state = TimerState(showStopConfirmation = true),
                             onAction = {},
                         )
@@ -151,7 +151,7 @@ class TimerComponentsSnapshotTest {
                                 .fillMaxSize()
                                 .background(androidx.compose.material3.MaterialTheme.colorScheme.background),
                     ) {
-                        handleModals(
+                        HandleModals(
                             state = TimerState(showResetConfirmation = true),
                             onAction = {},
                         )

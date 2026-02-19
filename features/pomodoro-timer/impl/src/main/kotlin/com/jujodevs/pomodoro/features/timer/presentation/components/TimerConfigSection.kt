@@ -29,7 +29,7 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerAction
 import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
-internal fun configSection(
+internal fun ConfigSection(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
     modifier: Modifier = Modifier,
@@ -38,7 +38,7 @@ internal fun configSection(
     val isIdle = state.status == PomodoroStatus.IDLE
 
     Column(modifier) {
-        durationSelectorCard(
+        DurationSelectorCard(
             title = stringResource(R.string.label_work_duration),
             options = state.workDurationOptions,
             selectedOption = state.selectedWorkMinutes,
@@ -48,7 +48,7 @@ internal fun configSection(
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        durationSelectorCard(
+        DurationSelectorCard(
             title = stringResource(R.string.label_break_duration),
             options = state.breakDurationOptions,
             selectedOption = state.selectedShortBreakMinutes,
@@ -58,7 +58,7 @@ internal fun configSection(
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
-        autoStartToggles(
+        AutoStartToggles(
             autoStartBreaks = state.autoStartBreaks,
             autoStartWork = state.autoStartWork,
             onToggleBreaks = { onAction(TimerAction.ToggleAutoStartBreaks(it)) },
@@ -68,7 +68,7 @@ internal fun configSection(
 }
 
 @Composable
-private fun durationSelectorCard(
+private fun DurationSelectorCard(
     title: String,
     options: List<Int>,
     selectedOption: Int,
@@ -114,7 +114,7 @@ private fun durationSelectorCard(
 }
 
 @Composable
-private fun autoStartToggles(
+private fun AutoStartToggles(
     autoStartBreaks: Boolean,
     autoStartWork: Boolean,
     onToggleBreaks: (Boolean) -> Unit,
@@ -154,14 +154,14 @@ private fun autoStartToggles(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun configSectionPreview() {
+private fun ConfigSectionPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(
             modifier =
                 Modifier
                     .padding(16.dp),
         ) {
-            configSection(
+            ConfigSection(
                 state =
                     TimerState(
                         status = PomodoroStatus.IDLE,

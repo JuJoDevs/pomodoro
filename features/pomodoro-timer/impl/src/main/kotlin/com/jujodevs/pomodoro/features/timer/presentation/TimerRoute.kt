@@ -11,7 +11,7 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun timerRoute(
+fun TimerRoute(
     onNavigateToSettings: () -> Unit,
     onPhaseChanged: (Int) -> Unit,
     onShowMessage: (UiText) -> Unit,
@@ -47,7 +47,7 @@ fun timerRoute(
         }
     }
 
-    timerScreen(
+    TimerScreen(
         state = state,
         onAction = viewModel::onAction,
     )

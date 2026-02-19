@@ -16,14 +16,14 @@ import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroPhase
 import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
-import com.jujodevs.pomodoro.features.timer.presentation.components.bottomSection
-import com.jujodevs.pomodoro.features.timer.presentation.components.configSection
-import com.jujodevs.pomodoro.features.timer.presentation.components.exactAlarmWarningBanner
-import com.jujodevs.pomodoro.features.timer.presentation.components.handleModals
-import com.jujodevs.pomodoro.features.timer.presentation.components.timerDisplay
+import com.jujodevs.pomodoro.features.timer.presentation.components.BottomSection
+import com.jujodevs.pomodoro.features.timer.presentation.components.ConfigSection
+import com.jujodevs.pomodoro.features.timer.presentation.components.ExactAlarmWarningBanner
+import com.jujodevs.pomodoro.features.timer.presentation.components.HandleModals
+import com.jujodevs.pomodoro.features.timer.presentation.components.TimerDisplay
 
 @Composable
-fun timerScreen(
+fun TimerScreen(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
 ) {
@@ -42,14 +42,14 @@ fun timerScreen(
             Spacer(modifier = Modifier.height(spacing.spaceM))
 
             if (state.isExactAlarmPermissionMissing) {
-                exactAlarmWarningBanner(
+                ExactAlarmWarningBanner(
                     onDismiss = { onAction(TimerAction.DismissExactAlarmWarning) },
                     onRequestPermission = { onAction(TimerAction.RequestExactAlarmPermission) },
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceM))
             }
 
-            timerDisplay(
+            TimerDisplay(
                 remainingTimeText = state.remainingTimeText,
                 status = state.status,
                 phase = state.phase,
@@ -57,7 +57,7 @@ fun timerScreen(
 
             Spacer(modifier = Modifier.height(spacing.spaceXXL))
 
-            configSection(
+            ConfigSection(
                 state = state,
                 onAction = onAction,
             )
@@ -65,21 +65,21 @@ fun timerScreen(
             Spacer(modifier = Modifier.height(spacing.spaceXL))
         }
 
-        bottomSection(
+        BottomSection(
             modifier = Modifier.fillMaxWidth(),
             state = state,
             onAction = onAction,
         )
     }
 
-    handleModals(state, onAction)
+    HandleModals(state, onAction)
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun timerScreenPreview() {
+private fun TimerScreenPreview() {
     PomodoroTheme(darkTheme = true) {
-        timerScreen(
+        TimerScreen(
             state =
                 TimerState(
                     phase = PomodoroPhase.WORK,

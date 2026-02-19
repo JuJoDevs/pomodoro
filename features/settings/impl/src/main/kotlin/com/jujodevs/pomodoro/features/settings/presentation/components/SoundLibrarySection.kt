@@ -25,13 +25,13 @@ import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsAction
 
 @Composable
-fun soundLibrarySection(
+fun SoundLibrarySection(
     alarmSoundLabel: String,
     onAction: (SettingsAction) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
-        alarmSoundRow(
+        AlarmSoundRow(
             label = stringResource(R.string.settings_label_alarm_sound),
             soundLabel = alarmSoundLabel,
             onClick = { onAction(SettingsAction.OpenNotificationChannelSettings) },
@@ -40,7 +40,7 @@ fun soundLibrarySection(
 }
 
 @Composable
-private fun alarmSoundRow(
+private fun AlarmSoundRow(
     label: String,
     soundLabel: String,
     onClick: () -> Unit,
@@ -88,9 +88,9 @@ private fun alarmSoundRow(
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
 @Composable
-private fun soundLibrarySectionPreview() {
+private fun SoundLibrarySectionPreview() {
     PomodoroTheme(darkTheme = true) {
-        soundLibrarySection(
+        SoundLibrarySection(
             alarmSoundLabel = "Digital Beep (Default)",
             onAction = {},
             modifier = Modifier.padding(16.dp),

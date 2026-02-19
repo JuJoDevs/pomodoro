@@ -36,9 +36,9 @@ import com.jujodevs.pomodoro.core.ui.TopBarAction
 import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
-import com.jujodevs.pomodoro.features.settings.presentation.settingsRoute
-import com.jujodevs.pomodoro.features.timer.presentation.timerRoute
-import com.jujodevs.pomodoro.ui.configureSystemBars
+import com.jujodevs.pomodoro.features.settings.presentation.SettingsRoute
+import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
+import com.jujodevs.pomodoro.ui.ConfigureSystemBars
 import kotlinx.coroutines.launch
 
 private const val DARK_THEME = true
@@ -48,16 +48,16 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setContent {
-            configureSystemBars(darkTheme = DARK_THEME)
+            ConfigureSystemBars(darkTheme = DARK_THEME)
             PomodoroTheme(darkTheme = DARK_THEME) {
-                pomodoroApp()
+                PomodoroApp()
             }
         }
     }
 }
 
 @Composable
-private fun pomodoroApp() {
+private fun PomodoroApp() {
     val backStack = rememberNavBackStack(MainNavKey.Home)
     val snackbarHostState = remember { SnackbarHostState() }
     var phaseTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
@@ -99,7 +99,7 @@ private fun pomodoroApp() {
                     ),
             ),
     ) {
-        appNavigation(
+        AppNavigation(
             backStack = backStack,
             snackbarHostState = snackbarHostState,
             onPhaseChanged = { phaseTitleResId = it },
@@ -108,7 +108,7 @@ private fun pomodoroApp() {
 }
 
 @Composable
-fun appNavigation(
+fun AppNavigation(
     backStack: NavBackStack<NavKey>,
     snackbarHostState: SnackbarHostState,
     onPhaseChanged: (Int) -> Unit,
@@ -131,7 +131,7 @@ fun appNavigation(
                         exactAlarmPermissionGranted = isGranted
                         shouldRequestExactAlarmPermission = false
                     }
-                    timerRoute(
+                    TimerRoute(
                         onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
                         onPhaseChanged = { resId -> onPhaseChanged(resId) },
                         onShowMessage = { message ->
@@ -147,18 +147,18 @@ fun appNavigation(
                 }
 
                 entry<MainNavKey.Settings> {
-                    settingsRoute()
+                    SettingsRoute()
                 }
 
                 entry<MainNavKey.Statistics> {
-                    statisticsScreen()
+                    StatisticsScreen()
                 }
             },
     )
 }
 
 @Composable
-private fun statisticsScreen() {
+private fun StatisticsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,

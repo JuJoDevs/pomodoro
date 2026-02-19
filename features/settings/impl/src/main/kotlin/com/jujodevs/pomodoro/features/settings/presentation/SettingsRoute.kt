@@ -21,7 +21,7 @@ import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun settingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
+fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
     var requestExactAlarmPermission by remember { mutableStateOf(false) }
@@ -62,7 +62,7 @@ fun settingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
         viewModel.refreshPermissionAndAlarmState()
     }
 
-    settingsScreen(
+    SettingsScreen(
         state = state,
         versionText = versionText,
         onAction = viewModel::onAction,
