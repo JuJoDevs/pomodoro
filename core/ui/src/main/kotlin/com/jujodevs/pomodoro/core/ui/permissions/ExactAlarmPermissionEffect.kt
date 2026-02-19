@@ -7,6 +7,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
 import com.jujodevs.pomodoro.libs.permissions.PermissionManager
@@ -25,26 +27,29 @@ fun ExactAlarmPermissionEffect(
     onPermissionResult: (Boolean) -> Unit = {},
 ) {
     val context = LocalContext.current
+    val onPermissionResultState by rememberUpdatedState(newValue = onPermissionResult)
 
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.StartActivityForResult()
-    ) {
-        onPermissionResult(permissionManager.canScheduleExactAlarms())
-    }
+    val launcher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.StartActivityForResult(),
+        ) {
+            onPermissionResultState(permissionManager.canScheduleExactAlarms())
+        }
 
     LaunchedEffect(requestOnMissingPermission) {
         if (!permissionManager.canScheduleExactAlarms()) {
             if (requestOnMissingPermission && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                val intent = Intent(
-                    Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
-                    "package:${context.packageName}".toUri()
-                )
+                val intent =
+                    Intent(
+                        Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM,
+                        "package:${context.packageName}".toUri(),
+                    )
                 launcher.launch(intent)
             } else {
-                onPermissionResult(false)
+                onPermissionResultState(false)
             }
         } else {
-            onPermissionResult(true)
+            onPermissionResultState(true)
         }
     }
 }

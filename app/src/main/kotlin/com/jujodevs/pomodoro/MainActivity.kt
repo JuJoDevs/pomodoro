@@ -102,7 +102,7 @@ private fun PomodoroApp() {
         AppNavigation(
             backStack = backStack,
             snackbarHostState = snackbarHostState,
-            onPhaseChanged = { phaseTitleResId = it },
+            onPhaseChange = { phaseTitleResId = it },
         )
     }
 }
@@ -111,7 +111,7 @@ private fun PomodoroApp() {
 fun AppNavigation(
     backStack: NavBackStack<NavKey>,
     snackbarHostState: SnackbarHostState,
-    onPhaseChanged: (Int) -> Unit,
+    onPhaseChange: (Int) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -133,7 +133,7 @@ fun AppNavigation(
                     }
                     TimerRoute(
                         onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
-                        onPhaseChanged = { resId -> onPhaseChanged(resId) },
+                        onPhaseChange = { resId -> onPhaseChange(resId) },
                         onShowMessage = { message ->
                             coroutineScope.launch {
                                 snackbarHostState.showSnackbar(message.asString(context))

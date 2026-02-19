@@ -1,6 +1,7 @@
 package com.jujodevs.pomodoro.core.designsystem.components.button
 
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
@@ -12,6 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
@@ -47,11 +49,12 @@ fun PomodoroButton(
                 modifier = modifier.height(56.dp),
                 enabled = enabled,
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
-                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
             ) {
                 ButtonContent(icon = icon, text = text)
             }
@@ -63,11 +66,12 @@ fun PomodoroButton(
                 modifier = modifier.height(56.dp),
                 enabled = enabled,
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = SurfaceVariantDark,
-                    contentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
-                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp)
+                colors =
+                    ButtonDefaults.buttonColors(
+                        containerColor = SurfaceVariantDark,
+                        contentColor = MaterialTheme.colorScheme.onPrimary,
+                    ),
+                contentPadding = PaddingValues(horizontal = 24.dp, vertical = 16.dp),
             ) {
                 ButtonContent(icon = icon, text = text)
             }
@@ -79,9 +83,10 @@ fun PomodoroButton(
                 modifier = modifier,
                 enabled = enabled,
                 shape = MaterialTheme.shapes.medium,
-                colors = ButtonDefaults.textButtonColors(
-                    contentColor = MaterialTheme.colorScheme.primary,
-                ),
+                colors =
+                    ButtonDefaults.textButtonColors(
+                        contentColor = MaterialTheme.colorScheme.primary,
+                    ),
             ) {
                 ButtonContent(icon = icon, text = text)
             }
@@ -92,23 +97,28 @@ fun PomodoroButton(
 enum class ButtonVariant {
     Primary,
     Secondary,
-    Text
+    Text,
 }
 
 @Composable
-private fun ButtonContent(icon: ImageVector?, text: String) {
-    if (icon != null) {
-        Icon(
-            imageVector = icon,
-            contentDescription = null,
-            modifier = Modifier.size(20.dp)
+private fun ButtonContent(
+    icon: ImageVector?,
+    text: String,
+) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        if (icon != null) {
+            Icon(
+                imageVector = icon,
+                contentDescription = null,
+                modifier = Modifier.size(20.dp),
+            )
+            Spacer(modifier = Modifier.width(8.dp))
+        }
+        Text(
+            text = text,
+            style = MaterialTheme.typography.titleMedium,
         )
-        Spacer(modifier = Modifier.width(8.dp))
     }
-    Text(
-        text = text,
-        style = MaterialTheme.typography.titleMedium
-    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
@@ -118,7 +128,7 @@ private fun PomodoroButtonPreview() {
         PomodoroButton(
             text = "START",
             onClick = {},
-            variant = ButtonVariant.Primary
+            variant = ButtonVariant.Primary,
         )
     }
 }
@@ -130,7 +140,7 @@ private fun PomodoroButtonSecondaryPreview() {
         PomodoroButton(
             text = "Reset",
             onClick = {},
-            variant = ButtonVariant.Secondary
+            variant = ButtonVariant.Secondary,
         )
     }
 }
@@ -142,7 +152,7 @@ private fun PomodoroButtonTextPreview() {
         PomodoroButton(
             text = "Skip",
             onClick = {},
-            variant = ButtonVariant.Text
+            variant = ButtonVariant.Text,
         )
     }
 }

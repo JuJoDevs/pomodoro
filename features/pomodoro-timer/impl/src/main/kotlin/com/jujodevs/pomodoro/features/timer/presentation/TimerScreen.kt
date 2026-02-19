@@ -26,10 +26,11 @@ import com.jujodevs.pomodoro.features.timer.presentation.components.TimerDisplay
 fun TimerScreen(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         Column(
             modifier =
                 Modifier
@@ -66,13 +67,16 @@ fun TimerScreen(
         }
 
         BottomSection(
-            modifier = Modifier.fillMaxWidth(),
             state = state,
             onAction = onAction,
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 
-    HandleModals(state, onAction)
+    HandleModals(
+        state = state,
+        onAction = onAction,
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)

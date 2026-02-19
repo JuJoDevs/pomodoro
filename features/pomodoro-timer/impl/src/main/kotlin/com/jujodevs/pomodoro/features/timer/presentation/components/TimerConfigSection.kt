@@ -42,7 +42,7 @@ internal fun ConfigSection(
             title = stringResource(R.string.label_work_duration),
             options = state.workDurationOptions,
             selectedOption = state.selectedWorkMinutes,
-            onOptionSelected = { onAction(TimerAction.SelectWorkDuration(it)) },
+            onOptionSelect = { onAction(TimerAction.SelectWorkDuration(it)) },
             enabled = isIdle,
         )
 
@@ -52,7 +52,7 @@ internal fun ConfigSection(
             title = stringResource(R.string.label_break_duration),
             options = state.breakDurationOptions,
             selectedOption = state.selectedShortBreakMinutes,
-            onOptionSelected = { onAction(TimerAction.SelectShortBreakDuration(it)) },
+            onOptionSelect = { onAction(TimerAction.SelectShortBreakDuration(it)) },
             enabled = isIdle,
         )
 
@@ -72,7 +72,7 @@ private fun DurationSelectorCard(
     title: String,
     options: List<Int>,
     selectedOption: Int,
-    onOptionSelected: (Int) -> Unit,
+    onOptionSelect: (Int) -> Unit,
     enabled: Boolean,
 ) {
     val spacing = LocalSpacing.current
@@ -105,7 +105,7 @@ private fun DurationSelectorCard(
                     PomodoroChip(
                         text = option.toString(),
                         selected = option == selectedOption,
-                        onClick = { if (enabled) onOptionSelected(option) },
+                        onClick = { if (enabled) onOptionSelect(option) },
                     )
                 }
             }

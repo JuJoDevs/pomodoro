@@ -40,23 +40,25 @@ internal fun HandleModals(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
 ) {
-    ConfirmationModal(
-        visible = state.showStopConfirmation,
-        title = stringResource(R.string.dialog_stop_title),
-        message = stringResource(R.string.dialog_stop_message),
-        confirmText = stringResource(R.string.action_stop),
-        onConfirm = { onAction(TimerAction.ConfirmStop) },
-        onDismiss = { onAction(TimerAction.DismissDialog) },
-    )
+    Box(modifier = Modifier.fillMaxSize()) {
+        ConfirmationModal(
+            visible = state.showStopConfirmation,
+            title = stringResource(R.string.dialog_stop_title),
+            message = stringResource(R.string.dialog_stop_message),
+            confirmText = stringResource(R.string.action_stop),
+            onConfirm = { onAction(TimerAction.ConfirmStop) },
+            onDismiss = { onAction(TimerAction.DismissDialog) },
+        )
 
-    ConfirmationModal(
-        visible = state.showResetConfirmation,
-        title = stringResource(R.string.dialog_reset_title),
-        message = stringResource(R.string.dialog_reset_message),
-        confirmText = stringResource(R.string.action_ok),
-        onConfirm = { onAction(TimerAction.ConfirmReset) },
-        onDismiss = { onAction(TimerAction.DismissDialog) },
-    )
+        ConfirmationModal(
+            visible = state.showResetConfirmation,
+            title = stringResource(R.string.dialog_reset_title),
+            message = stringResource(R.string.dialog_reset_message),
+            confirmText = stringResource(R.string.action_ok),
+            onConfirm = { onAction(TimerAction.ConfirmReset) },
+            onDismiss = { onAction(TimerAction.DismissDialog) },
+        )
+    }
 }
 
 @Composable

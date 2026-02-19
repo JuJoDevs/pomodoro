@@ -60,7 +60,7 @@ firebaseCrashlyticsPlugin = "3.0.6"
 
 # Detekt
 detekt = "1.23.8"
-detektComposeRules = "0.5.6"
+detektComposeRules = "0.4.26"
 
 # Ktlint
 ktlint = "1.5.0"

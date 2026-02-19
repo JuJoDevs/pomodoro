@@ -115,6 +115,9 @@ Compose:
     active: true
   ComposableAnnotationNaming:
     active: true
+  CompositionLocalAllowlist:
+    active: true
+    allowedCompositionLocals: ['LocalSpacing']
   ModifierMissing:
     active: true
   ModifierReused:

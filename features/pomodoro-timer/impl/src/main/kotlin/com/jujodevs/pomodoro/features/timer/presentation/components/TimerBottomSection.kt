@@ -34,9 +34,9 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 
 @Composable
 internal fun BottomSection(
-    modifier: Modifier = Modifier,
     state: TimerState,
     onAction: (TimerAction) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
     Column(
