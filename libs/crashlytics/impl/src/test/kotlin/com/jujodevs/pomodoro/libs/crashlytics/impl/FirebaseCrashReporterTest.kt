@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class FirebaseCrashReporterTest {
-
     private val firebaseCrashlytics: FirebaseCrashlyticsWrapper = mockk()
     private val logger: Logger = mockk(relaxed = true)
 

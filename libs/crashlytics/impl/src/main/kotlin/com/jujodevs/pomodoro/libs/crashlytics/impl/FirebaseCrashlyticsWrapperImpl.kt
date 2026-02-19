@@ -6,9 +6,8 @@ import com.google.firebase.crashlytics.FirebaseCrashlytics
  * Default implementation of [FirebaseCrashlyticsWrapper] that delegates to Firebase Crashlytics SDK.
  */
 internal class FirebaseCrashlyticsWrapperImpl(
-    private val firebaseCrashlytics: FirebaseCrashlytics
+    private val firebaseCrashlytics: FirebaseCrashlytics,
 ) : FirebaseCrashlyticsWrapper {
-
     override fun recordException(throwable: Throwable) {
         firebaseCrashlytics.recordException(throwable)
     }
@@ -17,15 +16,24 @@ internal class FirebaseCrashlyticsWrapperImpl(
         firebaseCrashlytics.setUserId(userId)
     }
 
-    override fun setCustomKey(key: String, value: String) {
+    override fun setCustomKey(
+        key: String,
+        value: String,
+    ) {
         firebaseCrashlytics.setCustomKey(key, value)
     }
 
-    override fun setCustomKey(key: String, value: Int) {
+    override fun setCustomKey(
+        key: String,
+        value: Int,
+    ) {
         firebaseCrashlytics.setCustomKey(key, value)
     }
 
-    override fun setCustomKey(key: String, value: Boolean) {
+    override fun setCustomKey(
+        key: String,
+        value: Boolean,
+    ) {
         firebaseCrashlytics.setCustomKey(key, value)
     }
 

@@ -21,13 +21,14 @@ import com.jujodevs.pomodoro.core.designsystem.theme.ProgressTrack
 @Composable
 fun PomodoroProgressBar(
     progress: Float,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LinearProgressIndicator(
         progress = { progress },
-        modifier = modifier
-            .fillMaxWidth()
-            .clip(MaterialTheme.shapes.extraSmall),
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .clip(MaterialTheme.shapes.extraSmall),
         color = MaterialTheme.colorScheme.primary,
         trackColor = ProgressTrack,
         strokeCap = androidx.compose.ui.graphics.StrokeCap.Round,

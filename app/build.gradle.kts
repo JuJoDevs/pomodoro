@@ -62,6 +62,10 @@ dependencies {
     implementation(project(":libs:permissions:api"))
     implementation(project(":libs:permissions:impl"))
 
+    // Usage stats
+    implementation(project(":libs:usage-stats:api"))
+    implementation(project(":libs:usage-stats:impl"))
+
     // Features
     implementation(project(":features:pomodoro-timer:impl"))
     implementation(project(":features:settings:impl"))

@@ -14,4 +14,5 @@ dependencies {
     implementation(project(":libs:datastore:api"))
     implementation(project(":libs:notifications:api"))
     implementation(project(":libs:logger:api"))
+    implementation(project(":libs:usage-stats:api"))
 }

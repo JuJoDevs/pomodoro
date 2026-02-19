@@ -5,8 +5,19 @@ package com.jujodevs.pomodoro.libs.analytics.impl
  * This allows proper unit testing without mocking final Firebase classes.
  */
 internal interface FirebaseAnalyticsWrapper {
-    fun logEvent(name: String, params: Map<String, Any>)
-    fun setUserProperty(name: String, value: String)
+    fun logEvent(
+        name: String,
+        params: Map<String, Any>,
+    )
+
+    fun setUserProperty(
+        name: String,
+        value: String,
+    )
+
     fun setUserId(userId: String?)
+
+    fun setAnalyticsCollectionEnabled(enabled: Boolean)
+
     fun resetAnalyticsData()
 }

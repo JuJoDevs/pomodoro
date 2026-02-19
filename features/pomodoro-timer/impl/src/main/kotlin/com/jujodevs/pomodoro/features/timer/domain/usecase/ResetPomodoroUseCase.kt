@@ -5,7 +5,7 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 import com.jujodevs.pomodoro.features.timer.domain.repository.PomodoroRepository
 
 class ResetPomodoroUseCase(
-    private val repository: PomodoroRepository
+    private val repository: PomodoroRepository,
 ) {
     suspend operator fun invoke() {
         repository.updateSessionState { currentState ->
@@ -15,7 +15,7 @@ class ResetPomodoroUseCase(
                 completedWorkSessions = 0,
                 remainingMillis = currentState.selectedWorkMinutes * 60 * 1000L,
                 phaseToken = "",
-                lastKnownEndTimestamp = null
+                lastKnownEndTimestamp = null,
             )
         }
     }

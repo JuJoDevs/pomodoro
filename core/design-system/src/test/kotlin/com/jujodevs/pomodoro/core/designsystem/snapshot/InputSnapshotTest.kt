@@ -23,7 +23,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class InputSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -32,13 +31,14 @@ class InputSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroSwitch(
                         checked = true,
-                        onCheckedChange = {}
+                        onCheckedChange = {},
                     )
                 }
             }
@@ -51,13 +51,14 @@ class InputSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroSwitch(
                         checked = false,
-                        onCheckedChange = {}
+                        onCheckedChange = {},
                     )
                 }
             }
@@ -70,13 +71,14 @@ class InputSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroSlider(
                         value = 0.75f,
-                        onValueChange = {}
+                        onValueChange = {},
                     )
                 }
             }

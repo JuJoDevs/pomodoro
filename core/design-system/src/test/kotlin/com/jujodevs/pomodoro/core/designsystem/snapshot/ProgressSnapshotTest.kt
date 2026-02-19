@@ -23,7 +23,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class ProgressSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -32,9 +31,10 @@ class ProgressSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroProgressBar(progress = 0.75f)
                 }
@@ -48,9 +48,10 @@ class ProgressSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroProgressBar(progress = 0.5f)
                 }
@@ -64,9 +65,10 @@ class ProgressSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroProgressIndicator(progress = 0.75f)
                 }

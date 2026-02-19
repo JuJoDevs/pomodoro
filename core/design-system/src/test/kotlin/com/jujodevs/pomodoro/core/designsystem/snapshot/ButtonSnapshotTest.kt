@@ -25,7 +25,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class ButtonSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -34,14 +33,15 @@ class ButtonSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroButton(
                         text = "START",
                         onClick = {},
-                        variant = ButtonVariant.Primary
+                        variant = ButtonVariant.Primary,
                     )
                 }
             }
@@ -54,15 +54,16 @@ class ButtonSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroButton(
                         text = "START",
                         onClick = {},
                         variant = ButtonVariant.Primary,
-                        icon = Icons.Default.PlayArrow
+                        icon = Icons.Default.PlayArrow,
                     )
                 }
             }
@@ -75,14 +76,15 @@ class ButtonSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroButton(
                         text = "Reset",
                         onClick = {},
-                        variant = ButtonVariant.Secondary
+                        variant = ButtonVariant.Secondary,
                     )
                 }
             }
@@ -95,14 +97,15 @@ class ButtonSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroButton(
                         text = "Skip",
                         onClick = {},
-                        variant = ButtonVariant.Text
+                        variant = ButtonVariant.Text,
                     )
                 }
             }
@@ -115,15 +118,16 @@ class ButtonSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroButton(
                         text = "START",
                         onClick = {},
                         variant = ButtonVariant.Primary,
-                        enabled = false
+                        enabled = false,
                     )
                 }
             }

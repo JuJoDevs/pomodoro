@@ -32,33 +32,36 @@ fun PomodoroChip(
     text: String,
     selected: Boolean,
     onClick: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
-    val backgroundColor = if (selected) {
-        MaterialTheme.colorScheme.primary
-    } else {
-        Color.Transparent
-    }
+    val backgroundColor =
+        if (selected) {
+            MaterialTheme.colorScheme.primary
+        } else {
+            Color.Transparent
+        }
 
-    val textColor = if (selected) {
-        MaterialTheme.colorScheme.onPrimary
-    } else {
-        TextSecondary
-    }
+    val textColor =
+        if (selected) {
+            MaterialTheme.colorScheme.onPrimary
+        } else {
+            TextSecondary
+        }
 
     Box(
-        modifier = modifier
-            .width(60.dp)
-            .height(48.dp)
-            .clip(MaterialTheme.shapes.medium)
-            .background(backgroundColor)
-            .clickable(onClick = onClick),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .width(60.dp)
+                .height(48.dp)
+                .clip(MaterialTheme.shapes.medium)
+                .background(backgroundColor)
+                .clickable(onClick = onClick),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = text,
             style = MaterialTheme.typography.titleMedium,
-            color = textColor
+            color = textColor,
         )
     }
 }
@@ -70,7 +73,7 @@ private fun PomodoroChipSelectedPreview() {
         PomodoroChip(
             text = "25",
             selected = true,
-            onClick = {}
+            onClick = {},
         )
     }
 }
@@ -82,7 +85,7 @@ private fun PomodoroChipUnselectedPreview() {
         PomodoroChip(
             text = "15",
             selected = false,
-            onClick = {}
+            onClick = {},
         )
     }
 }

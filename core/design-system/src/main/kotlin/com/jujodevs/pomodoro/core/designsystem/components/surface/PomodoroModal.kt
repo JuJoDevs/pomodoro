@@ -34,7 +34,7 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 @Composable
 fun PomodoroModal(
     modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
@@ -42,21 +42,23 @@ fun PomodoroModal(
         modifier = modifier,
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 8.dp
+        tonalElevation = 8.dp,
     ) {
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(spacing.spaceXL)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceXL),
         ) {
             // Top indicator bar
             Box(
-                modifier = Modifier
-                    .width(40.dp)
-                    .height(4.dp)
-                    .clip(RoundedCornerShape(2.dp))
-                    .background(DividerColor)
-                    .align(Alignment.CenterHorizontally)
+                modifier =
+                    Modifier
+                        .width(40.dp)
+                        .height(4.dp)
+                        .clip(RoundedCornerShape(2.dp))
+                        .background(DividerColor)
+                        .align(Alignment.CenterHorizontally),
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceL))
@@ -73,12 +75,12 @@ private fun PomodoroModalPreview() {
         PomodoroModal {
             Text(
                 text = "Settings",
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
                 text = "This is a modal bottom sheet",
-                style = MaterialTheme.typography.bodyMedium
+                style = MaterialTheme.typography.bodyMedium,
             )
         }
     }

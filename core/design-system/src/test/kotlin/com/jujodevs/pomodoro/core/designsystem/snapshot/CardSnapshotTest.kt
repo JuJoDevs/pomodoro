@@ -23,7 +23,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class CardSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -32,19 +31,20 @@ class CardSnapshotTest {
         composeTestRule.setContent {
             PomodoroTheme {
                 Box(
-                    modifier = Modifier
-                        .background(MaterialTheme.colorScheme.background)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .background(MaterialTheme.colorScheme.background)
+                            .padding(16.dp),
                 ) {
                     PomodoroCard {
                         Text(
                             text = "Work Duration",
-                            style = MaterialTheme.typography.titleLarge
+                            style = MaterialTheme.typography.titleLarge,
                         )
                         Text(
                             text = "25 minutes",
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                     }
                 }

@@ -24,19 +24,20 @@ fun PomodoroSwitch(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     Switch(
         checked = checked,
         onCheckedChange = onCheckedChange,
         modifier = modifier,
         enabled = enabled,
-        colors = SwitchDefaults.colors(
-            checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
-            checkedTrackColor = MaterialTheme.colorScheme.primary,
-            uncheckedThumbColor = MaterialTheme.colorScheme.onPrimary,
-            uncheckedTrackColor = ProgressTrack,
-        )
+        colors =
+            SwitchDefaults.colors(
+                checkedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                checkedTrackColor = MaterialTheme.colorScheme.primary,
+                uncheckedThumbColor = MaterialTheme.colorScheme.onPrimary,
+                uncheckedTrackColor = ProgressTrack,
+            ),
     )
 }
 
@@ -46,7 +47,7 @@ private fun PomodoroSwitchCheckedPreview() {
     PomodoroTheme {
         PomodoroSwitch(
             checked = true,
-            onCheckedChange = {}
+            onCheckedChange = {},
         )
     }
 }
@@ -57,7 +58,7 @@ private fun PomodoroSwitchUncheckedPreview() {
     PomodoroTheme {
         PomodoroSwitch(
             checked = false,
-            onCheckedChange = {}
+            onCheckedChange = {},
         )
     }
 }

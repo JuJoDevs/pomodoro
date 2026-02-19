@@ -5,5 +5,5 @@ data class SettingsState(
     val analyticsCollectionEnabled: Boolean = false,
     val canScheduleExactAlarms: Boolean = true,
     val hasNotificationPermission: Boolean = true,
-    val isLoading: Boolean = true
+    val isLoading: Boolean = true,
 )

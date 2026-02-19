@@ -16,13 +16,11 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
  * @param modifier Modifier for styling
  */
 @Composable
-fun PomodoroDivider(
-    modifier: Modifier = Modifier
-) {
+fun PomodoroDivider(modifier: Modifier = Modifier) {
     HorizontalDivider(
         modifier = modifier,
         thickness = 1.dp,
-        color = DividerColor
+        color = DividerColor,
     )
 }
 

@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ObservePomodoroSessionStateUseCaseTest {
-
     private lateinit var repository: FakePomodoroRepository
     private lateinit var useCase: ObservePomodoroSessionStateUseCase
 
@@ -21,18 +20,19 @@ class ObservePomodoroSessionStateUseCaseTest {
     }
 
     @Test
-    fun `GIVEN repository emits states WHEN observing THEN use case should emit same states`() = runTest {
-        // GIVEN
-        val initialState = PomodoroSessionState(status = PomodoroStatus.IDLE)
-        val secondState = PomodoroSessionState(status = PomodoroStatus.RUNNING)
-        repository.updateSessionState(initialState)
+    fun `GIVEN repository emits states WHEN observing THEN use case should emit same states`() =
+        runTest {
+            // GIVEN
+            val initialState = PomodoroSessionState(status = PomodoroStatus.IDLE)
+            val secondState = PomodoroSessionState(status = PomodoroStatus.RUNNING)
+            repository.updateSessionState(initialState)
 
-        // WHEN & THEN
-        useCase().test {
-            awaitItem() shouldBeEqualTo initialState
+            // WHEN & THEN
+            useCase().test {
+                awaitItem() shouldBeEqualTo initialState
 
-            repository.updateSessionState(secondState)
-            awaitItem() shouldBeEqualTo secondState
+                repository.updateSessionState(secondState)
+                awaitItem() shouldBeEqualTo secondState
+            }
         }
-    }
 }

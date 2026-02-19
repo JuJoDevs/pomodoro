@@ -11,7 +11,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class ResetPomodoroUseCaseTest {
-
     private lateinit var repository: FakePomodoroRepository
     private lateinit var useCase: ResetPomodoroUseCase
 
@@ -22,32 +21,33 @@ class ResetPomodoroUseCaseTest {
     }
 
     @Test
-    fun `GIVEN active long break WHEN resetting THEN state should return to idle work start`() = runTest {
-        // GIVEN
-        repository.updateSessionState(
-            PomodoroSessionState(
-                selectedWorkMinutes = 30,
-                selectedShortBreakMinutes = 10,
-                currentPhase = PomodoroPhase.LONG_BREAK,
-                status = PomodoroStatus.RUNNING,
-                remainingMillis = 123_000L,
-                completedWorkSessions = 4,
-                phaseToken = "active-token",
-                lastKnownEndTimestamp = 90_000L
+    fun `GIVEN active long break WHEN resetting THEN state should return to idle work start`() =
+        runTest {
+            // GIVEN
+            repository.updateSessionState(
+                PomodoroSessionState(
+                    selectedWorkMinutes = 30,
+                    selectedShortBreakMinutes = 10,
+                    currentPhase = PomodoroPhase.LONG_BREAK,
+                    status = PomodoroStatus.RUNNING,
+                    remainingMillis = 123_000L,
+                    completedWorkSessions = 4,
+                    phaseToken = "active-token",
+                    lastKnownEndTimestamp = 90_000L,
+                ),
             )
-        )
 
-        // WHEN
-        useCase()
+            // WHEN
+            useCase()
 
-        // THEN
-        val state = repository.getSessionState().first()
-        state.currentPhase shouldBeEqualTo PomodoroPhase.WORK
-        state.status shouldBeEqualTo PomodoroStatus.IDLE
-        state.completedWorkSessions shouldBeEqualTo 0
-        state.remainingMillis shouldBeEqualTo 30 * 60 * 1000L
-        state.phaseToken shouldBeEqualTo ""
-        state.lastKnownEndTimestamp shouldBeEqualTo null
-        state.selectedShortBreakMinutes shouldBeEqualTo 10
-    }
+            // THEN
+            val state = repository.getSessionState().first()
+            state.currentPhase shouldBeEqualTo PomodoroPhase.WORK
+            state.status shouldBeEqualTo PomodoroStatus.IDLE
+            state.completedWorkSessions shouldBeEqualTo 0
+            state.remainingMillis shouldBeEqualTo 30 * 60 * 1000L
+            state.phaseToken shouldBeEqualTo ""
+            state.lastKnownEndTimestamp shouldBeEqualTo null
+            state.selectedShortBreakMinutes shouldBeEqualTo 10
+        }
 }

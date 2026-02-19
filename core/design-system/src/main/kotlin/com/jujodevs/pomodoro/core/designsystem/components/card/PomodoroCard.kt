@@ -24,7 +24,7 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 @Composable
 fun PomodoroCard(
     modifier: Modifier = Modifier,
-    content: @Composable ColumnScope.() -> Unit
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
@@ -32,10 +32,10 @@ fun PomodoroCard(
         modifier = modifier,
         shape = MaterialTheme.shapes.large,
         color = MaterialTheme.colorScheme.surface,
-        tonalElevation = 2.dp
+        tonalElevation = 2.dp,
     ) {
         Column(
-            modifier = Modifier.padding(spacing.spaceL)
+            modifier = Modifier.padding(spacing.spaceL),
         ) {
             content()
         }
@@ -49,12 +49,12 @@ private fun PomodoroCardPreview() {
         PomodoroCard {
             Text(
                 text = "Work Duration",
-                style = MaterialTheme.typography.titleLarge
+                style = MaterialTheme.typography.titleLarge,
             )
             Text(
                 text = "25 minutes",
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }
     }

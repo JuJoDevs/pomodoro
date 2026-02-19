@@ -3,6 +3,7 @@ package com.jujodevs.pomodoro.features.timer.presentation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.ObserveAsEvents
@@ -13,13 +14,14 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun TimerRoute(
     onNavigateToSettings: () -> Unit,
-    onPhaseChanged: (Int) -> Unit,
+    onPhaseChange: (Int) -> Unit,
     onShowMessage: (UiText) -> Unit,
     onRequestExactAlarmPermission: () -> Unit,
     exactAlarmPermissionGranted: Boolean? = null,
-    viewModel: TimerViewModel = koinViewModel()
+    viewModel: TimerViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val onPhaseChangeState by rememberUpdatedState(newValue = onPhaseChange)
 
     LaunchedEffect(exactAlarmPermissionGranted) {
         exactAlarmPermissionGranted?.let { isGranted ->
@@ -28,12 +30,13 @@ fun TimerRoute(
     }
 
     LaunchedEffect(state.phase) {
-        val titleResId = when (state.phase) {
-            PomodoroPhase.WORK -> R.string.phase_title_focus
-            PomodoroPhase.SHORT_BREAK -> R.string.phase_title_short_break
-            PomodoroPhase.LONG_BREAK -> R.string.phase_title_long_break
-        }
-        onPhaseChanged(titleResId)
+        val titleResId =
+            when (state.phase) {
+                PomodoroPhase.WORK -> R.string.phase_title_focus
+                PomodoroPhase.SHORT_BREAK -> R.string.phase_title_short_break
+                PomodoroPhase.LONG_BREAK -> R.string.phase_title_long_break
+            }
+        onPhaseChangeState(titleResId)
     }
 
     ObserveAsEvents(viewModel.effects) { effect ->
@@ -48,6 +51,6 @@ fun TimerRoute(
 
     TimerScreen(
         state = state,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
     )
 }

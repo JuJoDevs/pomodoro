@@ -44,7 +44,6 @@ import kotlinx.coroutines.launch
 private const val DARK_THEME = true
 
 class MainActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -63,43 +62,47 @@ private fun PomodoroApp() {
     val snackbarHostState = remember { SnackbarHostState() }
     var phaseTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
     val isOnSettings = backStack.isNotEmpty() && backStack.last() == MainNavKey.Settings
-    val topBarTitle = if (isOnSettings) {
-        stringResource(R.string.label_settings)
-    } else {
-        stringResource(phaseTitleResId)
-    }
-    val topBarActions = if (isOnSettings) {
-        emptyList()
-    } else {
-        listOf(
-            TopBarAction(
-                icon = PomodoroIcons.Settings,
-                contentDescription = stringResource(R.string.label_settings),
-                onClick = { backStack.navigateTo(MainNavKey.Settings) }
-            ),
-            TopBarAction(
-                icon = PomodoroIcons.Help,
-                contentDescription = "Help",
-                onClick = { /* Handle help */ }
+    val topBarTitle =
+        if (isOnSettings) {
+            stringResource(R.string.label_settings)
+        } else {
+            stringResource(phaseTitleResId)
+        }
+    val topBarActions =
+        if (isOnSettings) {
+            emptyList()
+        } else {
+            listOf(
+                TopBarAction(
+                    icon = PomodoroIcons.Settings,
+                    contentDescription = stringResource(R.string.label_settings),
+                    onClick = { backStack.navigateTo(MainNavKey.Settings) },
+                ),
+                TopBarAction(
+                    icon = PomodoroIcons.Help,
+                    contentDescription = "Help",
+                    onClick = { /* Handle help */ },
+                ),
             )
-        )
-    }
+        }
 
     PomodoroScaffold(
         snackbarHostState = snackbarHostState,
-        scaffoldConfig = ScaffoldConfig(
-            topBar = TopBarState(
-                title = topBarTitle,
-                showBackButton = backStack.size > 1,
-                onBackClick = { backStack.goBack() },
-                actions = topBarActions
-            )
-        )
+        scaffoldConfig =
+            ScaffoldConfig(
+                topBar =
+                    TopBarState(
+                        title = topBarTitle,
+                        showBackButton = backStack.size > 1,
+                        onBackClick = { backStack.goBack() },
+                        actions = topBarActions,
+                    ),
+            ),
     ) {
         AppNavigation(
             backStack = backStack,
             snackbarHostState = snackbarHostState,
-            onPhaseChanged = { phaseTitleResId = it }
+            onPhaseChange = { phaseTitleResId = it },
         )
     }
 }
@@ -108,7 +111,7 @@ private fun PomodoroApp() {
 fun AppNavigation(
     backStack: NavBackStack<NavKey>,
     snackbarHostState: SnackbarHostState,
-    onPhaseChanged: (Int) -> Unit
+    onPhaseChange: (Int) -> Unit,
 ) {
     val coroutineScope = rememberCoroutineScope()
     val context = LocalContext.current
@@ -117,39 +120,40 @@ fun AppNavigation(
 
     NavDisplay(
         backStack = backStack,
-        entryProvider = entryProvider {
-            // Define navigation entries
-            entry<MainNavKey.Home> {
-                NotificationPermissionEffect()
-                ExactAlarmPermissionEffect(
-                    requestOnMissingPermission = shouldRequestExactAlarmPermission
-                ) { isGranted ->
-                    exactAlarmPermissionGranted = isGranted
-                    shouldRequestExactAlarmPermission = false
+        entryProvider =
+            entryProvider {
+                // Define navigation entries
+                entry<MainNavKey.Home> {
+                    NotificationPermissionEffect()
+                    ExactAlarmPermissionEffect(
+                        requestOnMissingPermission = shouldRequestExactAlarmPermission,
+                    ) { isGranted ->
+                        exactAlarmPermissionGranted = isGranted
+                        shouldRequestExactAlarmPermission = false
+                    }
+                    TimerRoute(
+                        onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
+                        onPhaseChange = { resId -> onPhaseChange(resId) },
+                        onShowMessage = { message ->
+                            coroutineScope.launch {
+                                snackbarHostState.showSnackbar(message.asString(context))
+                            }
+                        },
+                        onRequestExactAlarmPermission = {
+                            shouldRequestExactAlarmPermission = true
+                        },
+                        exactAlarmPermissionGranted = exactAlarmPermissionGranted,
+                    )
                 }
-                TimerRoute(
-                    onNavigateToSettings = { backStack.navigateTo(MainNavKey.Settings) },
-                    onPhaseChanged = { resId -> onPhaseChanged(resId) },
-                    onShowMessage = { message ->
-                        coroutineScope.launch {
-                            snackbarHostState.showSnackbar(message.asString(context))
-                        }
-                    },
-                    onRequestExactAlarmPermission = {
-                        shouldRequestExactAlarmPermission = true
-                    },
-                    exactAlarmPermissionGranted = exactAlarmPermissionGranted
-                )
-            }
 
-            entry<MainNavKey.Settings> {
-                SettingsRoute()
-            }
+                entry<MainNavKey.Settings> {
+                    SettingsRoute()
+                }
 
-            entry<MainNavKey.Statistics> {
-                StatisticsScreen()
-            }
-        }
+                entry<MainNavKey.Statistics> {
+                    StatisticsScreen()
+                }
+            },
     )
 }
 
@@ -157,7 +161,7 @@ fun AppNavigation(
 private fun StatisticsScreen() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(text = "Statistics")
     }

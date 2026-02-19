@@ -1,5 +1,6 @@
 package com.jujodevs.pomodoro.libs.analytics.impl
 
+import com.jujodevs.pomodoro.libs.analytics.AnalyticsCollectionManager
 import com.jujodevs.pomodoro.libs.analytics.CustomAnalyticsEvent
 import com.jujodevs.pomodoro.libs.analytics.UserProperty
 import com.jujodevs.pomodoro.libs.logger.Logger
@@ -12,8 +13,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class FirebaseAnalyticsTrackerTest {
-
     private val firebaseAnalytics: FirebaseAnalyticsWrapper = mockk()
+    private val analyticsCollectionManager: AnalyticsCollectionManager = mockk()
     private val logger: Logger = mockk(relaxed = true)
 
     private lateinit var tracker: FirebaseAnalyticsTracker
@@ -23,21 +24,30 @@ class FirebaseAnalyticsTrackerTest {
         every { firebaseAnalytics.logEvent(any(), any()) } just runs
         every { firebaseAnalytics.setUserProperty(any(), any()) } just runs
         every { firebaseAnalytics.setUserId(any()) } just runs
+        every { firebaseAnalytics.setAnalyticsCollectionEnabled(any()) } just runs
         every { firebaseAnalytics.resetAnalyticsData() } just runs
+        every { analyticsCollectionManager.isAnalyticsEnabled() } returns true
 
-        tracker = FirebaseAnalyticsTracker(firebaseAnalytics, logger)
+        tracker =
+            FirebaseAnalyticsTracker(
+                firebaseAnalytics = firebaseAnalytics,
+                analyticsCollectionManager = analyticsCollectionManager,
+                logger = logger,
+            )
     }
 
     @Test
     fun `GIVEN valid event WHEN track THEN should log event to Firebase`() {
         // GIVEN
-        val event = CustomAnalyticsEvent(
-            name = "test_event",
-            parameters = mapOf(
-                "param1" to "value1",
-                "param2" to 42
+        val event =
+            CustomAnalyticsEvent(
+                name = "test_event",
+                parameters =
+                    mapOf(
+                        "param1" to "value1",
+                        "param2" to 42,
+                    ),
             )
-        )
 
         // WHEN
         tracker.track(event)
@@ -52,18 +62,35 @@ class FirebaseAnalyticsTrackerTest {
     }
 
     @Test
+    fun `GIVEN analytics disabled WHEN track THEN should skip Firebase logging`() {
+        // GIVEN
+        every { analyticsCollectionManager.isAnalyticsEnabled() } returns false
+        val event = CustomAnalyticsEvent(name = "disabled_event")
+
+        // WHEN
+        tracker.track(event)
+
+        // THEN
+        verify(exactly = 0) {
+            firebaseAnalytics.logEvent(any(), any())
+        }
+    }
+
+    @Test
     fun `GIVEN event with all parameter types WHEN track THEN should map all types correctly`() {
         // GIVEN
-        val event = CustomAnalyticsEvent(
-            name = "complex_event",
-            parameters = mapOf(
-                "string_param" to "value",
-                "int_param" to 10,
-                "long_param" to 100L,
-                "double_param" to 3.14,
-                "bool_param" to true
+        val event =
+            CustomAnalyticsEvent(
+                name = "complex_event",
+                parameters =
+                    mapOf(
+                        "string_param" to "value",
+                        "int_param" to 10,
+                        "long_param" to 100L,
+                        "double_param" to 3.14,
+                        "bool_param" to true,
+                    ),
             )
-        )
 
         // WHEN
         tracker.track(event)
@@ -77,10 +104,11 @@ class FirebaseAnalyticsTrackerTest {
     @Test
     fun `GIVEN Firebase throws exception WHEN track THEN should log error and not crash`() {
         // GIVEN
-        val event = CustomAnalyticsEvent(
-            name = "failing_event",
-            parameters = emptyMap()
-        )
+        val event =
+            CustomAnalyticsEvent(
+                name = "failing_event",
+                parameters = emptyMap(),
+            )
         every { firebaseAnalytics.logEvent(any(), any()) } throws RuntimeException("Firebase error")
 
         // WHEN
@@ -140,13 +168,15 @@ class FirebaseAnalyticsTrackerTest {
     @Test
     fun `GIVEN unsupported parameter type in event WHEN track THEN should log warning but still track event`() {
         // GIVEN
-        val event = CustomAnalyticsEvent(
-            name = "event_with_unsupported_param",
-            parameters = mapOf(
-                "valid_param" to "value",
-                "unsupported_param" to listOf("item1", "item2") // List is not supported
+        val event =
+            CustomAnalyticsEvent(
+                name = "event_with_unsupported_param",
+                parameters =
+                    mapOf(
+                        "valid_param" to "value",
+                        "unsupported_param" to listOf("item1", "item2"), // List is not supported
+                    ),
             )
-        )
 
         // WHEN
         tracker.track(event)

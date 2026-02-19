@@ -4,7 +4,9 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
 import com.jujodevs.pomodoro.libs.permissions.PermissionManager
 import org.koin.compose.koinInject
 
@@ -16,12 +18,12 @@ import org.koin.compose.koinInject
 @Composable
 fun NotificationPermissionEffect(
     permissionManager: PermissionManager = koinInject(),
-    onPermissionResult: (Boolean) -> Unit = {}
+    onPermissionResult: (Boolean) -> Unit = {},
 ) {
     RequestNotificationPermissionOnTrigger(
         trigger = true,
         permissionManager = permissionManager,
-        onPermissionResult = onPermissionResult
+        onPermissionResult = onPermissionResult,
     )
 }
 
@@ -37,15 +39,17 @@ fun NotificationPermissionEffect(
 fun RequestNotificationPermissionOnTrigger(
     trigger: Boolean,
     permissionManager: PermissionManager = koinInject(),
-    onPermissionResult: (Boolean) -> Unit = {}
+    onPermissionResult: (Boolean) -> Unit = {},
 ) {
     val permissionString = remember { permissionManager.getNotificationPermissionString() }
+    val onPermissionResultState by rememberUpdatedState(newValue = onPermissionResult)
 
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        onPermissionResult(isGranted)
-    }
+    val launcher =
+        rememberLauncherForActivityResult(
+            contract = ActivityResultContracts.RequestPermission(),
+        ) { isGranted ->
+            onPermissionResultState(isGranted)
+        }
 
     LaunchedEffect(trigger) {
         if (!trigger) return@LaunchedEffect
@@ -53,10 +57,10 @@ fun RequestNotificationPermissionOnTrigger(
             if (!permissionManager.hasNotificationPermission()) {
                 launcher.launch(permissionString)
             } else {
-                onPermissionResult(true)
+                onPermissionResultState(true)
             }
         } else {
-            onPermissionResult(true)
+            onPermissionResultState(true)
         }
     }
 }

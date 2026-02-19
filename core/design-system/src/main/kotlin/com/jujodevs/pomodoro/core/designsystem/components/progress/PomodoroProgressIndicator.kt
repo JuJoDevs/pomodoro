@@ -14,13 +14,13 @@ import com.jujodevs.pomodoro.core.designsystem.theme.ProgressTrack
  *
  * Circular progress indicator with custom styling
  *
- * @param progress Current progress (0.0 to 1.0), null for indeterminate
  * @param modifier Modifier for styling
+ * @param progress Current progress (0.0 to 1.0), null for indeterminate
  */
 @Composable
 fun PomodoroProgressIndicator(
+    modifier: Modifier = Modifier,
     progress: Float? = null,
-    modifier: Modifier = Modifier
 ) {
     if (progress != null) {
         CircularProgressIndicator(

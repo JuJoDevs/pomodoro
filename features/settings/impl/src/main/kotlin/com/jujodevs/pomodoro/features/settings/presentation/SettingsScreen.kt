@@ -27,14 +27,14 @@ fun SettingsScreen(
     state: SettingsState,
     versionText: String,
     onAction: (SettingsAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
     if (state.isLoading) {
         Column(
             modifier = modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.weight(1f))
             CircularProgressIndicator()
@@ -44,24 +44,25 @@ fun SettingsScreen(
     }
 
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .verticalScroll(rememberScrollState())
-            .padding(horizontal = spacing.spaceXL)
+        modifier =
+            modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .verticalScroll(rememberScrollState())
+                .padding(horizontal = spacing.spaceXL),
     ) {
         Spacer(modifier = Modifier.height(spacing.spaceM))
 
         SoundLibrarySection(
             alarmSoundLabel = state.alarmSoundLabel,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
 
         AnalyticsSection(
             analyticsEnabled = state.analyticsCollectionEnabled,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXL))
@@ -69,7 +70,7 @@ fun SettingsScreen(
         PermissionsSection(
             canScheduleExactAlarms = state.canScheduleExactAlarms,
             hasNotificationPermission = state.hasNotificationPermission,
-            onAction = onAction
+            onAction = onAction,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXXL))
@@ -83,16 +84,17 @@ fun SettingsScreen(
 private fun SettingsScreenPreview() {
     PomodoroTheme(darkTheme = true) {
         SettingsScreen(
-            state = SettingsState(
-                alarmSoundLabel = "Digital Beep (Default)",
-                analyticsCollectionEnabled = true,
-                canScheduleExactAlarms = true,
-                hasNotificationPermission = true,
-                isLoading = false
-            ),
+            state =
+                SettingsState(
+                    alarmSoundLabel = "Digital Beep (Default)",
+                    analyticsCollectionEnabled = true,
+                    canScheduleExactAlarms = true,
+                    hasNotificationPermission = true,
+                    isLoading = false,
+                ),
             versionText = "Version 1.0.0 (1)",
             onAction = {},
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }

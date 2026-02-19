@@ -31,40 +31,42 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 @Composable
 internal fun ExactAlarmWarningBanner(
     onDismiss: () -> Unit,
-    onRequestPermission: () -> Unit
+    onRequestPermission: () -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
     PomodoroCard(modifier = Modifier.fillMaxWidth()) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(spacing.spaceS),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceS),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 modifier = Modifier.weight(1f),
                 text = stringResource(R.string.warning_exact_alarm_missing),
-                style = MaterialTheme.typography.bodySmall
+                style = MaterialTheme.typography.bodySmall,
             )
         }
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = spacing.spaceS),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = spacing.spaceS),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.End
+            horizontalArrangement = Arrangement.End,
         ) {
             PomodoroButton(
                 text = stringResource(R.string.action_grant),
                 onClick = onRequestPermission,
-                variant = ButtonVariant.Text
+                variant = ButtonVariant.Text,
             )
             Spacer(modifier = Modifier.width(spacing.spaceS))
             PomodoroButton(
                 text = stringResource(R.string.action_close),
                 onClick = onDismiss,
-                variant = ButtonVariant.Text
+                variant = ButtonVariant.Text,
             )
         }
     }
@@ -74,30 +76,33 @@ internal fun ExactAlarmWarningBanner(
 internal fun TimerDisplay(
     remainingTimeText: String,
     status: PomodoroStatus,
-    phase: PomodoroPhase
+    phase: PomodoroPhase,
 ) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = remainingTimeText,
-            style = MaterialTheme.typography.displayLarge.copy(
-                fontSize = TIMER_FONT_SIZE.sp,
-                fontWeight = FontWeight.Bold
-            ),
-            color = MaterialTheme.colorScheme.onBackground
+            style =
+                MaterialTheme.typography.displayLarge.copy(
+                    fontSize = TIMER_FONT_SIZE.sp,
+                    fontWeight = FontWeight.Bold,
+                ),
+            color = MaterialTheme.colorScheme.onBackground,
         )
 
         Text(
-            text = when (status) {
-                PomodoroStatus.IDLE -> stringResource(R.string.label_ready_to_work)
-                PomodoroStatus.RUNNING -> when (phase) {
-                    PomodoroPhase.WORK -> stringResource(R.string.status_focusing)
-                    PomodoroPhase.SHORT_BREAK -> stringResource(R.string.status_time_to_rest)
-                    PomodoroPhase.LONG_BREAK -> stringResource(R.string.status_long_rest)
-                }
-                PomodoroStatus.PAUSED -> stringResource(R.string.status_paused)
-            },
+            text =
+                when (status) {
+                    PomodoroStatus.IDLE -> stringResource(R.string.label_ready_to_work)
+                    PomodoroStatus.RUNNING ->
+                        when (phase) {
+                            PomodoroPhase.WORK -> stringResource(R.string.status_focusing)
+                            PomodoroPhase.SHORT_BREAK -> stringResource(R.string.status_time_to_rest)
+                            PomodoroPhase.LONG_BREAK -> stringResource(R.string.status_long_rest)
+                        }
+                    PomodoroStatus.PAUSED -> stringResource(R.string.status_paused)
+                },
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onBackground.copy(alpha = STATUS_ALPHA)
+            color = MaterialTheme.colorScheme.onBackground.copy(alpha = STATUS_ALPHA),
         )
     }
 }
@@ -112,7 +117,7 @@ private fun TimerDisplayPreview() {
         TimerDisplay(
             remainingTimeText = "12:34",
             status = PomodoroStatus.RUNNING,
-            phase = PomodoroPhase.WORK
+            phase = PomodoroPhase.WORK,
         )
     }
 }
@@ -122,13 +127,14 @@ private fun TimerDisplayPreview() {
 private fun ExactAlarmWarningBannerPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.background)
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .background(MaterialTheme.colorScheme.background)
+                    .padding(16.dp),
         ) {
             ExactAlarmWarningBanner(
                 onDismiss = {},
-                onRequestPermission = {}
+                onRequestPermission = {},
             )
         }
     }

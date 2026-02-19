@@ -9,8 +9,11 @@ import timber.log.Timber
  * Only logs in debug builds. In release builds, all log calls are no-ops.
  */
 internal class TimberLogger : Logger {
-
-    override fun d(tag: String, message: String, throwable: Throwable?) {
+    override fun d(
+        tag: String,
+        message: String,
+        throwable: Throwable?,
+    ) {
         if (throwable != null) {
             Timber.tag(tag).d(throwable, message)
         } else {
@@ -18,7 +21,11 @@ internal class TimberLogger : Logger {
         }
     }
 
-    override fun i(tag: String, message: String, throwable: Throwable?) {
+    override fun i(
+        tag: String,
+        message: String,
+        throwable: Throwable?,
+    ) {
         if (throwable != null) {
             Timber.tag(tag).i(throwable, message)
         } else {
@@ -26,7 +33,11 @@ internal class TimberLogger : Logger {
         }
     }
 
-    override fun w(tag: String, message: String, throwable: Throwable?) {
+    override fun w(
+        tag: String,
+        message: String,
+        throwable: Throwable?,
+    ) {
         if (throwable != null) {
             Timber.tag(tag).w(throwable, message)
         } else {
@@ -34,7 +45,11 @@ internal class TimberLogger : Logger {
         }
     }
 
-    override fun e(tag: String, message: String, throwable: Throwable?) {
+    override fun e(
+        tag: String,
+        message: String,
+        throwable: Throwable?,
+    ) {
         if (throwable != null) {
             Timber.tag(tag).e(throwable, message)
         } else {

@@ -25,7 +25,6 @@ import org.robolectric.annotation.GraphicsMode
 @GraphicsMode(GraphicsMode.Mode.NATIVE)
 @Config(qualifiers = "w400dp-h800dp-normal-long-notround-any-420dpi-keyshidden-nonav")
 class TimerComponentsSnapshotTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -37,13 +36,14 @@ class TimerComponentsSnapshotTest {
                     TimerDisplay(
                         remainingTimeText = "12:34",
                         status = PomodoroStatus.RUNNING,
-                        phase = PomodoroPhase.WORK
+                        phase = PomodoroPhase.WORK,
                     )
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 
@@ -55,14 +55,15 @@ class TimerComponentsSnapshotTest {
                     Box(modifier = Modifier.padding(16.dp)) {
                         ExactAlarmWarningBanner(
                             onDismiss = {},
-                            onRequestPermission = {}
+                            onRequestPermission = {},
                         )
                     }
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 
@@ -73,19 +74,21 @@ class TimerComponentsSnapshotTest {
                 Surface {
                     Box(modifier = Modifier.padding(16.dp)) {
                         ConfigSection(
-                            state = TimerState(
-                                status = PomodoroStatus.IDLE,
-                                selectedWorkMinutes = 25,
-                                selectedShortBreakMinutes = 5
-                            ),
-                            onAction = {}
+                            state =
+                                TimerState(
+                                    status = PomodoroStatus.IDLE,
+                                    selectedWorkMinutes = 25,
+                                    selectedShortBreakMinutes = 5,
+                                ),
+                            onAction = {},
                         )
                     }
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 
@@ -95,18 +98,20 @@ class TimerComponentsSnapshotTest {
             PomodoroTheme(darkTheme = true) {
                 Surface {
                     BottomSection(
-                        state = TimerState(
-                            status = PomodoroStatus.RUNNING,
-                            completedSessions = 2,
-                            totalSessions = 4
-                        ),
-                        onAction = {}
+                        state =
+                            TimerState(
+                                status = PomodoroStatus.RUNNING,
+                                completedSessions = 2,
+                                totalSessions = 4,
+                            ),
+                        onAction = {},
                     )
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 
@@ -116,20 +121,22 @@ class TimerComponentsSnapshotTest {
             PomodoroTheme(darkTheme = true) {
                 Surface {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(androidx.compose.material3.MaterialTheme.colorScheme.background)
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .background(androidx.compose.material3.MaterialTheme.colorScheme.background),
                     ) {
                         HandleModals(
                             state = TimerState(showStopConfirmation = true),
-                            onAction = {}
+                            onAction = {},
                         )
                     }
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 
@@ -139,20 +146,22 @@ class TimerComponentsSnapshotTest {
             PomodoroTheme(darkTheme = true) {
                 Surface {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .background(androidx.compose.material3.MaterialTheme.colorScheme.background)
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .background(androidx.compose.material3.MaterialTheme.colorScheme.background),
                     ) {
                         HandleModals(
                             state = TimerState(showResetConfirmation = true),
-                            onAction = {}
+                            onAction = {},
                         )
                     }
                 }
             }
         }
 
-        composeTestRule.onRoot()
+        composeTestRule
+            .onRoot()
             .captureRoboImage()
     }
 }

@@ -37,13 +37,13 @@ fun PomodoroTopBar(
     modifier: Modifier = Modifier,
     navigationIcon: ImageVector? = null,
     onNavigationClick: () -> Unit = {},
-    actions: @Composable RowScope.() -> Unit = {}
+    actions: @Composable RowScope.() -> Unit = {},
 ) {
     CenterAlignedTopAppBar(
         title = {
             Text(
                 text = title,
-                style = MaterialTheme.typography.headlineMedium
+                style = MaterialTheme.typography.headlineMedium,
             )
         },
         modifier = modifier,
@@ -52,18 +52,19 @@ fun PomodoroTopBar(
                 PomodoroIconButton(
                     icon = navigationIcon,
                     onClick = onNavigationClick,
-                    backgroundColor = null
+                    backgroundColor = null,
                 )
             }
         },
         actions = actions,
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
-            scrolledContainerColor = MaterialTheme.colorScheme.background,
-            navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
-            titleContentColor = MaterialTheme.colorScheme.onBackground,
-            actionIconContentColor = MaterialTheme.colorScheme.onBackground
-        )
+        colors =
+            TopAppBarDefaults.topAppBarColors(
+                containerColor = MaterialTheme.colorScheme.background,
+                scrolledContainerColor = MaterialTheme.colorScheme.background,
+                navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                titleContentColor = MaterialTheme.colorScheme.onBackground,
+                actionIconContentColor = MaterialTheme.colorScheme.onBackground,
+            ),
     )
 }
 
@@ -79,10 +80,10 @@ private fun PomodoroTopBarPreview() {
                 IconButton(onClick = {}) {
                     androidx.compose.material3.Icon(
                         imageVector = Icons.Default.MoreVert,
-                        contentDescription = "More"
+                        contentDescription = "More",
                     )
                 }
-            }
+            },
         )
     }
 }
@@ -94,7 +95,7 @@ private fun PomodoroTopBarWithBackPreview() {
         PomodoroTopBar(
             title = "Statistics",
             navigationIcon = Icons.AutoMirrored.Filled.ArrowBack,
-            onNavigationClick = {}
+            onNavigationClick = {},
         )
     }
 }

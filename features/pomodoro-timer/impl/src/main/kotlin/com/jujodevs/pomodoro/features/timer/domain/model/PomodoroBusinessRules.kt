@@ -18,19 +18,21 @@ object PomodoroBusinessRules {
     const val BREAK_OPTION_10_MINUTES = 10
     const val BREAK_OPTION_15_MINUTES = 15
 
-    val WORK_DURATION_OPTIONS_MINUTES = listOf(
-        WORK_OPTION_15_MINUTES,
-        WORK_OPTION_20_MINUTES,
-        WORK_OPTION_25_MINUTES,
-        WORK_OPTION_30_MINUTES
-    )
+    val WORK_DURATION_OPTIONS_MINUTES =
+        listOf(
+            WORK_OPTION_15_MINUTES,
+            WORK_OPTION_20_MINUTES,
+            WORK_OPTION_25_MINUTES,
+            WORK_OPTION_30_MINUTES,
+        )
 
-    val SHORT_BREAK_DURATION_OPTIONS_MINUTES = listOf(
-        BREAK_OPTION_3_MINUTES,
-        BREAK_OPTION_5_MINUTES,
-        BREAK_OPTION_10_MINUTES,
-        BREAK_OPTION_15_MINUTES
-    )
+    val SHORT_BREAK_DURATION_OPTIONS_MINUTES =
+        listOf(
+            BREAK_OPTION_3_MINUTES,
+            BREAK_OPTION_5_MINUTES,
+            BREAK_OPTION_10_MINUTES,
+            BREAK_OPTION_15_MINUTES,
+        )
 
     const val LONG_BREAK_MULTIPLIER = 3
     const val MIN_LONG_BREAK_MINUTES = 10

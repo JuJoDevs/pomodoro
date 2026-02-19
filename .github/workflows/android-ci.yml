@@ -42,3 +42,6 @@ jobs:
 
       - name: Run Unit Tests
         run: ./gradlew test
+
+      - name: Verify Screenshot Tests
+        run: ./gradlew verifyRoborazziDebug

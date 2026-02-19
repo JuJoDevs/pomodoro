@@ -11,18 +11,23 @@ import org.koin.core.component.inject
  * BroadcastReceiver that handles system events to reconcile scheduled notifications.
  * Handles events like BOOT_COMPLETED, TIME_SET, and TIMEZONE_CHANGED.
  */
-class ReconciliationReceiver : BroadcastReceiver(), KoinComponent {
-
+class ReconciliationReceiver :
+    BroadcastReceiver(),
+    KoinComponent {
     private val logger: Logger by inject()
 
-    override fun onReceive(context: Context, intent: Intent) {
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
         val action = intent.action ?: return
         logger.d(TAG, "Received system event: $action")
 
         when (action) {
             Intent.ACTION_BOOT_COMPLETED,
             Intent.ACTION_TIME_CHANGED,
-            Intent.ACTION_TIMEZONE_CHANGED -> {
+            Intent.ACTION_TIMEZONE_CHANGED,
+            -> {
                 // Here we would ideally trigger a reconciliation process.
                 // In this architecture, we might want to notify the feature modules
                 // or have a general NotificationReconciler service.

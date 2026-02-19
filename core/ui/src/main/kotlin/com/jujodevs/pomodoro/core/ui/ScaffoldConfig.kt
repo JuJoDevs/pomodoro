@@ -8,7 +8,7 @@ package com.jujodevs.pomodoro.core.ui
  */
 data class ScaffoldConfig(
     val topBar: TopBarState? = null,
-    val bottomBar: BottomBarState? = null
+    val bottomBar: BottomBarState? = null,
 )
 
 /**
@@ -18,7 +18,7 @@ data class TopBarState(
     val title: String,
     val showBackButton: Boolean = false,
     val onBackClick: (() -> Unit)? = null,
-    val actions: List<TopBarAction> = emptyList()
+    val actions: List<TopBarAction> = emptyList(),
 )
 
 /**
@@ -27,14 +27,14 @@ data class TopBarState(
 data class TopBarAction(
     val icon: androidx.compose.ui.graphics.vector.ImageVector,
     val contentDescription: String,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
 )
 
 /**
  * State for the bottom navigation bar.
  */
 data class BottomBarState(
-    val items: List<BottomBarItem>
+    val items: List<BottomBarItem>,
 )
 
 /**
@@ -44,5 +44,5 @@ data class BottomBarItem(
     val label: String,
     val icon: androidx.compose.ui.graphics.vector.ImageVector,
     val selected: Boolean,
-    val onClick: () -> Unit
+    val onClick: () -> Unit,
 )

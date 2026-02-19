@@ -33,7 +33,7 @@ fun PomodoroScaffold(
     modifier: Modifier = Modifier,
     scaffoldConfig: ScaffoldConfig = ScaffoldConfig(),
     snackbarHostState: SnackbarHostState = remember { SnackbarHostState() },
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -41,47 +41,50 @@ fun PomodoroScaffold(
             scaffoldConfig.topBar?.let { topBarState ->
                 PomodoroTopBar(
                     title = topBarState.title,
-                    navigationIcon = if (topBarState.showBackButton) {
-                        Icons.AutoMirrored.Filled.ArrowBack
-                    } else {
-                        null
-                    },
+                    navigationIcon =
+                        if (topBarState.showBackButton) {
+                            Icons.AutoMirrored.Filled.ArrowBack
+                        } else {
+                            null
+                        },
                     onNavigationClick = topBarState.onBackClick ?: {},
                     actions = {
                         topBarState.actions.forEach { action ->
                             IconButton(onClick = action.onClick) {
                                 Icon(
                                     imageVector = action.icon,
-                                    contentDescription = action.contentDescription
+                                    contentDescription = action.contentDescription,
                                 )
                             }
                         }
-                    }
+                    },
                 )
             }
         },
         bottomBar = {
             scaffoldConfig.bottomBar?.let { bottomBarState ->
                 PomodoroBottomNavigation(
-                    items = bottomBarState.items.map { item ->
-                        PomodoroNavigationItem(
-                            label = item.label,
-                            icon = item.icon,
-                            selected = item.selected,
-                            onClick = item.onClick
-                        )
-                    }
+                    items =
+                        bottomBarState.items.map { item ->
+                            PomodoroNavigationItem(
+                                label = item.label,
+                                icon = item.icon,
+                                selected = item.selected,
+                                onClick = item.onClick,
+                            )
+                        },
                 )
             }
         },
         snackbarHost = {
             SnackbarHost(hostState = snackbarHostState)
-        }
+        },
     ) { paddingValues ->
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues),
         ) {
             content()
         }

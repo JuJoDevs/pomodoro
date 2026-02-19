@@ -18,8 +18,8 @@ ktlint_standard_trailing-comma-on-declaration-site = enabled
 ktlint_standard_import-ordering = enabled
 ktlint_standard_max-line-length = enabled
 
-# Disabled rules for Compose
-ktlint_function-naming = disabled
+# Compose naming alignment with detekt Compose rules
+ktlint_standard_function-naming = disabled
 ktlint_compose_composable-function-name = disabled
 
 # Disabled rules

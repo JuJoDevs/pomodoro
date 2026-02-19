@@ -5,7 +5,7 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 import com.jujodevs.pomodoro.features.timer.domain.repository.PomodoroRepository
 
 class UpdatePomodoroConfigUseCase(
-    private val repository: PomodoroRepository
+    private val repository: PomodoroRepository,
 ) {
     suspend fun updateWorkDuration(minutes: Int) {
         repository.updateSessionState { currentState ->

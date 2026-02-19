@@ -44,6 +44,7 @@ coroutines = "1.10.2"
 
 # DataStore
 datastore = "1.1.2"
+room = "2.7.0"
 
 # Snapshot Testing
 roborazzi = "1.57.0"
@@ -59,7 +60,7 @@ firebaseCrashlyticsPlugin = "3.0.6"
 
 # Detekt
 detekt = "1.23.8"
-detektComposeRules = "0.5.6"
+detektComposeRules = "0.4.26"
 
 # Ktlint
 ktlint = "1.5.0"
@@ -114,6 +115,11 @@ kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-cor
 # DataStore
 androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 androidx-datastore-core = { group = "androidx.datastore", name = "datastore-core", version.ref = "datastore" }
+
+# Room
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -179,4 +185,3 @@ pomodoro-android-testing = { id = "pomodoro.android.testing", version = "unspeci
 pomodoro-roborazzi = { id = "pomodoro.roborazzi", version = "unspecified" }
 pomodoro-detekt = { id = "pomodoro.detekt", version = "unspecified" }
 pomodoro-ktlint = { id = "pomodoro.ktlint", version = "unspecified" }
-

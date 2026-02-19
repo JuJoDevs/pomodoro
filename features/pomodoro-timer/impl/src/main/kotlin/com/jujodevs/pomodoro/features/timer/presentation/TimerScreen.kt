@@ -25,25 +25,27 @@ import com.jujodevs.pomodoro.features.timer.presentation.components.TimerDisplay
 @Composable
 fun TimerScreen(
     state: TimerState,
-    onAction: (TimerAction) -> Unit
+    onAction: (TimerAction) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState())
-                .padding(horizontal = spacing.spaceXL),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier =
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = spacing.spaceXL),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Spacer(modifier = Modifier.height(spacing.spaceM))
 
             if (state.isExactAlarmPermissionMissing) {
                 ExactAlarmWarningBanner(
                     onDismiss = { onAction(TimerAction.DismissExactAlarmWarning) },
-                    onRequestPermission = { onAction(TimerAction.RequestExactAlarmPermission) }
+                    onRequestPermission = { onAction(TimerAction.RequestExactAlarmPermission) },
                 )
                 Spacer(modifier = Modifier.height(spacing.spaceM))
             }
@@ -51,27 +53,30 @@ fun TimerScreen(
             TimerDisplay(
                 remainingTimeText = state.remainingTimeText,
                 status = state.status,
-                phase = state.phase
+                phase = state.phase,
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceXXL))
 
             ConfigSection(
                 state = state,
-                onAction = onAction
+                onAction = onAction,
             )
 
             Spacer(modifier = Modifier.height(spacing.spaceXL))
         }
 
         BottomSection(
-            modifier = Modifier.fillMaxWidth(),
             state = state,
-            onAction = onAction
+            onAction = onAction,
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 
-    HandleModals(state, onAction)
+    HandleModals(
+        state = state,
+        onAction = onAction,
+    )
 }
 
 @Preview(showBackground = true, backgroundColor = 0xFF1C2834)
@@ -79,14 +84,15 @@ fun TimerScreen(
 private fun TimerScreenPreview() {
     PomodoroTheme(darkTheme = true) {
         TimerScreen(
-            state = TimerState(
-                phase = PomodoroPhase.WORK,
-                status = PomodoroStatus.IDLE,
-                remainingTimeText = "25:00",
-                progress = 0f,
-                completedSessions = 0
-            ),
-            onAction = {}
+            state =
+                TimerState(
+                    phase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.IDLE,
+                    remainingTimeText = "25:00",
+                    progress = 0f,
+                    completedSessions = 0,
+                ),
+            onAction = {},
         )
     }
 }

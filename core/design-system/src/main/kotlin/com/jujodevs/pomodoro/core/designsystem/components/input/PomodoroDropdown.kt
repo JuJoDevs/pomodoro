@@ -34,61 +34,63 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
  *
  * @param selectedText Currently selected text
  * @param options List of available options
- * @param onOptionSelected Callback when option is selected
+ * @param onOptionSelect Callback when option is selected
  * @param modifier Modifier for styling
  */
 @Composable
 fun PomodoroDropdown(
     selectedText: String,
     options: List<String>,
-    onOptionSelected: (String) -> Unit,
-    modifier: Modifier = Modifier
+    onOptionSelect: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
     var expanded by remember { mutableStateOf(false) }
 
     Box(modifier = modifier) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(MaterialTheme.shapes.medium)
-                .background(MaterialTheme.colorScheme.surface)
-                .clickable { expanded = true }
-                .padding(horizontal = spacing.spaceM, vertical = spacing.spaceS),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .clip(MaterialTheme.shapes.medium)
+                    .background(MaterialTheme.colorScheme.surface)
+                    .clickable { expanded = true }
+                    .padding(horizontal = spacing.spaceM, vertical = spacing.spaceS),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = selectedText,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
             Spacer(modifier = Modifier.width(spacing.spaceXS))
             Icon(
                 imageVector = Icons.Default.KeyboardArrowDown,
                 contentDescription = "Expand",
-                tint = MaterialTheme.colorScheme.onSurface
+                tint = MaterialTheme.colorScheme.onSurface,
             )
         }
 
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier
-                .background(MaterialTheme.colorScheme.surface)
+            modifier =
+                Modifier
+                    .background(MaterialTheme.colorScheme.surface),
         ) {
             options.forEach { option ->
                 DropdownMenuItem(
                     text = {
                         Text(
                             text = option,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.bodyLarge,
                         )
                     },
                     onClick = {
-                        onOptionSelected(option)
+                        onOptionSelect(option)
                         expanded = false
-                    }
+                    },
                 )
             }
         }
@@ -101,14 +103,15 @@ private fun PomodoroDropdownPreview() {
     PomodoroTheme {
         PomodoroDropdown(
             selectedText = "Digital Beep (Default)",
-            options = listOf(
-                "Digital Beep (Default)",
-                "Classic Bell",
-                "Chime",
-                "Soft Tone"
-            ),
-            onOptionSelected = {},
-            modifier = Modifier.fillMaxWidth()
+            options =
+                listOf(
+                    "Digital Beep (Default)",
+                    "Classic Bell",
+                    "Chime",
+                    "Soft Tone",
+                ),
+            onOptionSelect = {},
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

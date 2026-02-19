@@ -12,16 +12,16 @@ import com.jujodevs.pomodoro.libs.notifications.NotificationChannel
  * Best-effort resolution: uses NotificationChannel.sound and RingtoneManager for label.
  */
 class AlarmSoundLabelProviderImpl(
-    private val context: Context
+    private val context: Context,
 ) : AlarmSoundLabelProvider {
-
-    override fun getCompletionChannelSoundLabel(): String {
-        return when {
+    override fun getCompletionChannelSoundLabel(): String =
+        when {
             Build.VERSION.SDK_INT < Build.VERSION_CODES.O -> LABEL_UNKNOWN
             else -> {
-                val notificationManager = context.getSystemService(
-                    Context.NOTIFICATION_SERVICE
-                ) as android.app.NotificationManager
+                val notificationManager =
+                    context.getSystemService(
+                        Context.NOTIFICATION_SERVICE,
+                    ) as android.app.NotificationManager
                 val channel = notificationManager.getNotificationChannel(NotificationChannel.PomodoroSession.id)
                 when (val soundUri = channel?.sound) {
                     null -> LABEL_SILENT
@@ -29,7 +29,6 @@ class AlarmSoundLabelProviderImpl(
                 }
             }
         }
-    }
 
     private fun resolveSoundLabel(soundUri: android.net.Uri): String {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) return LABEL_CUSTOM_SOUND

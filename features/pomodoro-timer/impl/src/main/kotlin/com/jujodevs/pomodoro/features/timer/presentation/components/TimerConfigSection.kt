@@ -32,7 +32,7 @@ import com.jujodevs.pomodoro.features.timer.presentation.TimerState
 internal fun ConfigSection(
     state: TimerState,
     onAction: (TimerAction) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
     val isIdle = state.status == PomodoroStatus.IDLE
@@ -42,8 +42,8 @@ internal fun ConfigSection(
             title = stringResource(R.string.label_work_duration),
             options = state.workDurationOptions,
             selectedOption = state.selectedWorkMinutes,
-            onOptionSelected = { onAction(TimerAction.SelectWorkDuration(it)) },
-            enabled = isIdle
+            onOptionSelect = { onAction(TimerAction.SelectWorkDuration(it)) },
+            enabled = isIdle,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
@@ -52,8 +52,8 @@ internal fun ConfigSection(
             title = stringResource(R.string.label_break_duration),
             options = state.breakDurationOptions,
             selectedOption = state.selectedShortBreakMinutes,
-            onOptionSelected = { onAction(TimerAction.SelectShortBreakDuration(it)) },
-            enabled = isIdle
+            onOptionSelect = { onAction(TimerAction.SelectShortBreakDuration(it)) },
+            enabled = isIdle,
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceM))
@@ -62,7 +62,7 @@ internal fun ConfigSection(
             autoStartBreaks = state.autoStartBreaks,
             autoStartWork = state.autoStartWork,
             onToggleBreaks = { onAction(TimerAction.ToggleAutoStartBreaks(it)) },
-            onToggleWork = { onAction(TimerAction.ToggleAutoStartWork(it)) }
+            onToggleWork = { onAction(TimerAction.ToggleAutoStartWork(it)) },
         )
     }
 }
@@ -72,8 +72,8 @@ private fun DurationSelectorCard(
     title: String,
     options: List<Int>,
     selectedOption: Int,
-    onOptionSelected: (Int) -> Unit,
-    enabled: Boolean
+    onOptionSelect: (Int) -> Unit,
+    enabled: Boolean,
 ) {
     val spacing = LocalSpacing.current
 
@@ -82,30 +82,30 @@ private fun DurationSelectorCard(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleSmall,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = stringResource(R.string.label_min),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.primary,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
             }
             Spacer(modifier = Modifier.height(spacing.spaceS))
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 options.forEach { option ->
                     PomodoroChip(
                         text = option.toString(),
                         selected = option == selectedOption,
-                        onClick = { if (enabled) onOptionSelected(option) }
+                        onClick = { if (enabled) onOptionSelect(option) },
                     )
                 }
             }
@@ -118,7 +118,7 @@ private fun AutoStartToggles(
     autoStartBreaks: Boolean,
     autoStartWork: Boolean,
     onToggleBreaks: (Boolean) -> Unit,
-    onToggleWork: (Boolean) -> Unit
+    onToggleWork: (Boolean) -> Unit,
 ) {
     val spacing = LocalSpacing.current
 
@@ -127,12 +127,12 @@ private fun AutoStartToggles(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PomodoroSwitch(
                     checked = autoStartBreaks,
-                    onCheckedChange = onToggleBreaks
+                    onCheckedChange = onToggleBreaks,
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceXS))
                 Text(
                     text = stringResource(R.string.label_auto_start_breaks),
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
         }
@@ -140,12 +140,12 @@ private fun AutoStartToggles(
             Row(verticalAlignment = Alignment.CenterVertically) {
                 PomodoroSwitch(
                     checked = autoStartWork,
-                    onCheckedChange = onToggleWork
+                    onCheckedChange = onToggleWork,
                 )
                 Spacer(modifier = Modifier.width(spacing.spaceXS))
                 Text(
                     text = stringResource(R.string.label_auto_start_work),
-                    style = MaterialTheme.typography.bodySmall
+                    style = MaterialTheme.typography.bodySmall,
                 )
             }
         }
@@ -157,16 +157,18 @@ private fun AutoStartToggles(
 private fun ConfigSectionPreview() {
     PomodoroTheme(darkTheme = true) {
         Box(
-            modifier = Modifier
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .padding(16.dp),
         ) {
             ConfigSection(
-                state = TimerState(
-                    status = PomodoroStatus.IDLE,
-                    selectedWorkMinutes = 25,
-                    selectedShortBreakMinutes = 5
-                ),
-                onAction = {}
+                state =
+                    TimerState(
+                        status = PomodoroStatus.IDLE,
+                        selectedWorkMinutes = 25,
+                        selectedShortBreakMinutes = 5,
+                    ),
+                onAction = {},
             )
         }
     }

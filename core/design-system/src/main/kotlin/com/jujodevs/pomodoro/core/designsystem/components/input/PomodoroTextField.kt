@@ -33,39 +33,42 @@ fun PomodoroTextField(
     label: String? = null,
     placeholder: String? = null,
     enabled: Boolean = true,
-    singleLine: Boolean = true
+    singleLine: Boolean = true,
 ) {
     TextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
         enabled = enabled,
-        label = if (label != null) {
-            { Text(label) }
-        } else {
-            null
-        },
-        placeholder = if (placeholder != null) {
-            { Text(placeholder) }
-        } else {
-            null
-        },
+        label =
+            if (label != null) {
+                { Text(label) }
+            } else {
+                null
+            },
+        placeholder =
+            if (placeholder != null) {
+                { Text(placeholder) }
+            } else {
+                null
+            },
         singleLine = singleLine,
         shape = MaterialTheme.shapes.medium,
-        colors = TextFieldDefaults.colors(
-            focusedContainerColor = MaterialTheme.colorScheme.surface,
-            unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-            disabledContainerColor = MaterialTheme.colorScheme.surface,
-            focusedTextColor = MaterialTheme.colorScheme.onSurface,
-            unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
-            focusedLabelColor = TextSecondary,
-            unfocusedLabelColor = TextSecondary,
-            focusedPlaceholderColor = TextSecondary,
-            unfocusedPlaceholderColor = TextSecondary,
-            focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-            unfocusedIndicatorColor = Color.Transparent,
-            disabledIndicatorColor = Color.Transparent,
-        )
+        colors =
+            TextFieldDefaults.colors(
+                focusedContainerColor = MaterialTheme.colorScheme.surface,
+                unfocusedContainerColor = MaterialTheme.colorScheme.surface,
+                disabledContainerColor = MaterialTheme.colorScheme.surface,
+                focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                focusedLabelColor = TextSecondary,
+                unfocusedLabelColor = TextSecondary,
+                focusedPlaceholderColor = TextSecondary,
+                unfocusedPlaceholderColor = TextSecondary,
+                focusedIndicatorColor = MaterialTheme.colorScheme.primary,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent,
+            ),
     )
 }
 
@@ -77,7 +80,7 @@ private fun PomodoroTextFieldPreview() {
             value = "John Doe",
             onValueChange = {},
             label = "Name",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }
@@ -90,7 +93,7 @@ private fun PomodoroTextFieldEmptyPreview() {
             value = "",
             onValueChange = {},
             placeholder = "Enter your name",
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
     }
 }

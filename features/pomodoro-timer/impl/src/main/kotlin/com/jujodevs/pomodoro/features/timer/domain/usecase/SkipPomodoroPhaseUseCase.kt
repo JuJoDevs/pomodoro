@@ -6,7 +6,7 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 import com.jujodevs.pomodoro.features.timer.domain.repository.PomodoroRepository
 
 class SkipPomodoroPhaseUseCase(
-    private val repository: PomodoroRepository
+    private val repository: PomodoroRepository,
 ) {
     suspend operator fun invoke() {
         repository.updateSessionState { currentState ->
@@ -20,7 +20,7 @@ class SkipPomodoroPhaseUseCase(
                 completedWorkSessions = nextCompletedWorkSessions,
                 remainingMillis = nextDurationMillis,
                 phaseToken = "",
-                lastKnownEndTimestamp = null
+                lastKnownEndTimestamp = null,
             )
         }
     }
@@ -39,23 +39,25 @@ class SkipPomodoroPhaseUseCase(
 
     private fun calculateNextCompletedSessions(
         state: PomodoroSessionState,
-        nextPhase: PomodoroPhase
-    ): Int = when {
-        state.currentPhase == PomodoroPhase.WORK ->
-            (state.completedWorkSessions + 1) % (state.totalSessions + 1)
-        nextPhase == PomodoroPhase.WORK && state.currentPhase == PomodoroPhase.LONG_BREAK ->
-            0
-        else -> state.completedWorkSessions
-    }
+        nextPhase: PomodoroPhase,
+    ): Int =
+        when {
+            state.currentPhase == PomodoroPhase.WORK ->
+                (state.completedWorkSessions + 1) % (state.totalSessions + 1)
+            nextPhase == PomodoroPhase.WORK && state.currentPhase == PomodoroPhase.LONG_BREAK ->
+                0
+            else -> state.completedWorkSessions
+        }
 
     private fun calculateNextDuration(
         state: PomodoroSessionState,
-        nextPhase: PomodoroPhase
-    ): Long = when (nextPhase) {
-        PomodoroPhase.WORK -> state.selectedWorkMinutes * MILLIS_IN_MINUTE
-        PomodoroPhase.SHORT_BREAK -> state.selectedShortBreakMinutes * MILLIS_IN_MINUTE
-        PomodoroPhase.LONG_BREAK -> state.longBreakMinutes * MILLIS_IN_MINUTE
-    }
+        nextPhase: PomodoroPhase,
+    ): Long =
+        when (nextPhase) {
+            PomodoroPhase.WORK -> state.selectedWorkMinutes * MILLIS_IN_MINUTE
+            PomodoroPhase.SHORT_BREAK -> state.selectedShortBreakMinutes * MILLIS_IN_MINUTE
+            PomodoroPhase.LONG_BREAK -> state.longBreakMinutes * MILLIS_IN_MINUTE
+        }
 
     companion object {
         private const val MILLIS_IN_MINUTE = 60 * 1000L

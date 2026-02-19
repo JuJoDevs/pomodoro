@@ -7,7 +7,6 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.Test
 
 class GetCompletionAlarmSoundLabelUseCaseTest {
-
     private val alarmSoundLabelProvider: AlarmSoundLabelProvider = mockk()
     private val useCase = GetCompletionAlarmSoundLabelUseCase(alarmSoundLabelProvider)
 

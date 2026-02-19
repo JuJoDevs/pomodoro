@@ -10,6 +10,7 @@ android {
 
 dependencies {
     implementation(project(":libs:analytics:api"))
+    implementation(project(":libs:datastore:api"))
     implementation(project(":libs:logger:api"))
 
     implementation(platform(libs.firebase.bom))

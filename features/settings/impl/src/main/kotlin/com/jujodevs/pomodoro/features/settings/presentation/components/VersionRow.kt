@@ -16,20 +16,21 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 @Composable
 fun VersionRow(
     versionText: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val spacing = LocalSpacing.current
 
     Box(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = spacing.spaceXL),
-        contentAlignment = Alignment.Center
+        modifier =
+            modifier
+                .fillMaxWidth()
+                .padding(vertical = spacing.spaceXL),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = versionText,
             style = MaterialTheme.typography.labelSmall,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
     }
 }
@@ -40,7 +41,7 @@ private fun VersionRowPreview() {
     PomodoroTheme(darkTheme = true) {
         VersionRow(
             versionText = "Version 1.0.0 (1)",
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         )
     }
 }
