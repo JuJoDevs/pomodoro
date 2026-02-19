@@ -72,4 +72,17 @@
     <!-- Формати часу -->
     <string name="time_format_minutes">%d хв</string>
     <string name="time_format_hours_minutes">%1$d год %2$d хв</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Звук сигналу</string>
+    <string name="settings_action_open_channel_settings">Відкрити налаштування каналу Pomodoro</string>
+    <string name="settings_section_analytics">АНАЛІТИКА</string>
+    <string name="settings_label_analytics_collection">Допомогти покращити застосунок</string>
+    <string name="settings_description_analytics_collection">Дозволити анонімну аналітику використання для покращення надійності та зручності.</string>
+    <string name="settings_section_permissions">ДОЗВОЛИ</string>
+    <string name="settings_label_exact_alarm">Дозвіл на точний будильник</string>
+    <string name="settings_label_notification">Дозвіл на сповіщення</string>
+    <string name="settings_status_granted">Надано</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Версія %1$s (%2$s)</string>
 </resources>

@@ -72,4 +72,17 @@
     <!-- Időformátumok -->
     <string name="time_format_minutes">%d perc</string>
     <string name="time_format_hours_minutes">%1$d ó %2$d perc</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Ébresztőhang</string>
+    <string name="settings_action_open_channel_settings">Pomodoro csatorna beállításainak megnyitása</string>
+    <string name="settings_section_analytics">ANALITIKA</string>
+    <string name="settings_label_analytics_collection">Segíts az alkalmazás fejlesztésében</string>
+    <string name="settings_description_analytics_collection">Engedélyezd a névtelen használati elemzéseket a megbízhatóság és a felhasználói élmény javításához.</string>
+    <string name="settings_section_permissions">ENGEDÉLYEK</string>
+    <string name="settings_label_exact_alarm">Pontos ébresztés engedélye</string>
+    <string name="settings_label_notification">Értesítési engedély</string>
+    <string name="settings_status_granted">Engedélyezve</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Verzió %1$s (%2$s)</string>
 </resources>

@@ -72,4 +72,17 @@
     <!-- รูปแบบเวลา -->
     <string name="time_format_minutes">%d นาที</string>
     <string name="time_format_hours_minutes">%1$d ชม. %2$d นาที</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">เสียงปลุก</string>
+    <string name="settings_action_open_channel_settings">เปิดการตั้งค่าช่อง Pomodoro</string>
+    <string name="settings_section_analytics">การวิเคราะห์</string>
+    <string name="settings_label_analytics_collection">ช่วยปรับปรุงแอป</string>
+    <string name="settings_description_analytics_collection">อนุญาตการวิเคราะห์การใช้งานแบบไม่ระบุตัวตนเพื่อปรับปรุงความเสถียรและประสบการณ์ใช้งาน</string>
+    <string name="settings_section_permissions">สิทธิ์</string>
+    <string name="settings_label_exact_alarm">สิทธิ์การปลุกแบบตรงเวลา</string>
+    <string name="settings_label_notification">สิทธิ์การแจ้งเตือน</string>
+    <string name="settings_status_granted">ได้รับแล้ว</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">เวอร์ชัน %1$s (%2$s)</string>
 </resources>

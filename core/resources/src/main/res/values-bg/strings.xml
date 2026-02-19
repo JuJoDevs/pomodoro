@@ -72,4 +72,17 @@
     <!-- Формати за време -->
     <string name="time_format_minutes">%d мин</string>
     <string name="time_format_hours_minutes">%1$d ч %2$d мин</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Звук на алармата</string>
+    <string name="settings_action_open_channel_settings">Отваряне на настройките на канала Pomodoro</string>
+    <string name="settings_section_analytics">АНАЛИТИКА</string>
+    <string name="settings_label_analytics_collection">Помогнете да подобрим приложението</string>
+    <string name="settings_description_analytics_collection">Разрешете анонимни анализи на употребата за подобряване на надеждността и изживяването.</string>
+    <string name="settings_section_permissions">РАЗРЕШЕНИЯ</string>
+    <string name="settings_label_exact_alarm">Разрешение за точна аларма</string>
+    <string name="settings_label_notification">Разрешение за известия</string>
+    <string name="settings_status_granted">Разрешено</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Версия %1$s (%2$s)</string>
 </resources>

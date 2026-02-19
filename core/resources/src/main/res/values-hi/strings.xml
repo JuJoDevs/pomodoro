@@ -72,4 +72,17 @@
     <!-- समय प्रारूप -->
     <string name="time_format_minutes">%d मिनट</string>
     <string name="time_format_hours_minutes">%1$d घंटे %2$d मिनट</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">अलार्म ध्वनि</string>
+    <string name="settings_action_open_channel_settings">Pomodoro चैनल सेटिंग्स खोलें</string>
+    <string name="settings_section_analytics">विश्लेषण</string>
+    <string name="settings_label_analytics_collection">ऐप को बेहतर बनाने में मदद करें</string>
+    <string name="settings_description_analytics_collection">विश्वसनीयता और उपयोगकर्ता अनुभव बेहतर करने के लिए गुमनाम उपयोग विश्लेषण की अनुमति दें।</string>
+    <string name="settings_section_permissions">अनुमतियां</string>
+    <string name="settings_label_exact_alarm">सटीक अलार्म की अनुमति</string>
+    <string name="settings_label_notification">सूचना की अनुमति</string>
+    <string name="settings_status_granted">अनुमत</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">संस्करण %1$s (%2$s)</string>
 </resources>

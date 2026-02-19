@@ -72,4 +72,17 @@
     <!-- Time formats -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Sonido de alarma</string>
+    <string name="settings_action_open_channel_settings">Abrir ajustes del canal de Pomodoro</string>
+    <string name="settings_section_analytics">ANALÍTICAS</string>
+    <string name="settings_label_analytics_collection">Ayudar a mejorar la app</string>
+    <string name="settings_description_analytics_collection">Permitir analíticas de uso anónimas para mejorar fiabilidad y experiencia.</string>
+    <string name="settings_section_permissions">PERMISOS</string>
+    <string name="settings_label_exact_alarm">Permiso de alarma exacta</string>
+    <string name="settings_label_notification">Permiso de notificaciones</string>
+    <string name="settings_status_granted">Concedido</string>
+    <string name="settings_action_grant">Conceder</string>
+    <string name="settings_version_format">Versión %1$s (%2$s)</string>
 </resources>

@@ -72,4 +72,17 @@
     <!-- Tidsformat -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Larmljud</string>
+    <string name="settings_action_open_channel_settings">Öppna inställningar för Pomodoro-kanalen</string>
+    <string name="settings_section_analytics">ANALYS</string>
+    <string name="settings_label_analytics_collection">Hjälp till att förbättra appen</string>
+    <string name="settings_description_analytics_collection">Tillåt anonym användningsanalys för att förbättra tillförlitlighet och användarupplevelse.</string>
+    <string name="settings_section_permissions">BEHÖRIGHETER</string>
+    <string name="settings_label_exact_alarm">Behörighet för exakt alarm</string>
+    <string name="settings_label_notification">Behörighet för aviseringar</string>
+    <string name="settings_status_granted">Beviljad</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Version %1$s (%2$s)</string>
 </resources>

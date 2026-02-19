@@ -72,4 +72,17 @@
     <!-- تنسيقات الوقت -->
     <string name="time_format_minutes">%d دقيقة</string>
     <string name="time_format_hours_minutes">%1$d ساعة %2$d دقيقة</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">صوت المنبه</string>
+    <string name="settings_action_open_channel_settings">فتح إعدادات قناة Pomodoro</string>
+    <string name="settings_section_analytics">التحليلات</string>
+    <string name="settings_label_analytics_collection">ساعد في تحسين التطبيق</string>
+    <string name="settings_description_analytics_collection">اسمح بتحليلات استخدام مجهولة لتحسين الموثوقية وتجربة الاستخدام.</string>
+    <string name="settings_section_permissions">الأذونات</string>
+    <string name="settings_label_exact_alarm">إذن المنبّه الدقيق</string>
+    <string name="settings_label_notification">إذن الإشعارات</string>
+    <string name="settings_status_granted">ممنوح</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">الإصدار %1$s (%2$s)</string>
 </resources>

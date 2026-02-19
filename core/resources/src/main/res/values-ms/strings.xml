@@ -72,4 +72,17 @@
     <!-- Format masa -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d jam %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Bunyi penggera</string>
+    <string name="settings_action_open_channel_settings">Buka tetapan saluran Pomodoro</string>
+    <string name="settings_section_analytics">ANALITIK</string>
+    <string name="settings_label_analytics_collection">Bantu menambah baik aplikasi</string>
+    <string name="settings_description_analytics_collection">Benarkan analitik penggunaan tanpa nama untuk meningkatkan kebolehpercayaan dan pengalaman pengguna.</string>
+    <string name="settings_section_permissions">KEBENARAN</string>
+    <string name="settings_label_exact_alarm">Kebenaran penggera tepat</string>
+    <string name="settings_label_notification">Kebenaran notifikasi</string>
+    <string name="settings_status_granted">Diberikan</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Versi %1$s (%2$s)</string>
 </resources>

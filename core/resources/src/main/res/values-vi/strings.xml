@@ -72,4 +72,17 @@
     <!-- Định dạng thời gian -->
     <string name="time_format_minutes">%d phút</string>
     <string name="time_format_hours_minutes">%1$d giờ %2$d phút</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Âm báo thức</string>
+    <string name="settings_action_open_channel_settings">Mở cài đặt kênh Pomodoro</string>
+    <string name="settings_section_analytics">PHÂN TÍCH</string>
+    <string name="settings_label_analytics_collection">Giúp cải thiện ứng dụng</string>
+    <string name="settings_description_analytics_collection">Cho phép phân tích sử dụng ẩn danh để cải thiện độ tin cậy và trải nghiệm.</string>
+    <string name="settings_section_permissions">QUYỀN</string>
+    <string name="settings_label_exact_alarm">Quyền báo thức chính xác</string>
+    <string name="settings_label_notification">Quyền thông báo</string>
+    <string name="settings_status_granted">Đã cấp</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Phiên bản %1$s (%2$s)</string>
 </resources>

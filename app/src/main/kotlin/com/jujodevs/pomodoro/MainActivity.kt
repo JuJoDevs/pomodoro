@@ -36,6 +36,7 @@ import com.jujodevs.pomodoro.core.ui.TopBarAction
 import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
+import com.jujodevs.pomodoro.features.settings.presentation.SettingsRoute
 import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
 import com.jujodevs.pomodoro.ui.ConfigureSystemBars
 import kotlinx.coroutines.launch
@@ -58,37 +59,47 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun PomodoroApp() {
-    // Create and remember the navigation back stack
     val backStack = rememberNavBackStack(MainNavKey.Home)
     val snackbarHostState = remember { SnackbarHostState() }
-    var topBarTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
+    var phaseTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
+    val isOnSettings = backStack.isNotEmpty() && backStack.last() == MainNavKey.Settings
+    val topBarTitle = if (isOnSettings) {
+        stringResource(R.string.label_settings)
+    } else {
+        stringResource(phaseTitleResId)
+    }
+    val topBarActions = if (isOnSettings) {
+        emptyList()
+    } else {
+        listOf(
+            TopBarAction(
+                icon = PomodoroIcons.Settings,
+                contentDescription = stringResource(R.string.label_settings),
+                onClick = { backStack.navigateTo(MainNavKey.Settings) }
+            ),
+            TopBarAction(
+                icon = PomodoroIcons.Help,
+                contentDescription = "Help",
+                onClick = { /* Handle help */ }
+            )
+        )
+    }
 
     PomodoroScaffold(
         snackbarHostState = snackbarHostState,
         scaffoldConfig = ScaffoldConfig(
             topBar = TopBarState(
-                title = stringResource(topBarTitleResId),
+                title = topBarTitle,
                 showBackButton = backStack.size > 1,
                 onBackClick = { backStack.goBack() },
-                actions = listOf(
-                    TopBarAction(
-                        icon = PomodoroIcons.Settings,
-                        contentDescription = stringResource(R.string.label_settings),
-                        onClick = { backStack.navigateTo(MainNavKey.Settings) }
-                    ),
-                    TopBarAction(
-                        icon = PomodoroIcons.Help,
-                        contentDescription = "Help",
-                        onClick = { /* Handle help */ }
-                    )
-                )
+                actions = topBarActions
             )
         )
     ) {
         AppNavigation(
             backStack = backStack,
             snackbarHostState = snackbarHostState,
-            onPhaseChanged = { topBarTitleResId = it }
+            onPhaseChanged = { phaseTitleResId = it }
         )
     }
 }
@@ -132,7 +143,7 @@ fun AppNavigation(
             }
 
             entry<MainNavKey.Settings> {
-                SettingsScreen()
+                SettingsRoute()
             }
 
             entry<MainNavKey.Statistics> {
@@ -140,16 +151,6 @@ fun AppNavigation(
             }
         }
     )
-}
-
-@Composable
-private fun SettingsScreen() {
-    Box(
-        modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = "Settings")
-    }
 }
 
 @Composable

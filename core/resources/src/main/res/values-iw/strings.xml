@@ -72,4 +72,17 @@
     <!-- פורמטי זמן -->
     <string name="time_format_minutes">%d דק\'</string>
     <string name="time_format_hours_minutes">%1$d שעות %2$d דק\'</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">צליל התראה</string>
+    <string name="settings_action_open_channel_settings">פתח את הגדרות ערוץ Pomodoro</string>
+    <string name="settings_section_analytics">אנליטיקה</string>
+    <string name="settings_label_analytics_collection">עזור לשפר את האפליקציה</string>
+    <string name="settings_description_analytics_collection">אפשר ניתוח שימוש אנונימי כדי לשפר אמינות וחוויית משתמש.</string>
+    <string name="settings_section_permissions">הרשאות</string>
+    <string name="settings_label_exact_alarm">הרשאת התראה מדויקת</string>
+    <string name="settings_label_notification">הרשאת התראות</string>
+    <string name="settings_status_granted">הוענקה</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">גרסה %1$s (%2$s)</string>
 </resources>

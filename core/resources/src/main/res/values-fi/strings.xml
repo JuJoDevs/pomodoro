@@ -72,4 +72,17 @@
     <!-- Aikamuodot -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d t %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Hälytysääni</string>
+    <string name="settings_action_open_channel_settings">Avaa Pomodoro-kanavan asetukset</string>
+    <string name="settings_section_analytics">ANALYTIIKKA</string>
+    <string name="settings_label_analytics_collection">Auta parantamaan sovellusta</string>
+    <string name="settings_description_analytics_collection">Salli anonyymi käyttöanalytiikka luotettavuuden ja käyttökokemuksen parantamiseksi.</string>
+    <string name="settings_section_permissions">OIKEUDET</string>
+    <string name="settings_label_exact_alarm">Tarkan hälytyksen lupa</string>
+    <string name="settings_label_notification">Ilmoituslupa</string>
+    <string name="settings_status_granted">Myönnetty</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Versio %1$s (%2$s)</string>
 </resources>

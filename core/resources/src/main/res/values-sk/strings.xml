@@ -72,4 +72,17 @@
     <!-- Formáty času -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d h %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Zvuk alarmu</string>
+    <string name="settings_action_open_channel_settings">Otvoriť nastavenia kanála Pomodoro</string>
+    <string name="settings_section_analytics">ANALYTIKA</string>
+    <string name="settings_label_analytics_collection">Pomôžte zlepšiť aplikáciu</string>
+    <string name="settings_description_analytics_collection">Povoľte anonymnú analytiku používania na zlepšenie spoľahlivosti a používateľského zážitku.</string>
+    <string name="settings_section_permissions">POVOLENIA</string>
+    <string name="settings_label_exact_alarm">Povolenie presného alarmu</string>
+    <string name="settings_label_notification">Povolenie upozornení</string>
+    <string name="settings_status_granted">Udelené</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Verzia %1$s (%2$s)</string>
 </resources>

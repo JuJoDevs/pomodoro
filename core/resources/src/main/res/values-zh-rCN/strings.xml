@@ -72,4 +72,17 @@
     <!-- 时间格式 -->
     <string name="time_format_minutes">%d 分钟</string>
     <string name="time_format_hours_minutes">%1$d 小时 %2$d 分钟</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">闹钟声音</string>
+    <string name="settings_action_open_channel_settings">打开 Pomodoro 通知渠道设置</string>
+    <string name="settings_section_analytics">分析</string>
+    <string name="settings_label_analytics_collection">帮助改进应用</string>
+    <string name="settings_description_analytics_collection">允许收集匿名使用分析以改进稳定性和体验。</string>
+    <string name="settings_section_permissions">权限</string>
+    <string name="settings_label_exact_alarm">精确闹钟权限</string>
+    <string name="settings_label_notification">通知权限</string>
+    <string name="settings_status_granted">已授予</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">版本 %1$s (%2$s)</string>
 </resources>

@@ -18,6 +18,27 @@ fun NotificationPermissionEffect(
     permissionManager: PermissionManager = koinInject(),
     onPermissionResult: (Boolean) -> Unit = {}
 ) {
+    RequestNotificationPermissionOnTrigger(
+        trigger = true,
+        permissionManager = permissionManager,
+        onPermissionResult = onPermissionResult
+    )
+}
+
+/**
+ * A Composable that requests notification permission when [trigger] becomes true.
+ *
+ * Use this for user-triggered permission flows (e.g. from Settings screen).
+ *
+ * @param trigger When true, launches the permission request. Caller should reset after.
+ * @param onPermissionResult Callback invoked with the result.
+ */
+@Composable
+fun RequestNotificationPermissionOnTrigger(
+    trigger: Boolean,
+    permissionManager: PermissionManager = koinInject(),
+    onPermissionResult: (Boolean) -> Unit = {}
+) {
     val permissionString = remember { permissionManager.getNotificationPermissionString() }
 
     val launcher = rememberLauncherForActivityResult(
@@ -26,7 +47,8 @@ fun NotificationPermissionEffect(
         onPermissionResult(isGranted)
     }
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(trigger) {
+        if (!trigger) return@LaunchedEffect
         if (permissionString != null) {
             if (!permissionManager.hasNotificationPermission()) {
                 launcher.launch(permissionString)
@@ -34,7 +56,6 @@ fun NotificationPermissionEffect(
                 onPermissionResult(true)
             }
         } else {
-            // Permission not required for this API level
             onPermissionResult(true)
         }
     }

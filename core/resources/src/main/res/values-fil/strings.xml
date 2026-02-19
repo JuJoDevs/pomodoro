@@ -72,4 +72,17 @@
     <!-- Mga format ng oras -->
     <string name="time_format_minutes">%d min</string>
     <string name="time_format_hours_minutes">%1$d oras %2$d min</string>
+
+    <!-- Settings -->
+    <string name="settings_label_alarm_sound">Tunog ng alarm</string>
+    <string name="settings_action_open_channel_settings">Buksan ang mga setting ng Pomodoro channel</string>
+    <string name="settings_section_analytics">ANALITIKA</string>
+    <string name="settings_label_analytics_collection">Tumulong na pagandahin ang app</string>
+    <string name="settings_description_analytics_collection">Payagan ang anonymous na usage analytics upang mapabuti ang pagiging maaasahan at karanasan ng user.</string>
+    <string name="settings_section_permissions">MGA PAHINTULOT</string>
+    <string name="settings_label_exact_alarm">Pahintulot sa eksaktong alarm</string>
+    <string name="settings_label_notification">Pahintulot sa notification</string>
+    <string name="settings_status_granted">Ibinigay</string>
+    <string name="settings_action_grant">@string/action_grant</string>
+    <string name="settings_version_format">Bersyon %1$s (%2$s)</string>
 </resources>
