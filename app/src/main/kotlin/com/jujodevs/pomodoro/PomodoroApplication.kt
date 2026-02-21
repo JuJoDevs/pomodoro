@@ -6,6 +6,7 @@ import com.jujodevs.pomodoro.core.appconfig.AppConfig
 import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
 import com.jujodevs.pomodoro.di.applicationScopeModule
 import com.jujodevs.pomodoro.features.settings.di.settingsModule
+import com.jujodevs.pomodoro.features.statistics.di.statisticsModule
 import com.jujodevs.pomodoro.features.timer.di.timerModule
 import com.jujodevs.pomodoro.libs.analytics.impl.di.analyticsModule
 import com.jujodevs.pomodoro.libs.crashlytics.impl.di.crashlyticsModule
@@ -39,6 +40,7 @@ class PomodoroApplication : Application() {
                 usageStatsModule,
                 timerModule,
                 settingsModule,
+                statisticsModule,
             )
         }
 

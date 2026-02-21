@@ -5,6 +5,7 @@ import com.jujodevs.pomodoro.core.domain.util.EmptyResult
 import com.jujodevs.pomodoro.core.domain.util.Result
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsEvent
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsSummary
+import kotlinx.coroutines.flow.Flow
 
 interface UsageStatsRepository {
     suspend fun recordEvent(event: UsageStatsEvent): EmptyResult<DataError.Local>
@@ -13,4 +14,6 @@ interface UsageStatsRepository {
         periodStartMillis: Long,
         periodEndMillis: Long,
     ): Result<UsageStatsSummary, DataError.Local>
+
+    fun observeEventsCount(): Flow<Long>
 }

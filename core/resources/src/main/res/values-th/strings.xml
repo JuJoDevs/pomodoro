@@ -85,4 +85,23 @@
     <string name="settings_status_granted">ได้รับแล้ว</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">เวอร์ชัน %1$s (%2$s)</string>
+
+    <!-- สถิติ -->
+    <string name="statistics_label_total_focus_time">เวลาโฟกัสรวม (สัปดาห์)</string>
+    <string name="statistics_label_total_break_time">เวลาพักรวม (สัปดาห์)</string>
+    <string name="statistics_label_total_week_time">เวลารวมรายสัปดาห์</string>
+    <string name="statistics_label_hours_minutes">ชั่วโมง : นาที</string>
+    <string name="statistics_label_sessions">เซสชัน</string>
+    <string name="statistics_label_day_streak">จำนวนวันที่ต่อเนื่อง</string>
+    <string name="statistics_label_weekly_activity">กิจกรรมรายสัปดาห์</string>
+    <string name="statistics_label_monthly_activity">กิจกรรมรายเดือน</string>
+    <string name="statistics_label_current_week">สัปดาห์ปัจจุบัน</string>
+    <string name="statistics_label_last_12_months">12 เดือนที่ผ่านมา</string>
+    <string name="statistics_label_last_7_days">7 วันที่ผ่านมา</string>
+    <string name="statistics_filter_current_week">สัปดาห์</string>
+    <string name="statistics_filter_months">เดือน</string>
+    <string name="statistics_action_share_progress">แชร์ความคืบหน้า</string>
+    <string name="statistics_empty_title">ยังไม่มีข้อมูล</string>
+    <string name="statistics_empty_message">ทำเซสชันโฟกัสให้เสร็จสิ้นเพื่อดูสถิติของคุณที่นี่</string>
+    <string name="statistics_action_retry">ลองใหม่</string>
 </resources>

@@ -85,4 +85,23 @@
     <string name="settings_status_granted">ممنوح</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">الإصدار %1$s (%2$s)</string>
+
+    <!-- الإحصائيات -->
+    <string name="statistics_label_total_focus_time">إجمالي وقت التركيز (أسبوع)</string>
+    <string name="statistics_label_total_break_time">إجمالي وقت الراحة (أسبوع)</string>
+    <string name="statistics_label_total_week_time">إجمالي الوقت الأسبوعي</string>
+    <string name="statistics_label_hours_minutes">ساعات : دقائق</string>
+    <string name="statistics_label_sessions">الجلسات</string>
+    <string name="statistics_label_day_streak">أيام متتالية</string>
+    <string name="statistics_label_weekly_activity">النشاط الأسبوعي</string>
+    <string name="statistics_label_monthly_activity">النشاط الشهري</string>
+    <string name="statistics_label_current_week">الأسبوع الحالي</string>
+    <string name="statistics_label_last_12_months">آخر 12 شهرًا</string>
+    <string name="statistics_label_last_7_days">آخر 7 أيام</string>
+    <string name="statistics_filter_current_week">أسبوع</string>
+    <string name="statistics_filter_months">أشهر</string>
+    <string name="statistics_action_share_progress">مشاركة التقدم</string>
+    <string name="statistics_empty_title">لا توجد بيانات حتى الآن</string>
+    <string name="statistics_empty_message">أكمل بعض جلسات التركيز لرى إحصائياتك هنا.</string>
+    <string name="statistics_action_retry">إعادة المحاولة</string>
 </resources>

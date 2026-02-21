@@ -30,6 +30,9 @@ import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsPeriod
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsSummary
 import com.jujodevs.pomodoro.libs.usagestats.domain.repository.UsageStatsRepository
 import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.RecordUsageStatsEventUseCase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.amshove.kluent.shouldBeEqualTo
@@ -188,6 +191,84 @@ class TimerViewModelTest {
 
                 repository.updateSessionState(PomodoroSessionState(status = PomodoroStatus.IDLE))
                 state.awaitItem()
+                state.cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun `GIVEN running phase WHEN pause action THEN elapsed usage time is recorded`() =
+        runTest {
+            turbineScope {
+                val state = viewModel.state.testIn(this)
+                state.awaitInitialSyncedState()
+
+                val remainingMillis = 20 * 60 * 1000L
+                repository.updateSessionState(
+                    PomodoroSessionState(
+                        currentPhase = PomodoroPhase.WORK,
+                        status = PomodoroStatus.RUNNING,
+                        remainingMillis = remainingMillis,
+                        phaseToken = "token-1",
+                        lastKnownEndTimestamp = timeProvider.currentTime + remainingMillis,
+                    ),
+                )
+                state.awaitItem()
+
+                viewModel.onAction(TimerAction.Pause)
+                state.awaitItem()
+
+                val recordedElapsedEvent =
+                    usageStatsRepository.recordedEvents.firstOrNull {
+                        it.type == UsageStatsEventType.PHASE_TIME_RECORDED
+                    }
+                recordedElapsedEvent?.durationMillis shouldBeEqualTo 5 * 60 * 1000L
+                usageStatsRepository.recordedEvents.any {
+                    it.type == UsageStatsEventType.PHASE_PAUSED
+                } shouldBeEqualTo true
+                state.cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
+    fun `GIVEN elapsed recorded on pause WHEN phase completes THEN only remaining delta is recorded`() =
+        runTest {
+            turbineScope {
+                val state = viewModel.state.testIn(this)
+                state.awaitInitialSyncedState()
+
+                val remainingMillis = 20 * 60 * 1000L
+                repository.updateSessionState(
+                    PomodoroSessionState(
+                        currentPhase = PomodoroPhase.WORK,
+                        status = PomodoroStatus.RUNNING,
+                        remainingMillis = remainingMillis,
+                        phaseToken = "token-1",
+                        lastKnownEndTimestamp = timeProvider.currentTime + remainingMillis,
+                    ),
+                )
+                state.awaitItem()
+
+                viewModel.onAction(TimerAction.Pause)
+                state.awaitItem()
+
+                viewModel.onAction(TimerAction.Resume)
+                state.awaitItem()
+
+                timeProvider.currentTime += remainingMillis + 2_000L
+                state.awaitItem()
+
+                val recordedWorkDurations =
+                    usageStatsRepository.recordedEvents
+                        .filter {
+                            it.type == UsageStatsEventType.PHASE_TIME_RECORDED &&
+                                it.phase?.name == "WORK"
+                        }.mapNotNull { it.durationMillis }
+
+                recordedWorkDurations.sum() shouldBeEqualTo 25 * 60 * 1000L
+                usageStatsRepository.recordedEvents.any {
+                    it.type == UsageStatsEventType.PHASE_COMPLETED &&
+                        it.phase?.name == "WORK"
+                } shouldBeEqualTo true
                 state.cancelAndIgnoreRemainingEvents()
             }
         }
@@ -554,9 +635,11 @@ private class FakeNotificationScheduler : NotificationScheduler {
 
 private class FakeUsageStatsRepository : UsageStatsRepository {
     val recordedEvents = mutableListOf<UsageStatsEvent>()
+    private val eventsCountFlow = MutableStateFlow(0L)
 
     override suspend fun recordEvent(event: UsageStatsEvent): EmptyResult<DataError.Local> {
         recordedEvents += event
+        eventsCountFlow.value = recordedEvents.size.toLong()
         return Result.Success(Unit)
     }
 
@@ -582,4 +665,6 @@ private class FakeUsageStatsRepository : UsageStatsRepository {
                 pauseCount = 0,
             ),
         )
+
+    override fun observeEventsCount(): Flow<Long> = eventsCountFlow.asStateFlow()
 }

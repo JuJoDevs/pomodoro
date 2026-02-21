@@ -12,6 +12,7 @@ import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsEvent
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsPeriod
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsSummary
 import com.jujodevs.pomodoro.libs.usagestats.domain.repository.UsageStatsRepository
+import kotlinx.coroutines.flow.Flow
 
 internal class UsageStatsRepositoryImpl(
     private val dao: UsageStatsDao,
@@ -19,9 +20,12 @@ internal class UsageStatsRepositoryImpl(
     private val analyticsEventMapper: UsageStatsAnalyticsEventMapper,
     private val logger: Logger,
 ) : UsageStatsRepository {
+    private var hasNormalizedNullDurations = false
+
     override suspend fun recordEvent(event: UsageStatsEvent): EmptyResult<DataError.Local> {
         val result =
             runCatching {
+                normalizeNullDurationsIfNeeded()
                 dao.insertEvent(event.toEntity())
                 dao.deleteEventsOlderThan(event.occurredAtMillis - RETENTION_WINDOW_MILLIS)
 
@@ -74,12 +78,20 @@ internal class UsageStatsRepositoryImpl(
         )
     }
 
+    override fun observeEventsCount(): Flow<Long> = dao.observeEventsCount()
+
+    private suspend fun normalizeNullDurationsIfNeeded() {
+        if (hasNormalizedNullDurations) return
+        dao.normalizeNullDurations()
+        hasNormalizedNullDurations = true
+    }
+
     private fun UsageStatsEvent.toEntity(): UsageStatsEventEntity =
         UsageStatsEventEntity(
             eventType = type.name,
             phase = phase?.name,
             occurredAtMillis = occurredAtMillis,
-            durationMillis = durationMillis,
+            durationMillis = durationMillis ?: ZERO_DURATION_MILLIS,
             metadata = metadata.toStorageValue(),
         )
 
@@ -91,5 +103,6 @@ internal class UsageStatsRepositoryImpl(
     private companion object {
         const val TAG = "UsageStats"
         const val RETENTION_WINDOW_MILLIS = 365L * 24L * 60L * 60L * 1000L
+        const val ZERO_DURATION_MILLIS = 0L
     }
 }

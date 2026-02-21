@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Diberikan</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versi %1$s (%2$s)</string>
+
+    <!-- Statistik -->
+    <string name="statistics_label_total_focus_time">JUMLAH MASA FOKUS (MINGGU)</string>
+    <string name="statistics_label_total_break_time">JUMLAH MASA REHAT (MINGGU)</string>
+    <string name="statistics_label_total_week_time">JUMLAH MASA MINGGUAN</string>
+    <string name="statistics_label_hours_minutes">Jam : Minit</string>
+    <string name="statistics_label_sessions">SESI</string>
+    <string name="statistics_label_day_streak">HARI BERTURUT-TURUT</string>
+    <string name="statistics_label_weekly_activity">Aktiviti Mingguan</string>
+    <string name="statistics_label_monthly_activity">Aktiviti Bulanan</string>
+    <string name="statistics_label_current_week">Minggu Ini</string>
+    <string name="statistics_label_last_12_months">12 Bulan Lepas</string>
+    <string name="statistics_label_last_7_days">7 Hari Lepas</string>
+    <string name="statistics_filter_current_week">Minggu</string>
+    <string name="statistics_filter_months">Bulan</string>
+    <string name="statistics_action_share_progress">KONGSI KEMAJUAN</string>
+    <string name="statistics_empty_title">Tiada data lagi</string>
+    <string name="statistics_empty_message">Lengkapkan beberapa sesi fokus untuk melihat statistik anda di sini.</string>
+    <string name="statistics_action_retry">Cuba lagi</string>
 </resources>

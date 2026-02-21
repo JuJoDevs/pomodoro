@@ -77,6 +77,10 @@ class TimerViewModel(
     private var lastForegroundTimerEnd: Long? = null
     private var exactAlarmPermissionGranted: Boolean? = null
     private var exactAlarmWarningSnoozedUntilMillis: Long? = null
+    private var trackedPhaseKey: String? = null
+    private var recordedElapsedForPhaseMillis: Long = 0L
+    private var checkpointPhaseKey: String? = null
+    private var nextCheckpointElapsedMillis: Long = USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS
 
     init {
         useCases
@@ -124,6 +128,7 @@ class TimerViewModel(
             }
 
             TimerAction.Pause -> {
+                recordElapsedTimeForCurrentPhase()
                 recordPhaseStateEvent(UsageStatsEventType.PHASE_PAUSED)
                 useCases.pause()
             }
@@ -259,7 +264,10 @@ class TimerViewModel(
                 shouldContinue = false
             }
 
-            else -> updateTickerState(remaining, currentState.currentPhaseDurationMillis)
+            else -> {
+                maybeRecordRunningCheckpoint(currentState)
+                updateTickerState(remaining, currentState.currentPhaseDurationMillis)
+            }
         }
 
         return shouldContinue
@@ -495,12 +503,15 @@ class TimerViewModel(
 
     private suspend fun recordCompletedPhase(sessionState: PomodoroSessionState) {
         val phase = sessionState.currentPhase.toUsageStatsPhase()
+        val elapsedDeltaMillis = calculateElapsedDeltaMillis(sessionState)
 
-        recordUsageEvent(
-            type = UsageStatsEventType.PHASE_TIME_RECORDED,
-            phase = phase,
-            durationMillis = sessionState.currentPhaseDurationMillis,
-        )
+        if (elapsedDeltaMillis > 0L) {
+            recordUsageEvent(
+                type = UsageStatsEventType.PHASE_TIME_RECORDED,
+                phase = phase,
+                durationMillis = elapsedDeltaMillis,
+            )
+        }
         recordUsageEvent(
             type = UsageStatsEventType.PHASE_COMPLETED,
             phase = phase,
@@ -519,15 +530,15 @@ class TimerViewModel(
 
     private suspend fun recordElapsedTimeForCurrentPhase() {
         val sessionState = latestSessionState ?: return
-        val elapsedMillis = calculateElapsedMillis(sessionState)
-        if (elapsedMillis <= 0L) {
+        val elapsedDeltaMillis = calculateElapsedDeltaMillis(sessionState)
+        if (elapsedDeltaMillis <= 0L) {
             return
         }
 
         recordUsageEvent(
             type = UsageStatsEventType.PHASE_TIME_RECORDED,
             phase = sessionState.currentPhase.toUsageStatsPhase(),
-            durationMillis = elapsedMillis,
+            durationMillis = elapsedDeltaMillis,
         )
     }
 
@@ -567,12 +578,67 @@ class TimerViewModel(
         return (sessionState.currentPhaseDurationMillis - remainingMillis).coerceAtLeast(0L)
     }
 
+    private fun calculateElapsedDeltaMillis(sessionState: PomodoroSessionState): Long {
+        val phaseKey = sessionState.toTrackingPhaseKey()
+        val elapsedMillis = calculateElapsedMillis(sessionState)
+
+        if (trackedPhaseKey != phaseKey) {
+            trackedPhaseKey = phaseKey
+            recordedElapsedForPhaseMillis = 0L
+        }
+
+        if (elapsedMillis < recordedElapsedForPhaseMillis) {
+            recordedElapsedForPhaseMillis = 0L
+        }
+
+        val deltaMillis = (elapsedMillis - recordedElapsedForPhaseMillis).coerceAtLeast(0L)
+        if (deltaMillis > 0L) {
+            recordedElapsedForPhaseMillis += deltaMillis
+        }
+        return deltaMillis
+    }
+
+    private suspend fun maybeRecordRunningCheckpoint(sessionState: PomodoroSessionState) {
+        if (!shouldRecordCheckpoint(sessionState)) {
+            return
+        }
+        recordElapsedTimeForCurrentPhase()
+    }
+
+    private fun shouldRecordCheckpoint(sessionState: PomodoroSessionState): Boolean {
+        val phaseKey = sessionState.toTrackingPhaseKey()
+        val elapsedMillis = calculateElapsedMillis(sessionState)
+        val previousCheckpointElapsedMillis =
+            (nextCheckpointElapsedMillis - USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS)
+                .coerceAtLeast(0L)
+
+        if (
+            checkpointPhaseKey != phaseKey ||
+            elapsedMillis < previousCheckpointElapsedMillis
+        ) {
+            checkpointPhaseKey = phaseKey
+            nextCheckpointElapsedMillis = USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS
+        }
+
+        if (elapsedMillis < nextCheckpointElapsedMillis) {
+            return false
+        }
+
+        val reachedCheckpointCount = elapsedMillis / USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS
+        nextCheckpointElapsedMillis =
+            (reachedCheckpointCount + 1L) * USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS
+        return true
+    }
+
     private fun PomodoroPhase.toUsageStatsPhase(): UsageStatsPhase =
         when (this) {
             PomodoroPhase.WORK -> UsageStatsPhase.WORK
             PomodoroPhase.SHORT_BREAK -> UsageStatsPhase.SHORT_BREAK
             PomodoroPhase.LONG_BREAK -> UsageStatsPhase.LONG_BREAK
         }
+
+    private fun PomodoroSessionState.toTrackingPhaseKey(): String =
+        "$currentPhase:$completedWorkSessions:$selectedWorkMinutes:$selectedShortBreakMinutes"
 
     private fun formatTime(millis: Long): String {
         val totalSeconds = (millis / MILLIS_IN_SECOND).coerceAtLeast(0)
@@ -594,6 +660,7 @@ class TimerViewModel(
         private const val NOTIFICATION_ID_PERSISTENT = 2
         private const val MILLIS_IN_SECOND = 1000
         private const val SECONDS_IN_MINUTE = 60
+        private const val USAGE_STATS_CHECKPOINT_INTERVAL_MILLIS = 60_000L
     }
 }
 

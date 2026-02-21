@@ -6,7 +6,9 @@ import com.jujodevs.pomodoro.libs.usagestats.data.local.UsageStatsDatabase
 import com.jujodevs.pomodoro.libs.usagestats.data.mapper.UsageStatsAnalyticsEventMapper
 import com.jujodevs.pomodoro.libs.usagestats.data.repository.UsageStatsRepositoryImpl
 import com.jujodevs.pomodoro.libs.usagestats.domain.repository.UsageStatsRepository
+import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.GetDayStreakUseCase
 import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.GetUsageStatsSummaryUseCase
+import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.ObserveUsageStatsEventsCountUseCase
 import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.RecordUsageStatsEventUseCase
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.factoryOf
@@ -32,6 +34,8 @@ val usageStatsModule =
 
         factoryOf(::RecordUsageStatsEventUseCase)
         factoryOf(::GetUsageStatsSummaryUseCase)
+        factoryOf(::GetDayStreakUseCase)
+        factoryOf(::ObserveUsageStatsEventsCountUseCase)
     }
 
 private const val USAGE_STATS_DATABASE_NAME = "usage_stats.db"

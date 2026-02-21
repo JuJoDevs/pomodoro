@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Gewährt</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Version %1$s (%2$s)</string>
+
+    <!-- Statistik -->
+    <string name="statistics_label_total_focus_time">GESAMTE FOKUSZEIT (WOCHE)</string>
+    <string name="statistics_label_total_break_time">GESAMTE PAUSENZEIT (WOCHE)</string>
+    <string name="statistics_label_total_week_time">GESAMTZEIT WOCHE</string>
+    <string name="statistics_label_hours_minutes">Stunden : Minuten</string>
+    <string name="statistics_label_sessions">SITZUNGEN</string>
+    <string name="statistics_label_day_streak">TAGESTREAK</string>
+    <string name="statistics_label_weekly_activity">Wöchentliche Aktivität</string>
+    <string name="statistics_label_monthly_activity">Monatliche Aktivität</string>
+    <string name="statistics_label_current_week">Aktuelle Woche</string>
+    <string name="statistics_label_last_12_months">Letzte 12 Monate</string>
+    <string name="statistics_label_last_7_days">Letzte 7 Tage</string>
+    <string name="statistics_filter_current_week">Woche</string>
+    <string name="statistics_filter_months">Monate</string>
+    <string name="statistics_action_share_progress">FORTSCHRITT TEILEN</string>
+    <string name="statistics_empty_title">Noch keine Daten</string>
+    <string name="statistics_empty_message">Beenden Sie einige Fokussitzungen, um hier Ihre Statistiken zu sehen.</string>
+    <string name="statistics_action_retry">Wiederholen</string>
 </resources>

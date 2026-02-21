@@ -17,13 +17,14 @@ Write tests that match the project's tooling, structure, and naming conventions 
 ## Core rules
 
 - Use GIVEN/WHEN/THEN naming.
+- Prefer fakes over mocks; use mocks only when a fake is not practical.
 - Prefer `verifyOnce()` and `verifyNever()` with MockK.
 - Use `relaxedMockk` where appropriate.
 - Keep domain tests free of Android dependencies.
 
 ## ViewModel tests
 
-- Use `runTest` and Turbine to collect `StateFlow`.
+- Use `runTest` with `turbineScope` and `testIn(this)` to collect `StateFlow` and effects.
 - Assert state transitions and effects deterministically.
 - Test error paths and loading states.
 

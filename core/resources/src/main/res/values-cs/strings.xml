@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Uděleno</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Verze %1$s (%2$s)</string>
+
+    <!-- Statistiky -->
+    <string name="statistics_label_total_focus_time">CELKOVÝ ČAS SOUSTŘEDĚNÍ (TÝDEN)</string>
+    <string name="statistics_label_total_break_time">CELKOVÝ ČAS PŘESTÁVEK (TÝDEN)</string>
+    <string name="statistics_label_total_week_time">CELKOVÝ ČAS TÝDEN</string>
+    <string name="statistics_label_hours_minutes">Hodiny : Minuty</string>
+    <string name="statistics_label_sessions">RELACE</string>
+    <string name="statistics_label_day_streak">DENNÍ SÉRIE</string>
+    <string name="statistics_label_weekly_activity">Týdenní aktivita</string>
+    <string name="statistics_label_monthly_activity">Měsíční aktivita</string>
+    <string name="statistics_label_current_week">Aktuální týden</string>
+    <string name="statistics_label_last_12_months">Posledních 12 měsíců</string>
+    <string name="statistics_label_last_7_days">Posledních 7 dní</string>
+    <string name="statistics_filter_current_week">Týden</string>
+    <string name="statistics_filter_months">Měsíce</string>
+    <string name="statistics_action_share_progress">SDÍLET POKROK</string>
+    <string name="statistics_empty_title">Zatím žádná data</string>
+    <string name="statistics_empty_message">Dokončete několik relací soustředění, abyste zde viděli své statistiky.</string>
+    <string name="statistics_action_retry">Zkusit znovu</string>
 </resources>

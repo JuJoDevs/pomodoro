@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Ibinigay</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Bersyon %1$s (%2$s)</string>
+
+    <!-- Mga Istatistika -->
+    <string name="statistics_label_total_focus_time">KABUUANG ORAS NG FOCUS (LINGGO)</string>
+    <string name="statistics_label_total_break_time">KABUUANG ORAS NG PAHINGA (LINGGO)</string>
+    <string name="statistics_label_total_week_time">KABUUANG ORAS SA LINGGO</string>
+    <string name="statistics_label_hours_minutes">Oras : Minuto</string>
+    <string name="statistics_label_sessions">MGA SESYON</string>
+    <string name="statistics_label_day_streak">SUNOD-SUNOD NA ARAW</string>
+    <string name="statistics_label_weekly_activity">Lingguhang Aktibidad</string>
+    <string name="statistics_label_monthly_activity">Buwanang Aktibidad</string>
+    <string name="statistics_label_current_week">Kasalukuyang Linggo</string>
+    <string name="statistics_label_last_12_months">Huling 12 Buwan</string>
+    <string name="statistics_label_last_7_days">Huling 7 Araw</string>
+    <string name="statistics_filter_current_week">Linggo</string>
+    <string name="statistics_filter_months">Buwan</string>
+    <string name="statistics_action_share_progress">IBAHAGI ANG PROGRESO</string>
+    <string name="statistics_empty_title">Wala pang datos</string>
+    <string name="statistics_empty_message">Kumpletuhin ang ilang sesyon ng focus para makita ang iyong istatistika dito.</string>
+    <string name="statistics_action_retry">Subukang muli</string>
 </resources>

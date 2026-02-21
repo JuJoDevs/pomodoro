@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Beviljad</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Version %1$s (%2$s)</string>
+
+    <!-- Statistik -->
+    <string name="statistics_label_total_focus_time">TOTAL FOKUSTID (VECKA)</string>
+    <string name="statistics_label_total_break_time">TOTAL PAUSTID (VECKA)</string>
+    <string name="statistics_label_total_week_time">TOTAL VECKO-TID</string>
+    <string name="statistics_label_hours_minutes">Timmar : Minuter</string>
+    <string name="statistics_label_sessions">SESSIONER</string>
+    <string name="statistics_label_day_streak">DAGAR I RAD</string>
+    <string name="statistics_label_weekly_activity">Veckoaktivitet</string>
+    <string name="statistics_label_monthly_activity">Månadsaktivitet</string>
+    <string name="statistics_label_current_week">Denna vecka</string>
+    <string name="statistics_label_last_12_months">Senaste 12 månaderna</string>
+    <string name="statistics_label_last_7_days">Senaste 7 dagarna</string>
+    <string name="statistics_filter_current_week">Vecka</string>
+    <string name="statistics_filter_months">Månader</string>
+    <string name="statistics_action_share_progress">DELA FRAMSTEG</string>
+    <string name="statistics_empty_title">Ingen data än</string>
+    <string name="statistics_empty_message">Slutför några fokussessioner för att se din statistik här.</string>
+    <string name="statistics_action_retry">Försök igen</string>
 </resources>

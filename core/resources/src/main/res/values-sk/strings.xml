@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Udelené</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Verzia %1$s (%2$s)</string>
+
+    <!-- Štatistiky -->
+    <string name="statistics_label_total_focus_time">CELKOVÝ ČAS SÚSTREDENIA (TÝŽDEŇ)</string>
+    <string name="statistics_label_total_break_time">CELKOVÝ ČAS PRESTÁVOK (TÝŽDEŇ)</string>
+    <string name="statistics_label_total_week_time">CELKOVÝ ČAS TÝŽDEŇ</string>
+    <string name="statistics_label_hours_minutes">Hodiny : Minúty</string>
+    <string name="statistics_label_sessions">RELÁCIE</string>
+    <string name="statistics_label_day_streak">DENNÁ SÉRIA</string>
+    <string name="statistics_label_weekly_activity">Týždenná aktivita</string>
+    <string name="statistics_label_monthly_activity">Mesačná aktivita</string>
+    <string name="statistics_label_current_week">Aktuálny týždeň</string>
+    <string name="statistics_label_last_12_months">Posledných 12 mesiacov</string>
+    <string name="statistics_label_last_7_days">Posledných 7 dní</string>
+    <string name="statistics_filter_current_week">Týždeň</string>
+    <string name="statistics_filter_months">Mesiace</string>
+    <string name="statistics_action_share_progress">ZDIEĽAŤ POKROK</string>
+    <string name="statistics_empty_title">Zatiaľ žiadne údaje</string>
+    <string name="statistics_empty_message">Dokončite niekoľko relácií sústredenia, aby ste tu videli svoje štatistiky.</string>
+    <string name="statistics_action_retry">Skúsiť znova</string>
 </resources>

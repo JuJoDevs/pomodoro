@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Concedit</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versió %1$s (%2$s)</string>
+
+    <!-- Estadístiques -->
+    <string name="statistics_label_total_focus_time">TEMPS TOTAL DE FOCUS (SETMANA)</string>
+    <string name="statistics_label_total_break_time">TEMPS TOTAL DE DESCANS (SETMANA)</string>
+    <string name="statistics_label_total_week_time">TEMPS TOTAL SETMANA</string>
+    <string name="statistics_label_hours_minutes">Hores : Minuts</string>
+    <string name="statistics_label_sessions">SESSIONS</string>
+    <string name="statistics_label_day_streak">RATXA DE DIES</string>
+    <string name="statistics_label_weekly_activity">Activitat setmanal</string>
+    <string name="statistics_label_monthly_activity">Activitat mensual</string>
+    <string name="statistics_label_current_week">Setmana actual</string>
+    <string name="statistics_label_last_12_months">Últims 12 mesos</string>
+    <string name="statistics_label_last_7_days">Últims 7 dies</string>
+    <string name="statistics_filter_current_week">Setmana</string>
+    <string name="statistics_filter_months">Mesos</string>
+    <string name="statistics_action_share_progress">COMPARTIR PROGRÉS</string>
+    <string name="statistics_empty_title">Encara no hi ha dades</string>
+    <string name="statistics_empty_message">Completa algunes sessions de focus per veure les teves estadístiques aquí.</string>
+    <string name="statistics_action_retry">Reintentar</string>
 </resources>

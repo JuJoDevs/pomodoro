@@ -85,4 +85,23 @@
     <string name="settings_status_granted">הוענקה</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">גרסה %1$s (%2$s)</string>
+
+    <!-- סטטיסטיקה -->
+    <string name="statistics_label_total_focus_time">זמן מיקוד כולל (שבוע)</string>
+    <string name="statistics_label_total_break_time">זמן הפסקה כולל (שבוע)</string>
+    <string name="statistics_label_total_week_time">זמן שבועי כולל</string>
+    <string name="statistics_label_hours_minutes">שעות : דקות</string>
+    <string name="statistics_label_sessions">הפעלות</string>
+    <string name="statistics_label_day_streak">רצף ימים</string>
+    <string name="statistics_label_weekly_activity">פעילות שבועית</string>
+    <string name="statistics_label_monthly_activity">פעילות חודשית</string>
+    <string name="statistics_label_current_week">השבוע הנוכחי</string>
+    <string name="statistics_label_last_12_months">12 חודשים אחרונים</string>
+    <string name="statistics_label_last_7_days">7 ימים אחרונים</string>
+    <string name="statistics_filter_current_week">שבוע</string>
+    <string name="statistics_filter_months">חודשים</string>
+    <string name="statistics_action_share_progress">שתף התקדמות</string>
+    <string name="statistics_empty_title">אין נתונים עדיין</string>
+    <string name="statistics_empty_message">השלם כמה הפעלות מיקוד כדי לראות את הסטטיסטיקה שלך כאן.</string>
+    <string name="statistics_action_retry">נסה שנית</string>
 </resources>

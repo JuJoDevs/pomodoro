@@ -85,4 +85,23 @@
     <string name="settings_status_granted">허용됨</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">버전 %1$s (%2$s)</string>
+
+    <!-- 통계 -->
+    <string name="statistics_label_total_focus_time">총 집중 시간 (주간)</string>
+    <string name="statistics_label_total_break_time">총 휴식 시간 (주간)</string>
+    <string name="statistics_label_total_week_time">주간 총 시간</string>
+    <string name="statistics_label_hours_minutes">시간 : 분</string>
+    <string name="statistics_label_sessions">세션</string>
+    <string name="statistics_label_day_streak">연속 일수</string>
+    <string name="statistics_label_weekly_activity">주간 활동</string>
+    <string name="statistics_label_monthly_activity">월간 활동</string>
+    <string name="statistics_label_current_week">이번 주</string>
+    <string name="statistics_label_last_12_months">지난 12개월</string>
+    <string name="statistics_label_last_7_days">지난 7일</string>
+    <string name="statistics_filter_current_week">주</string>
+    <string name="statistics_filter_months">월</string>
+    <string name="statistics_action_share_progress">진행 상황 공유</string>
+    <string name="statistics_empty_title">데이터 없음</string>
+    <string name="statistics_empty_message">통계를 보려면 집중 세션을 완료하세요.</string>
+    <string name="statistics_action_retry">재시도</string>
 </resources>

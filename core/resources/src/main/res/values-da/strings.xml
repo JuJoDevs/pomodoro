@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Givet</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Version %1$s (%2$s)</string>
+
+    <!-- Statistik -->
+    <string name="statistics_label_total_focus_time">SAMLET FOKUSTID (UGE)</string>
+    <string name="statistics_label_total_break_time">SAMLET PAUSETID (UGE)</string>
+    <string name="statistics_label_total_week_time">SAMLET UGETID</string>
+    <string name="statistics_label_hours_minutes">Timer : Minutter</string>
+    <string name="statistics_label_sessions">SESSIONER</string>
+    <string name="statistics_label_day_streak">DAGE I TRÆK</string>
+    <string name="statistics_label_weekly_activity">Ugentlig aktivitet</string>
+    <string name="statistics_label_monthly_activity">Månedlig aktivitet</string>
+    <string name="statistics_label_current_week">Nuværende uge</string>
+    <string name="statistics_label_last_12_months">Sidste 12 måneder</string>
+    <string name="statistics_label_last_7_days">Sidste 7 dage</string>
+    <string name="statistics_filter_current_week">Uge</string>
+    <string name="statistics_filter_months">Måneder</string>
+    <string name="statistics_action_share_progress">DEL FREMSKRIDT</string>
+    <string name="statistics_empty_title">Ingen data endnu</string>
+    <string name="statistics_empty_message">Gennemfør nogle fokussessioner for at se din statistik her.</string>
+    <string name="statistics_action_retry">Prøv igen</string>
 </resources>

@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Engedélyezve</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Verzió %1$s (%2$s)</string>
+
+    <!-- Statisztika -->
+    <string name="statistics_label_total_focus_time">TELJES FÓKUSZ IDŐ (HÉT)</string>
+    <string name="statistics_label_total_break_time">TELJES SZÜNET IDŐ (HÉT)</string>
+    <string name="statistics_label_total_week_time">TELJES HETI IDŐ</string>
+    <string name="statistics_label_hours_minutes">Óra : Perc</string>
+    <string name="statistics_label_sessions">MENETEK</string>
+    <string name="statistics_label_day_streak">NAPI SOROZAT</string>
+    <string name="statistics_label_weekly_activity">Heti aktivitás</string>
+    <string name="statistics_label_monthly_activity">Havi aktivitás</string>
+    <string name="statistics_label_current_week">Jelenlegi hét</string>
+    <string name="statistics_label_last_12_months">Elmúlt 12 hónap</string>
+    <string name="statistics_label_last_7_days">Elmúlt 7 nap</string>
+    <string name="statistics_filter_current_week">Hét</string>
+    <string name="statistics_filter_months">Hónapok</string>
+    <string name="statistics_action_share_progress">HALADÁS MEGOSZTÁSA</string>
+    <string name="statistics_empty_title">Még nincs adat</string>
+    <string name="statistics_empty_message">Végezz el néhány fókuszmenetet, hogy lásd a statisztikáidat.</string>
+    <string name="statistics_action_retry">Újra</string>
 </resources>

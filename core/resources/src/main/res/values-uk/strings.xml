@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Надано</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Версія %1$s (%2$s)</string>
+
+    <!-- Статистика -->
+    <string name="statistics_label_total_focus_time">ЗАГАЛЬНИЙ ЧАС ФОКУСУ (ТИЖДЕНЬ)</string>
+    <string name="statistics_label_total_break_time">ЗАГАЛЬНИЙ ЧАС ПЕРЕРВ (ТИЖДЕНЬ)</string>
+    <string name="statistics_label_total_week_time">ЗАГАЛЬНИЙ ЧАС ЗА ТИЖДЕНЬ</string>
+    <string name="statistics_label_hours_minutes">Години : Хвилини</string>
+    <string name="statistics_label_sessions">СЕСІЇ</string>
+    <string name="statistics_label_day_streak">СЕРІЯ ДНІВ</string>
+    <string name="statistics_label_weekly_activity">Щотижнева активність</string>
+    <string name="statistics_label_monthly_activity">Щомісячна активність</string>
+    <string name="statistics_label_current_week">Поточний тиждень</string>
+    <string name="statistics_label_last_12_months">Останні 12 місяців</string>
+    <string name="statistics_label_last_7_days">Останні 7 днів</string>
+    <string name="statistics_filter_current_week">Тиждень</string>
+    <string name="statistics_filter_months">Місяці</string>
+    <string name="statistics_action_share_progress">ПОДІЛИТИСЯ ПРОГРЕСОМ</string>
+    <string name="statistics_empty_title">Немає даних</string>
+    <string name="statistics_empty_message">Завершіть кілька сесій фокусу, щоб побачити статистику.</string>
+    <string name="statistics_action_retry">Спробувати ще</string>
 </resources>

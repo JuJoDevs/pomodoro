@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Verildi</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Sürüm %1$s (%2$s)</string>
+
+    <!-- İstatistikler -->
+    <string name="statistics_label_total_focus_time">TOPLAM ODAKLANMA SÜRESİ (HAFTA)</string>
+    <string name="statistics_label_total_break_time">TOPLAM MOLA SÜRESİ (HAFTA)</string>
+    <string name="statistics_label_total_week_time">TOPLAM HAFTALIK SÜRE</string>
+    <string name="statistics_label_hours_minutes">Saat : Dakika</string>
+    <string name="statistics_label_sessions">OTURUMLAR</string>
+    <string name="statistics_label_day_streak">GÜN SERİSİ</string>
+    <string name="statistics_label_weekly_activity">Haftalık Aktivite</string>
+    <string name="statistics_label_monthly_activity">Aylık Aktivite</string>
+    <string name="statistics_label_current_week">Bu Hafta</string>
+    <string name="statistics_label_last_12_months">Son 12 Ay</string>
+    <string name="statistics_label_last_7_days">Son 7 Gün</string>
+    <string name="statistics_filter_current_week">Hafta</string>
+    <string name="statistics_filter_months">Aylar</string>
+    <string name="statistics_action_share_progress">İLERLEMEYİ PAYLAŞ</string>
+    <string name="statistics_empty_title">Henüz veri yok</string>
+    <string name="statistics_empty_message">İstatistiklerinizi burada görmek için bazı odaklanma oturumlarını tamamlayın.</string>
+    <string name="statistics_action_retry">Tekrar Dene</string>
 </resources>
