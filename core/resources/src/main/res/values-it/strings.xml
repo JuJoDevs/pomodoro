@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Concessa</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versione %1$s (%2$s)</string>
+
+    <!-- Statistiche -->
+    <string name="statistics_label_total_focus_time">TEMPO TOTALE FOCUS (SETTIMANA)</string>
+    <string name="statistics_label_total_break_time">TEMPO TOTALE PAUSA (SETTIMANA)</string>
+    <string name="statistics_label_total_week_time">TEMPO TOTALE SETTIMANA</string>
+    <string name="statistics_label_hours_minutes">Ore : Minuti</string>
+    <string name="statistics_label_sessions">SESSIONI</string>
+    <string name="statistics_label_day_streak">GIORNI CONSECUTIVI</string>
+    <string name="statistics_label_weekly_activity">Attività settimanale</string>
+    <string name="statistics_label_monthly_activity">Attività mensile</string>
+    <string name="statistics_label_current_week">Settimana corrente</string>
+    <string name="statistics_label_last_12_months">Ultimi 12 mesi</string>
+    <string name="statistics_label_last_7_days">Ultimi 7 giorni</string>
+    <string name="statistics_filter_current_week">Settimana</string>
+    <string name="statistics_filter_months">Mesi</string>
+    <string name="statistics_action_share_progress">CONDIVIDI PROGRESSI</string>
+    <string name="statistics_empty_title">Nessun dato ancora</string>
+    <string name="statistics_empty_message">Completa alcune sessioni di focus per vedere le tue statistiche qui.</string>
+    <string name="statistics_action_retry">Riprova</string>
 </resources>

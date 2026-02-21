@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Granted</string>
     <string name="settings_action_grant">Grant</string>
     <string name="settings_version_format">Version %1$s (%2$s)</string>
+
+    <!-- Statistics -->
+    <string name="statistics_label_total_focus_time">TOTAL FOCUS TIME (WEEK)</string>
+    <string name="statistics_label_total_break_time">TOTAL BREAK TIME (WEEK)</string>
+    <string name="statistics_label_total_week_time">TOTAL WEEK TIME</string>
+    <string name="statistics_label_hours_minutes">Hours : Minutes</string>
+    <string name="statistics_label_sessions">SESSIONS</string>
+    <string name="statistics_label_day_streak">DAY STREAK</string>
+    <string name="statistics_label_weekly_activity">Weekly Activity</string>
+    <string name="statistics_label_monthly_activity">Monthly Activity</string>
+    <string name="statistics_label_current_week">Current Week</string>
+    <string name="statistics_label_last_12_months">Last 12 Months</string>
+    <string name="statistics_label_last_7_days">Last 7 Days</string>
+    <string name="statistics_filter_current_week">Week</string>
+    <string name="statistics_filter_months">Months</string>
+    <string name="statistics_action_share_progress">SHARE PROGRESS</string>
+    <string name="statistics_empty_title">No data yet</string>
+    <string name="statistics_empty_message">Complete some focus sessions to see your stats here.</string>
+    <string name="statistics_action_retry">Retry</string>
 </resources>

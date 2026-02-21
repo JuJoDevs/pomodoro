@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Acordată</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versiunea %1$s (%2$s)</string>
+
+    <!-- Statistici -->
+    <string name="statistics_label_total_focus_time">TIMP TOTAL DE FOCUS (SĂPTĂMÂNĂ)</string>
+    <string name="statistics_label_total_break_time">TIMP TOTAL DE PAUZĂ (SĂPTĂMÂNĂ)</string>
+    <string name="statistics_label_total_week_time">TIMP TOTAL SĂPTĂMÂNAL</string>
+    <string name="statistics_label_hours_minutes">Ore : Minute</string>
+    <string name="statistics_label_sessions">SESIUNI</string>
+    <string name="statistics_label_day_streak">SERIE DE ZILE</string>
+    <string name="statistics_label_weekly_activity">Activitate săptămânală</string>
+    <string name="statistics_label_monthly_activity">Activitate lunară</string>
+    <string name="statistics_label_current_week">Săptămâna curentă</string>
+    <string name="statistics_label_last_12_months">Ultimele 12 luni</string>
+    <string name="statistics_label_last_7_days">Ultimele 7 zile</string>
+    <string name="statistics_filter_current_week">Săptămână</string>
+    <string name="statistics_filter_months">Luni</string>
+    <string name="statistics_action_share_progress">DISTRIBUIE PROGRES</string>
+    <string name="statistics_empty_title">Nu există date încă</string>
+    <string name="statistics_empty_message">Finalizează câteva sesiuni de focus pentru a vedea statisticile aici.</string>
+    <string name="statistics_action_retry">Reîncearcă</string>
 </resources>

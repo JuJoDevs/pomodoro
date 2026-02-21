@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Toegestaan</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versie %1$s (%2$s)</string>
+
+    <!-- Statistieken -->
+    <string name="statistics_label_total_focus_time">TOTALE FOCUSTIJD (WEEK)</string>
+    <string name="statistics_label_total_break_time">TOTALE PAUZE TIJD (WEEK)</string>
+    <string name="statistics_label_total_week_time">TOTALE WEEKTIJD</string>
+    <string name="statistics_label_hours_minutes">Uren : Minuten</string>
+    <string name="statistics_label_sessions">SESSIES</string>
+    <string name="statistics_label_day_streak">DAGEN REEKS</string>
+    <string name="statistics_label_weekly_activity">Wekelijkse activiteit</string>
+    <string name="statistics_label_monthly_activity">Maandelijkse activiteit</string>
+    <string name="statistics_label_current_week">Huidige week</string>
+    <string name="statistics_label_last_12_months">Laatste 12 maanden</string>
+    <string name="statistics_label_last_7_days">Laatste 7 dagen</string>
+    <string name="statistics_filter_current_week">Week</string>
+    <string name="statistics_filter_months">Maanden</string>
+    <string name="statistics_action_share_progress">DEEL VOORGANG</string>
+    <string name="statistics_empty_title">Nog geen gegevens</string>
+    <string name="statistics_empty_message">Voltooi enkele focussessies om hier je statistieken te zien.</string>
+    <string name="statistics_action_retry">Opnieuw proberen</string>
 </resources>

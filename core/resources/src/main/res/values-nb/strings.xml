@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Innvilget</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Versjon %1$s (%2$s)</string>
+
+    <!-- Statistikk -->
+    <string name="statistics_label_total_focus_time">TOTAL FOKUSTID (UKE)</string>
+    <string name="statistics_label_total_break_time">TOTAL PAUSETID (UKE)</string>
+    <string name="statistics_label_total_week_time">TOTAL UKESTID</string>
+    <string name="statistics_label_hours_minutes">Timer : Minutter</string>
+    <string name="statistics_label_sessions">ØKTER</string>
+    <string name="statistics_label_day_streak">DAGER PÅ RAD</string>
+    <string name="statistics_label_weekly_activity">Ukentlig aktivitet</string>
+    <string name="statistics_label_monthly_activity">Månedlig aktivitet</string>
+    <string name="statistics_label_current_week">Denne uken</string>
+    <string name="statistics_label_last_12_months">Siste 12 måneder</string>
+    <string name="statistics_label_last_7_days">Siste 7 dager</string>
+    <string name="statistics_filter_current_week">Uke</string>
+    <string name="statistics_filter_months">Måneder</string>
+    <string name="statistics_action_share_progress">DEL FREMGANG</string>
+    <string name="statistics_empty_title">Ingen data ennå</string>
+    <string name="statistics_empty_message">Fullfør noen fokusøkter for å se statistikken din her.</string>
+    <string name="statistics_action_retry">Prøv igjen</string>
 </resources>

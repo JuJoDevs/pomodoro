@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Đã cấp</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Phiên bản %1$s (%2$s)</string>
+
+    <!-- Thống kê -->
+    <string name="statistics_label_total_focus_time">TỔNG THỜI GIAN TẬP TRUNG (TUẦN)</string>
+    <string name="statistics_label_total_break_time">TỔNG THỜI GIAN NGHỈ (TUẦN)</string>
+    <string name="statistics_label_total_week_time">TỔNG THỜI GIAN TUẦN</string>
+    <string name="statistics_label_hours_minutes">Giờ : Phút</string>
+    <string name="statistics_label_sessions">PHIÊN</string>
+    <string name="statistics_label_day_streak">CHUỖI NGÀY</string>
+    <string name="statistics_label_weekly_activity">Hoạt động hàng tuần</string>
+    <string name="statistics_label_monthly_activity">Hoạt động hàng tháng</string>
+    <string name="statistics_label_current_week">Tuần này</string>
+    <string name="statistics_label_last_12_months">12 tháng qua</string>
+    <string name="statistics_label_last_7_days">7 ngày qua</string>
+    <string name="statistics_filter_current_week">Tuần</string>
+    <string name="statistics_filter_months">Tháng</string>
+    <string name="statistics_action_share_progress">CHIA SẺ TIẾN ĐỘ</string>
+    <string name="statistics_empty_title">Chưa có dữ liệu</string>
+    <string name="statistics_empty_message">Hoàn thành một số phiên tập trung để xem thống kê của bạn tại đây.</string>
+    <string name="statistics_action_retry">Thử lại</string>
 </resources>

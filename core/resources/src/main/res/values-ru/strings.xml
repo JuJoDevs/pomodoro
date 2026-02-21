@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Предоставлено</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Версия %1$s (%2$s)</string>
+
+    <!-- Статистика -->
+    <string name="statistics_label_total_focus_time">ОБЩЕЕ ВРЕМЯ ФОКУСА (НЕДЕЛЯ)</string>
+    <string name="statistics_label_total_break_time">ОБЩЕЕ ВРЕМЯ ПЕРЕРЫВОВ (НЕДЕЛЯ)</string>
+    <string name="statistics_label_total_week_time">ОБЩЕЕ ВРЕМЯ ЗА НЕДЕЛЮ</string>
+    <string name="statistics_label_hours_minutes">Часы : Минуты</string>
+    <string name="statistics_label_sessions">СЕССИИ</string>
+    <string name="statistics_label_day_streak">СЕРИЯ ДНЕЙ</string>
+    <string name="statistics_label_weekly_activity">Еженедельная активность</string>
+    <string name="statistics_label_monthly_activity">Ежемесячная активность</string>
+    <string name="statistics_label_current_week">Текущая неделя</string>
+    <string name="statistics_label_last_12_months">Последние 12 месяцев</string>
+    <string name="statistics_label_last_7_days">Последние 7 дней</string>
+    <string name="statistics_filter_current_week">Неделя</string>
+    <string name="statistics_filter_months">Месяцы</string>
+    <string name="statistics_action_share_progress">ПОДЕЛИТЬСЯ ПРОГРЕССОМ</string>
+    <string name="statistics_empty_title">Нет данных</string>
+    <string name="statistics_empty_message">Завершите несколько сессий фокуса, чтобы увидеть статистику.</string>
+    <string name="statistics_action_retry">Повторить</string>
 </resources>

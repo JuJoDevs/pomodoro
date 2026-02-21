@@ -85,4 +85,23 @@
     <string name="settings_status_granted">許可済み</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">バージョン %1$s (%2$s)</string>
+
+    <!-- 統計 -->
+    <string name="statistics_label_total_focus_time">総集中時間 (週)</string>
+    <string name="statistics_label_total_break_time">総休憩時間 (週)</string>
+    <string name="statistics_label_total_week_time">週間総時間</string>
+    <string name="statistics_label_hours_minutes">時間 : 分</string>
+    <string name="statistics_label_sessions">セッション</string>
+    <string name="statistics_label_day_streak">連続日数</string>
+    <string name="statistics_label_weekly_activity">週間アクティビティ</string>
+    <string name="statistics_label_monthly_activity">月間アクティビティ</string>
+    <string name="statistics_label_current_week">今週</string>
+    <string name="statistics_label_last_12_months">過去12ヶ月</string>
+    <string name="statistics_label_last_7_days">過去7日間</string>
+    <string name="statistics_filter_current_week">週</string>
+    <string name="statistics_filter_months">月</string>
+    <string name="statistics_action_share_progress">進捗を共有</string>
+    <string name="statistics_empty_title">データはまだありません</string>
+    <string name="statistics_empty_message">統計を表示するには、集中セッションを完了してください。</string>
+    <string name="statistics_action_retry">再試行</string>
 </resources>

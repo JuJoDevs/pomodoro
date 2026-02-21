@@ -85,4 +85,23 @@
     <string name="settings_status_granted">已授予</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">版本 %1$s (%2$s)</string>
+
+    <!-- 统计 -->
+    <string name="statistics_label_total_focus_time">总专注时间（周）</string>
+    <string name="statistics_label_total_break_time">总休息时间（周）</string>
+    <string name="statistics_label_total_week_time">本周总时间</string>
+    <string name="statistics_label_hours_minutes">小时 : 分钟</string>
+    <string name="statistics_label_sessions">会话</string>
+    <string name="statistics_label_day_streak">连续天数</string>
+    <string name="statistics_label_weekly_activity">每周活动</string>
+    <string name="statistics_label_monthly_activity">每月活动</string>
+    <string name="statistics_label_current_week">本周</string>
+    <string name="statistics_label_last_12_months">过去 12 个月</string>
+    <string name="statistics_label_last_7_days">过去 7 天</string>
+    <string name="statistics_filter_current_week">周</string>
+    <string name="statistics_filter_months">月</string>
+    <string name="statistics_action_share_progress">分享进度</string>
+    <string name="statistics_empty_title">暂无数据</string>
+    <string name="statistics_empty_message">完成一些专注会话以在此查看统计数据。</string>
+    <string name="statistics_action_retry">重试</string>
 </resources>

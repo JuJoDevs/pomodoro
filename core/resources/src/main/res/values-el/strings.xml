@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Εγκρίθηκε</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Έκδοση %1$s (%2$s)</string>
+
+    <!-- Στατιστικά -->
+    <string name="statistics_label_total_focus_time">ΣΥΝΟΛΙΚΟΣ ΧΡΟΝΟΣ ΕΣΤΙΑΣΗΣ (ΕΒΔΟΜΑΔΑ)</string>
+    <string name="statistics_label_total_break_time">ΣΥΝΟΛΙΚΟΣ ΧΡΟΝΟΣ ΔΙΑΛΕΙΜΜΑΤΟΣ (ΕΒΔΟΜΑΔΑ)</string>
+    <string name="statistics_label_total_week_time">ΣΥΝΟΛΙΚΟΣ ΧΡΟΝΟΣ ΕΒΔΟΜΑΔΑΣ</string>
+    <string name="statistics_label_hours_minutes">Ώρες : Λεπτά</string>
+    <string name="statistics_label_sessions">ΣΥΝΕΔΡΙΕΣ</string>
+    <string name="statistics_label_day_streak">ΣΕΡΙ ΗΜΕΡΩΝ</string>
+    <string name="statistics_label_weekly_activity">Εβδομαδιαία δραστηριότητα</string>
+    <string name="statistics_label_monthly_activity">Μηνιαία δραστηριότητα</string>
+    <string name="statistics_label_current_week">Τρέχουσα εβδομάδα</string>
+    <string name="statistics_label_last_12_months">Τελευταίοι 12 μήνες</string>
+    <string name="statistics_label_last_7_days">Τελευταίες 7 ημέρες</string>
+    <string name="statistics_filter_current_week">Εβδομάδα</string>
+    <string name="statistics_filter_months">Μήνες</string>
+    <string name="statistics_action_share_progress">ΚΟΙΝΟΠΟΙΗΣΗ ΠΡΟΟΔΟΥ</string>
+    <string name="statistics_empty_title">Δεν υπάρχουν δεδομένα ακόμα</string>
+    <string name="statistics_empty_message">Ολοκληρώστε μερικές συνεδρίες εστίασης για να δείτε τα στατιστικά σας εδώ.</string>
+    <string name="statistics_action_retry">Επανάληψη</string>
 </resources>

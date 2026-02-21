@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Odobreno</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Verzija %1$s (%2$s)</string>
+
+    <!-- Statistika -->
+    <string name="statistics_label_total_focus_time">UKUPNO VRIJEME FOKUSA (TJEDAN)</string>
+    <string name="statistics_label_total_break_time">UKUPNO VRIJEME PAUZE (TJEDAN)</string>
+    <string name="statistics_label_total_week_time">UKUPNO VRIJEME TJEDNA</string>
+    <string name="statistics_label_hours_minutes">Sati : Minute</string>
+    <string name="statistics_label_sessions">SESIJE</string>
+    <string name="statistics_label_day_streak">NIZ DANA</string>
+    <string name="statistics_label_weekly_activity">Tjedna aktivnost</string>
+    <string name="statistics_label_monthly_activity">Mjesečna aktivnost</string>
+    <string name="statistics_label_current_week">Trenutni tjedan</string>
+    <string name="statistics_label_last_12_months">Posljednjih 12 mjeseci</string>
+    <string name="statistics_label_last_7_days">Posljednjih 7 dana</string>
+    <string name="statistics_filter_current_week">Tjedan</string>
+    <string name="statistics_filter_months">Mjeseci</string>
+    <string name="statistics_action_share_progress">PODIJELI NAPREDAK</string>
+    <string name="statistics_empty_title">Još nema podataka</string>
+    <string name="statistics_empty_message">Dovršite neke sesije fokusa da biste ovdje vidjeli svoju statistiku.</string>
+    <string name="statistics_action_retry">Pokušaj ponovno</string>
 </resources>

@@ -85,4 +85,23 @@
     <string name="settings_status_granted">Przyznano</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">Wersja %1$s (%2$s)</string>
+
+    <!-- Statystyki -->
+    <string name="statistics_label_total_focus_time">CAŁKOWITY CZAS SKUPIENIA (TYDZIEŃ)</string>
+    <string name="statistics_label_total_break_time">CAŁKOWITY CZAS PRZERW (TYDZIEŃ)</string>
+    <string name="statistics_label_total_week_time">CAŁKOWITY CZAS TYGODNIA</string>
+    <string name="statistics_label_hours_minutes">Godziny : Minuty</string>
+    <string name="statistics_label_sessions">SESJE</string>
+    <string name="statistics_label_day_streak">SERIA DNI</string>
+    <string name="statistics_label_weekly_activity">Aktywność tygodniowa</string>
+    <string name="statistics_label_monthly_activity">Aktywność miesięczna</string>
+    <string name="statistics_label_current_week">Obecny tydzień</string>
+    <string name="statistics_label_last_12_months">Ostatnie 12 miesięcy</string>
+    <string name="statistics_label_last_7_days">Ostatnie 7 dni</string>
+    <string name="statistics_filter_current_week">Tydzień</string>
+    <string name="statistics_filter_months">Miesiące</string>
+    <string name="statistics_action_share_progress">UDOSTĘPNIJ POSTĘP</string>
+    <string name="statistics_empty_title">Brak danych</string>
+    <string name="statistics_empty_message">Ukończ kilka sesji skupienia, aby zobaczyć tutaj swoje statystyki.</string>
+    <string name="statistics_action_retry">Spróbuj ponownie</string>
 </resources>

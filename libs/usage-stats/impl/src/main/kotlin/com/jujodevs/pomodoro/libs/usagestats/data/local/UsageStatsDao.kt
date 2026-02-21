@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 internal interface UsageStatsDao {
@@ -17,6 +18,9 @@ internal interface UsageStatsDao {
         """,
     )
     suspend fun deleteEventsOlderThan(cutoffMillis: Long)
+
+    @Query("UPDATE usage_stats_events SET durationMillis = 0 WHERE durationMillis IS NULL")
+    suspend fun normalizeNullDurations()
 
     @Query(
         """
@@ -74,4 +78,7 @@ internal interface UsageStatsDao {
         periodStartMillis: Long,
         periodEndMillis: Long,
     ): UsageStatsSummaryProjection
+
+    @Query("SELECT COUNT(*) FROM usage_stats_events")
+    fun observeEventsCount(): Flow<Long>
 }

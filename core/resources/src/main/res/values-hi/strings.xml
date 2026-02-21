@@ -85,4 +85,23 @@
     <string name="settings_status_granted">अनुमत</string>
     <string name="settings_action_grant">@string/action_grant</string>
     <string name="settings_version_format">संस्करण %1$s (%2$s)</string>
+
+    <!-- सांख्यिकी -->
+    <string name="statistics_label_total_focus_time">कुल फोकस समय (सप्ताह)</string>
+    <string name="statistics_label_total_break_time">कुल ब्रेक समय (सप्ताह)</string>
+    <string name="statistics_label_total_week_time">कुल साप्ताहिक समय</string>
+    <string name="statistics_label_hours_minutes">घंटे : मिनट</string>
+    <string name="statistics_label_sessions">सत्र</string>
+    <string name="statistics_label_day_streak">दिनों की लकीर</string>
+    <string name="statistics_label_weekly_activity">साप्ताहिक गतिविधि</string>
+    <string name="statistics_label_monthly_activity">मासिक गतिविधि</string>
+    <string name="statistics_label_current_week">वर्तमान सप्ताह</string>
+    <string name="statistics_label_last_12_months">पिछले 12 महीने</string>
+    <string name="statistics_label_last_7_days">पिछले 7 दिन</string>
+    <string name="statistics_filter_current_week">सप्ताह</string>
+    <string name="statistics_filter_months">महीने</string>
+    <string name="statistics_action_share_progress">प्रगति साझा करें</string>
+    <string name="statistics_empty_title">अभी कोई डेटा नहीं</string>
+    <string name="statistics_empty_message">अपने आँकड़े यहाँ देखने के लिए कुछ फोकस सत्र पूरे करें।</string>
+    <string name="statistics_action_retry">पुनः प्रयास करें</string>
 </resources>
