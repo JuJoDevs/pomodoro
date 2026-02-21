@@ -73,13 +73,19 @@ class SettingsViewModelTest {
     fun `GIVEN analytics toggle action WHEN onAction THEN analytics state is updated`() =
         runTest {
             viewModel.state.test {
-                awaitItem()
+                var state = awaitItem()
+                while (state.isLoading) {
+                    state = awaitItem()
+                }
 
                 viewModel.onAction(SettingsAction.ToggleAnalyticsCollection(enabled = true))
                 advanceUntilIdle()
 
-                val updatedState = awaitItem()
-                updatedState.analyticsCollectionEnabled shouldBeEqualTo true
+                while (!state.analyticsCollectionEnabled) {
+                    state = awaitItem()
+                }
+
+                state.analyticsCollectionEnabled shouldBeEqualTo true
                 coVerifyOnce { updateAnalyticsConsent(true) }
                 cancelAndIgnoreRemainingEvents()
             }
