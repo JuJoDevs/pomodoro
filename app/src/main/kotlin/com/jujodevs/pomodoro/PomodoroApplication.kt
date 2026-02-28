@@ -5,6 +5,7 @@ import com.google.firebase.FirebaseApp
 import com.jujodevs.pomodoro.core.appconfig.AppConfig
 import com.jujodevs.pomodoro.core.appconfig.impl.di.appConfigModule
 import com.jujodevs.pomodoro.di.applicationScopeModule
+import com.jujodevs.pomodoro.features.onboarding.di.onboardingModule
 import com.jujodevs.pomodoro.features.settings.di.settingsModule
 import com.jujodevs.pomodoro.features.statistics.di.statisticsModule
 import com.jujodevs.pomodoro.features.timer.di.timerModule
@@ -38,6 +39,7 @@ class PomodoroApplication : Application() {
                 notificationsModule,
                 permissionsModule,
                 usageStatsModule,
+                onboardingModule,
                 timerModule,
                 settingsModule,
                 statisticsModule,

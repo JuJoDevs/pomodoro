@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Henüz veri yok</string>
     <string name="statistics_empty_message">İstatistiklerinizi burada görmek için bazı odaklanma oturumlarını tamamlayın.</string>
     <string name="statistics_action_retry">Tekrar Dene</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Odak ve mola</string>
+    <string name="onboarding_slide1_body">Ana zamanlayıcıyı odaklı çalışma oturumları ve molalar için kullanın. Uygulama arka planda güvenilir şekilde çalışır, bu nedenle ekran kapalıyken bile bildirim alırsınız.</string>
+    <string name="onboarding_slide2_title">İlerlemenizi takip edin</string>
+    <string name="onboarding_slide2_body">Haftalık ve aylık istatistikleri, odak süresini ve günlük serinizi görün. Kullanım verileriniz cihazınızda kalır.</string>
+    <string name="onboarding_slide3_title">İzinler ve gizlilik</string>
+    <string name="onboarding_slide3_body">Bildirimler ve hassas alarmlar zamanlayıcının güvenilir şekilde tamamlanmasını sağlar. Bu izinleri ve analytics onayını istediğiniz zaman Ayarlar\'dan değiştirebilirsiniz.</string>
+    <string name="onboarding_consent_label">Uygulamayı geliştirmeye yardımcı olun</string>
+    <string name="onboarding_consent_description">Güvenilirliği ve kullanıcı deneyimini artırmak için anonim kullanım analytics verilerine izin verin.</string>
+    <string name="onboarding_action_next">İleri</string>
+    <string name="onboarding_action_get_started">Başla</string>
+    <string name="onboarding_action_grant_notifications">Bildirimlere izin ver</string>
+    <string name="onboarding_action_grant_alarm">Alarm izni ver</string>
 </resources>

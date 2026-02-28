@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Все още няма данни</string>
     <string name="statistics_empty_message">Завършете няколко сесии за фокус, за да видите статистиката си тук.</string>
     <string name="statistics_action_retry">Опитай пак</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Фокус и почивка</string>
+    <string name="onboarding_slide1_body">Използвайте основния таймер за фокусирани сесии и почивки. Приложението работи надеждно във фонов режим, така че получавате известия дори когато екранът е изключен.</string>
+    <string name="onboarding_slide2_title">Следете напредъка си</string>
+    <string name="onboarding_slide2_body">Вижте седмична и месечна статистика, време за фокус и вашата поредица от дни. Данните за използване остават на вашето устройство.</string>
+    <string name="onboarding_slide3_title">Разрешения и поверителност</string>
+    <string name="onboarding_slide3_body">Известията и точните аларми гарантират надеждно приключване на таймера. Можете да промените тези разрешения и съгласието за анализи по всяко време в Настройки.</string>
+    <string name="onboarding_consent_label">Помогнете за подобряване на приложението</string>
+    <string name="onboarding_consent_description">Разрешете анонимни анализи на използването за подобряване на надеждността и изживяването.</string>
+    <string name="onboarding_action_next">Напред</string>
+    <string name="onboarding_action_get_started">Започнете</string>
+    <string name="onboarding_action_grant_notifications">Разрешете известия</string>
+    <string name="onboarding_action_grant_alarm">Разрешете аларма</string>
 </resources>

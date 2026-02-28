@@ -10,6 +10,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface MainNavKey : AppNavKey {
     /**
+     * Onboarding screen - first-run flow with slides and consent
+     */
+    @Serializable
+    data object Onboarding : MainNavKey
+
+    /**
      * Home screen - main Pomodoro timer screen
      */
     @Serializable

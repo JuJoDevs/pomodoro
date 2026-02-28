@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">अभी कोई डेटा नहीं</string>
     <string name="statistics_empty_message">अपने आँकड़े यहाँ देखने के लिए कुछ फोकस सत्र पूरे करें।</string>
     <string name="statistics_action_retry">पुनः प्रयास करें</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">फोकस और आराम</string>
+    <string name="onboarding_slide1_body">मुख्य टाइमर का उपयोग करके फोकस सेशन में काम करें और ब्रेक लें। ऐप बैकग्राउंड में भरोसेमंद तरीके से चलता है, इसलिए स्क्रीन बंद होने पर भी आपको नोटिफिकेशन मिलते हैं।</string>
+    <string name="onboarding_slide2_title">अपनी प्रगति देखें</string>
+    <string name="onboarding_slide2_body">साप्ताहिक और मासिक आँकड़े, फोकस समय और अपनी डे स्ट्रीक देखें। आपका उपयोग डेटा आपके डिवाइस में ही रहता है।</string>
+    <string name="onboarding_slide3_title">अनुमतियाँ और गोपनीयता</string>
+    <string name="onboarding_slide3_body">नोटिफिकेशन और सटीक अलार्म सुनिश्चित करते हैं कि टाइमर भरोसेमंद तरीके से पूरा हो। आप इन अनुमतियों और एनालिटिक्स सहमति को कभी भी सेटिंग्स में बदल सकते हैं।</string>
+    <string name="onboarding_consent_label">ऐप को बेहतर बनाने में मदद करें</string>
+    <string name="onboarding_consent_description">विश्वसनीयता और यूएक्स सुधारने के लिए अनाम उपयोग एनालिटिक्स की अनुमति दें।</string>
+    <string name="onboarding_action_next">आगे</string>
+    <string name="onboarding_action_get_started">शुरू करें</string>
+    <string name="onboarding_action_grant_notifications">नोटिफिकेशन अनुमति दें</string>
+    <string name="onboarding_action_grant_alarm">अलार्म अनुमति दें</string>
 </resources>

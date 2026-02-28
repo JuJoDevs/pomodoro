@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Nu există date încă</string>
     <string name="statistics_empty_message">Finalizează câteva sesiuni de focus pentru a vedea statisticile aici.</string>
     <string name="statistics_action_retry">Reîncearcă</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Focus si odihna</string>
+    <string name="onboarding_slide1_body">Folosește timerul principal pentru sesiuni de concentrare și pauze. Aplicația rulează fiabil în fundal, astfel încât primești notificări chiar și când ecranul este oprit.</string>
+    <string name="onboarding_slide2_title">Urmărește-ți progresul</string>
+    <string name="onboarding_slide2_body">Vezi statistici săptămânale și lunare, timpul de concentrare și seria ta de zile. Datele tale de utilizare rămân pe dispozitiv.</string>
+    <string name="onboarding_slide3_title">Permisiuni și confidențialitate</string>
+    <string name="onboarding_slide3_body">Notificările și alarmele exacte asigură finalizarea fiabilă a timerului. Poți schimba aceste permisiuni și consimțământul analytics oricând în Setări.</string>
+    <string name="onboarding_consent_label">Ajută la îmbunătățirea aplicației</string>
+    <string name="onboarding_consent_description">Permite analytics anonime de utilizare pentru a îmbunătăți fiabilitatea și experiența utilizatorului.</string>
+    <string name="onboarding_action_next">Următorul</string>
+    <string name="onboarding_action_get_started">Începe</string>
+    <string name="onboarding_action_grant_notifications">Permite notificări</string>
+    <string name="onboarding_action_grant_alarm">Permite permisiunea de alarmă</string>
 </resources>

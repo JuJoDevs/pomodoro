@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Još nema podataka</string>
     <string name="statistics_empty_message">Dovršite neke sesije fokusa da biste ovdje vidjeli svoju statistiku.</string>
     <string name="statistics_action_retry">Pokušaj ponovno</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fokus i odmor</string>
+    <string name="onboarding_slide1_body">Koristite glavni timer za fokusirane sesije rada i pauze. Aplikacija pouzdano radi u pozadini pa primate obavijesti i kada je zaslon isključen.</string>
+    <string name="onboarding_slide2_title">Pratite svoj napredak</string>
+    <string name="onboarding_slide2_body">Pregledajte tjednu i mjesečnu statistiku, vrijeme fokusa i niz dana. Vaši podaci o korištenju ostaju na uređaju.</string>
+    <string name="onboarding_slide3_title">Dozvole i privatnost</string>
+    <string name="onboarding_slide3_body">Obavijesti i točni alarmi osiguravaju pouzdan završetak timera. Te dozvole i privolu za analitiku možete promijeniti bilo kada u Postavkama.</string>
+    <string name="onboarding_consent_label">Pomozite poboljšati aplikaciju</string>
+    <string name="onboarding_consent_description">Dopustite anonimnu analitiku korištenja za bolju pouzdanost i korisničko iskustvo.</string>
+    <string name="onboarding_action_next">Dalje</string>
+    <string name="onboarding_action_get_started">Započni</string>
+    <string name="onboarding_action_grant_notifications">Dopusti obavijesti</string>
+    <string name="onboarding_action_grant_alarm">Dopusti dozvolu alarma</string>
 </resources>

@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">אין נתונים עדיין</string>
     <string name="statistics_empty_message">השלם כמה הפעלות מיקוד כדי לראות את הסטטיסטיקה שלך כאן.</string>
     <string name="statistics_action_retry">נסה שנית</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">ריכוז ומנוחה</string>
+    <string name="onboarding_slide1_body">השתמשו בטיימר הראשי לעבודה במקטעי ריכוז והפסקות. האפליקציה פועלת בצורה אמינה ברקע, כך שתקבלו התראות גם כשהמסך כבוי.</string>
+    <string name="onboarding_slide2_title">עקבו אחרי ההתקדמות שלכם</string>
+    <string name="onboarding_slide2_body">צפו בסטטיסטיקה שבועית וחודשית, בזמן ריכוז וברצף הימים שלכם. נתוני השימוש נשארים במכשיר שלכם.</string>
+    <string name="onboarding_slide3_title">הרשאות ופרטיות</string>
+    <string name="onboarding_slide3_body">התראות ואזעקות מדויקות מבטיחות שהטיימר יסתיים באופן אמין. אפשר לשנות הרשאות אלה ואת הסכמת האנליטיקה בכל זמן בהגדרות.</string>
+    <string name="onboarding_consent_label">עזרו לשפר את האפליקציה</string>
+    <string name="onboarding_consent_description">אפשרו אנליטיקת שימוש אנונימית כדי לשפר אמינות וחוויית משתמש.</string>
+    <string name="onboarding_action_next">הבא</string>
+    <string name="onboarding_action_get_started">התחלה</string>
+    <string name="onboarding_action_grant_notifications">אפשרו התראות</string>
+    <string name="onboarding_action_grant_alarm">אפשרו הרשאת אזעקה</string>
 </resources>

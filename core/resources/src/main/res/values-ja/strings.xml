@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">データはまだありません</string>
     <string name="statistics_empty_message">統計を表示するには、集中セッションを完了してください。</string>
     <string name="statistics_action_retry">再試行</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">集中と休憩</string>
+    <string name="onboarding_slide1_body">メインタイマーで集中セッションと休憩を管理できます。アプリはバックグラウンドでも安定して動作するため、画面がオフでも通知を受け取れます。</string>
+    <string name="onboarding_slide2_title">進捗を確認</string>
+    <string name="onboarding_slide2_body">週次・月次の統計、集中時間、連続日数を確認できます。利用データは端末内に保存されます。</string>
+    <string name="onboarding_slide3_title">権限とプライバシー</string>
+    <string name="onboarding_slide3_body">通知と正確なアラームにより、タイマーを確実に終了できます。これらの権限と分析同意は、設定でいつでも変更できます。</string>
+    <string name="onboarding_consent_label">アプリ改善に協力する</string>
+    <string name="onboarding_consent_description">信頼性とUX向上のため、匿名の利用分析を許可します。</string>
+    <string name="onboarding_action_next">次へ</string>
+    <string name="onboarding_action_get_started">開始</string>
+    <string name="onboarding_action_grant_notifications">通知を許可</string>
+    <string name="onboarding_action_grant_alarm">アラーム権限を許可</string>
 </resources>

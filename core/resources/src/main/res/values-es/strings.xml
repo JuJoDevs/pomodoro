@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Sin datos aún</string>
     <string name="statistics_empty_message">Completa algunas sesiones de concentración para ver tus estadísticas aquí.</string>
     <string name="statistics_action_retry">Reintentar</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Concéntrate y descansa</string>
+    <string name="onboarding_slide1_body">Usa el temporizador principal para trabajar en sesiones de concentración y tomar descansos. La app funciona de forma fiable en segundo plano, por lo que recibirás notificaciones incluso con la pantalla apagada.</string>
+    <string name="onboarding_slide2_title">Sigue tu progreso</string>
+    <string name="onboarding_slide2_body">Consulta estadísticas semanales y mensuales, tiempo de concentración y tu racha de días. Tus datos de uso se quedan en tu dispositivo.</string>
+    <string name="onboarding_slide3_title">Permisos y privacidad</string>
+    <string name="onboarding_slide3_body">Las notificaciones y las alarmas exactas aseguran que el temporizador termine de forma fiable. Puedes cambiar estos permisos y el consentimiento de analíticas cuando quieras en Ajustes.</string>
+    <string name="onboarding_consent_label">Ayuda a mejorar la app</string>
+    <string name="onboarding_consent_description">Permitir analíticas de uso anónimas para mejorar fiabilidad y experiencia.</string>
+    <string name="onboarding_action_next">Siguiente</string>
+    <string name="onboarding_action_get_started">Comenzar</string>
+    <string name="onboarding_action_grant_notifications">Conceder notificaciones</string>
+    <string name="onboarding_action_grant_alarm">Conceder permiso de alarma</string>
 </resources>

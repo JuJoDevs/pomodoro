@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Nog geen gegevens</string>
     <string name="statistics_empty_message">Voltooi enkele focussessies om hier je statistieken te zien.</string>
     <string name="statistics_action_retry">Opnieuw proberen</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Focus en rust</string>
+    <string name="onboarding_slide1_body">Gebruik de hoofdtimer voor gefocuste sessies en pauzes. De app werkt betrouwbaar op de achtergrond, zodat je meldingen krijgt, ook als het scherm uit staat.</string>
+    <string name="onboarding_slide2_title">Volg je voortgang</string>
+    <string name="onboarding_slide2_body">Bekijk wekelijkse en maandelijkse statistieken, focustijd en je dagreeks. Je gebruiksgegevens blijven op je apparaat.</string>
+    <string name="onboarding_slide3_title">Machtigingen en privacy</string>
+    <string name="onboarding_slide3_body">Meldingen en exacte alarmen zorgen ervoor dat je timer betrouwbaar eindigt. Je kunt deze machtigingen en analytics-toestemming altijd wijzigen in Instellingen.</string>
+    <string name="onboarding_consent_label">Help de app verbeteren</string>
+    <string name="onboarding_consent_description">Sta anonieme gebruiksanalyses toe om betrouwbaarheid en UX te verbeteren.</string>
+    <string name="onboarding_action_next">Volgende</string>
+    <string name="onboarding_action_get_started">Aan de slag</string>
+    <string name="onboarding_action_grant_notifications">Meldingen toestaan</string>
+    <string name="onboarding_action_grant_alarm">Alarmmachtiging toestaan</string>
 </resources>

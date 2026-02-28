@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Belum ada data</string>
     <string name="statistics_empty_message">Selesaikan beberapa sesi fokus untuk melihat statistik Anda di sini.</string>
     <string name="statistics_action_retry">Coba lagi</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fokus dan istirahat</string>
+    <string name="onboarding_slide1_body">Gunakan timer utama untuk sesi kerja fokus dan jeda. Aplikasi berjalan andal di latar belakang, jadi Anda tetap menerima notifikasi meski layar mati.</string>
+    <string name="onboarding_slide2_title">Pantau progres Anda</string>
+    <string name="onboarding_slide2_body">Lihat statistik mingguan dan bulanan, waktu fokus, serta streak harian Anda. Data penggunaan Anda tetap berada di perangkat Anda.</string>
+    <string name="onboarding_slide3_title">Izin dan privasi</string>
+    <string name="onboarding_slide3_body">Notifikasi dan alarm presisi memastikan timer selesai dengan andal. Anda dapat mengubah izin ini dan persetujuan analitik kapan saja di Setelan.</string>
+    <string name="onboarding_consent_label">Bantu tingkatkan aplikasi</string>
+    <string name="onboarding_consent_description">Izinkan analitik penggunaan anonim untuk meningkatkan keandalan dan pengalaman pengguna.</string>
+    <string name="onboarding_action_next">Berikutnya</string>
+    <string name="onboarding_action_get_started">Mulai</string>
+    <string name="onboarding_action_grant_notifications">Izinkan notifikasi</string>
+    <string name="onboarding_action_grant_alarm">Izinkan izin alarm</string>
 </resources>

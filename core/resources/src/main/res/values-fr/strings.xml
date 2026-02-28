@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Pas encore de données</string>
     <string name="statistics_empty_message">Terminez des sessions de concentration pour voir vos statistiques ici.</string>
     <string name="statistics_action_retry">Réessayer</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Concentration et pause</string>
+    <string name="onboarding_slide1_body">Utilisez le minuteur principal pour alterner sessions de concentration et pauses. L\'application fonctionne de façon fiable en arrière-plan, vous recevez donc des notifications même écran éteint.</string>
+    <string name="onboarding_slide2_title">Suivez votre progression</string>
+    <string name="onboarding_slide2_body">Consultez les statistiques hebdomadaires et mensuelles, le temps de concentration et votre série de jours. Vos données d\'utilisation restent sur votre appareil.</string>
+    <string name="onboarding_slide3_title">Autorisations et confidentialité</string>
+    <string name="onboarding_slide3_body">Les notifications et les alarmes exactes garantissent la fin fiable du minuteur. Vous pouvez modifier ces autorisations et le consentement analytics à tout moment dans Réglages.</string>
+    <string name="onboarding_consent_label">Aidez à améliorer l\'application</string>
+    <string name="onboarding_consent_description">Autorisez des analyses d\'utilisation anonymes pour améliorer la fiabilité et l\'expérience utilisateur.</string>
+    <string name="onboarding_action_next">Suivant</string>
+    <string name="onboarding_action_get_started">Commencer</string>
+    <string name="onboarding_action_grant_notifications">Autoriser les notifications</string>
+    <string name="onboarding_action_grant_alarm">Autoriser l\'alarme exacte</string>
 </resources>

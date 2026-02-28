@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Wala pang datos</string>
     <string name="statistics_empty_message">Kumpletuhin ang ilang sesyon ng focus para makita ang iyong istatistika dito.</string>
     <string name="statistics_action_retry">Subukang muli</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Mag-focus at magpahinga</string>
+    <string name="onboarding_slide1_body">Gamitin ang pangunahing timer para sa mga session ng focus at pahinga. Maaasahan ang app sa background kaya makakatanggap ka ng mga abiso kahit naka-off ang screen.</string>
+    <string name="onboarding_slide2_title">Subaybayan ang progreso mo</string>
+    <string name="onboarding_slide2_body">Tingnan ang lingguhan at buwanang istatistika, oras ng focus, at day streak mo. Nananatili sa device mo ang iyong usage data.</string>
+    <string name="onboarding_slide3_title">Mga pahintulot at privacy</string>
+    <string name="onboarding_slide3_body">Tinitiyak ng notifications at exact alarms na maaasahang matatapos ang timer. Maaari mong baguhin ang mga pahintulot na ito at analytics consent anumang oras sa Settings.</string>
+    <string name="onboarding_consent_label">Tumulong na pagandahin ang app</string>
+    <string name="onboarding_consent_description">Payagan ang anonymous usage analytics para mapabuti ang reliability at UX.</string>
+    <string name="onboarding_action_next">Susunod</string>
+    <string name="onboarding_action_get_started">Magsimula</string>
+    <string name="onboarding_action_grant_notifications">Payagan ang notifications</string>
+    <string name="onboarding_action_grant_alarm">Payagan ang alarm permission</string>
 </resources>

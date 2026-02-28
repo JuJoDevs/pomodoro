@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Нет данных</string>
     <string name="statistics_empty_message">Завершите несколько сессий фокуса, чтобы увидеть статистику.</string>
     <string name="statistics_action_retry">Повторить</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Фокус и отдых</string>
+    <string name="onboarding_slide1_body">Используйте основной таймер для сфокусированных сессий и перерывов. Приложение надежно работает в фоне, поэтому вы получаете уведомления даже при выключенном экране.</string>
+    <string name="onboarding_slide2_title">Отслеживайте прогресс</string>
+    <string name="onboarding_slide2_body">Смотрите недельную и месячную статистику, время фокуса и серию дней. Данные использования остаются на вашем устройстве.</string>
+    <string name="onboarding_slide3_title">Разрешения и приватность</string>
+    <string name="onboarding_slide3_body">Уведомления и точные будильники обеспечивают надежное завершение таймера. Эти разрешения и согласие на аналитику можно изменить в любое время в Настройках.</string>
+    <string name="onboarding_consent_label">Помогите улучшить приложение</string>
+    <string name="onboarding_consent_description">Разрешите анонимную аналитику использования для повышения надежности и удобства.</string>
+    <string name="onboarding_action_next">Далее</string>
+    <string name="onboarding_action_get_started">Начать</string>
+    <string name="onboarding_action_grant_notifications">Разрешить уведомления</string>
+    <string name="onboarding_action_grant_alarm">Разрешить будильник</string>
 </resources>

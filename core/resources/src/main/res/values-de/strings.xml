@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Noch keine Daten</string>
     <string name="statistics_empty_message">Beenden Sie einige Fokussitzungen, um hier Ihre Statistiken zu sehen.</string>
     <string name="statistics_action_retry">Wiederholen</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fokus und Pause</string>
+    <string name="onboarding_slide1_body">Nutze den Haupttimer für fokussierte Arbeitsphasen und Pausen. Die App läuft zuverlässig im Hintergrund, sodass du auch bei ausgeschaltetem Bildschirm benachrichtigt wirst.</string>
+    <string name="onboarding_slide2_title">Verfolge deinen Fortschritt</string>
+    <string name="onboarding_slide2_body">Sieh dir wöchentliche und monatliche Statistiken, Fokuszeit und deine Tagesserie an. Deine Nutzungsdaten bleiben auf deinem Gerät.</string>
+    <string name="onboarding_slide3_title">Berechtigungen und Datenschutz</string>
+    <string name="onboarding_slide3_body">Benachrichtigungen und exakte Alarme sorgen dafür, dass dein Timer zuverlässig endet. Diese Berechtigungen und die Analytics-Einwilligung kannst du jederzeit in den Einstellungen ändern.</string>
+    <string name="onboarding_consent_label">Hilf, die App zu verbessern</string>
+    <string name="onboarding_consent_description">Erlaube anonyme Nutzungsanalysen, um Zuverlässigkeit und Nutzererlebnis zu verbessern.</string>
+    <string name="onboarding_action_next">Weiter</string>
+    <string name="onboarding_action_get_started">Loslegen</string>
+    <string name="onboarding_action_grant_notifications">Benachrichtigungen erlauben</string>
+    <string name="onboarding_action_grant_alarm">Alarmberechtigung erlauben</string>
 </resources>

@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Sem dados ainda</string>
     <string name="statistics_empty_message">Complete algumas sessões de foco para ver suas estatísticas aqui.</string>
     <string name="statistics_action_retry">Tentar novamente</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Foco e descanso</string>
+    <string name="onboarding_slide1_body">Use o temporizador principal para trabalhar em sessões de foco e fazer pausas. A aplicação funciona de forma fiável em segundo plano, por isso recebe notificações mesmo com o ecrã desligado.</string>
+    <string name="onboarding_slide2_title">Acompanhe o seu progresso</string>
+    <string name="onboarding_slide2_body">Veja estatísticas semanais e mensais, tempo de foco e a sua sequência de dias. Os seus dados de utilização ficam no seu dispositivo.</string>
+    <string name="onboarding_slide3_title">Permissões e privacidade</string>
+    <string name="onboarding_slide3_body">Notificações e alarmes exatos garantem que o temporizador termina de forma fiável. Pode alterar estas permissões e o consentimento de analytics a qualquer momento em Definições.</string>
+    <string name="onboarding_consent_label">Ajude a melhorar a aplicação</string>
+    <string name="onboarding_consent_description">Permita analytics anónimos de utilização para melhorar fiabilidade e UX.</string>
+    <string name="onboarding_action_next">Seguinte</string>
+    <string name="onboarding_action_get_started">Começar</string>
+    <string name="onboarding_action_grant_notifications">Conceder notificações</string>
+    <string name="onboarding_action_grant_alarm">Conceder permissão de alarme</string>
 </resources>

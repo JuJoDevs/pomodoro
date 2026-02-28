@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Chưa có dữ liệu</string>
     <string name="statistics_empty_message">Hoàn thành một số phiên tập trung để xem thống kê của bạn tại đây.</string>
     <string name="statistics_action_retry">Thử lại</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Tập trung và nghỉ ngơi</string>
+    <string name="onboarding_slide1_body">Dùng bộ đếm giờ chính cho các phiên tập trung và nghỉ. Ứng dụng chạy ổn định ở nền nên bạn vẫn nhận thông báo ngay cả khi màn hình tắt.</string>
+    <string name="onboarding_slide2_title">Theo dõi tiến độ của bạn</string>
+    <string name="onboarding_slide2_body">Xem thống kê theo tuần và tháng, thời gian tập trung và chuỗi ngày liên tiếp. Dữ liệu sử dụng của bạn chỉ lưu trên thiết bị.</string>
+    <string name="onboarding_slide3_title">Quyền và quyền riêng tư</string>
+    <string name="onboarding_slide3_body">Thông báo và báo thức chính xác giúp bộ đếm giờ hoàn tất đáng tin cậy. Bạn có thể đổi các quyền này và mức đồng ý analytics bất cứ lúc nào trong Cài đặt.</string>
+    <string name="onboarding_consent_label">Giúp cải thiện ứng dụng</string>
+    <string name="onboarding_consent_description">Cho phép analytics sử dụng ẩn danh để cải thiện độ tin cậy và UX.</string>
+    <string name="onboarding_action_next">Tiếp theo</string>
+    <string name="onboarding_action_get_started">Bắt đầu</string>
+    <string name="onboarding_action_grant_notifications">Cho phép thông báo</string>
+    <string name="onboarding_action_grant_alarm">Cho phép quyền báo thức</string>
 </resources>

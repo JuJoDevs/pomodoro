@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Encara no hi ha dades</string>
     <string name="statistics_empty_message">Completa algunes sessions de focus per veure les teves estadístiques aquí.</string>
     <string name="statistics_action_retry">Reintentar</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Concentra\'t i descansa</string>
+    <string name="onboarding_slide1_body">Fes servir el temporitzador principal per treballar en sessions de concentracio i fer pauses. L\'app funciona de manera fiable en segon pla, aixi que rebras notificacions fins i tot amb la pantalla apagada.</string>
+    <string name="onboarding_slide2_title">Segueix el teu progrés</string>
+    <string name="onboarding_slide2_body">Consulta estadistiques setmanals i mensuals, temps de concentracio i la teva ratxa de dies. Les teves dades d\'us es queden al dispositiu.</string>
+    <string name="onboarding_slide3_title">Permisos i privacitat</string>
+    <string name="onboarding_slide3_body">Les notificacions i les alarmes exactes asseguren que el temporitzador acabi de forma fiable. Pots canviar aquests permisos i el consentiment d\'analitiques en qualsevol moment a Configuracio.</string>
+    <string name="onboarding_consent_label">Ajuda a millorar l\'app</string>
+    <string name="onboarding_consent_description">Permet analitiques anonimes d\'us per millorar la fiabilitat i l\'experiencia.</string>
+    <string name="onboarding_action_next">Següent</string>
+    <string name="onboarding_action_get_started">Comença</string>
+    <string name="onboarding_action_grant_notifications">Concedeix notificacions</string>
+    <string name="onboarding_action_grant_alarm">Concedeix permís d\'alarma</string>
 </resources>
