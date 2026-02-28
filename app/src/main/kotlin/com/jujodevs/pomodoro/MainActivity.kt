@@ -3,14 +3,18 @@ package com.jujodevs.pomodoro
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -24,6 +28,7 @@ import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
 import com.jujodevs.pomodoro.core.navigation.MainNavKey
 import com.jujodevs.pomodoro.core.navigation.goBack
 import com.jujodevs.pomodoro.core.navigation.navigateTo
+import com.jujodevs.pomodoro.core.navigation.navigateToRoot
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.PomodoroScaffold
 import com.jujodevs.pomodoro.core.ui.ScaffoldConfig
@@ -31,11 +36,15 @@ import com.jujodevs.pomodoro.core.ui.TopBarAction
 import com.jujodevs.pomodoro.core.ui.TopBarState
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.NotificationPermissionEffect
+import com.jujodevs.pomodoro.features.onboarding.domain.usecase.ObserveHasCompletedOnboardingUseCase
+import com.jujodevs.pomodoro.features.onboarding.presentation.OnboardingRoute
 import com.jujodevs.pomodoro.features.settings.presentation.SettingsRoute
 import com.jujodevs.pomodoro.features.statistics.presentation.StatisticsRoute
 import com.jujodevs.pomodoro.features.timer.presentation.TimerRoute
 import com.jujodevs.pomodoro.ui.ConfigureSystemBars
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import org.koin.compose.koinInject
 
 private const val DARK_THEME = true
 
@@ -53,10 +62,25 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
+@Suppress("LongMethod")
 private fun PomodoroApp() {
-    val backStack = rememberNavBackStack(MainNavKey.Home)
+    val observeHasCompletedOnboarding: ObserveHasCompletedOnboardingUseCase = koinInject()
+    var initialDestination by remember { mutableStateOf<MainNavKey?>(null) }
+
+    LaunchedEffect(Unit) {
+        val hasCompleted = observeHasCompletedOnboarding().first()
+        initialDestination = if (hasCompleted) MainNavKey.Home else MainNavKey.Onboarding
+    }
+
+    if (initialDestination == null) {
+        Box(modifier = Modifier.fillMaxSize())
+        return
+    }
+
+    val backStack = rememberNavBackStack(initialDestination!!)
     val snackbarHostState = remember { SnackbarHostState() }
     var phaseTitleResId by remember { mutableIntStateOf(R.string.phase_title_focus) }
+    val isOnOnboarding = backStack.isNotEmpty() && backStack.last() == MainNavKey.Onboarding
     val isOnSettings = backStack.isNotEmpty() && backStack.last() == MainNavKey.Settings
     val isOnStatistics = backStack.isNotEmpty() && backStack.last() == MainNavKey.Statistics
     val topBarTitle =
@@ -89,12 +113,16 @@ private fun PomodoroApp() {
         scaffoldConfig =
             ScaffoldConfig(
                 topBar =
-                    TopBarState(
-                        title = topBarTitle,
-                        showBackButton = backStack.size > 1,
-                        onBackClick = { backStack.goBack() },
-                        actions = topBarActions,
-                    ),
+                    if (isOnOnboarding) {
+                        null
+                    } else {
+                        TopBarState(
+                            title = topBarTitle,
+                            showBackButton = backStack.size > 1,
+                            onBackClick = { backStack.goBack() },
+                            actions = topBarActions,
+                        )
+                    },
             ),
     ) {
         AppNavigation(
@@ -120,7 +148,12 @@ fun AppNavigation(
         backStack = backStack,
         entryProvider =
             entryProvider {
-                // Define navigation entries
+                entry<MainNavKey.Onboarding> {
+                    OnboardingRoute(
+                        onNavigateToHome = { backStack.navigateToRoot(MainNavKey.Home) },
+                    )
+                }
+
                 entry<MainNavKey.Home> {
                     NotificationPermissionEffect()
                     ExactAlarmPermissionEffect(

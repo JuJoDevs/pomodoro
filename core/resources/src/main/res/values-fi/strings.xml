@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Ei tietoja vielä</string>
     <string name="statistics_empty_message">Suorita keskittymisistuntoja nähdäksesi tilastosi täällä.</string>
     <string name="statistics_action_retry">Yritä uudelleen</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Keskittyminen ja lepo</string>
+    <string name="onboarding_slide1_body">Käytä päätimeria keskittyneisiin työjaksoihin ja taukoihin. Sovellus toimii luotettavasti taustalla, joten saat ilmoitukset myös silloin, kun näyttö on pois päältä.</string>
+    <string name="onboarding_slide2_title">Seuraa edistymistäsi</string>
+    <string name="onboarding_slide2_body">Näe viikoittaiset ja kuukausittaiset tilastot, keskittymisaika ja päivittäinen putkesi. Käyttötietosi pysyvät laitteellasi.</string>
+    <string name="onboarding_slide3_title">Käyttöoikeudet ja tietosuoja</string>
+    <string name="onboarding_slide3_body">Ilmoitukset ja tarkat hälytykset varmistavat, että ajastin päättyy luotettavasti. Voit muuttaa näitä käyttöoikeuksia ja analytiikkasuostumusta milloin tahansa Asetuksissa.</string>
+    <string name="onboarding_consent_label">Auta parantamaan sovellusta</string>
+    <string name="onboarding_consent_description">Salli anonyymi käyttöanalytiikka luotettavuuden ja käyttökokemuksen parantamiseksi.</string>
+    <string name="onboarding_action_next">Seuraava</string>
+    <string name="onboarding_action_get_started">Aloita</string>
+    <string name="onboarding_action_grant_notifications">Salli ilmoitukset</string>
+    <string name="onboarding_action_grant_alarm">Salli hälytyslupa</string>
 </resources>

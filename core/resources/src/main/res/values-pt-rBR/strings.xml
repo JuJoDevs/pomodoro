@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Sem dados ainda</string>
     <string name="statistics_empty_message">Complete algumas sessões de foco para ver suas estatísticas aqui.</string>
     <string name="statistics_action_retry">Tentar novamente</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Foco e descanso</string>
+    <string name="onboarding_slide1_body">Use o timer principal para trabalhar em sessões de foco e fazer pausas. O app funciona de forma confiável em segundo plano, então você recebe notificações mesmo com a tela desligada.</string>
+    <string name="onboarding_slide2_title">Acompanhe seu progresso</string>
+    <string name="onboarding_slide2_body">Veja estatísticas semanais e mensais, tempo de foco e sua sequência de dias. Seus dados de uso ficam no seu dispositivo.</string>
+    <string name="onboarding_slide3_title">Permissões e privacidade</string>
+    <string name="onboarding_slide3_body">Notificações e alarmes exatos garantem que o timer termine com confiabilidade. Você pode alterar essas permissões e o consentimento de analytics a qualquer momento em Configurações.</string>
+    <string name="onboarding_consent_label">Ajude a melhorar o app</string>
+    <string name="onboarding_consent_description">Permita analytics anônimos de uso para melhorar confiabilidade e UX.</string>
+    <string name="onboarding_action_next">Próximo</string>
+    <string name="onboarding_action_get_started">Começar</string>
+    <string name="onboarding_action_grant_notifications">Conceder notificações</string>
+    <string name="onboarding_action_grant_alarm">Conceder permissão de alarme</string>
 </resources>

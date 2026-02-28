@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Brak danych</string>
     <string name="statistics_empty_message">Ukończ kilka sesji skupienia, aby zobaczyć tutaj swoje statystyki.</string>
     <string name="statistics_action_retry">Spróbuj ponownie</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Skupienie i odpoczynek</string>
+    <string name="onboarding_slide1_body">Używaj głównego timera do sesji skupienia i przerw. Aplikacja działa niezawodnie w tle, więc otrzymujesz powiadomienia nawet przy wyłączonym ekranie.</string>
+    <string name="onboarding_slide2_title">Śledź swoje postępy</string>
+    <string name="onboarding_slide2_body">Sprawdzaj statystyki tygodniowe i miesięczne, czas skupienia oraz serię dni. Twoje dane użycia pozostają na urządzeniu.</string>
+    <string name="onboarding_slide3_title">Uprawnienia i prywatność</string>
+    <string name="onboarding_slide3_body">Powiadomienia i dokładne alarmy zapewniają niezawodne zakończenie timera. Te uprawnienia i zgodę analytics możesz zmienić w każdej chwili w Ustawieniach.</string>
+    <string name="onboarding_consent_label">Pomóż ulepszyć aplikację</string>
+    <string name="onboarding_consent_description">Zezwól na anonimową analitykę użycia, aby poprawić niezawodność i UX.</string>
+    <string name="onboarding_action_next">Dalej</string>
+    <string name="onboarding_action_get_started">Zacznij</string>
+    <string name="onboarding_action_grant_notifications">Zezwól na powiadomienia</string>
+    <string name="onboarding_action_grant_alarm">Zezwól na uprawnienie alarmu</string>
 </resources>

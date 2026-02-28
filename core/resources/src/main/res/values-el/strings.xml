@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Δεν υπάρχουν δεδομένα ακόμα</string>
     <string name="statistics_empty_message">Ολοκληρώστε μερικές συνεδρίες εστίασης για να δείτε τα στατιστικά σας εδώ.</string>
     <string name="statistics_action_retry">Επανάληψη</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Συγκέντρωση και διάλειμμα</string>
+    <string name="onboarding_slide1_body">Χρησιμοποιήστε το κύριο χρονόμετρο για συνεδρίες συγκέντρωσης και διαλείμματα. Η εφαρμογή λειτουργεί αξιόπιστα στο παρασκήνιο, ώστε να λαμβάνετε ειδοποιήσεις ακόμη και με κλειστή οθόνη.</string>
+    <string name="onboarding_slide2_title">Παρακολουθήστε την πρόοδό σας</string>
+    <string name="onboarding_slide2_body">Δείτε εβδομαδιαία και μηνιαία στατιστικά, χρόνο συγκέντρωσης και το σερί ημερών σας. Τα δεδομένα χρήσης παραμένουν στη συσκευή σας.</string>
+    <string name="onboarding_slide3_title">Άδειες και απόρρητο</string>
+    <string name="onboarding_slide3_body">Οι ειδοποιήσεις και οι ακριβείς ειδοποιήσεις συναγερμού διασφαλίζουν την αξιόπιστη ολοκλήρωση του χρονομέτρου. Μπορείτε να αλλάξετε αυτές τις άδειες και τη συναίνεση αναλυτικών ανά πάσα στιγμή στις Ρυθμίσεις.</string>
+    <string name="onboarding_consent_label">Βοηθήστε στη βελτίωση της εφαρμογής</string>
+    <string name="onboarding_consent_description">Επιτρέψτε ανώνυμα αναλυτικά χρήσης για βελτίωση αξιοπιστίας και εμπειρίας χρήστη.</string>
+    <string name="onboarding_action_next">Επόμενο</string>
+    <string name="onboarding_action_get_started">Έναρξη</string>
+    <string name="onboarding_action_grant_notifications">Επιτρέψτε ειδοποιήσεις</string>
+    <string name="onboarding_action_grant_alarm">Επιτρέψτε άδεια συναγερμού</string>
 </resources>

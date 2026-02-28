@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">No data yet</string>
     <string name="statistics_empty_message">Complete some focus sessions to see your stats here.</string>
     <string name="statistics_action_retry">Retry</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Focus and rest</string>
+    <string name="onboarding_slide1_body">Use the main timer to work in focused sessions and take breaks. The app runs reliably in the background, so you get notified even when the screen is off.</string>
+    <string name="onboarding_slide2_title">Track your progress</string>
+    <string name="onboarding_slide2_body">View weekly and monthly statistics, focus time, and your day streak. Your usage data stays on your device.</string>
+    <string name="onboarding_slide3_title">Permissions and privacy</string>
+    <string name="onboarding_slide3_body">Notifications and exact alarms ensure your timer completes reliably. You can change these and analytics consent anytime in Settings.</string>
+    <string name="onboarding_consent_label">Help improve the app</string>
+    <string name="onboarding_consent_description">Allow anonymous usage analytics to improve reliability and UX.</string>
+    <string name="onboarding_action_next">Next</string>
+    <string name="onboarding_action_get_started">Get started</string>
+    <string name="onboarding_action_grant_notifications">Grant notifications</string>
+    <string name="onboarding_action_grant_alarm">Grant alarm permission</string>
 </resources>

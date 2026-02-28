@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Tiada data lagi</string>
     <string name="statistics_empty_message">Lengkapkan beberapa sesi fokus untuk melihat statistik anda di sini.</string>
     <string name="statistics_action_retry">Cuba lagi</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fokus dan rehat</string>
+    <string name="onboarding_slide1_body">Gunakan pemasa utama untuk sesi fokus dan rehat. Aplikasi berjalan dengan stabil di latar belakang, jadi anda tetap menerima notifikasi walaupun skrin dimatikan.</string>
+    <string name="onboarding_slide2_title">Jejak kemajuan anda</string>
+    <string name="onboarding_slide2_body">Lihat statistik mingguan dan bulanan, masa fokus, dan rentetan hari anda. Data penggunaan anda kekal pada peranti anda.</string>
+    <string name="onboarding_slide3_title">Kebenaran dan privasi</string>
+    <string name="onboarding_slide3_body">Notifikasi dan penggera tepat memastikan pemasa tamat dengan boleh dipercayai. Anda boleh ubah kebenaran ini dan persetujuan analitik pada bila-bila masa dalam Tetapan.</string>
+    <string name="onboarding_consent_label">Bantu tingkatkan aplikasi</string>
+    <string name="onboarding_consent_description">Benarkan analitik penggunaan tanpa nama untuk meningkatkan kebolehpercayaan dan pengalaman pengguna.</string>
+    <string name="onboarding_action_next">Seterusnya</string>
+    <string name="onboarding_action_get_started">Mula</string>
+    <string name="onboarding_action_grant_notifications">Benarkan notifikasi</string>
+    <string name="onboarding_action_grant_alarm">Benarkan kebenaran penggera</string>
 </resources>

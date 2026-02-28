@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">ยังไม่มีข้อมูล</string>
     <string name="statistics_empty_message">ทำเซสชันโฟกัสให้เสร็จสิ้นเพื่อดูสถิติของคุณที่นี่</string>
     <string name="statistics_action_retry">ลองใหม่</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">โฟกัสและพัก</string>
+    <string name="onboarding_slide1_body">ใช้ตัวจับเวลาหลักเพื่อทำงานแบบโฟกัสและพักเป็นช่วง ๆ แอปทำงานเบื้องหลังได้อย่างเสถียร คุณจึงได้รับการแจ้งเตือนแม้ปิดหน้าจออยู่</string>
+    <string name="onboarding_slide2_title">ติดตามความคืบหน้าของคุณ</string>
+    <string name="onboarding_slide2_body">ดูสถิติรายสัปดาห์และรายเดือน เวลาที่โฟกัส และสตรีคต่อเนื่องรายวัน ข้อมูลการใช้งานของคุณจะอยู่บนอุปกรณ์เท่านั้น</string>
+    <string name="onboarding_slide3_title">สิทธิ์และความเป็นส่วนตัว</string>
+    <string name="onboarding_slide3_body">การแจ้งเตือนและการตั้งปลุกแบบแม่นยำช่วยให้ตัวจับเวลาจบได้อย่างน่าเชื่อถือ คุณสามารถเปลี่ยนสิทธิ์เหล่านี้และความยินยอมด้าน analytics ได้ทุกเมื่อใน Settings</string>
+    <string name="onboarding_consent_label">ช่วยปรับปรุงแอป</string>
+    <string name="onboarding_consent_description">อนุญาต analytics การใช้งานแบบไม่ระบุตัวตนเพื่อปรับปรุงความเสถียรและประสบการณ์ใช้งาน</string>
+    <string name="onboarding_action_next">ถัดไป</string>
+    <string name="onboarding_action_get_started">เริ่มต้น</string>
+    <string name="onboarding_action_grant_notifications">อนุญาตการแจ้งเตือน</string>
+    <string name="onboarding_action_grant_alarm">อนุญาตสิทธิ์การปลุก</string>
 </resources>

@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Még nincs adat</string>
     <string name="statistics_empty_message">Végezz el néhány fókuszmenetet, hogy lásd a statisztikáidat.</string>
     <string name="statistics_action_retry">Újra</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fókusz és pihenés</string>
+    <string name="onboarding_slide1_body">Használd a fő időzítőt fókuszált munkaszakaszokhoz és szünetekhez. Az alkalmazás megbízhatóan fut a háttérben, így kikapcsolt kijelző mellett is kapsz értesítést.</string>
+    <string name="onboarding_slide2_title">Kövesd a fejlődésed</string>
+    <string name="onboarding_slide2_body">Nézd meg a heti és havi statisztikákat, a fókuszidőt és a napi sorozatodat. A használati adataid a készülékeden maradnak.</string>
+    <string name="onboarding_slide3_title">Engedélyek és adatvédelem</string>
+    <string name="onboarding_slide3_body">Az értesítések és a pontos riasztások biztosítják, hogy az időzítő megbízhatóan lejárjon. Ezeket az engedélyeket és az analitikai hozzájárulást bármikor módosíthatod a Beállításokban.</string>
+    <string name="onboarding_consent_label">Segíts javítani az alkalmazást</string>
+    <string name="onboarding_consent_description">Engedélyezd az anonim használati analitikát a megbízhatóság és a felhasználói élmény javításához.</string>
+    <string name="onboarding_action_next">Tovább</string>
+    <string name="onboarding_action_get_started">Kezdés</string>
+    <string name="onboarding_action_grant_notifications">Értesítések engedélyezése</string>
+    <string name="onboarding_action_grant_alarm">Riasztási engedély megadása</string>
 </resources>

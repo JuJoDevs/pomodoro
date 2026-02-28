@@ -67,6 +67,7 @@ dependencies {
     implementation(project(":libs:usage-stats:impl"))
 
     // Features
+    implementation(project(":features:onboarding:impl"))
     implementation(project(":features:pomodoro-timer:impl"))
     implementation(project(":features:settings:impl"))
     implementation(project(":features:statistics:impl"))

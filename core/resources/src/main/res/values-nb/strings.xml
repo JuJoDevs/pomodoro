@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Ingen data ennå</string>
     <string name="statistics_empty_message">Fullfør noen fokusøkter for å se statistikken din her.</string>
     <string name="statistics_action_retry">Prøv igjen</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Fokus og pause</string>
+    <string name="onboarding_slide1_body">Bruk hovedtimeren til fokuserte arbeidsøkter og pauser. Appen kjører pålitelig i bakgrunnen, så du får varsler selv når skjermen er av.</string>
+    <string name="onboarding_slide2_title">Følg fremgangen din</string>
+    <string name="onboarding_slide2_body">Se ukentlige og månedlige statistikker, fokustid og dagstreaken din. Bruksdataene dine blir på enheten din.</string>
+    <string name="onboarding_slide3_title">Tillatelser og personvern</string>
+    <string name="onboarding_slide3_body">Varsler og nøyaktige alarmer sikrer at timeren fullføres pålitelig. Du kan endre disse tillatelsene og analytics-samtykke når som helst i Innstillinger.</string>
+    <string name="onboarding_consent_label">Hjelp med å forbedre appen</string>
+    <string name="onboarding_consent_description">Tillat anonyme bruksanalyser for å forbedre pålitelighet og brukeropplevelse.</string>
+    <string name="onboarding_action_next">Neste</string>
+    <string name="onboarding_action_get_started">Kom i gang</string>
+    <string name="onboarding_action_grant_notifications">Tillat varsler</string>
+    <string name="onboarding_action_grant_alarm">Tillat alarmtillatelse</string>
 </resources>

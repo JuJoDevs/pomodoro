@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">暫無資料</string>
     <string name="statistics_empty_message">完成一些專注工作階段以在此查看統計資料。</string>
     <string name="statistics_action_retry">重試</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">專注與休息</string>
+    <string name="onboarding_slide1_body">使用主計時器進行專注工作與休息。應用在背景也能穩定運作，因此即使螢幕關閉也會收到通知。</string>
+    <string name="onboarding_slide2_title">追蹤你的進度</string>
+    <string name="onboarding_slide2_body">查看每週與每月統計、專注時間與連續天數。你的使用資料只會留在裝置上。</string>
+    <string name="onboarding_slide3_title">權限與隱私</string>
+    <string name="onboarding_slide3_body">通知與精確鬧鐘可確保計時器可靠結束。你可以隨時在設定中調整這些權限與 analytics 同意。</string>
+    <string name="onboarding_consent_label">協助改善應用程式</string>
+    <string name="onboarding_consent_description">允許匿名使用 analytics，以提升穩定性與使用體驗。</string>
+    <string name="onboarding_action_next">下一步</string>
+    <string name="onboarding_action_get_started">開始使用</string>
+    <string name="onboarding_action_grant_notifications">允許通知</string>
+    <string name="onboarding_action_grant_alarm">允許鬧鐘權限</string>
 </resources>

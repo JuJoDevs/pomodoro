@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Немає даних</string>
     <string name="statistics_empty_message">Завершіть кілька сесій фокусу, щоб побачити статистику.</string>
     <string name="statistics_action_retry">Спробувати ще</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Фокус і відпочинок</string>
+    <string name="onboarding_slide1_body">Використовуйте основний таймер для сфокусованих сесій і перерв. Застосунок надійно працює у фоні, тому ви отримаєте сповіщення навіть коли екран вимкнений.</string>
+    <string name="onboarding_slide2_title">Відстежуйте прогрес</string>
+    <string name="onboarding_slide2_body">Переглядайте тижневу і місячну статистику, час фокусу та серію днів. Дані використання залишаються на вашому пристрої.</string>
+    <string name="onboarding_slide3_title">Дозволи і приватність</string>
+    <string name="onboarding_slide3_body">Сповіщення і точні будильники забезпечують надійне завершення таймера. Ці дозволи та згоду на analytics можна будь-коли змінити в Налаштуваннях.</string>
+    <string name="onboarding_consent_label">Допоможіть покращити застосунок</string>
+    <string name="onboarding_consent_description">Дозвольте анонімну аналітику використання для покращення надійності та досвіду користування.</string>
+    <string name="onboarding_action_next">Далі</string>
+    <string name="onboarding_action_get_started">Почати</string>
+    <string name="onboarding_action_grant_notifications">Дозволити сповіщення</string>
+    <string name="onboarding_action_grant_alarm">Дозволити будильник</string>
 </resources>

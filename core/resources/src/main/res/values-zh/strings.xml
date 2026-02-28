@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">暂无数据</string>
     <string name="statistics_empty_message">完成一些专注会话以在此查看统计数据。</string>
     <string name="statistics_action_retry">重试</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">专注与休息</string>
+    <string name="onboarding_slide1_body">使用主计时器进行专注工作与休息。应用在后台也能稳定运行，因此即使屏幕关闭也会收到通知。</string>
+    <string name="onboarding_slide2_title">追踪你的进度</string>
+    <string name="onboarding_slide2_body">查看每周和每月统计、专注时长以及连续天数。你的使用数据仅保存在设备上。</string>
+    <string name="onboarding_slide3_title">权限与隐私</string>
+    <string name="onboarding_slide3_body">通知和精确闹钟可确保计时器可靠结束。你可以随时在设置中更改这些权限和 analytics 同意。</string>
+    <string name="onboarding_consent_label">帮助改进应用</string>
+    <string name="onboarding_consent_description">允许匿名使用 analytics，以提升稳定性和用户体验。</string>
+    <string name="onboarding_action_next">下一步</string>
+    <string name="onboarding_action_get_started">开始使用</string>
+    <string name="onboarding_action_grant_notifications">授权通知</string>
+    <string name="onboarding_action_grant_alarm">授权闹钟权限</string>
 </resources>

@@ -104,4 +104,18 @@
     <string name="statistics_empty_title">Zatím žádná data</string>
     <string name="statistics_empty_message">Dokončete několik relací soustředění, abyste zde viděli své statistiky.</string>
     <string name="statistics_action_retry">Zkusit znovu</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_slide1_title">Soustředění a odpočinek</string>
+    <string name="onboarding_slide1_body">Použijte hlavní časovač pro soustředěné bloky práce a přestávky. Aplikace běží spolehlivě na pozadí, takže dostanete upozornění i při vypnuté obrazovce.</string>
+    <string name="onboarding_slide2_title">Sledujte svůj pokrok</string>
+    <string name="onboarding_slide2_body">Zobrazte týdenní a měsíční statistiky, čas soustředění a denní sérii. Vaše data o používání zůstávají ve vašem zařízení.</string>
+    <string name="onboarding_slide3_title">Oprávnění a soukromí</string>
+    <string name="onboarding_slide3_body">Oznámení a přesné alarmy zajišťují spolehlivé dokončení časovače. Tato oprávnění i souhlas s analytikou můžete kdykoli změnit v Nastavení.</string>
+    <string name="onboarding_consent_label">Pomozte vylepšit aplikaci</string>
+    <string name="onboarding_consent_description">Povolte anonymní analytiku používání pro lepší spolehlivost a uživatelský zážitek.</string>
+    <string name="onboarding_action_next">Další</string>
+    <string name="onboarding_action_get_started">Začít</string>
+    <string name="onboarding_action_grant_notifications">Povolit oznámení</string>
+    <string name="onboarding_action_grant_alarm">Povolit oprávnění alarmu</string>
 </resources>
