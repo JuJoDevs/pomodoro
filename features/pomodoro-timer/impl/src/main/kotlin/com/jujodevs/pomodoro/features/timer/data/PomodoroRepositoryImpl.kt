@@ -56,20 +56,22 @@ class PomodoroRepositoryImpl(
         ) { values: Array<Any?> -> values.toPomodoroSessionState() }
 
     override suspend fun updateSessionState(state: PomodoroSessionState) {
-        dataStoreManager.setValue(KEY_WORK_MINUTES, state.selectedWorkMinutes)
-        dataStoreManager.setValue(KEY_SHORT_BREAK_MINUTES, state.selectedShortBreakMinutes)
-        dataStoreManager.setValue(KEY_AUTO_START_BREAKS, state.autoStartBreaks)
-        dataStoreManager.setValue(KEY_AUTO_START_WORK, state.autoStartWork)
-        dataStoreManager.setValue(KEY_CURRENT_PHASE, state.currentPhase.name)
-        dataStoreManager.setValue(KEY_STATUS, state.status.name)
-        dataStoreManager.setValue(KEY_REMAINING_MILLIS, state.remainingMillis)
-        dataStoreManager.setValue(KEY_COMPLETED_SESSIONS, state.completedWorkSessions)
-        dataStoreManager.setValue(KEY_PHASE_TOKEN, state.phaseToken)
-        dataStoreManager.setValue(KEY_NOTIFICATION_ID, state.scheduledNotificationId ?: DEFAULT_NOTIFICATION_ID)
-        dataStoreManager.setValue(KEY_END_TIMESTAMP, state.lastKnownEndTimestamp ?: DEFAULT_END_TIMESTAMP)
-        dataStoreManager.setValue(
-            KEY_EXACT_ALARM_WARNING_SNOOZED_UNTIL,
-            state.exactAlarmWarningSnoozedUntilMillis ?: DEFAULT_SNOOZED_UNTIL,
+        dataStoreManager.setValues(
+            mapOf(
+                KEY_WORK_MINUTES to state.selectedWorkMinutes,
+                KEY_SHORT_BREAK_MINUTES to state.selectedShortBreakMinutes,
+                KEY_AUTO_START_BREAKS to state.autoStartBreaks,
+                KEY_AUTO_START_WORK to state.autoStartWork,
+                KEY_CURRENT_PHASE to state.currentPhase.name,
+                KEY_STATUS to state.status.name,
+                KEY_REMAINING_MILLIS to state.remainingMillis,
+                KEY_COMPLETED_SESSIONS to state.completedWorkSessions,
+                KEY_PHASE_TOKEN to state.phaseToken,
+                KEY_NOTIFICATION_ID to (state.scheduledNotificationId ?: DEFAULT_NOTIFICATION_ID),
+                KEY_END_TIMESTAMP to (state.lastKnownEndTimestamp ?: DEFAULT_END_TIMESTAMP),
+                KEY_EXACT_ALARM_WARNING_SNOOZED_UNTIL to
+                    (state.exactAlarmWarningSnoozedUntilMillis ?: DEFAULT_SNOOZED_UNTIL),
+            ),
         )
     }
 

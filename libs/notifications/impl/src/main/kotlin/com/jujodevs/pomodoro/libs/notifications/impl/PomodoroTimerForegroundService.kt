@@ -1,6 +1,7 @@
 package com.jujodevs.pomodoro.libs.notifications.impl
 
 import android.app.AlarmManager
+import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -64,6 +65,7 @@ class PomodoroTimerForegroundService : Service() {
                     ),
                 channelId = payload.channelId,
                 endTimeMillis = payload.endTimeMillis,
+                deleteIntent = createRestorePendingIntent(payload),
             )
 
         if (!isForegroundStarted) {
@@ -183,6 +185,33 @@ class PomodoroTimerForegroundService : Service() {
                 )
                 stopSelf()
             }
+    }
+
+    private fun createRestorePendingIntent(payload: ForegroundStartPayload): PendingIntent {
+        val restoreIntent =
+            createStartIntent(
+                context = this,
+                notification =
+                    RunningTimerNotificationData(
+                        notificationId = payload.notificationId,
+                        titleResId = payload.titleResId,
+                        messageResId = payload.messageResId,
+                        messageArgFirst = payload.messageArgFirst,
+                        messageArgSecond = payload.messageArgSecond,
+                        channelId = payload.channelId,
+                        endTimeMillis = payload.endTimeMillis,
+                        completionNotificationId = payload.completionNotificationId,
+                        completionTitleResId = payload.completionTitleResId,
+                        completionMessageResId = payload.completionMessageResId,
+                    ),
+            )
+
+        return PendingIntent.getService(
+            this,
+            payload.notificationId,
+            restoreIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE,
+        )
     }
 
     companion object {

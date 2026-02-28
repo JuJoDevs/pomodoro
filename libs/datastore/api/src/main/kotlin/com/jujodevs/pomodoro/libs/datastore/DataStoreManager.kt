@@ -38,6 +38,16 @@ interface DataStoreManager {
     ): EmptyResult<DataError.Local>
 
     /**
+     * Set multiple values in a single DataStore transaction.
+     *
+     * Useful for state updates that need to persist several keys together
+     * while minimizing disk writes and emission churn.
+     *
+     * @param values Map of key/value pairs to store
+     */
+    suspend fun setValues(values: Map<String, Any>): EmptyResult<DataError.Local>
+
+    /**
      * Remove a value from DataStore.
      *
      * @param key The preference key to remove
