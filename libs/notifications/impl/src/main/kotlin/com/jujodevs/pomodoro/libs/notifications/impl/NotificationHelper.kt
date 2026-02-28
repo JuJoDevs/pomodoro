@@ -73,6 +73,7 @@ object NotificationHelper {
         message: String,
         channelId: String,
         endTimeMillis: Long,
+        deleteIntent: PendingIntent? = null,
     ): Notification {
         val intent =
             context.packageManager.getLaunchIntentForPackage(context.packageName)?.apply {
@@ -100,6 +101,8 @@ object NotificationHelper {
                 .setOnlyAlertOnce(true)
                 .setOngoing(true)
                 .setAutoCancel(false)
+                .setForegroundServiceBehavior(NotificationCompat.FOREGROUND_SERVICE_IMMEDIATE)
+                .setDeleteIntent(deleteIntent)
                 .setContentIntent(pendingIntent)
 
         if (endTimeMillis > System.currentTimeMillis()) {

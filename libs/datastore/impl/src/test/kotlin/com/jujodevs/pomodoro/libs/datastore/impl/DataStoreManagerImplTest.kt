@@ -91,6 +91,28 @@ class DataStoreManagerImplTest {
         }
 
     @Test
+    fun `GIVEN multiple values WHEN setValues THEN should store all in one operation`() =
+        runTest {
+            // GIVEN
+            val values =
+                mapOf(
+                    "batch_string" to "value",
+                    "batch_int" to 42,
+                    "batch_boolean" to true,
+                    "batch_long" to 9000L,
+                )
+
+            // WHEN
+            dataStoreManager.setValues(values).isSuccess shouldBe true
+
+            // THEN
+            dataStoreManager.getValue("batch_string", "") shouldBeEqualTo Result.Success("value")
+            dataStoreManager.getValue("batch_int", 0) shouldBeEqualTo Result.Success(42)
+            dataStoreManager.getValue("batch_boolean", false) shouldBeEqualTo Result.Success(true)
+            dataStoreManager.getValue("batch_long", 0L) shouldBeEqualTo Result.Success(9000L)
+        }
+
+    @Test
     fun `GIVEN boolean value WHEN getValue THEN should return boolean`() =
         runTest {
             // GIVEN

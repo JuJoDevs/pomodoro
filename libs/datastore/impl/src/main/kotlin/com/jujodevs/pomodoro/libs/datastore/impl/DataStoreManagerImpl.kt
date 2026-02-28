@@ -49,6 +49,15 @@ class DataStoreManagerImpl(
             }
         }
 
+    override suspend fun setValues(values: Map<String, Any>): EmptyResult<DataError.Local> =
+        runEmptyOperation {
+            dataStore.edit { preferences ->
+                values.forEach { (key, value) ->
+                    setPreferenceValue(preferences, key, value)
+                }
+            }
+        }
+
     override suspend fun removeValue(key: String): EmptyResult<DataError.Local> =
         runEmptyOperation {
             dataStore.edit { preferences ->
