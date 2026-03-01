@@ -36,16 +36,16 @@ jobs:
           distribution: "temurin"
           cache: gradle
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
       - name: Install Firebase CLI
-        run: npm install -g firebase-tools
+        run: |
+          curl -sL https://firebase.tools | bash
+          firebase --version
 
       - name: Decode google-services.json
-        run: echo "${{ secrets.GOOGLE_SERVICES_JSON_BASE_64 }}" | base64 --decode > ./app/google-services.json
+        env:
+          GOOGLE_SERVICES_JSON_BASE_64: ${{ secrets.GOOGLE_SERVICES_JSON_BASE_64 }}
+        run: |
+          printf "%s" "${GOOGLE_SERVICES_JSON_BASE_64}" | base64 --decode > ./app/google-services.json
 
       - name: Resolve Firebase App IDs from google-services.json
         run: |
@@ -66,8 +66,10 @@ jobs:
           echo "RELEASE_FIREBASE_APP_ID=${RELEASE_FIREBASE_APP_ID}" >> "${GITHUB_ENV}"
 
       - name: Decode Firebase service account key
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON_BASE_64: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON_BASE_64 }}
         run: |
-          echo "${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON_BASE_64 }}" | base64 --decode > "${RUNNER_TEMP}/firebase-service-account.json"
+          printf "%s" "${FIREBASE_SERVICE_ACCOUNT_JSON_BASE_64}" | base64 --decode > "${RUNNER_TEMP}/firebase-service-account.json"
           echo "GOOGLE_APPLICATION_CREDENTIALS=${RUNNER_TEMP}/firebase-service-account.json" >> "${GITHUB_ENV}"
 
       - name: Make Gradle executable
@@ -75,17 +77,23 @@ jobs:
 
       - name: Decode debug keystore
         if: ${{ inputs.build_variant == 'debug' }}
+        env:
+          DEBUG_KEYSTORE_STORE_FILE_BASE_64: ${{ secrets.DEBUG_KEYSTORE_STORE_FILE_BASE_64 }}
         run: |
-          echo "${{ secrets.DEBUG_KEYSTORE_STORE_FILE_BASE_64 }}" | base64 --decode > "${RUNNER_TEMP}/debug.keystore"
+          printf "%s" "${DEBUG_KEYSTORE_STORE_FILE_BASE_64}" | base64 --decode > "${RUNNER_TEMP}/debug.keystore"
 
       - name: Build signed debug APK
         if: ${{ inputs.build_variant == 'debug' }}
+        env:
+          DEBUG_KEYSTORE_STORE_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_STORE_PASSWORD }}
+          DEBUG_KEYSTORE_KEY_ALIAS: ${{ secrets.DEBUG_KEYSTORE_KEY_ALIAS }}
+          DEBUG_KEYSTORE_KEY_PASSWORD: ${{ secrets.DEBUG_KEYSTORE_KEY_PASSWORD }}
         run: |
           ./gradlew :app:assembleDebug \
             -Pandroid.injected.signing.store.file="${RUNNER_TEMP}/debug.keystore" \
-            -Pandroid.injected.signing.store.password="${{ secrets.DEBUG_KEYSTORE_STORE_PASSWORD }}" \
-            -Pandroid.injected.signing.key.alias="${{ secrets.DEBUG_KEYSTORE_KEY_ALIAS }}" \
-            -Pandroid.injected.signing.key.password="${{ secrets.DEBUG_KEYSTORE_KEY_PASSWORD }}"
+            -Pandroid.injected.signing.store.password="${DEBUG_KEYSTORE_STORE_PASSWORD}" \
+            -Pandroid.injected.signing.key.alias="${DEBUG_KEYSTORE_KEY_ALIAS}" \
+            -Pandroid.injected.signing.key.password="${DEBUG_KEYSTORE_KEY_PASSWORD}"
 
       - name: Distribute debug APK to Firebase
         if: ${{ inputs.build_variant == 'debug' }}
@@ -115,17 +123,34 @@ jobs:
 
       - name: Decode release keystore
         if: ${{ inputs.build_variant == 'release' }}
+        env:
+          KEYSTORE_STORE_FILE_BASE_64: ${{ secrets.KEYSTORE_STORE_FILE_BASE_64 }}
         run: |
-          echo "${{ secrets.KEYSTORE_STORE_FILE_BASE_64 }}" | base64 --decode > "${RUNNER_TEMP}/release.keystore"
+          printf "%s" "${KEYSTORE_STORE_FILE_BASE_64}" | base64 --decode > "${RUNNER_TEMP}/release.keystore"
+
+      - name: Validate release keystore credentials
+        if: ${{ inputs.build_variant == 'release' }}
+        env:
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+        run: |
+          keytool -list \
+            -keystore "${RUNNER_TEMP}/release.keystore" \
+            -storepass "${KEYSTORE_STORE_PASSWORD}" \
+            -alias "${KEYSTORE_KEY_ALIAS}" > /dev/null
 
       - name: Build signed release APK
         if: ${{ inputs.build_variant == 'release' }}
+        env:
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
         run: |
           ./gradlew :app:assembleRelease \
             -Pandroid.injected.signing.store.file="${RUNNER_TEMP}/release.keystore" \
-            -Pandroid.injected.signing.store.password="${{ secrets.KEYSTORE_STORE_PASSWORD }}" \
-            -Pandroid.injected.signing.key.alias="${{ secrets.KEYSTORE_KEY_ALIAS }}" \
-            -Pandroid.injected.signing.key.password="${{ secrets.KEYSTORE_KEY_PASSWORD }}"
+            -Pandroid.injected.signing.store.password="${KEYSTORE_STORE_PASSWORD}" \
+            -Pandroid.injected.signing.key.alias="${KEYSTORE_KEY_ALIAS}" \
+            -Pandroid.injected.signing.key.password="${KEYSTORE_KEY_PASSWORD}"
 
       - name: Distribute release APK to Firebase
         if: ${{ inputs.build_variant == 'release' }}
