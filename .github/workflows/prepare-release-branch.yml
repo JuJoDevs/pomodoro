@@ -1,0 +1,251 @@
+name: Prepare Release Branch
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_branch:
+        description: "Branch to branch off from (main or release/* for hotfix)"
+        required: true
+        type: string
+        default: "main"
+      release_type:
+        description: "Version bump strategy"
+        required: true
+        type: choice
+        default: "new features"
+        options:
+          - new features
+          - few changes
+          - fix
+      release_branch_name:
+        description: "Optional release branch name (defaults to release/v<newVersion>)"
+        required: false
+        type: string
+        default: ""
+      target_branch:
+        description: "Branch to merge the release branch into"
+        required: true
+        type: string
+        default: "main"
+      auto_merge_to_target:
+        description: "Auto-merge the release PR into target branch"
+        required: true
+        type: boolean
+        default: true
+      auto_publish_to_google_play:
+        description: "Automatically publish to Google Play after release branch preparation"
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  prepare:
+    name: Create release branch and sync target
+    runs-on: ubuntu-latest
+    outputs:
+      release_branch: ${{ steps.bump_version.outputs.release_branch }}
+      new_version_name: ${{ steps.bump_version.outputs.new_version_name }}
+      new_version_code: ${{ steps.bump_version.outputs.new_version_code }}
+
+    steps:
+      - name: Checkout source branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ inputs.source_branch }}
+
+      - name: Configure git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump version in libs.versions.toml
+        id: bump_version
+        env:
+          RELEASE_TYPE: ${{ inputs.release_type }}
+          RELEASE_BRANCH_NAME: ${{ inputs.release_branch_name }}
+        run: |
+          set -euo pipefail
+
+          VERSIONS_FILE="gradle/libs.versions.toml"
+          CURRENT_VERSION_CODE="$(sed -n 's/^versionCode = "\([0-9]\+\)"/\1/p' "${VERSIONS_FILE}")"
+          CURRENT_VERSION_NAME="$(sed -n 's/^versionName = "\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/p' "${VERSIONS_FILE}")"
+
+          if [ -z "${CURRENT_VERSION_CODE}" ] || [ -z "${CURRENT_VERSION_NAME}" ]; then
+            echo "Failed to parse versionCode/versionName from ${VERSIONS_FILE}" >&2
+            exit 1
+          fi
+
+          IFS='.' read -r MAJOR MINOR PATCH <<< "${CURRENT_VERSION_NAME}"
+
+          case "${RELEASE_TYPE}" in
+            "new features")
+              MAJOR=$((MAJOR + 1))
+              MINOR=0
+              PATCH=0
+              ;;
+            "few changes")
+              MINOR=$((MINOR + 1))
+              PATCH=0
+              ;;
+            "fix")
+              PATCH=$((PATCH + 1))
+              ;;
+            *)
+              echo "Unsupported release type: ${RELEASE_TYPE}" >&2
+              exit 1
+              ;;
+          esac
+
+          NEW_VERSION_NAME="${MAJOR}.${MINOR}.${PATCH}"
+          NEW_VERSION_CODE=$((CURRENT_VERSION_CODE + 1))
+
+          sed -i -E "s/^versionCode = \"[0-9]+\"/versionCode = \"${NEW_VERSION_CODE}\"/" "${VERSIONS_FILE}"
+          sed -i -E "s/^versionName = \"[0-9]+\.[0-9]+\.[0-9]+\"/versionName = \"${NEW_VERSION_NAME}\"/" "${VERSIONS_FILE}"
+
+          NORMALIZED_INPUT_BRANCH="${RELEASE_BRANCH_NAME#refs/heads/}"
+          if [ -n "${NORMALIZED_INPUT_BRANCH}" ]; then
+            RELEASE_BRANCH="${NORMALIZED_INPUT_BRANCH}"
+          else
+            RELEASE_BRANCH="release/v${NEW_VERSION_NAME}"
+          fi
+
+          if git ls-remote --exit-code --heads origin "${RELEASE_BRANCH}" > /dev/null 2>&1; then
+            echo "Release branch already exists on origin: ${RELEASE_BRANCH}" >&2
+            exit 1
+          fi
+
+          {
+            echo "NEW_VERSION_NAME=${NEW_VERSION_NAME}"
+            echo "NEW_VERSION_CODE=${NEW_VERSION_CODE}"
+            echo "RELEASE_BRANCH=${RELEASE_BRANCH}"
+          } >> "${GITHUB_ENV}"
+
+          {
+            echo "new_version_name=${NEW_VERSION_NAME}"
+            echo "new_version_code=${NEW_VERSION_CODE}"
+            echo "release_branch=${RELEASE_BRANCH}"
+          } >> "${GITHUB_OUTPUT}"
+
+      - name: Commit and push release branch
+        run: |
+          set -euo pipefail
+
+          git switch -c "${RELEASE_BRANCH}"
+          git add gradle/libs.versions.toml
+
+          if git diff --cached --quiet; then
+            echo "No version changes detected to commit." >&2
+            exit 1
+          fi
+
+          git commit -m "chore(release): bump version to ${NEW_VERSION_NAME} (${NEW_VERSION_CODE})"
+          git push --set-upstream origin "${RELEASE_BRANCH}"
+
+      - name: Create or reuse PR to target branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET_BRANCH: ${{ inputs.target_branch }}
+        run: |
+          set -euo pipefail
+
+          if ! git ls-remote --exit-code --heads origin "${TARGET_BRANCH}" > /dev/null 2>&1; then
+            echo "Target branch does not exist on origin: ${TARGET_BRANCH}" >&2
+            exit 1
+          fi
+
+          API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}"
+          HEAD_QUERY="${GITHUB_REPOSITORY_OWNER}:${RELEASE_BRANCH}"
+
+          EXISTING_PR_JSON="$(curl -fsSL \
+            -G \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            --data-urlencode "state=open" \
+            --data-urlencode "base=${TARGET_BRANCH}" \
+            --data-urlencode "head=${HEAD_QUERY}" \
+            "${API_URL}/pulls")"
+
+          PR_NUMBER="$(echo "${EXISTING_PR_JSON}" | jq -r '.[0].number // empty')"
+
+          if [ -z "${PR_NUMBER}" ]; then
+            PR_PAYLOAD="$(jq -n \
+              --arg title "chore(release): merge ${RELEASE_BRANCH} into ${TARGET_BRANCH}" \
+              --arg head "${RELEASE_BRANCH}" \
+              --arg base "${TARGET_BRANCH}" \
+              --arg body "Automated release sync. This branch must stay alive while this version is published to support hotfixes." \
+              '{title: $title, head: $head, base: $base, body: $body}')"
+
+            CREATE_PR_JSON="$(curl -fsSL \
+              -X POST \
+              -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "${API_URL}/pulls" \
+              --data "${PR_PAYLOAD}")"
+
+            PR_NUMBER="$(echo "${CREATE_PR_JSON}" | jq -r '.number // empty')"
+          fi
+
+          if [ -z "${PR_NUMBER}" ]; then
+            echo "Unable to determine pull request number." >&2
+            exit 1
+          fi
+
+          echo "PR_NUMBER=${PR_NUMBER}" >> "${GITHUB_ENV}"
+
+      - name: Auto-merge PR to target branch
+        if: ${{ inputs.auto_merge_to_target }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}"
+          MERGE_PAYLOAD="$(jq -n \
+            --arg commit_title "chore(release): merge ${RELEASE_BRANCH} into ${{ inputs.target_branch }}" \
+            '{commit_title: $commit_title, merge_method: "merge"}')"
+
+          HTTP_CODE="$(curl -sS \
+            -o "${RUNNER_TEMP}/merge-response.json" \
+            -w "%{http_code}" \
+            -X PUT \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "${API_URL}/pulls/${PR_NUMBER}/merge" \
+            --data "${MERGE_PAYLOAD}")"
+
+          if [ "${HTTP_CODE}" != "200" ]; then
+            echo "Automatic merge failed with HTTP ${HTTP_CODE}" >&2
+            cat "${RUNNER_TEMP}/merge-response.json"
+            exit 1
+          fi
+
+      - name: Publish summary
+        run: |
+          {
+            echo "### Release branch prepared"
+            echo "- Source branch: \`${{ inputs.source_branch }}\`"
+            echo "- Release branch: \`${RELEASE_BRANCH}\`"
+            echo "- New versionName: \`${NEW_VERSION_NAME}\`"
+            echo "- New versionCode: \`${NEW_VERSION_CODE}\`"
+            echo "- Target branch: \`${{ inputs.target_branch }}\`"
+            echo "- Pull request: #${PR_NUMBER}"
+          } >> "${GITHUB_STEP_SUMMARY}"
+
+  auto_publish_google_play:
+    name: Auto publish release branch to Google Play
+    if: ${{ inputs.auto_publish_to_google_play }}
+    needs: prepare
+    uses: ./.github/workflows/google-play-publish.yml
+    with:
+      source_ref: ${{ needs.prepare.outputs.release_branch }}
+      track: internal
+      release_status: completed
+      release_name: v${{ needs.prepare.outputs.new_version_name }}
+      package_name: com.jujodevs.pomodoro
+      require_release_branch: true
+    secrets: inherit
