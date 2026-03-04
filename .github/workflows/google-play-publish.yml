@@ -1,0 +1,365 @@
+name: Google Play Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: "Optional branch/tag/commit to publish from (defaults to current ref)"
+        required: false
+        type: string
+        default: ""
+      track:
+        description: "Google Play track"
+        required: true
+        type: choice
+        default: "internal"
+        options:
+          - internal
+          - alpha
+          - beta
+          - production
+      release_status:
+        description: "Release status in selected track"
+        required: true
+        type: choice
+        default: "completed"
+        options:
+          - completed
+          - draft
+          - inProgress
+          - halted
+      user_fraction:
+        description: "User fraction for inProgress rollout (0.0 - 1.0)"
+        required: false
+        type: string
+        default: ""
+      release_name:
+        description: "Optional release name (defaults to v<versionName>)"
+        required: false
+        type: string
+        default: ""
+      release_notes_en:
+        description: "Optional release notes (en-US)"
+        required: false
+        type: string
+        default: ""
+      release_notes_es:
+        description: "Optional release notes (es-ES)"
+        required: false
+        type: string
+        default: ""
+      package_name:
+        description: "Android applicationId / package name"
+        required: true
+        type: string
+        default: "com.jujodevs.pomodoro"
+      require_release_branch:
+        description: "Fail if workflow is not running on release/*"
+        required: true
+        type: boolean
+        default: true
+  workflow_call:
+    inputs:
+      source_ref:
+        description: "Branch/tag/commit to publish from"
+        required: false
+        type: string
+        default: ""
+      track:
+        description: "Google Play track"
+        required: false
+        type: string
+        default: "internal"
+      release_status:
+        description: "Release status in selected track"
+        required: false
+        type: string
+        default: "completed"
+      user_fraction:
+        description: "User fraction for inProgress rollout (0.0 - 1.0)"
+        required: false
+        type: string
+        default: ""
+      release_name:
+        description: "Optional release name"
+        required: false
+        type: string
+        default: ""
+      release_notes_en:
+        description: "Optional release notes (en-US)"
+        required: false
+        type: string
+        default: ""
+      release_notes_es:
+        description: "Optional release notes (es-ES)"
+        required: false
+        type: string
+        default: ""
+      package_name:
+        description: "Android applicationId / package name"
+        required: false
+        type: string
+        default: "com.jujodevs.pomodoro"
+      require_release_branch:
+        description: "Fail if source_ref is not release/*"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Build and publish AAB to Google Play
+    runs-on: ubuntu-latest
+    env:
+      SOURCE_REF: ${{ inputs.source_ref != '' && inputs.source_ref || github.ref_name }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.SOURCE_REF }}
+
+      - name: Validate release branch
+        if: ${{ inputs.require_release_branch }}
+        run: |
+          set -euo pipefail
+
+          NORMALIZED_SOURCE_REF="${SOURCE_REF#refs/heads/}"
+          if [[ "${NORMALIZED_SOURCE_REF}" != release/* ]]; then
+            echo "This workflow must run from a release/* branch. Current source_ref: ${NORMALIZED_SOURCE_REF}" >&2
+            exit 1
+          fi
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: "21"
+          distribution: "temurin"
+          cache: gradle
+
+      - name: Decode and set up google-services.json
+        env:
+          GOOGLE_SERVICES_JSON_BASE_64: ${{ secrets.GOOGLE_SERVICES_JSON_BASE_64 }}
+        run: |
+          set -euo pipefail
+          printf "%s" "${GOOGLE_SERVICES_JSON_BASE_64}" | base64 --decode > ./app/google-services.json
+
+      - name: Decode release keystore
+        env:
+          KEYSTORE_STORE_FILE_BASE_64: ${{ secrets.KEYSTORE_STORE_FILE_BASE_64 }}
+        run: |
+          set -euo pipefail
+          printf "%s" "${KEYSTORE_STORE_FILE_BASE_64}" | base64 --decode > "${RUNNER_TEMP}/release.keystore"
+
+      - name: Validate release keystore credentials
+        env:
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+        run: |
+          set -euo pipefail
+          keytool -list \
+            -keystore "${RUNNER_TEMP}/release.keystore" \
+            -storepass "${KEYSTORE_STORE_PASSWORD}" \
+            -alias "${KEYSTORE_KEY_ALIAS}" > /dev/null
+
+      - name: Make Gradle executable
+        run: chmod +x ./gradlew
+
+      - name: Build signed release bundle
+        env:
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_STORE_PASSWORD }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.KEYSTORE_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASSWORD }}
+        run: |
+          set -euo pipefail
+          ./gradlew :app:bundleRelease \
+            -Pandroid.injected.signing.store.file="${RUNNER_TEMP}/release.keystore" \
+            -Pandroid.injected.signing.store.password="${KEYSTORE_STORE_PASSWORD}" \
+            -Pandroid.injected.signing.key.alias="${KEYSTORE_KEY_ALIAS}" \
+            -Pandroid.injected.signing.key.password="${KEYSTORE_KEY_PASSWORD}"
+
+      - name: Resolve AAB path and default release metadata
+        run: |
+          set -euo pipefail
+
+          AAB_PATH="app/build/outputs/bundle/release/app-release.aab"
+          if [ ! -f "${AAB_PATH}" ]; then
+            AAB_PATH="$(find app/build/outputs/bundle/release -name "*.aab" | head -n 1)"
+          fi
+
+          if [ -z "${AAB_PATH}" ] || [ ! -f "${AAB_PATH}" ]; then
+            echo "Signed release AAB not found." >&2
+            exit 1
+          fi
+
+          VERSION_NAME="$(sed -n 's/^versionName = "\([0-9]\+\.[0-9]\+\.[0-9]\+\)"/\1/p' gradle/libs.versions.toml)"
+          if [ -z "${VERSION_NAME}" ]; then
+            echo "Failed to parse versionName from gradle/libs.versions.toml" >&2
+            exit 1
+          fi
+
+          if [ -n "${{ inputs.release_name }}" ]; then
+            RELEASE_NAME="${{ inputs.release_name }}"
+          else
+            RELEASE_NAME="v${VERSION_NAME}"
+          fi
+
+          {
+            echo "AAB_PATH=${AAB_PATH}"
+            echo "RELEASE_NAME=${RELEASE_NAME}"
+          } >> "${GITHUB_ENV}"
+
+      - name: Decode Google Play service account credentials
+        id: prepare_google_play_auth
+        env:
+          GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64: ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64 }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64}" ]; then
+            echo "Missing secret GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64" >&2
+            exit 1
+          fi
+
+          CREDENTIALS_JSON="$(printf "%s" "${GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64}" | base64 --decode | jq -c '.')"
+          if [ -z "${CREDENTIALS_JSON}" ] || [ "${CREDENTIALS_JSON}" = "null" ]; then
+            echo "Decoded GOOGLE_PLAY_SERVICE_ACCOUNT_JSON_BASE_64 is not valid JSON" >&2
+            exit 1
+          fi
+
+          echo "credentials_json=${CREDENTIALS_JSON}" >> "${GITHUB_OUTPUT}"
+
+      - name: Authenticate for Android Publisher API
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ steps.prepare_google_play_auth.outputs.credentials_json }}
+          token_format: access_token
+          access_token_scopes: https://www.googleapis.com/auth/androidpublisher
+
+      - name: Upload AAB and publish release
+        env:
+          ACCESS_TOKEN: ${{ steps.auth.outputs.access_token }}
+          PACKAGE_NAME: ${{ inputs.package_name }}
+          TRACK: ${{ inputs.track }}
+          RELEASE_STATUS: ${{ inputs.release_status }}
+          USER_FRACTION_INPUT: ${{ inputs.user_fraction }}
+          RELEASE_NOTES_EN: ${{ inputs.release_notes_en }}
+          RELEASE_NOTES_ES: ${{ inputs.release_notes_es }}
+        run: |
+          set -euo pipefail
+
+          BASE_URL="https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/edits"
+
+          CREATE_EDIT_RESPONSE="$(curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Accept: application/json" \
+            "${BASE_URL}")"
+
+          EDIT_ID="$(echo "${CREATE_EDIT_RESPONSE}" | jq -r '.id // empty')"
+          if [ -z "${EDIT_ID}" ]; then
+            echo "Failed to create Google Play edit." >&2
+            echo "${CREATE_EDIT_RESPONSE}"
+            exit 1
+          fi
+
+          BUNDLE_RESPONSE="$(curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Content-Type: application/octet-stream" \
+            --data-binary "@${AAB_PATH}" \
+            "https://androidpublisher.googleapis.com/upload/androidpublisher/v3/applications/${PACKAGE_NAME}/edits/${EDIT_ID}/bundles?uploadType=media")"
+
+          VERSION_CODE="$(echo "${BUNDLE_RESPONSE}" | jq -r '.versionCode // empty')"
+          if [ -z "${VERSION_CODE}" ]; then
+            echo "Failed to upload AAB to Google Play." >&2
+            echo "${BUNDLE_RESPONSE}"
+            exit 1
+          fi
+
+          USER_FRACTION="${USER_FRACTION_INPUT}"
+          if [ "${RELEASE_STATUS}" = "inProgress" ]; then
+            if [ -z "${USER_FRACTION}" ]; then
+              USER_FRACTION="0.1"
+            fi
+            if ! echo "${USER_FRACTION}" | grep -Eq '^(0(\.[0-9]+)?|1(\.0+)?)$'; then
+              echo "user_fraction must be a number between 0 and 1 for inProgress rollout." >&2
+              exit 1
+            fi
+            if [ "${USER_FRACTION}" = "0" ] || [ "${USER_FRACTION}" = "0.0" ]; then
+              echo "user_fraction must be greater than 0 for inProgress rollout." >&2
+              exit 1
+            fi
+          else
+            USER_FRACTION=""
+          fi
+
+          TRACK_PAYLOAD="$(jq -n \
+            --arg release_name "${RELEASE_NAME}" \
+            --arg version_code "${VERSION_CODE}" \
+            --arg status "${RELEASE_STATUS}" \
+            --arg notes_en "${RELEASE_NOTES_EN}" \
+            --arg notes_es "${RELEASE_NOTES_ES}" \
+            --arg user_fraction "${USER_FRACTION}" \
+            '
+            def releaseNotes:
+              [
+                {language: "en-US", text: $notes_en},
+                {language: "es-ES", text: $notes_es}
+              ] | map(select(.text != ""));
+            {
+              releases: [
+                (
+                  {
+                    name: $release_name,
+                    versionCodes: [$version_code],
+                    status: $status
+                  }
+                  + (if (releaseNotes | length) > 0 then {releaseNotes: releaseNotes} else {} end)
+                  + (if $status == "inProgress" then {userFraction: ($user_fraction | tonumber)} else {} end)
+                )
+              ]
+            }')"
+
+          curl -fsSL \
+            -X PUT \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -H "Accept: application/json" \
+            "https://androidpublisher.googleapis.com/androidpublisher/v3/applications/${PACKAGE_NAME}/edits/${EDIT_ID}/tracks/${TRACK}" \
+            --data "${TRACK_PAYLOAD}" > /dev/null
+
+          COMMIT_RESPONSE="$(curl -fsSL \
+            -X POST \
+            -H "Authorization: Bearer ${ACCESS_TOKEN}" \
+            -H "Accept: application/json" \
+            "${BASE_URL}/${EDIT_ID}:commit")"
+
+          COMMIT_ID="$(echo "${COMMIT_RESPONSE}" | jq -r '.id // empty')"
+          if [ -z "${COMMIT_ID}" ]; then
+            echo "Google Play edit commit did not return an id." >&2
+            echo "${COMMIT_RESPONSE}"
+            exit 1
+          fi
+
+          {
+            echo "PUBLISHED_VERSION_CODE=${VERSION_CODE}"
+            echo "GOOGLE_PLAY_EDIT_ID=${COMMIT_ID}"
+          } >> "${GITHUB_ENV}"
+
+      - name: Publish summary
+        run: |
+          {
+            echo "### Google Play publication completed"
+            echo "- Source ref: \`${SOURCE_REF}\`"
+            echo "- Package: \`${{ inputs.package_name }}\`"
+            echo "- Track: \`${{ inputs.track }}\`"
+            echo "- Status: \`${{ inputs.release_status }}\`"
+            echo "- Release name: \`${RELEASE_NAME}\`"
+            echo "- Published versionCode: \`${PUBLISHED_VERSION_CODE}\`"
+            echo "- Google Play edit id: \`${GOOGLE_PLAY_EDIT_ID}\`"
+          } >> "${GITHUB_STEP_SUMMARY}"
