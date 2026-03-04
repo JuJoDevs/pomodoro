@@ -3,11 +3,6 @@ name: Prepare Release Branch
 on:
   workflow_dispatch:
     inputs:
-      source_branch:
-        description: "Branch to branch off from (main or release/* for hotfix)"
-        required: true
-        type: string
-        default: "main"
       release_type:
         description: "Version bump strategy"
         required: true
@@ -25,8 +20,11 @@ on:
       target_branch:
         description: "Branch to merge the release branch into"
         required: true
-        type: string
+        type: choice
         default: "main"
+        options:
+          - main
+          - develop
       auto_merge_to_target:
         description: "Auto-merge the release PR into target branch"
         required: true
@@ -56,7 +54,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          ref: ${{ inputs.source_branch }}
+          ref: ${{ github.ref_name }}
 
       - name: Configure git user
         run: |
@@ -149,9 +147,16 @@ jobs:
       - name: Create or reuse PR to target branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TOKEN: ${{ secrets.RELEASE_PR_TOKEN != '' && secrets.RELEASE_PR_TOKEN || secrets.GITHUB_TOKEN }}
           TARGET_BRANCH: ${{ inputs.target_branch }}
         run: |
           set -euo pipefail
+
+          print_pr_permissions_hint() {
+            if [ "${PR_TOKEN}" = "${GITHUB_TOKEN}" ]; then
+              echo "Hint: if your repository blocks PR creation from GITHUB_TOKEN, enable 'Allow GitHub Actions to create and approve pull requests' or provide RELEASE_PR_TOKEN with repo permissions." >&2
+            fi
+          }
 
           if ! git ls-remote --exit-code --heads origin "${TARGET_BRANCH}" > /dev/null 2>&1; then
             echo "Target branch does not exist on origin: ${TARGET_BRANCH}" >&2
@@ -160,15 +165,29 @@ jobs:
 
           API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}"
           HEAD_QUERY="${GITHUB_REPOSITORY_OWNER}:${RELEASE_BRANCH}"
+          EXISTING_PR_FILE="${RUNNER_TEMP}/existing-pr.json"
+          CREATE_PR_FILE="${RUNNER_TEMP}/create-pr.json"
 
-          EXISTING_PR_JSON="$(curl -fsSL \
+          HTTP_CODE="$(curl -sS \
+            -o "${EXISTING_PR_FILE}" \
+            -w "%{http_code}" \
             -G \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Authorization: Bearer ${PR_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             --data-urlencode "state=open" \
             --data-urlencode "base=${TARGET_BRANCH}" \
             --data-urlencode "head=${HEAD_QUERY}" \
             "${API_URL}/pulls")"
+          if [ "${HTTP_CODE}" != "200" ]; then
+            echo "Failed to query existing pull requests (HTTP ${HTTP_CODE})." >&2
+            cat "${EXISTING_PR_FILE}" >&2 || true
+            if [ "${HTTP_CODE}" = "403" ]; then
+              print_pr_permissions_hint
+            fi
+            exit 1
+          fi
+
+          EXISTING_PR_JSON="$(cat "${EXISTING_PR_FILE}")"
 
           PR_NUMBER="$(echo "${EXISTING_PR_JSON}" | jq -r '.[0].number // empty')"
 
@@ -180,12 +199,24 @@ jobs:
               --arg body "Automated release sync. This branch must stay alive while this version is published to support hotfixes." \
               '{title: $title, head: $head, base: $base, body: $body}')"
 
-            CREATE_PR_JSON="$(curl -fsSL \
+            HTTP_CODE="$(curl -sS \
+              -o "${CREATE_PR_FILE}" \
+              -w "%{http_code}" \
               -X POST \
-              -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+              -H "Authorization: Bearer ${PR_TOKEN}" \
               -H "Accept: application/vnd.github+json" \
               "${API_URL}/pulls" \
               --data "${PR_PAYLOAD}")"
+            if [ "${HTTP_CODE}" != "201" ]; then
+              echo "Failed to create pull request (HTTP ${HTTP_CODE})." >&2
+              cat "${CREATE_PR_FILE}" >&2 || true
+              if [ "${HTTP_CODE}" = "403" ]; then
+                print_pr_permissions_hint
+              fi
+              exit 1
+            fi
+
+            CREATE_PR_JSON="$(cat "${CREATE_PR_FILE}")"
 
             PR_NUMBER="$(echo "${CREATE_PR_JSON}" | jq -r '.number // empty')"
           fi
@@ -201,8 +232,15 @@ jobs:
         if: ${{ inputs.auto_merge_to_target }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_TOKEN: ${{ secrets.RELEASE_PR_TOKEN != '' && secrets.RELEASE_PR_TOKEN || secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+
+          print_pr_permissions_hint() {
+            if [ "${PR_TOKEN}" = "${GITHUB_TOKEN}" ]; then
+              echo "Hint: if your repository blocks PR merge from GITHUB_TOKEN, enable PR permissions for GitHub Actions or provide RELEASE_PR_TOKEN with repo permissions." >&2
+            fi
+          }
 
           API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}"
           MERGE_PAYLOAD="$(jq -n \
@@ -213,7 +251,7 @@ jobs:
             -o "${RUNNER_TEMP}/merge-response.json" \
             -w "%{http_code}" \
             -X PUT \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Authorization: Bearer ${PR_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
             "${API_URL}/pulls/${PR_NUMBER}/merge" \
             --data "${MERGE_PAYLOAD}")"
@@ -221,6 +259,9 @@ jobs:
           if [ "${HTTP_CODE}" != "200" ]; then
             echo "Automatic merge failed with HTTP ${HTTP_CODE}" >&2
             cat "${RUNNER_TEMP}/merge-response.json"
+            if [ "${HTTP_CODE}" = "403" ]; then
+              print_pr_permissions_hint
+            fi
             exit 1
           fi
 
@@ -228,7 +269,7 @@ jobs:
         run: |
           {
             echo "### Release branch prepared"
-            echo "- Source branch: \`${{ inputs.source_branch }}\`"
+            echo "- Source branch: \`${{ github.ref_name }}\`"
             echo "- Release branch: \`${RELEASE_BRANCH}\`"
             echo "- New versionName: \`${NEW_VERSION_NAME}\`"
             echo "- New versionCode: \`${NEW_VERSION_CODE}\`"
