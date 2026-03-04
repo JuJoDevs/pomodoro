@@ -15,6 +15,7 @@ import com.jujodevs.pomodoro.features.timer.domain.provider.TimeProvider
 import com.jujodevs.pomodoro.features.timer.domain.usecase.AdvancePomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ObservePomodoroSessionStateUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.PausePomodoroUseCase
+import com.jujodevs.pomodoro.features.timer.domain.usecase.ReconcileExpiredPomodoroPhasesUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ResetPomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.SkipPomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StartOrResumePomodoroUseCase
@@ -52,6 +53,7 @@ data class TimerUseCases(
     val reset: ResetPomodoroUseCase,
     val advancePhase: AdvancePomodoroPhaseUseCase,
     val updateConfig: UpdatePomodoroConfigUseCase,
+    val reconcileExpiredPhases: ReconcileExpiredPomodoroPhasesUseCase,
 )
 
 @OptIn(FlowPreview::class)
@@ -87,6 +89,14 @@ class TimerViewModel(
             .observeSessionState()
             .debounce(stateSyncDebounceMs)
             .onEach { sessionState ->
+                val reconciledCompletedPhases = useCases.reconcileExpiredPhases(sessionState)
+                if (reconciledCompletedPhases.isNotEmpty()) {
+                    reconciledCompletedPhases.forEach { completedPhase ->
+                        recordCompletedPhase(completedPhase)
+                    }
+                    return@onEach
+                }
+
                 latestSessionState = sessionState
                 exactAlarmWarningSnoozedUntilMillis = sessionState.exactAlarmWarningSnoozedUntilMillis
                 _state.update { it.toUiState(sessionState) }

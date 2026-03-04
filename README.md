@@ -116,7 +116,7 @@ Background behavior is implemented in `libs/notifications`:
 - `AlarmManager.setExactAndAllowWhileIdle(...)` for precise completion alarms
 - `AlarmReceiver` for delivery
 - `ReconciliationReceiver` for `BOOT_COMPLETED`, time, and timezone changes
-- foreground service (`PomodoroTimerForegroundService`) for running timer visibility
+- foreground service (`PomodoroTimerForegroundService`, `specialUse`) for running timer visibility
 
 Configuration and internal state persistence:
 
