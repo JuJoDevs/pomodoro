@@ -8,6 +8,7 @@ import com.jujodevs.pomodoro.features.timer.domain.usecase.AdvancePomodoroPhaseU
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ObservePomodoroSessionStateUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.PausePomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ResetPomodoroUseCase
+import com.jujodevs.pomodoro.features.timer.domain.usecase.ReconcileExpiredPomodoroPhasesUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.SkipPomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StartOrResumePomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StopPomodoroUseCase
@@ -35,6 +36,7 @@ val timerModule =
         factoryOf(::StopPomodoroUseCase)
         factoryOf(::ResetPomodoroUseCase)
         factoryOf(::UpdatePomodoroConfigUseCase)
+        factoryOf(::ReconcileExpiredPomodoroPhasesUseCase)
 
         // ViewModel
         factory {
@@ -47,6 +49,7 @@ val timerModule =
                 reset = get(),
                 advancePhase = get(),
                 updateConfig = get(),
+                reconcileExpiredPhases = get(),
             )
         }
 

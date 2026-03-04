@@ -15,6 +15,7 @@ import com.jujodevs.pomodoro.features.timer.domain.usecase.AdvancePomodoroPhaseU
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ObservePomodoroSessionStateUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.PausePomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ResetPomodoroUseCase
+import com.jujodevs.pomodoro.features.timer.domain.usecase.ReconcileExpiredPomodoroPhasesUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.SkipPomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StartOrResumePomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StopPomodoroUseCase
@@ -30,16 +31,19 @@ import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsPeriod
 import com.jujodevs.pomodoro.libs.usagestats.domain.model.UsageStatsSummary
 import com.jujodevs.pomodoro.libs.usagestats.domain.repository.UsageStatsRepository
 import com.jujodevs.pomodoro.libs.usagestats.domain.usecase.RecordUsageStatsEventUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
 import org.amshove.kluent.shouldBeEqualTo
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.RegisterExtension
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class TimerViewModelTest {
     @RegisterExtension
     val coroutineTestExtension = CoroutineTestExtension()
@@ -68,6 +72,7 @@ class TimerViewModelTest {
                         reset = ResetPomodoroUseCase(repository),
                         advancePhase = AdvancePomodoroPhaseUseCase(repository, timeProvider),
                         updateConfig = UpdatePomodoroConfigUseCase(repository),
+                        reconcileExpiredPhases = ReconcileExpiredPomodoroPhasesUseCase(repository, timeProvider),
                     ),
                 notificationScheduler = notificationScheduler,
                 recordUsageStatsEvent = RecordUsageStatsEventUseCase(usageStatsRepository),
@@ -306,6 +311,60 @@ class TimerViewModelTest {
                 hasCycleEvent shouldBeEqualTo true
                 state.cancelAndIgnoreRemainingEvents()
             }
+        }
+
+    @Test
+    fun `GIVEN several phases expired in background WHEN syncing state THEN reconciles transitions and usage stats`() =
+        runTest {
+            repository.updateSessionState(
+                PomodoroSessionState(
+                    selectedWorkMinutes = 1,
+                    selectedShortBreakMinutes = 1,
+                    autoStartBreaks = true,
+                    autoStartWork = true,
+                    currentPhase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.RUNNING,
+                    remainingMillis = 60_000L,
+                    completedWorkSessions = 0,
+                    phaseToken = "token-1",
+                    lastKnownEndTimestamp = timeProvider.currentTime - 125_000L,
+                ),
+            )
+
+            var hasReconciledState = false
+            repeat(20) {
+                runCurrent()
+                val currentState = repository.getSessionState().first()
+                if (
+                    currentState.currentPhase == PomodoroPhase.SHORT_BREAK &&
+                    currentState.status == PomodoroStatus.RUNNING &&
+                    currentState.completedWorkSessions == 2
+                ) {
+                    hasReconciledState = true
+                }
+            }
+            hasReconciledState shouldBeEqualTo true
+
+            val reconciledState = repository.getSessionState().first()
+            reconciledState.currentPhase shouldBeEqualTo PomodoroPhase.SHORT_BREAK
+            reconciledState.status shouldBeEqualTo PomodoroStatus.RUNNING
+            reconciledState.completedWorkSessions shouldBeEqualTo 2
+
+            val completedPhases =
+                usageStatsRepository.recordedEvents
+                    .filter { it.type == UsageStatsEventType.PHASE_COMPLETED }
+                    .map { it.phase?.name }
+            completedPhases shouldBeEqualTo listOf("WORK", "SHORT_BREAK", "WORK")
+
+            val totalReconciledMillis =
+                usageStatsRepository.recordedEvents
+                    .filter { it.type == UsageStatsEventType.PHASE_TIME_RECORDED }
+                    .sumOf { it.durationMillis ?: 0L }
+            totalReconciledMillis shouldBeEqualTo 180_000L
+
+            // Stop background ticker before finishing this test.
+            repository.updateSessionState(PomodoroSessionState(status = PomodoroStatus.IDLE))
+            runCurrent()
         }
 
     @Test

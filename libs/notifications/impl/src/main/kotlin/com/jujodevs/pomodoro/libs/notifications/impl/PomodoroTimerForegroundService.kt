@@ -69,11 +69,11 @@ class PomodoroTimerForegroundService : Service() {
             )
 
         if (!isForegroundStarted) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
                 startForeground(
                     payload.notificationId,
                     notification,
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE,
                 )
             } else {
                 startForeground(payload.notificationId, notification)
