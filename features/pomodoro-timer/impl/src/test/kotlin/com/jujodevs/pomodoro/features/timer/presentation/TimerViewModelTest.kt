@@ -14,8 +14,8 @@ import com.jujodevs.pomodoro.features.timer.domain.model.PomodoroStatus
 import com.jujodevs.pomodoro.features.timer.domain.usecase.AdvancePomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ObservePomodoroSessionStateUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.PausePomodoroUseCase
-import com.jujodevs.pomodoro.features.timer.domain.usecase.ResetPomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.ReconcileExpiredPomodoroPhasesUseCase
+import com.jujodevs.pomodoro.features.timer.domain.usecase.ResetPomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.SkipPomodoroPhaseUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StartOrResumePomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.StopPomodoroUseCase

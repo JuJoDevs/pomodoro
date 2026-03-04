@@ -73,7 +73,7 @@ class ReconcileExpiredPomodoroPhasesUseCaseTest {
         }
 
     @Test
-    fun `GIVEN several expired phases and auto-start enabled WHEN reconciling THEN should catch up all completed phases`() =
+    fun `GIVEN several expired phases and auto-start enabled WHEN reconciling THEN catches up completed phases`() =
         runTest {
             // GIVEN
             val initialState =
