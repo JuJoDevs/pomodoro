@@ -11,10 +11,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 class PomodoroRepositoryImpl(
     private val dataStoreManager: DataStoreManager,
 ) : PomodoroRepository {
+    private val updateMutex = Mutex()
+
     override fun getSessionState(): Flow<PomodoroSessionState> =
         combine(
             dataStoreManager
@@ -56,6 +60,20 @@ class PomodoroRepositoryImpl(
         ) { values: Array<Any?> -> values.toPomodoroSessionState() }
 
     override suspend fun updateSessionState(state: PomodoroSessionState) {
+        updateMutex.withLock {
+            persistSessionState(state)
+        }
+    }
+
+    override suspend fun updateSessionState(update: (PomodoroSessionState) -> PomodoroSessionState) {
+        updateMutex.withLock {
+            val currentState = getSessionState().first()
+            val newState = update(currentState)
+            persistSessionState(newState)
+        }
+    }
+
+    private suspend fun persistSessionState(state: PomodoroSessionState) {
         dataStoreManager.setValues(
             mapOf(
                 KEY_WORK_MINUTES to state.selectedWorkMinutes,
@@ -73,12 +91,6 @@ class PomodoroRepositoryImpl(
                     (state.exactAlarmWarningSnoozedUntilMillis ?: DEFAULT_SNOOZED_UNTIL),
             ),
         )
-    }
-
-    override suspend fun updateSessionState(update: (PomodoroSessionState) -> PomodoroSessionState) {
-        val currentState = getSessionState().first()
-        val newState = update(currentState)
-        updateSessionState(newState)
     }
 
     private fun <T> Result<T, *>.valueOrDefault(defaultValue: T): T =

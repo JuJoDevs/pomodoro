@@ -45,6 +45,27 @@ class ReconcileExpiredPomodoroPhasesUseCaseTest {
         }
 
     @Test
+    fun `GIVEN different token WHEN reconciling by token THEN should keep state unchanged`() =
+        runTest {
+            // GIVEN
+            val initialState =
+                PomodoroSessionState(
+                    currentPhase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.RUNNING,
+                    phaseToken = "token-active",
+                    lastKnownEndTimestamp = timeProvider.currentTime - 1_000L,
+                )
+            repository.updateSessionState(initialState)
+
+            // WHEN
+            val completedPhases = useCase.reconcileByToken("different-token")
+
+            // THEN
+            completedPhases.size shouldBeEqualTo 0
+            repository.getSessionState().first() shouldBeEqualTo initialState
+        }
+
+    @Test
     fun `GIVEN expired running phase without auto-start WHEN reconciling THEN should move to next idle phase`() =
         runTest {
             // GIVEN
@@ -108,5 +129,41 @@ class ReconcileExpiredPomodoroPhasesUseCaseTest {
             state.completedWorkSessions shouldBeEqualTo 2
             state.lastKnownEndTimestamp shouldBeEqualTo timeProvider.currentTime + 55_000L
             state.remainingMillis shouldBeEqualTo 55_000L
+        }
+
+    @Test
+    fun `GIVEN matching token and expired phase WHEN reconcile by token THEN should advance and return completions`() =
+        runTest {
+            // GIVEN
+            val initialState =
+                PomodoroSessionState(
+                    selectedWorkMinutes = 1,
+                    selectedShortBreakMinutes = 1,
+                    autoStartBreaks = true,
+                    autoStartWork = true,
+                    currentPhase = PomodoroPhase.WORK,
+                    status = PomodoroStatus.RUNNING,
+                    remainingMillis = 60_000L,
+                    completedWorkSessions = 0,
+                    phaseToken = "token-1",
+                    lastKnownEndTimestamp = timeProvider.currentTime - 125_000L,
+                )
+            repository.updateSessionState(initialState)
+
+            // WHEN
+            val completedPhases = useCase.reconcileByToken("token-1")
+
+            // THEN
+            completedPhases.map { it.currentPhase } shouldBeEqualTo
+                listOf(
+                    PomodoroPhase.WORK,
+                    PomodoroPhase.SHORT_BREAK,
+                    PomodoroPhase.WORK,
+                )
+
+            val state = repository.getSessionState().first()
+            state.currentPhase shouldBeEqualTo PomodoroPhase.SHORT_BREAK
+            state.status shouldBeEqualTo PomodoroStatus.RUNNING
+            state.completedWorkSessions shouldBeEqualTo 2
         }
 }

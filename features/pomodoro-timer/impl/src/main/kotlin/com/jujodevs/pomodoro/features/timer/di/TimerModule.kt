@@ -2,6 +2,7 @@ package com.jujodevs.pomodoro.features.timer.di
 
 import com.jujodevs.pomodoro.features.timer.data.PomodoroRepositoryImpl
 import com.jujodevs.pomodoro.features.timer.data.SystemTimeProvider
+import com.jujodevs.pomodoro.features.timer.data.background.PomodoroRunningTimerCompletionHandler
 import com.jujodevs.pomodoro.features.timer.domain.provider.TimeProvider
 import com.jujodevs.pomodoro.features.timer.domain.repository.PomodoroRepository
 import com.jujodevs.pomodoro.features.timer.domain.usecase.AdvancePomodoroPhaseUseCase
@@ -15,6 +16,7 @@ import com.jujodevs.pomodoro.features.timer.domain.usecase.StopPomodoroUseCase
 import com.jujodevs.pomodoro.features.timer.domain.usecase.UpdatePomodoroConfigUseCase
 import com.jujodevs.pomodoro.features.timer.presentation.TimerUseCases
 import com.jujodevs.pomodoro.features.timer.presentation.TimerViewModel
+import com.jujodevs.pomodoro.libs.notifications.RunningTimerCompletionHandler
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
@@ -26,6 +28,7 @@ val timerModule =
         // Data
         singleOf(::PomodoroRepositoryImpl) bind PomodoroRepository::class
         singleOf(::SystemTimeProvider) bind TimeProvider::class
+        singleOf(::PomodoroRunningTimerCompletionHandler) bind RunningTimerCompletionHandler::class
 
         // Use Cases
         factoryOf(::ObservePomodoroSessionStateUseCase)

@@ -30,6 +30,34 @@ class ReconcileExpiredPomodoroPhasesUseCase(
         return completedPhases
     }
 
+    suspend fun reconcileByToken(token: String): List<PomodoroSessionState> {
+        if (token.isBlank()) {
+            return emptyList()
+        }
+
+        val nowMillis = timeProvider.getCurrentTimeMillis()
+        val completedPhases = mutableListOf<PomodoroSessionState>()
+
+        repository.updateSessionState { currentState ->
+            if (currentState.phaseToken != token || !currentState.isExpiredRunningPhase(nowMillis)) {
+                return@updateSessionState currentState
+            }
+
+            var reconciledState = currentState
+            var reconciledCount = 0
+
+            while (reconciledState.isExpiredRunningPhase(nowMillis) && reconciledCount < MAX_RECONCILED_PHASES) {
+                completedPhases += reconciledState
+                reconciledState = reconciledState.advanceUsingElapsedTimeline(nowMillis)
+                reconciledCount++
+            }
+
+            reconciledState
+        }
+
+        return completedPhases
+    }
+
     private fun PomodoroSessionState.advanceUsingElapsedTimeline(nowMillis: Long): PomodoroSessionState {
         val nextPhase = calculateNextPhase(this)
         val nextCompletedSessions = calculateNextCompletedSessions(this, nextPhase)

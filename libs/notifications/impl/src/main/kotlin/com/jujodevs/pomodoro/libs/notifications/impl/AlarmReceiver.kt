@@ -6,6 +6,7 @@ import android.content.Intent
 import com.jujodevs.pomodoro.core.domain.util.Result
 import com.jujodevs.pomodoro.libs.datastore.DataStoreManager
 import com.jujodevs.pomodoro.libs.datastore.InternalStateKeys
+import com.jujodevs.pomodoro.libs.notifications.RunningTimerCompletionHandler
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl.Companion.ACTION_NOTIFICATION
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl.Companion.EXTRA_NOTIFICATION_CHANNEL_ID
 import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl.Companion.EXTRA_NOTIFICATION_ID
@@ -15,6 +16,7 @@ import com.jujodevs.pomodoro.libs.notifications.impl.NotificationSchedulerImpl.C
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import org.koin.core.context.GlobalContext
 
 /**
  * BroadcastReceiver that handles alarm triggers and displays notifications.
@@ -53,6 +55,10 @@ class AlarmReceiver :
                                 channelId = channelId,
                             )
                             context.stopService(Intent(context, PomodoroTimerForegroundService::class.java))
+                            GlobalContext
+                                .get()
+                                .getOrNull<RunningTimerCompletionHandler>()
+                                ?.onRunningTimerCompleted(token)
                         }
                     }
 
