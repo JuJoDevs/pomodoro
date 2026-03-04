@@ -25,11 +25,6 @@ on:
         options:
           - main
           - develop
-      auto_merge_to_target:
-        description: "Auto-merge the release PR into target branch"
-        required: true
-        type: boolean
-        default: true
       auto_publish_to_google_play:
         description: "Automatically publish to Google Play after release branch preparation"
         required: true
@@ -227,43 +222,6 @@ jobs:
           fi
 
           echo "PR_NUMBER=${PR_NUMBER}" >> "${GITHUB_ENV}"
-
-      - name: Auto-merge PR to target branch
-        if: ${{ inputs.auto_merge_to_target }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_TOKEN: ${{ secrets.RELEASE_PR_TOKEN != '' && secrets.RELEASE_PR_TOKEN || secrets.GITHUB_TOKEN }}
-        run: |
-          set -euo pipefail
-
-          print_pr_permissions_hint() {
-            if [ "${PR_TOKEN}" = "${GITHUB_TOKEN}" ]; then
-              echo "Hint: if your repository blocks PR merge from GITHUB_TOKEN, enable PR permissions for GitHub Actions or provide RELEASE_PR_TOKEN with repo permissions." >&2
-            fi
-          }
-
-          API_URL="https://api.github.com/repos/${GITHUB_REPOSITORY}"
-          MERGE_PAYLOAD="$(jq -n \
-            --arg commit_title "chore(release): merge ${RELEASE_BRANCH} into ${{ inputs.target_branch }}" \
-            '{commit_title: $commit_title, merge_method: "merge"}')"
-
-          HTTP_CODE="$(curl -sS \
-            -o "${RUNNER_TEMP}/merge-response.json" \
-            -w "%{http_code}" \
-            -X PUT \
-            -H "Authorization: Bearer ${PR_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "${API_URL}/pulls/${PR_NUMBER}/merge" \
-            --data "${MERGE_PAYLOAD}")"
-
-          if [ "${HTTP_CODE}" != "200" ]; then
-            echo "Automatic merge failed with HTTP ${HTTP_CODE}" >&2
-            cat "${RUNNER_TEMP}/merge-response.json"
-            if [ "${HTTP_CODE}" = "403" ]; then
-              print_pr_permissions_hint
-            fi
-            exit 1
-          fi
 
       - name: Publish summary
         run: |
