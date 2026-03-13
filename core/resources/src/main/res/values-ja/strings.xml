@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">週</string>
     <string name="statistics_filter_months">月</string>
     <string name="statistics_action_share_progress">進捗を共有</string>
+    <string name="statistics_share_metric_focus_time">集中時間</string>
+    <string name="statistics_share_metric_break_time">休憩時間</string>
+    <string name="statistics_share_metric_total_week_time">今週の合計時間</string>
+    <string name="statistics_share_message">今週の%1$s: %2$s（時間:分）。完了したセッション数: %3$d。連続日数: %4$d。</string>
     <string name="statistics_empty_title">データはまだありません</string>
     <string name="statistics_empty_message">統計を表示するには、集中セッションを完了してください。</string>
     <string name="statistics_action_retry">再試行</string>

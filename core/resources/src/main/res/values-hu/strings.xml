@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Hét</string>
     <string name="statistics_filter_months">Hónapok</string>
     <string name="statistics_action_share_progress">HALADÁS MEGOSZTÁSA</string>
+    <string name="statistics_share_metric_focus_time">fókuszidő</string>
+    <string name="statistics_share_metric_break_time">szünetidő</string>
+    <string name="statistics_share_metric_total_week_time">heti teljes idő</string>
+    <string name="statistics_share_message">Ezen a héten %1$s: %2$s (Óra:Perc). Befejezett munkamenetek: %3$d. Napi sorozat: %4$d.</string>
     <string name="statistics_empty_title">Még nincs adat</string>
     <string name="statistics_empty_message">Végezz el néhány fókuszmenetet, hogy lásd a statisztikáidat.</string>
     <string name="statistics_action_retry">Újra</string>

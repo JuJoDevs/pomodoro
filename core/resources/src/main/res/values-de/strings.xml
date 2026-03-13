@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Woche</string>
     <string name="statistics_filter_months">Monate</string>
     <string name="statistics_action_share_progress">FORTSCHRITT TEILEN</string>
+    <string name="statistics_share_metric_focus_time">Fokuszeit</string>
+    <string name="statistics_share_metric_break_time">Pausenzeit</string>
+    <string name="statistics_share_metric_total_week_time">gesamte Wochenzeit</string>
+    <string name="statistics_share_message">Diese Woche %1$s: %2$s (Stunden:Minuten). Abgeschlossene Sitzungen: %3$d. Tagesserie: %4$d.</string>
     <string name="statistics_empty_title">Noch keine Daten</string>
     <string name="statistics_empty_message">Beenden Sie einige Fokussitzungen, um hier Ihre Statistiken zu sehen.</string>
     <string name="statistics_action_retry">Wiederholen</string>

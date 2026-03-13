@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Săptămână</string>
     <string name="statistics_filter_months">Luni</string>
     <string name="statistics_action_share_progress">DISTRIBUIE PROGRES</string>
+    <string name="statistics_share_metric_focus_time">timp de concentrare</string>
+    <string name="statistics_share_metric_break_time">timp de pauză</string>
+    <string name="statistics_share_metric_total_week_time">timpul total al săptămânii</string>
+    <string name="statistics_share_message">Săptămâna aceasta %1$s: %2$s (Ore:Minute). Sesiuni finalizate: %3$d. Serie de zile: %4$d.</string>
     <string name="statistics_empty_title">Nu există date încă</string>
     <string name="statistics_empty_message">Finalizează câteva sesiuni de focus pentru a vedea statisticile aici.</string>
     <string name="statistics_action_retry">Reîncearcă</string>

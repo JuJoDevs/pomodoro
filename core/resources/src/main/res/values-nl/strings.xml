@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Week</string>
     <string name="statistics_filter_months">Maanden</string>
     <string name="statistics_action_share_progress">DEEL VOORGANG</string>
+    <string name="statistics_share_metric_focus_time">focustijd</string>
+    <string name="statistics_share_metric_break_time">pauzetijd</string>
+    <string name="statistics_share_metric_total_week_time">totale tijd van de week</string>
+    <string name="statistics_share_message">Deze week %1$s: %2$s (Uren:Minuten). Voltooide sessies: %3$d. Dagreeks: %4$d.</string>
     <string name="statistics_empty_title">Nog geen gegevens</string>
     <string name="statistics_empty_message">Voltooi enkele focussessies om hier je statistieken te zien.</string>
     <string name="statistics_action_retry">Opnieuw proberen</string>

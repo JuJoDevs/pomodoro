@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">주</string>
     <string name="statistics_filter_months">월</string>
     <string name="statistics_action_share_progress">진행 상황 공유</string>
+    <string name="statistics_share_metric_focus_time">집중 시간</string>
+    <string name="statistics_share_metric_break_time">휴식 시간</string>
+    <string name="statistics_share_metric_total_week_time">이번 주 총 시간</string>
+    <string name="statistics_share_message">이번 주 %1$s: %2$s (시간:분). 완료한 세션: %3$d. 연속 일수: %4$d.</string>
     <string name="statistics_empty_title">데이터 없음</string>
     <string name="statistics_empty_message">통계를 보려면 집중 세션을 완료하세요.</string>
     <string name="statistics_action_retry">재시도</string>

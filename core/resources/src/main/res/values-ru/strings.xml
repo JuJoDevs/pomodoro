@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Неделя</string>
     <string name="statistics_filter_months">Месяцы</string>
     <string name="statistics_action_share_progress">ПОДЕЛИТЬСЯ ПРОГРЕССОМ</string>
+    <string name="statistics_share_metric_focus_time">время фокусировки</string>
+    <string name="statistics_share_metric_break_time">время перерыва</string>
+    <string name="statistics_share_metric_total_week_time">общее время за неделю</string>
+    <string name="statistics_share_message">На этой неделе %1$s: %2$s (Часы:Минуты). Завершено сессий: %3$d. Серия дней: %4$d.</string>
     <string name="statistics_empty_title">Нет данных</string>
     <string name="statistics_empty_message">Завершите несколько сессий фокуса, чтобы увидеть статистику.</string>
     <string name="statistics_action_retry">Повторить</string>

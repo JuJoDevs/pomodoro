@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Vecka</string>
     <string name="statistics_filter_months">Månader</string>
     <string name="statistics_action_share_progress">DELA FRAMSTEG</string>
+    <string name="statistics_share_metric_focus_time">fokustid</string>
+    <string name="statistics_share_metric_break_time">paustid</string>
+    <string name="statistics_share_metric_total_week_time">total tid för veckan</string>
+    <string name="statistics_share_message">Den här veckan %1$s: %2$s (Timmar:Minuter). Slutförda sessioner: %3$d. Dagssvit: %4$d.</string>
     <string name="statistics_empty_title">Ingen data än</string>
     <string name="statistics_empty_message">Slutför några fokussessioner för att se din statistik här.</string>
     <string name="statistics_action_retry">Försök igen</string>

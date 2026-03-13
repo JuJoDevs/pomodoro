@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Hafta</string>
     <string name="statistics_filter_months">Aylar</string>
     <string name="statistics_action_share_progress">İLERLEMEYİ PAYLAŞ</string>
+    <string name="statistics_share_metric_focus_time">odaklanma süresi</string>
+    <string name="statistics_share_metric_break_time">mola süresi</string>
+    <string name="statistics_share_metric_total_week_time">haftanın toplam süresi</string>
+    <string name="statistics_share_message">Bu hafta %1$s: %2$s (Saat:Dakika). Tamamlanan oturum: %3$d. Gün serisi: %4$d.</string>
     <string name="statistics_empty_title">Henüz veri yok</string>
     <string name="statistics_empty_message">İstatistiklerinizi burada görmek için bazı odaklanma oturumlarını tamamlayın.</string>
     <string name="statistics_action_retry">Tekrar Dene</string>

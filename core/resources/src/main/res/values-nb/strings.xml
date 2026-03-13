@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Uke</string>
     <string name="statistics_filter_months">Måneder</string>
     <string name="statistics_action_share_progress">DEL FREMGANG</string>
+    <string name="statistics_share_metric_focus_time">fokustid</string>
+    <string name="statistics_share_metric_break_time">pausetid</string>
+    <string name="statistics_share_metric_total_week_time">total tid denne uken</string>
+    <string name="statistics_share_message">Denne uken %1$s: %2$s (Timer:Minutter). Fullførte økter: %3$d. Dagrekke: %4$d.</string>
     <string name="statistics_empty_title">Ingen data ennå</string>
     <string name="statistics_empty_message">Fullfør noen fokusøkter for å se statistikken din her.</string>
     <string name="statistics_action_retry">Prøv igjen</string>

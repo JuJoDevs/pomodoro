@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Εβδομάδα</string>
     <string name="statistics_filter_months">Μήνες</string>
     <string name="statistics_action_share_progress">ΚΟΙΝΟΠΟΙΗΣΗ ΠΡΟΟΔΟΥ</string>
+    <string name="statistics_share_metric_focus_time">χρόνος συγκέντρωσης</string>
+    <string name="statistics_share_metric_break_time">χρόνος διαλείμματος</string>
+    <string name="statistics_share_metric_total_week_time">συνολικός χρόνος εβδομάδας</string>
+    <string name="statistics_share_message">Αυτή την εβδομάδα %1$s: %2$s (Ώρες:Λεπτά). Ολοκληρωμένες συνεδρίες: %3$d. Σερί ημερών: %4$d.</string>
     <string name="statistics_empty_title">Δεν υπάρχουν δεδομένα ακόμα</string>
     <string name="statistics_empty_message">Ολοκληρώστε μερικές συνεδρίες εστίασης για να δείτε τα στατιστικά σας εδώ.</string>
     <string name="statistics_action_retry">Επανάληψη</string>

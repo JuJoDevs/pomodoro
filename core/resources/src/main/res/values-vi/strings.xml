@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Tuần</string>
     <string name="statistics_filter_months">Tháng</string>
     <string name="statistics_action_share_progress">CHIA SẺ TIẾN ĐỘ</string>
+    <string name="statistics_share_metric_focus_time">thời gian tập trung</string>
+    <string name="statistics_share_metric_break_time">thời gian nghỉ</string>
+    <string name="statistics_share_metric_total_week_time">tổng thời gian tuần này</string>
+    <string name="statistics_share_message">Tuần này %1$s: %2$s (Giờ:Phút). Phiên đã hoàn thành: %3$d. Chuỗi ngày: %4$d.</string>
     <string name="statistics_empty_title">Chưa có dữ liệu</string>
     <string name="statistics_empty_message">Hoàn thành một số phiên tập trung để xem thống kê của bạn tại đây.</string>
     <string name="statistics_action_retry">Thử lại</string>

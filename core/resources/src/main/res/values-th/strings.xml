@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">สัปดาห์</string>
     <string name="statistics_filter_months">เดือน</string>
     <string name="statistics_action_share_progress">แชร์ความคืบหน้า</string>
+    <string name="statistics_share_metric_focus_time">เวลาโฟกัส</string>
+    <string name="statistics_share_metric_break_time">เวลาพัก</string>
+    <string name="statistics_share_metric_total_week_time">เวลารวมของสัปดาห์</string>
+    <string name="statistics_share_message">สัปดาห์นี้ %1$s: %2$s (ชั่วโมง:นาที). ทำเซสชันเสร็จแล้ว %3$d ครั้ง. สตรีควัน: %4$d.</string>
     <string name="statistics_empty_title">ยังไม่มีข้อมูล</string>
     <string name="statistics_empty_message">ทำเซสชันโฟกัสให้เสร็จสิ้นเพื่อดูสถิติของคุณที่นี่</string>
     <string name="statistics_action_retry">ลองใหม่</string>
