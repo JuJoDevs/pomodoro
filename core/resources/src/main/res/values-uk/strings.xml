@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Тиждень</string>
     <string name="statistics_filter_months">Місяці</string>
     <string name="statistics_action_share_progress">ПОДІЛИТИСЯ ПРОГРЕСОМ</string>
+    <string name="statistics_share_metric_focus_time">час фокусування</string>
+    <string name="statistics_share_metric_break_time">час перерви</string>
+    <string name="statistics_share_metric_total_week_time">загальний час за тиждень</string>
+    <string name="statistics_share_message">Цього тижня %1$s: %2$s (Години:Хвилини). Завершені сесії: %3$d. Серія днів: %4$d.</string>
     <string name="statistics_empty_title">Немає даних</string>
     <string name="statistics_empty_message">Завершіть кілька сесій фокусу, щоб побачити статистику.</string>
     <string name="statistics_action_retry">Спробувати ще</string>

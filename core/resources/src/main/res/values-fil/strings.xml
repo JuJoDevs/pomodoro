@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Linggo</string>
     <string name="statistics_filter_months">Buwan</string>
     <string name="statistics_action_share_progress">IBAHAGI ANG PROGRESO</string>
+    <string name="statistics_share_metric_focus_time">oras ng pokus</string>
+    <string name="statistics_share_metric_break_time">oras ng pahinga</string>
+    <string name="statistics_share_metric_total_week_time">kabuuang oras ng linggo</string>
+    <string name="statistics_share_message">Ngayong linggong ito %1$s: %2$s (Oras:Minuto). Nakumpletong session: %3$d. Sunod-sunod na araw: %4$d.</string>
     <string name="statistics_empty_title">Wala pang datos</string>
     <string name="statistics_empty_message">Kumpletuhin ang ilang sesyon ng focus para makita ang iyong istatistika dito.</string>
     <string name="statistics_action_retry">Subukang muli</string>

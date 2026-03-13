@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">周</string>
     <string name="statistics_filter_months">月</string>
     <string name="statistics_action_share_progress">分享进度</string>
+    <string name="statistics_share_metric_focus_time">专注时间</string>
+    <string name="statistics_share_metric_break_time">休息时间</string>
+    <string name="statistics_share_metric_total_week_time">本周总时间</string>
+    <string name="statistics_share_message">本周%1$s：%2$s（小时:分钟）。已完成 %3$d 次会话。连续天数：%4$d。</string>
     <string name="statistics_empty_title">暂无数据</string>
     <string name="statistics_empty_message">完成一些专注会话以在此查看统计数据。</string>
     <string name="statistics_action_retry">重试</string>

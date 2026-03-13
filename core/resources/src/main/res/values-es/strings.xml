@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Semana</string>
     <string name="statistics_filter_months">Meses</string>
     <string name="statistics_action_share_progress">COMPARTIR PROGRESO</string>
+    <string name="statistics_share_metric_focus_time">tiempo de concentración</string>
+    <string name="statistics_share_metric_break_time">tiempo de descanso</string>
+    <string name="statistics_share_metric_total_week_time">tiempo total semanal</string>
+    <string name="statistics_share_message">Esta semana %1$s: %2$s (Horas:Minutos). Completaste %3$d sesiones. Racha de días: %4$d.</string>
     <string name="statistics_empty_title">Sin datos aún</string>
     <string name="statistics_empty_message">Completa algunas sesiones de concentración para ver tus estadísticas aquí.</string>
     <string name="statistics_action_retry">Reintentar</string>

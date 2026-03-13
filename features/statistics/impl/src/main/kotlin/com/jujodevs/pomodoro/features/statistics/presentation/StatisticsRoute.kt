@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.ObserveAsEvents
 import org.koin.androidx.compose.koinViewModel
 
@@ -32,9 +33,9 @@ private fun handleShareProgress(
 ) {
     val selectedMetricText =
         when (state.selectedWeekTimeMetric) {
-            StatisticsWeekTimeMetric.FOCUS -> "Focus time"
-            StatisticsWeekTimeMetric.BREAK -> "Break time"
-            StatisticsWeekTimeMetric.TOTAL -> "Total week time"
+            StatisticsWeekTimeMetric.FOCUS -> context.getString(R.string.statistics_share_metric_focus_time)
+            StatisticsWeekTimeMetric.BREAK -> context.getString(R.string.statistics_share_metric_break_time)
+            StatisticsWeekTimeMetric.TOTAL -> context.getString(R.string.statistics_share_metric_total_week_time)
         }
     val selectedMetricValue =
         when (state.selectedWeekTimeMetric) {
@@ -44,11 +45,13 @@ private fun handleShareProgress(
         }
 
     val shareText =
-        buildString {
-            append("This week $selectedMetricText: $selectedMetricValue (Hours:Minutes).")
-            append(" Completed ${state.sessionsCompleted} sessions.")
-            append(" Day streak: ${state.dayStreak}.")
-        }
+        context.getString(
+            R.string.statistics_share_message,
+            selectedMetricText,
+            selectedMetricValue,
+            state.sessionsCompleted,
+            state.dayStreak,
+        )
     val intent =
         Intent(Intent.ACTION_SEND).apply {
             type = "text/plain"

@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">Tjedan</string>
     <string name="statistics_filter_months">Mjeseci</string>
     <string name="statistics_action_share_progress">PODIJELI NAPREDAK</string>
+    <string name="statistics_share_metric_focus_time">vrijeme fokusa</string>
+    <string name="statistics_share_metric_break_time">vrijeme odmora</string>
+    <string name="statistics_share_metric_total_week_time">ukupno vrijeme tjedna</string>
+    <string name="statistics_share_message">Ovaj tjedan %1$s: %2$s (Sati:Minute). Dovršene sesije: %3$d. Niz dana: %4$d.</string>
     <string name="statistics_empty_title">Još nema podataka</string>
     <string name="statistics_empty_message">Dovršite neke sesije fokusa da biste ovdje vidjeli svoju statistiku.</string>
     <string name="statistics_action_retry">Pokušaj ponovno</string>

@@ -101,6 +101,10 @@
     <string name="statistics_filter_current_week">सप्ताह</string>
     <string name="statistics_filter_months">महीने</string>
     <string name="statistics_action_share_progress">प्रगति साझा करें</string>
+    <string name="statistics_share_metric_focus_time">फोकस समय</string>
+    <string name="statistics_share_metric_break_time">ब्रेक समय</string>
+    <string name="statistics_share_metric_total_week_time">इस सप्ताह का कुल समय</string>
+    <string name="statistics_share_message">इस सप्ताह %1$s: %2$s (घंटे:मिनट). %3$d सत्र पूरे किए। दिन की श्रृंखला: %4$d.</string>
     <string name="statistics_empty_title">अभी कोई डेटा नहीं</string>
     <string name="statistics_empty_message">अपने आँकड़े यहाँ देखने के लिए कुछ फोकस सत्र पूरे करें।</string>
     <string name="statistics_action_retry">पुनः प्रयास करें</string>
