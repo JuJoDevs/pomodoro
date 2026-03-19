@@ -12,6 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.ObserveAsEvents
@@ -24,6 +26,8 @@ import org.koin.androidx.compose.koinViewModel
 fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+    val privacyPolicyUrl = stringResource(R.string.privacy_policy_url)
     var requestExactAlarmPermission by remember { mutableStateOf(false) }
     var requestNotificationPermission by remember { mutableStateOf(false) }
     val versionText = remember { getVersionText(context) }
@@ -55,6 +59,7 @@ fun SettingsRoute(viewModel: SettingsViewModel = koinViewModel()) {
             }
             is SettingsEffect.GrantExactAlarmPermission -> requestExactAlarmPermission = true
             is SettingsEffect.RequestNotificationPermission -> requestNotificationPermission = true
+            SettingsEffect.OpenPrivacyPolicy -> uriHandler.openUri(privacyPolicyUrl)
         }
     }
 

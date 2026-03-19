@@ -7,7 +7,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalUriHandler
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.core.ui.ObserveAsEvents
 import com.jujodevs.pomodoro.core.ui.permissions.ExactAlarmPermissionEffect
 import com.jujodevs.pomodoro.core.ui.permissions.RequestNotificationPermissionOnTrigger
@@ -19,6 +22,8 @@ fun OnboardingRoute(
     viewModel: OnboardingViewModel = koinViewModel(),
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
+    val uriHandler = LocalUriHandler.current
+    val privacyPolicyUrl = stringResource(R.string.privacy_policy_url)
     val onNavigateToHomeState by rememberUpdatedState(newValue = onNavigateToHome)
     var requestExactAlarmPermission by remember { mutableStateOf(false) }
     var requestNotificationPermission by remember { mutableStateOf(false) }
@@ -56,6 +61,7 @@ fun OnboardingRoute(
 
     ObserveAsEvents(viewModel.effects) { effect ->
         when (effect) {
+            OnboardingEffect.OpenPrivacyPolicy -> uriHandler.openUri(privacyPolicyUrl)
             OnboardingEffect.RequestPermissionsAndNavigateToHome -> {
                 notificationPermissionResult = null
                 exactAlarmPermissionResult = null

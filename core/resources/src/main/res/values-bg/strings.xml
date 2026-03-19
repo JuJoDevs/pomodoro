@@ -14,6 +14,7 @@
     <string name="action_back">Назад</string>
     <string name="action_ok">ОК</string>
     <string name="action_reset">Нулиране</string>
+    <string name="action_privacy_policy">Политика за поверителност</string>
 
     <!-- Общи етикети -->
     <string name="label_settings">Настройки</string>

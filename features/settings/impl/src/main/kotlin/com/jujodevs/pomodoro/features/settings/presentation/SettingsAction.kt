@@ -10,4 +10,6 @@ sealed interface SettingsAction {
     data object GrantExactAlarmPermission : SettingsAction
 
     data object RequestNotificationPermission : SettingsAction
+
+    data object OpenPrivacyPolicy : SettingsAction
 }

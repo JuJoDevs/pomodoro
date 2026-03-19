@@ -14,6 +14,7 @@
     <string name="action_back">Πίσω</string>
     <string name="action_ok">ΟΚ</string>
     <string name="action_reset">Επαναφορά</string>
+    <string name="action_privacy_policy">Πολιτική απορρήτου</string>
 
     <!-- Κοινές ετικέτες -->
     <string name="label_settings">Ρυθμίσεις</string>

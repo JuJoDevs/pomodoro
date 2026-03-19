@@ -11,5 +11,7 @@ sealed interface OnboardingAction {
         val enabled: Boolean,
     ) : OnboardingAction
 
+    data object OpenPrivacyPolicy : OnboardingAction
+
     data object CompleteOnboarding : OnboardingAction
 }

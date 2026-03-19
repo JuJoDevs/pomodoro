@@ -14,6 +14,7 @@
     <string name="action_back">Geri</string>
     <string name="action_ok">Tamam</string>
     <string name="action_reset">Sıfırla</string>
+    <string name="action_privacy_policy">Gizlilik politikası</string>
 
     <!-- Ortak etiketler -->
     <string name="label_settings">Ayarlar</string>
