@@ -45,6 +45,9 @@ class OnboardingViewModel(
                 is OnboardingAction.ToggleAnalyticsConsent -> {
                     _state.update { it.copy(analyticsConsentChecked = action.enabled) }
                 }
+                OnboardingAction.OpenPrivacyPolicy -> {
+                    _effects.emit(OnboardingEffect.OpenPrivacyPolicy)
+                }
                 OnboardingAction.CompleteOnboarding -> {
                     updateAnalyticsConsent(_state.value.analyticsConsentChecked)
                     setOnboardingCompleted()

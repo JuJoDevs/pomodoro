@@ -6,4 +6,6 @@ sealed interface SettingsEffect {
     data object GrantExactAlarmPermission : SettingsEffect
 
     data object RequestNotificationPermission : SettingsEffect
+
+    data object OpenPrivacyPolicy : SettingsEffect
 }

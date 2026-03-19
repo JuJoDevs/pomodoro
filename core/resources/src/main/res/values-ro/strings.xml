@@ -14,6 +14,7 @@
     <string name="action_back">Înapoi</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Resetare</string>
+    <string name="action_privacy_policy">Politica de confidențialitate</string>
 
     <!-- Etichete comune -->
     <string name="label_settings">Setări</string>

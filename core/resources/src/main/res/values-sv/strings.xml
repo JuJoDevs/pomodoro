@@ -14,6 +14,7 @@
     <string name="action_back">Tillbaka</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Återställ</string>
+    <string name="action_privacy_policy">Integritetspolicy</string>
 
     <!-- Vanliga etiketter -->
     <string name="label_settings">Inställningar</string>

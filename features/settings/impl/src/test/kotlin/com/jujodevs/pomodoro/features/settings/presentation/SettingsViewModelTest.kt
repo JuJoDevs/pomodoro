@@ -114,6 +114,17 @@ class SettingsViewModelTest {
                 effects.cancelAndIgnoreRemainingEvents()
             }
         }
+
+    @Test
+    fun `GIVEN open privacy policy action WHEN onAction THEN emit open privacy policy effect`() =
+        runTest {
+            turbineScope {
+                val effects = viewModel.effects.testIn(this)
+                viewModel.onAction(SettingsAction.OpenPrivacyPolicy)
+                effects.awaitItem() shouldBeEqualTo SettingsEffect.OpenPrivacyPolicy
+                effects.cancelAndIgnoreRemainingEvents()
+            }
+        }
 }
 
 private class FakePermissionManager : PermissionManager {

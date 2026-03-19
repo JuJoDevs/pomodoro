@@ -14,6 +14,8 @@
     <string name="action_back">Back</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Reset</string>
+    <string name="action_privacy_policy">Privacy policy</string>
+    <string name="privacy_policy_url" translatable="false">https://pomodoro.jujodevs.com/privacy-policy</string>
 
     <!-- Common labels -->
     <string name="label_settings">Settings</string>

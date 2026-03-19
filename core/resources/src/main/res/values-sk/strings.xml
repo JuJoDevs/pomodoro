@@ -14,6 +14,7 @@
     <string name="action_back">Späť</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Resetovať</string>
+    <string name="action_privacy_policy">Zásady ochrany osobných údajov</string>
 
     <!-- Bežné štítky -->
     <string name="label_settings">Nastavenia</string>

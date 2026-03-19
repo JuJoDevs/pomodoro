@@ -60,6 +60,9 @@ class SettingsViewModel(
                 SettingsAction.RequestNotificationPermission -> {
                     _effects.emit(SettingsEffect.RequestNotificationPermission)
                 }
+                SettingsAction.OpenPrivacyPolicy -> {
+                    _effects.emit(SettingsEffect.OpenPrivacyPolicy)
+                }
             }
         }
     }

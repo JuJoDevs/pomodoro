@@ -13,10 +13,14 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.jujodevs.pomodoro.core.designsystem.components.button.ButtonVariant
+import com.jujodevs.pomodoro.core.designsystem.components.button.PomodoroButton
 import com.jujodevs.pomodoro.core.designsystem.theme.LocalSpacing
 import com.jujodevs.pomodoro.core.designsystem.theme.PomodoroTheme
+import com.jujodevs.pomodoro.core.resources.R
 import com.jujodevs.pomodoro.features.settings.presentation.components.AnalyticsSection
 import com.jujodevs.pomodoro.features.settings.presentation.components.PermissionsSection
 import com.jujodevs.pomodoro.features.settings.presentation.components.SoundLibrarySection
@@ -74,6 +78,15 @@ fun SettingsScreen(
         )
 
         Spacer(modifier = Modifier.height(spacing.spaceXXL))
+
+        PomodoroButton(
+            text = stringResource(R.string.action_privacy_policy),
+            onClick = { onAction(SettingsAction.OpenPrivacyPolicy) },
+            variant = ButtonVariant.Text,
+            modifier = Modifier.align(Alignment.End),
+        )
+
+        Spacer(modifier = Modifier.height(spacing.spaceXS))
 
         VersionRow(versionText = versionText)
     }

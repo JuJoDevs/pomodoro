@@ -14,6 +14,7 @@
     <string name="action_back">חזור</string>
     <string name="action_ok">אישור</string>
     <string name="action_reset">אפס</string>
+    <string name="action_privacy_policy">מדיניות פרטיות</string>
 
     <!-- תוויות נפוצות -->
     <string name="label_settings">הגדרות</string>

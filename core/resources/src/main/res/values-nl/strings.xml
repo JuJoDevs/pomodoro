@@ -14,6 +14,7 @@
     <string name="action_back">Terug</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Resetten</string>
+    <string name="action_privacy_policy">Privacybeleid</string>
 
     <!-- Algemene labels -->
     <string name="label_settings">Instellingen</string>

@@ -14,6 +14,7 @@
     <string name="action_back">Vissza</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Visszaállítás</string>
+    <string name="action_privacy_policy">Adatvédelmi irányelvek</string>
 
     <!-- Általános címkék -->
     <string name="label_settings">Beállítások</string>

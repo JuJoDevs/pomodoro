@@ -106,6 +106,18 @@ class OnboardingViewModelTest {
         }
 
     @Test
+    fun `GIVEN open privacy policy action WHEN onAction THEN emit privacy policy effect`() =
+        runTest {
+            turbineScope {
+                val effects = viewModel.effects.testIn(this)
+                viewModel.onAction(OnboardingAction.OpenPrivacyPolicy)
+
+                effects.awaitItem() shouldBeEqualTo OnboardingEffect.OpenPrivacyPolicy
+                effects.cancelAndIgnoreRemainingEvents()
+            }
+        }
+
+    @Test
     fun `GIVEN complete onboarding with default consent WHEN executed THEN should persist consent`() =
         runTest {
             turbineScope {

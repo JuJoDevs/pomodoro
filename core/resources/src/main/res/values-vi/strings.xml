@@ -14,6 +14,7 @@
     <string name="action_back">Quay lại</string>
     <string name="action_ok">OK</string>
     <string name="action_reset">Đặt lại</string>
+    <string name="action_privacy_policy">Chính sách quyền riêng tư</string>
 
     <!-- Nhãn phổ biến -->
     <string name="label_settings">Cài đặt</string>

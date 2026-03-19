@@ -14,6 +14,7 @@
     <string name="action_back">返回</string>
     <string name="action_ok">确定</string>
     <string name="action_reset">重置</string>
+    <string name="action_privacy_policy">隐私政策</string>
 
     <!-- 常用标签 -->
     <string name="label_settings">设置</string>
