@@ -7,10 +7,8 @@ import org.gradle.jvm.toolchain.JavaLanguageVersion
 import org.gradle.kotlin.dsl.configure
 import org.jetbrains.kotlin.gradle.dsl.KotlinProjectExtension
 
-internal fun Project.configureKotlin(
-    extension: KotlinProjectExtension
-) {
-    extension.apply {
+internal fun Project.configureKotlin() {
+    extensions.configure<KotlinProjectExtension> {
         jvmToolchain {
             languageVersion.set(JavaLanguageVersion.of(21))
         }
