@@ -39,3 +39,6 @@ app/google-services.json
 
 # Git worktrees
 .worktrees/
+
+# Generated Gradle
+gradle/gradle-daemon-jvm.properties
